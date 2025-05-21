@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+body {
+  background-color: #000c26;
+  color: white;
+}
+
+.btn-bg {
+  background: linear-gradient(
+    83.46deg,
+    #07ead3 -1.94%,
+    #26ddff 51.77%,
+    #6fc6b8 94.43%
+  );
+}
+.btn-bg:hover {
+  box-shadow: 0px 14px 30px 0px #22def96e;
+}
+
+.copyright-bg {
+  background: linear-gradient(
+    90deg,
+    #000618 2.31%,
+    #00c3fd 47.25%,
+    #000618 99.25%
+  );
+}
