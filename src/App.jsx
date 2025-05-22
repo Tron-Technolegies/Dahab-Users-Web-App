@@ -4,12 +4,16 @@ import {
   BuyMinersPage,
   DashBoardPage,
   ErrorPage,
+  ForgotPassword,
   Layout,
+  LoginPage,
   MyMinerPage,
+  OTPVerify,
   PayoutPage,
+  Register,
+  ResetPassword,
+  VerifyCode,
 } from "./pages";
-import LoginPage from "./pages/Login/LoginPage";
-import Register from "./pages/Register/Register";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -29,6 +33,10 @@ export default function App() {
       element: <LoginPage />,
     },
     { path: "/register", element: <Register /> },
+    { path: "/forgot-password", element: <ForgotPassword /> },
+    { path: "/verify", element: <VerifyCode /> },
+    { path: "/reset-password", element: <ResetPassword /> },
+    { path: "/otp", element: <OTPVerify /> },
   ]);
   return <RouterProvider router={router} />;
 }
