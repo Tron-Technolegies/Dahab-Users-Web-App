@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import FormInput from "../../components/FormInput";
 import Button from "../../components/Button";
 import { Link } from "react-router-dom";
 
 export default function LoginPage() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   return (
     <div className="min-h-screen flex md:flex-row flex-col justify-center items-center gap-10 lg:gap-20 p-10">
       <div>
@@ -21,11 +23,15 @@ export default function LoginPage() {
             title={"Email"}
             type={"email"}
             placeholder={"Enter Your Email"}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <FormInput
             title={"Password"}
             type={"password"}
             placeholder={"Enter Your Password"}
+            value={password}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <Link
             className="text-xs text-right text-[#76C6E0]"

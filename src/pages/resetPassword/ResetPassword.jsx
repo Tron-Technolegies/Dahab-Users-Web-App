@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { IoChevronBackOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import FormInput from "../../components/FormInput";
 import Button from "../../components/Button";
 
 export default function ResetPassword() {
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   return (
     <div className="min-h-screen flex md:flex-row flex-col justify-center items-center gap-10 lg:gap-20 p-10">
       <div>
@@ -31,11 +33,15 @@ export default function ResetPassword() {
             title={"New Password"}
             type={"password"}
             placeholder={"Enter New Password"}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <FormInput
             title={"Re-Enter New Password"}
             type={"password"}
             placeholder={"Re-Enter New Password"}
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
           />
           <Button name={"Set Password"} styles={"bg-[#07EAD3] mt-3"} />
         </form>

@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import FormInput from "../../components/FormInput";
 import { Link } from "react-router-dom";
 import Button from "../../components/Button";
 import { IoChevronBackOutline } from "react-icons/io5";
 
 export default function ForgotPassword() {
+  const [email, setEmail] = useState("");
   return (
     <div className="min-h-screen flex md:flex-row flex-col justify-center items-center gap-10 lg:gap-20 p-10">
       <div>
@@ -31,6 +32,8 @@ export default function ForgotPassword() {
             title={"Email"}
             type={"email"}
             placeholder={"Enter Your Email"}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <Button name={"Submit"} styles={"bg-[#07EAD3] mt-3"} />
         </form>
