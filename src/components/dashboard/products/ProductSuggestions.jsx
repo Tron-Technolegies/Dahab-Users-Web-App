@@ -7,7 +7,7 @@ export default function ProductSuggestions() {
   return (
     <div className="flex flex-col gap-5">
       <p className="text-2xl">Popular Products</p>
-      <div className="grid grid-cols-4 gap-5">
+      <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2  gap-5">
         <ProductCard1
           image={"/home/miner.png"}
           name={"Anexminer ET5 1200MH EtHashETC Miner"}
@@ -29,7 +29,7 @@ export default function ProductSuggestions() {
           price={"1998"}
         />
       </div>
-      <Link className="flex gap-2 items-center ms-auto">
+      <Link to={"/buy"} className="flex gap-2 items-center ms-auto">
         See All{" "}
         <span className="text-xl">
           <IoIosArrowRoundForward />

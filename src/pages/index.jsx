@@ -1,5 +1,6 @@
 import BuyMinersPage from "./buyminers/BuyMinersPage";
 import DashBoardPage from "./dashboard/DashBoardPage";
+import DetailedPage from "./dashboard/DetailedPage";
 import ErrorPage from "./error/ErrorPage";
 import ForgotPassword from "./forgotpassword/ForgotPassword";
 import Layout from "./Layout";
@@ -24,4 +25,5 @@ export {
   VerifyCode,
   OTPVerify,
   ResetPassword,
+  DetailedPage,
 };

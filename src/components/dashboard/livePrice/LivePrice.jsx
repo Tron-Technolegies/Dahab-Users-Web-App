@@ -7,7 +7,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 export default function LivePrice() {
-  //   const { loading, data } = useGetCoinData();
+  const { loading, data } = useGetCoinData();
   const settings = {
     dots: true,
     infinite: true,

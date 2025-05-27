@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import {
   BuyMinersPage,
   DashBoardPage,
+  DetailedPage,
   ErrorPage,
   ForgotPassword,
   Layout,
@@ -23,6 +24,7 @@ export default function App() {
       errorElement: <ErrorPage />,
       children: [
         { index: true, element: <DashBoardPage /> },
+        { path: "detailed", element: <DetailedPage /> },
         { path: "my-miners", element: <MyMinerPage /> },
         { path: "payouts", element: <PayoutPage /> },
         { path: "buy", element: <BuyMinersPage /> },
