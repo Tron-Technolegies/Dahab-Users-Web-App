@@ -1,11 +1,13 @@
 import { motion } from "framer-motion";
 import React, { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { UserContext } from "../../UserContext";
 import { IoNotifications } from "react-icons/io5";
 import { FaUserCircle } from "react-icons/fa";
 export default function Header() {
   const { user } = useContext(UserContext);
+  const location = useLocation();
+
   return (
     <header className="md:h-20 h-16 px-5 md:px-10 lg:px-[120px] xl:px-[180px] md:py-5 py-2 flex justify-between items-center">
       <Link
@@ -20,16 +22,42 @@ export default function Header() {
         ></img>
       </Link>
       <nav className="lg:flex gap-5 xl:gap-10 text-sm xl:text-base font-medium hidden">
-        <NavLink className={"text-white"} to={"/"}>
+        <NavLink
+          className={` ${
+            location.pathname === "/" || location.pathname.includes("detailed")
+              ? "text-[#07EAD3]"
+              : "text-white"
+          }`}
+          to={"/"}
+        >
           Dashboard
         </NavLink>
-        <NavLink className={"text-white"} to={"/my-miners"}>
+        <NavLink
+          className={` ${
+            location.pathname.includes("my-miners")
+              ? "text-[#07EAD3]"
+              : "text-white"
+          }`}
+          to={"/my-miners"}
+        >
           My Miners
         </NavLink>
-        <NavLink className={"text-white"} to={"/payouts"}>
+        <NavLink
+          className={` ${
+            location.pathname.includes("payouts")
+              ? "text-[#07EAD3]"
+              : "text-white"
+          }`}
+          to={"/payouts"}
+        >
           Payouts
         </NavLink>
-        <NavLink className={"text-white"} to={"/buy"}>
+        <NavLink
+          className={` ${
+            location.pathname.includes("buy") ? "text-[#07EAD3]" : "text-white"
+          }`}
+          to={"/buy"}
+        >
           Buy Miners
         </NavLink>
       </nav>
