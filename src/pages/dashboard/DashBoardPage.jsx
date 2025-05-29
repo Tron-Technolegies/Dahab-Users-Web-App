@@ -12,7 +12,7 @@ export default function DashBoardPage() {
       {/* {ownedMiners?.length > 0 ? <StatsSection /> : <NewUserLanding />} */}
       <NewUserLanding />
       <StatsSection />
-      {/* <LivePrice /> */}
+      <LivePrice />
       <ProductSuggestions />
     </div>
   );
