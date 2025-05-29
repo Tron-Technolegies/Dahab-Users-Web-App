@@ -11,6 +11,12 @@ export default function MyMinerCard({
   setSelected,
   id,
 }) {
+  const handleScrollToStat = () => {
+    const statSection = document.getElementById("stat");
+    if (statSection) {
+      statSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   return (
     <div
       className={`p-5 rounded-md flex flex-col items-center gap-1 w-[300px] hover:scale-105 hover:bg-[#0194FE] duration-300 ease-in-out ${
@@ -20,7 +26,10 @@ export default function MyMinerCard({
           ? "bg-gray-600"
           : "bg-[#011532]"
       }`}
-      onClick={() => setSelected(id)}
+      onClick={() => {
+        setSelected(id);
+        handleScrollToStat();
+      }}
     >
       <div className="flex justify-between w-full">
         <div

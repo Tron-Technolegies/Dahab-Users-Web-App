@@ -1,6 +1,7 @@
 import React from "react";
 import { LuRefreshCcw } from "react-icons/lu";
 import MinerList from "./MinerList";
+import MinerStatSection from "./MinerStatSection";
 
 export default function OwnedSection() {
   return (
@@ -12,6 +13,7 @@ export default function OwnedSection() {
         </span>
       </button>
       <MinerList />
+      <MinerStatSection />
     </div>
   );
 }

@@ -4,7 +4,7 @@ import StatElement1 from "./StatElement1";
 import ActiveButtonCard from "../../statsSection/ActiveButtonCard";
 import GraphElement1 from "./GraphElement1";
 
-export default function TopSection() {
+export default function TopSection({ hidden }) {
   return (
     <div className="flex flex-col lg:flex-row gap-5 items-start">
       <div className="flex flex-col gap-5 w-full">
@@ -13,7 +13,12 @@ export default function TopSection() {
           <StatElement1 stat={"96.86 %"} statName={"Share Efficiency"} />
           <StatElement1 stat={"0.00183547 BTC"} statName={"Mined Rewards"} />
         </div>
-        <div className="flex sm:flex-row flex-col justify-center  gap-10 items-center my-10">
+
+        <div
+          className={`flex sm:flex-row flex-col justify-center  gap-10 items-center my-10 ${
+            hidden && "hidden"
+          }`}
+        >
           <ActiveButtonCard
             icon={"/home/active.png"}
             name={"Active"}
