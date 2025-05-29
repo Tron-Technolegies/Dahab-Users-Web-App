@@ -44,3 +44,7 @@ body {
   border-top-color: rgb(5, 8, 48);
   animation: spinner 0.6s linear infinite;
 }
+
+.overwrite:hover {
+  color: white !important;
+}

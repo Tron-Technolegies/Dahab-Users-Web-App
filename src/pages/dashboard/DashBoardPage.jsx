@@ -9,7 +9,9 @@ export default function DashBoardPage() {
   const { ownedMiners } = useContext(UserContext);
   return (
     <div className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 ">
-      {ownedMiners?.length > 0 ? <StatsSection /> : <NewUserLanding />}
+      {/* {ownedMiners?.length > 0 ? <StatsSection /> : <NewUserLanding />} */}
+      <NewUserLanding />
+      <StatsSection />
       {/* <LivePrice /> */}
       <ProductSuggestions />
     </div>
