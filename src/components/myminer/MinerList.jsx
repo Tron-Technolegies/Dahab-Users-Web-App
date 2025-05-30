@@ -11,7 +11,7 @@ export default function MinerList() {
           key={item.id}
           image={item.image}
           name={item.name}
-          hashrate={item.hashrate}
+          hashrate={item.h24_hashRate}
           power={item.power}
           status={item.status}
           isSelected={selectedId === item.id}

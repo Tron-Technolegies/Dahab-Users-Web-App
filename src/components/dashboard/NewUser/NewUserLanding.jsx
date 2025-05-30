@@ -9,7 +9,10 @@ export default function NewUserLanding() {
           Welcome to DhabMiners
         </p>
         <p>Easy way to earn BTC every day</p>
-        <Link className="bg-[#07EAD3] px-5 py-1 text-center rounded-md text-black">
+        <Link
+          to={"/buy"}
+          className="bg-[#07EAD3] px-5 py-1 text-center rounded-md text-black"
+        >
           Start Mining Now
         </Link>
       </div>
