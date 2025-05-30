@@ -7,7 +7,7 @@ export default function SIngleMinerStats({ data }) {
   return (
     <div className="flex flex-col gap-5 items-start">
       <div className="flex flex-col gap-5 w-full">
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid md:grid-cols-2 gap-3">
           <StatElement1 stat={data?.h24_hashRate} statName={"24H Hashrate"} />
           <StatElement1
             stat={data?.h24_efficiency}
