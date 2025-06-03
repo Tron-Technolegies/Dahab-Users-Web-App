@@ -31,6 +31,7 @@ export default function VerifyCode() {
             title={"Code"}
             type={"number"}
             placeholder={"Enter Verification Code"}
+            styles={"bg-white text-black"}
             value={code}
             onChange={(e) => setCode(e.target.value)}
           />

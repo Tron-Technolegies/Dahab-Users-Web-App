@@ -11,7 +11,7 @@ export default function FormSelect({
     <div className="flex flex-col gap-2 w-fit">
       {title && <label className="text-sm">{title}</label>}
       <select
-        className="p-2 text-[#0194FE] bg-[#011532] rounded-md"
+        className="p-2 text-[#0194FE] bg-[#011532] rounded-md outline-0"
         value={value}
         onChange={onChange}
       >

@@ -33,6 +33,7 @@ export default function ResetPassword() {
             title={"New Password"}
             type={"password"}
             placeholder={"Enter New Password"}
+            styles={"bg-white text-black"}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -40,6 +41,7 @@ export default function ResetPassword() {
             title={"Re-Enter New Password"}
             type={"password"}
             placeholder={"Re-Enter New Password"}
+            styles={"bg-white text-black"}
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />

@@ -26,6 +26,7 @@ export default function Register() {
             title={"Email"}
             type={"email"}
             value={email}
+            styles={"bg-white text-black"}
             onChange={(e) => setEmail(e.target.value)}
             placeholder={"Enter Your Email"}
           />
@@ -33,6 +34,7 @@ export default function Register() {
             title={"Password"}
             type={"password"}
             value={password}
+            styles={"bg-white text-black"}
             onChange={(e) => setPassword(e.target.value)}
             placeholder={"Enter Your Password"}
           />
@@ -40,6 +42,7 @@ export default function Register() {
             title={"Confirm Password"}
             type={"password"}
             value={confirmPassword}
+            styles={"bg-white text-black"}
             onChange={(e) => setConfirmPassword(e.target.value)}
             placeholder={"Confirm Your Password"}
           />

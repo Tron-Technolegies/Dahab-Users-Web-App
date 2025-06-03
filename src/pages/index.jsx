@@ -8,6 +8,7 @@ import LoginPage from "./Login/LoginPage";
 import MyMinerPage from "./myminer/MyMinerPage";
 import OTPVerify from "./otp-verify/OTPVerify";
 import PayoutPage from "./payout/PayoutPage";
+import WithdrawPage from "./payout/WithdrawPage";
 import Register from "./Register/Register";
 import ResetPassword from "./resetPassword/ResetPassword";
 import VerifyCode from "./verifyCode/VerifyCode";
@@ -22,6 +23,7 @@ export {
   LoginPage,
   Register,
   ForgotPassword,
+  WithdrawPage,
   VerifyCode,
   OTPVerify,
   ResetPassword,

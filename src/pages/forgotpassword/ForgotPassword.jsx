@@ -34,6 +34,7 @@ export default function ForgotPassword() {
             placeholder={"Enter Your Email"}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            styles={"bg-white text-black"}
           />
           <Button name={"Submit"} styles={"bg-[#07EAD3] mt-3"} />
         </form>

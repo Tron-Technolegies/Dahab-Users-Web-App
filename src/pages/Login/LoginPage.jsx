@@ -24,11 +24,13 @@ export default function LoginPage() {
             type={"email"}
             placeholder={"Enter Your Email"}
             value={email}
+            styles={"bg-white text-black"}
             onChange={(e) => setEmail(e.target.value)}
           />
           <FormInput
             title={"Password"}
             type={"password"}
+            styles={"bg-white text-black"}
             placeholder={"Enter Your Password"}
             value={password}
             onChange={(e) => setEmail(e.target.value)}

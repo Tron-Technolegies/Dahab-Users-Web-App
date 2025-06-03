@@ -14,7 +14,9 @@ import {
   Register,
   ResetPassword,
   VerifyCode,
+  WithdrawPage,
 } from "./pages";
+import CartPage from "./pages/buyminers/CartPage";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -27,7 +29,9 @@ export default function App() {
         { path: "detailed", element: <DetailedPage /> },
         { path: "my-miners", element: <MyMinerPage /> },
         { path: "payouts", element: <PayoutPage /> },
+        { path: "payouts/withdraw", element: <WithdrawPage /> },
         { path: "buy", element: <BuyMinersPage /> },
+        { path: "buy/cart", element: <CartPage /> },
       ],
     },
     {
