@@ -1,5 +1,6 @@
 import React from "react";
 import { BsCartPlus } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 export default function BuyCard({
   hashRate,
@@ -41,12 +42,18 @@ export default function BuyCard({
       </div>
       {stock > 0 ? (
         <div className="flex gap-2 items-center w-full">
-          <button className="bg-[#0194FE] w-full py-2 rounded-md cursor-pointer">
+          <Link
+            to={"/buy/cart"}
+            className="bg-[#0194FE] w-full py-2 rounded-md text-center cursor-pointer"
+          >
             Buy Now
-          </button>
-          <button className="p-2 bg-[#42E8E0] rounded-md text-2xl text-black cursor-pointer">
+          </Link>
+          <Link
+            to={"/buy/cart"}
+            className="p-2 bg-[#42E8E0] rounded-md text-2xl text-black cursor-pointer"
+          >
             <BsCartPlus />
-          </button>
+          </Link>
         </div>
       ) : (
         <button className="bg-[#198FA6] w-full py-2 rounded-md cursor-pointer">

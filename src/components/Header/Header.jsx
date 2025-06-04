@@ -5,6 +5,7 @@ import { UserContext } from "../../UserContext";
 import { IoNotifications } from "react-icons/io5";
 import { FaUserCircle, FaAlignRight } from "react-icons/fa";
 import DrawerComponent from "./DrawerComponent";
+import AccountSettings from "./AccountSettings";
 
 export default function Header() {
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -65,11 +66,11 @@ export default function Header() {
         </NavLink>
       </nav>
       {user ? (
-        <div className="flex gap-5 items-center text-2xl">
+        <div className="flex gap-2 items-center text-2xl">
           <span className="text-[#07EAD3]">
             <IoNotifications />
           </span>
-          <FaUserCircle />
+          <AccountSettings user={user} />
           <p className="text-xl md:hidden" onClick={() => setOpenDrawer(true)}>
             <FaAlignRight />
           </p>

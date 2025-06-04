@@ -13,6 +13,7 @@ import {
   PayoutPage,
   Register,
   ResetPassword,
+  UpdateProfile,
   VerifyCode,
   WithdrawPage,
 } from "./pages";
@@ -32,6 +33,7 @@ export default function App() {
         { path: "payouts/withdraw", element: <WithdrawPage /> },
         { path: "buy", element: <BuyMinersPage /> },
         { path: "buy/cart", element: <CartPage /> },
+        { path: "profile", element: <UpdateProfile /> },
       ],
     },
     {

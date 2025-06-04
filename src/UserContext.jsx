@@ -1,12 +1,13 @@
 import { createContext, useState } from "react";
-import { minersMock } from "./utils/miners";
+import { cartItems as items, minersMock } from "./utils/miners";
 
 export const UserContext = createContext();
 
 const UserContextProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({ name: "Shafi" });
   const [ownedMiners, setOwnedMiners] = useState(["1"]);
   const [selectedMiner, setSelectedMiner] = useState(minersMock[0]);
+  const [cartItems, setCartItems] = useState(items);
 
   return (
     <UserContext.Provider
@@ -17,6 +18,8 @@ const UserContextProvider = ({ children }) => {
         setOwnedMiners,
         selectedMiner,
         setSelectedMiner,
+        cartItems,
+        setCartItems,
       }}
     >
       {children}

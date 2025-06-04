@@ -204,3 +204,28 @@ export const products = [
     stock: 10,
   },
 ];
+
+export const cartItems = [
+  {
+    id: 1,
+    name: "Bitmain Antminer L7 (9.5Gh)",
+    image: "/my-miners/miner-1.png",
+    price: "1997",
+    quantity: 2,
+  },
+  {
+    id: 2,
+    name: "Bitmain Antminer L9 (16Gh)",
+    image: "/my-miners/miner-2.png",
+    quantity: 1,
+    price: "1997",
+  },
+  {
+    id: 3,
+    name: "Bitmain Antminer KS5 Pro (21Th)",
+    image: "/my-miners/miner-3.png",
+    status: "Active",
+    price: "1997",
+    quantity: 1,
+  },
+];

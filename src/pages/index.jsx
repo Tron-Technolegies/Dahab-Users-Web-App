@@ -11,6 +11,7 @@ import PayoutPage from "./payout/PayoutPage";
 import WithdrawPage from "./payout/WithdrawPage";
 import Register from "./Register/Register";
 import ResetPassword from "./resetPassword/ResetPassword";
+import UpdateProfile from "./UpdateProfile";
 import VerifyCode from "./verifyCode/VerifyCode";
 
 export {
@@ -28,4 +29,5 @@ export {
   OTPVerify,
   ResetPassword,
   DetailedPage,
+  UpdateProfile,
 };
