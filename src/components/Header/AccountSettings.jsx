@@ -90,7 +90,11 @@ export default function AccountSettings({ user }) {
               handleClose={handleClose}
               click={() => setOpenNotification(true)}
             />
-            <AccountSettingItem name={"2FA"} handleClose={handleClose} />
+            <AccountSettingItem
+              name={"2FA"}
+              handleClose={handleClose}
+              link={"/2fa"}
+            />
           </div>
           <Divider
             sx={{
@@ -99,14 +103,20 @@ export default function AccountSettings({ user }) {
           />
           <p className=" text-[#76C6E0]">More</p>
           <div>
-            <AccountSettingItem name={"Help"} handleClose={handleClose} />
+            <AccountSettingItem
+              name={"Help"}
+              handleClose={handleClose}
+              link={"/help"}
+            />
             <AccountSettingItem
               name={"Privacy Policy"}
               handleClose={handleClose}
+              link={"/privacy"}
             />
             <AccountSettingItem
               name={"Terms of Use"}
               handleClose={handleClose}
+              link={"/terms"}
             />
           </div>
           <Divider
