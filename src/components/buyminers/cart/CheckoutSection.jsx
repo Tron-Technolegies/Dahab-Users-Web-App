@@ -20,8 +20,8 @@ export default function CheckoutSection() {
     }
   }, [cartItems]);
   return (
-    <div className="flex justify-between my-10 items-center duration-300 ease-in-out">
-      <div className="my-10">
+    <div className="flex lg:flex-row flex-col lg:justify-between my-10 items-center duration-300 ease-in-out">
+      <div className="my-10 w-full">
         <div className="flex gap-3 items-center">
           <p>Pay With</p>
           <div
@@ -52,7 +52,7 @@ export default function CheckoutSection() {
           </div>
         </div>
       </div>
-      <div className="p-10 bg-[#011532] rounded-md lg:w-1/2 flex flex-col gap-5">
+      <div className="p-10 bg-[#011532] rounded-md lg:w-1/2 flex flex-col gap-5 w-full">
         <p className="text-[#76C6E0] text-xl">Grand Total</p>
         <div className="flex flex-col gap-3">
           <div className="flex justify-between items-center">
