@@ -19,11 +19,11 @@ export default function MyMinerCard({
       statSection.scrollIntoView({ behavior: "smooth" });
     }
   };
-  const { setSelectedMiner } = useContext(UserContext);
-  const handleSelection = (id) => {
-    const newMiner = minersMock.find((item) => item.id === id);
-    setSelectedMiner(newMiner);
-  };
+  // const { setSelectedMiner } = useContext(UserContext);
+  // const handleSelection = (id) => {
+  //   const newMiner = minersMock.find((item) => item.id === id);
+  //   setSelectedMiner(newMiner);
+  // };
   return (
     <div
       className={`p-5 rounded-md flex flex-col items-center gap-1 w-[300px] hover:scale-105 hover:bg-[#0194FE] duration-300 ease-in-out ${
@@ -34,8 +34,8 @@ export default function MyMinerCard({
           : "bg-[#011532]"
       }`}
       onClick={() => {
-        handleSelection(id);
-        setSelected(id);
+        // handleSelection(id);
+        setSelected((prevId) => (prevId === id ? null : id));
         handleScrollToStat();
       }}
     >

@@ -5,11 +5,10 @@ import SIngleMinerStats from "./SIngleMinerStats";
 import { UserContext } from "../../UserContext";
 import ReportIssue from "./ReportIssue";
 
-export default function MinerStatSection() {
-  const { selectedMiner } = useContext(UserContext);
+export default function MinerStatSection({ selectedMiner }) {
   const [open, setOpen] = useState(false);
   return (
-    <section id="stat">
+    <section id="stat" className="col-span-full">
       <div className="flex md:flex-row flex-col justify-between items-center my-5">
         <p className="md:text-2xl text-lg">{selectedMiner?.name}</p>
         <button

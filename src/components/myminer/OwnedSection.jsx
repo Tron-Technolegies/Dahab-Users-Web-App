@@ -13,7 +13,6 @@ export default function OwnedSection() {
         </span>
       </button>
       <MinerList />
-      <MinerStatSection />
     </div>
   );
 }
