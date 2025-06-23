@@ -11,6 +11,7 @@ export default function StatsMainCard() {
       className={`p-10 ${
         on ? "bg-gray-200" : "bg-gradient-to-r from-[#0692DC] to-[#59b3e4]"
       } lg:w-1/2 sm:w-3/4 w-full rounded-4xl relative flex flex-col gap-3 items-center`}
+      id="main-stat-card"
     >
       {on ? (
         <GraphStat />

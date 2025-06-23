@@ -6,7 +6,10 @@ import MinerStatSection from "./MinerStatSection";
 export default function MinerList() {
   const [selectedId, setSelectedId] = useState(null);
   return (
-    <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 justify-between place-items-center gap-5 border-b border-[#76C6E054] pb-10">
+    <div
+      id="my-miners"
+      className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 justify-between place-items-center gap-5 border-b border-[#76C6E054] pb-10"
+    >
       {minersMock.map((item) => (
         <div
           key={item.id}

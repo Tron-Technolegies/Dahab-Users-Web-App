@@ -9,7 +9,10 @@ export default function StatsSection() {
   return (
     <div className="flex flex-col items-center">
       <StatsMainCard />
-      <div className="flex sm:flex-row flex-col justify-center md:gap-20 gap-10 items-center my-10">
+      <div
+        className="flex sm:flex-row flex-col justify-center md:gap-20 gap-10 items-center my-10"
+        id="active-miners"
+      >
         <ActiveButtonCard
           icon={"/home/active.png"}
           name={"Active"}

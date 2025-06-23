@@ -8,9 +8,12 @@ import Divider from "@mui/material/Divider";
 import AccountSettingItem from "./AccountSettingItem";
 import { IoLogOutOutline } from "react-icons/io5";
 import NotificationSettings from "./NotificationSettings";
+import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import { useTour } from "@reactour/tour";
 
 export default function AccountSettings({ user }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const { setIsOpen } = useTour();
   const [openNotification, setOpenNotification] = useState(false);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -108,6 +111,17 @@ export default function AccountSettings({ user }) {
               handleClose={handleClose}
               link={"/help"}
             />
+            <MenuItem
+              onClick={() => {
+                handleClose();
+                setIsOpen(true);
+              }}
+            >
+              <button className="flex justify-between items-center w-full cursor-pointer">
+                <p className="text-sm">{"Tutorial"}</p>
+                <MdOutlineKeyboardArrowRight />
+              </button>
+            </MenuItem>
             <AccountSettingItem
               name={"Privacy Policy"}
               handleClose={handleClose}
