@@ -63,7 +63,7 @@ export default function PayoutTable() {
         <label>Sort</label>
         <FormSelect list={["All", "Pending", "Completed"]} />
       </div>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} id="payout">
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow

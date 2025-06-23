@@ -8,6 +8,7 @@ const UserContextProvider = ({ children }) => {
   const [ownedMiners, setOwnedMiners] = useState(["1"]);
   const [selectedMiner, setSelectedMiner] = useState(minersMock[0]);
   const [cartItems, setCartItems] = useState(items);
+  const [run, setRun] = useState(true);
 
   return (
     <UserContext.Provider
@@ -20,6 +21,8 @@ const UserContextProvider = ({ children }) => {
         setSelectedMiner,
         cartItems,
         setCartItems,
+        run,
+        setRun,
       }}
     >
       {children}

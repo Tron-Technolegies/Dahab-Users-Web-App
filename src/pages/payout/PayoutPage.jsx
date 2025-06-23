@@ -15,7 +15,10 @@ export default function PayoutPage() {
       <PayoutTopSection active={active} setActive={setActive} />
       {active === "payouts" && <PayoutTable />}
       {active === "rewards" && <RewardsTable />}
-      <div className="flex sm:flex-row flex-col justify-center sm:gap-10 items-center">
+      <div
+        className="flex sm:flex-row flex-col justify-center sm:gap-10 items-center"
+        id="withdraw"
+      >
         <PayoutSelector />
         <Link
           to={"/payouts/withdraw"}
