@@ -33,7 +33,10 @@ export default function StatsSection() {
         <AlertContainer />
         <CreateContainer />
       </div>
-      <PayoutSelector />
+      <div id="payout-selector-1">
+        {" "}
+        <PayoutSelector />
+      </div>
     </div>
   );
 }

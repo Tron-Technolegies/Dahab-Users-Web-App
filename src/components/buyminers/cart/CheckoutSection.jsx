@@ -1,12 +1,14 @@
 import { motion } from "framer-motion";
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../../UserContext";
+import { useTour } from "@reactour/tour";
 
 export default function CheckoutSection() {
   const [qty, setQty] = useState(0);
   const [price, setPrice] = useState(0);
   const [pay, setPay] = useState("fiat");
   const { cartItems } = useContext(UserContext);
+  const { setIsOpen, setCurrentStep } = useTour();
 
   useEffect(() => {
     if (cartItems.length > 0) {
@@ -64,7 +66,13 @@ export default function CheckoutSection() {
             <p className="text-[#07EAD3]">AED {price}</p>
           </div>
         </div>
-        <button className="w-full py-2 rounded-lg bg-[#07EAD3] text-black cursor-pointer">
+        <button
+          onClick={() => {
+            setCurrentStep(0);
+            setIsOpen(true);
+          }}
+          className="w-full py-2 rounded-lg bg-[#07EAD3] text-black cursor-pointer"
+        >
           CONFIRM PURCHASE
         </button>
       </div>

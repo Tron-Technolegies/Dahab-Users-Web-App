@@ -5,7 +5,10 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 export default function AlertContainer() {
   return (
     <div className="p-3 rounded-lg border border-[#42E8E03B] w-[350px]">
-      <div className="bg-[#011532] p-2 rounded-lg flex flex-col gap-9">
+      <div
+        className="bg-[#011532] p-2 rounded-lg flex flex-col gap-9"
+        id="alert-box"
+      >
         <p className="text-[#D6A045] text-sm">Alert</p>
         <div className="flex gap-3 items-center justify-center ">
           <img src="/home/inactive.png" />

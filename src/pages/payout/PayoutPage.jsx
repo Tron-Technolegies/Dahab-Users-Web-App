@@ -12,9 +12,11 @@ export default function PayoutPage() {
   }, []);
   return (
     <div className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 flex flex-col gap-5">
-      <PayoutTopSection active={active} setActive={setActive} />
-      {active === "payouts" && <PayoutTable />}
-      {active === "rewards" && <RewardsTable />}
+      <div className="flex flex-col gap-5" id="payout-table">
+        <PayoutTopSection active={active} setActive={setActive} />
+        {active === "payouts" && <PayoutTable />}
+        {active === "rewards" && <RewardsTable />}
+      </div>
       <div
         className="flex sm:flex-row flex-col justify-center sm:gap-10 items-center"
         id="withdraw"

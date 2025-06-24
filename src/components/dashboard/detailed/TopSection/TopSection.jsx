@@ -6,7 +6,10 @@ import GraphElement1 from "./GraphElement1";
 
 export default function TopSection({ hidden }) {
   return (
-    <div className="flex flex-col lg:flex-row gap-5 items-start">
+    <div
+      className="flex flex-col lg:flex-row gap-5 items-start"
+      id="detailed-total-miners"
+    >
       <div className="flex flex-col gap-5 w-full">
         <div className="flex flex-col gap-3">
           <StatElement1 stat={"3.64 PH"} statName={"Hashrate"} />

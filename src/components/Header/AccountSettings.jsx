@@ -13,7 +13,7 @@ import { useTour } from "@reactour/tour";
 
 export default function AccountSettings({ user }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const { setIsOpen } = useTour();
+  const { setIsOpen, setCurrentStep } = useTour();
   const [openNotification, setOpenNotification] = useState(false);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -114,6 +114,7 @@ export default function AccountSettings({ user }) {
             <MenuItem
               onClick={() => {
                 handleClose();
+                setCurrentStep(0);
                 setIsOpen(true);
               }}
             >

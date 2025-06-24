@@ -31,7 +31,7 @@ export default function StatsMainCard() {
         </div>
       )}
 
-      <div className="flex gap-3 items-center mt-7">
+      <div className="flex gap-3 items-center mt-7" id="graph-switch">
         <img src="/home/graph-switch.png" className="w-7" />
         <div
           className={`${
@@ -58,7 +58,11 @@ export default function StatsMainCard() {
           ></motion.button>
         </div>
       </div>
-      <Link to={"/detailed"} className={`underline ${on && "text-black"}`}>
+      <Link
+        to={"/detailed"}
+        className={`underline ${on && "text-black"}`}
+        id="see-details"
+      >
         Detailed View
       </Link>
     </div>

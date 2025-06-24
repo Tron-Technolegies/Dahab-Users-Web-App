@@ -129,7 +129,7 @@ export default function DetailedTable() {
     },
   ];
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-10" id="miner-table">
       <div className="flex items-center gap-5">
         <FormSelect list={["All", "Active", "Warning", "Inactive"]} />
         <div className="w-full relative">

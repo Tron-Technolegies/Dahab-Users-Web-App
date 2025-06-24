@@ -2,15 +2,29 @@ import React, { useEffect } from "react";
 import Header from "../components/Header/Header";
 import { Outlet, useNavigate } from "react-router-dom";
 import Footer from "../components/footer/Footer";
-import { TourProvider } from "@reactour/tour";
+import { TourProvider, useTour } from "@reactour/tour";
 
 export default function Layout() {
   const navigate = useNavigate();
+  const { setIsOpen, setCurrentStep } = useTour();
   const steps = [
+    {
+      action: () => navigate("/"),
+      selector: "#navbar",
+      content: "Now Lets begin the tour",
+    },
     {
       selector: "#main-stat-card",
       content:
         "This is the main stat card. You can see both the graphical view and statistics here. you can see the detailed page in the see details page",
+    },
+    {
+      selector: "#graph-switch",
+      content: "You can toggle the graph view and stat view.",
+    },
+    {
+      selector: "#see-details",
+      content: "Navigate to see the detailed view",
     },
     {
       selector: "#active-miners",
@@ -18,7 +32,34 @@ export default function Layout() {
         "Gives info of the different miners that are active, inactive and has warning",
     },
     {
+      selector: "#alert-box",
+      content: "This gives you info of miners that are offline or has warning",
+    },
+    {
+      selector: "#payout-selector-1",
+      content: "You can switch between the payout modes here",
+    },
+    {
       action: () => navigate("/"),
+      selector: "#navbar",
+      content: "Now Lets go to the detailed page",
+    },
+    {
+      action: () => navigate("/detailed"),
+      selector: "#navbar",
+      content: "You are now on the detailed page",
+    },
+    {
+      selector: "#detailed-total-miners",
+      content:
+        "This section gives the details of all the miners combined including graphical data",
+    },
+    {
+      selector: "#miner-table",
+      content: "This gives data of all the individual miners with stats",
+    },
+    {
+      action: () => navigate("/detailed"),
       selector: "#my-miner-nav",
       content: "Now Lets go to my miner page",
     },
@@ -31,6 +72,43 @@ export default function Layout() {
       selector: "#my-miners",
       content:
         "This gives the list of all owned miners. Click one and see its stats",
+    },
+    {
+      action: () => navigate("/my-miners"),
+      selector: "#payouts-nav",
+      content: "Now Lets go to payouts page",
+    },
+    {
+      action: () => navigate("/payouts"),
+      selector: "#payouts-nav",
+      content: "You are now on payouts page",
+    },
+    {
+      selector: "#payout-table",
+      content: "You can switch between the payouts and rewards table here",
+    },
+    {
+      selector: "#withdraw",
+      content: "You can manually withdraw your amount from here",
+    },
+    {
+      action: () => navigate("/payouts"),
+      selector: "#navbar",
+      content: "Now go to withdraw page",
+    },
+    {
+      action: () => navigate("/payouts/withdraw"),
+      selector: "#navbar",
+      content: "You are now on withdraw page",
+    },
+    {
+      selector: "#balance-box",
+      content: "You can see your current BTC balance here",
+    },
+    {
+      selector: "#withdraw-form",
+      content:
+        "You can select the amount you need from your available balance and transfer it into your BTC Wallet",
     },
   ];
 

@@ -24,7 +24,10 @@ export default function WithdrawForm() {
     return `${value} BTC`;
   }
   return (
-    <div className="p-10 rounded-md bg-[#011532] flex flex-col items-center gap-5 lg:w-1/2 w-full mx-auto my-10">
+    <div
+      className="p-10 rounded-md bg-[#011532] flex flex-col items-center gap-5 lg:w-1/2 w-full mx-auto my-10"
+      id="withdraw-form"
+    >
       {" "}
       <Box sx={{ width: 330 }}>
         <Slider

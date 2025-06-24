@@ -51,6 +51,7 @@ export default function Header() {
           My Miners
         </NavLink>
         <NavLink
+          id="payouts-nav"
           className={` ${
             location.pathname.includes("payouts")
               ? "text-[#07EAD3]"
