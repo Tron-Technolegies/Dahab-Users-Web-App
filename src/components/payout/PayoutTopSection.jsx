@@ -4,24 +4,24 @@ export default function PayoutTopSection({ active, setActive }) {
   return (
     <div className="flex gap-1">
       <button
-        onClick={() => setActive("payouts")}
-        className={`px-4 py-2 cursor-pointer duration-100 ease-in-out ${
-          active === "payouts"
-            ? "text-white border-b border-[#0194FE]"
-            : "text-gray-500"
-        } `}
-      >
-        Payouts
-      </button>
-      <button
         onClick={() => setActive("rewards")}
-        className={`px-4 py-2 cursor-pointer duration-100 ease-in-out ${
+        className={`px-4 py-1  cursor-pointer duration-100 ease-in-out border-r border-l rounded-b-md border-b ${
           active === "rewards"
-            ? "text-white border-b border-[#0194FE]"
-            : "text-gray-500"
+            ? "text-white border-[#0194FE] scale-105"
+            : "text-gray-500 border-gray-400"
         } `}
       >
         Rewards
+      </button>
+      <button
+        onClick={() => setActive("payouts")}
+        className={`px-4 py-1 cursor-pointer duration-100 ease-in-out border-b border-l border-r rounded-b-md ${
+          active === "payouts"
+            ? "text-white  border-[#0194FE] scale-105"
+            : "text-gray-500 border-gray-600"
+        } `}
+      >
+        Payouts
       </button>
     </div>
   );

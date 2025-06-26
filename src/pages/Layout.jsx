@@ -14,18 +14,11 @@ export default function Layout() {
       content: "Now Lets begin the tour",
     },
     {
-      selector: "#main-stat-card",
+      selector: "#dash-stats",
       content:
-        "This is the main stat card. You can see both the graphical view and statistics here. you can see the detailed page in the see details page",
+        " You can see the combined hashrate, share efficiency and mined rewards of all your miners here",
     },
-    {
-      selector: "#graph-switch",
-      content: "You can toggle the graph view and stat view.",
-    },
-    {
-      selector: "#see-details",
-      content: "Navigate to see the detailed view",
-    },
+
     {
       selector: "#active-miners",
       content:
@@ -48,11 +41,6 @@ export default function Layout() {
       action: () => navigate("/detailed"),
       selector: "#navbar",
       content: "You are now on the detailed page",
-    },
-    {
-      selector: "#detailed-total-miners",
-      content:
-        "This section gives the details of all the miners combined including graphical data",
     },
     {
       selector: "#miner-table",

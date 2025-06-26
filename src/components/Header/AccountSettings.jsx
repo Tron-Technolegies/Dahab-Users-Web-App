@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
@@ -10,9 +10,11 @@ import { IoLogOutOutline } from "react-icons/io5";
 import NotificationSettings from "./NotificationSettings";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { useTour } from "@reactour/tour";
+import { UserContext } from "../../UserContext";
 
 export default function AccountSettings({ user }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const { ownedMiners } = useContext(UserContext);
   const { setIsOpen, setCurrentStep } = useTour();
   const [openNotification, setOpenNotification] = useState(false);
   const open = Boolean(anchorEl);
@@ -111,14 +113,16 @@ export default function AccountSettings({ user }) {
               handleClose={handleClose}
               link={"/help"}
             />
-            <MenuItem
-              onClick={() => {
-                handleClose();
-                setCurrentStep(0);
-                setIsOpen(true);
-              }}
-            >
-              <button className="flex justify-between items-center w-full cursor-pointer">
+            <MenuItem>
+              <button
+                className="flex justify-between items-center w-full cursor-pointer disabled:cursor-not-allowed"
+                disabled={ownedMiners.length === 0}
+                onClick={() => {
+                  handleClose();
+                  setCurrentStep(0);
+                  setIsOpen(true);
+                }}
+              >
                 <p className="text-sm">{"Tutorial"}</p>
                 <MdOutlineKeyboardArrowRight />
               </button>

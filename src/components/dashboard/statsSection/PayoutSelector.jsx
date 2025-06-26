@@ -24,6 +24,9 @@ export default function PayoutSelector() {
             onMouseEnter={() => setShowInfo(true)}
             onMouseLeave={() => setShowInfo(false)}
           >
+            <p className="text-sm mb-2 text-yellow-400">
+              Only able to switch once every 60 days
+            </p>
             <p className="text-sm mb-2">BTC Profit</p>
             <p className="text-xs mb-2">
               Segregates electricity payments from mining revenue, with all BTC
@@ -43,24 +46,26 @@ export default function PayoutSelector() {
           className={`bg-[#011532]  p-1 border border-[#76C6E04D] rounded-s-full rounded-e-full flex items-center gap-5`}
         >
           <motion.button
-            className={`text-white p-1 px-2`}
+            className={`text-white p-1 px-2 disabled:cursor-not-allowed`}
             animate={{
               backgroundColor: payout === "profit" ? "#0194FE" : "#011532",
               borderRadius: payout === "profit" ? "999px" : "0px",
             }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
             onClick={() => setPayout("profit")}
+            disabled
           >
             BTC Profit
           </motion.button>
           <motion.button
-            className={`text-white p-1 px-2`}
+            className={`text-white p-1 px-2 disabled:cursor-not-allowed`}
             animate={{
               backgroundColor: payout === "hold" ? "#0194FE" : "",
               borderRadius: payout === "hold" ? "999px" : "0px",
             }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
             onClick={() => setPayout("hold")}
+            disabled
           >
             BTC Hold
           </motion.button>

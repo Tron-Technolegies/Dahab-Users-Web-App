@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import PayoutTopSection from "../../components/payout/PayoutTopSection";
 import PayoutTable from "../../components/payout/PayoutTable";
 import PayoutSelector from "../../components/dashboard/statsSection/PayoutSelector";
 import RewardsTable from "../../components/payout/RewardsTable";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../UserContext";
+import StartMiner from "../../components/myminer/StartMiner";
 
 export default function PayoutPage() {
-  const [active, setActive] = useState("payouts");
+  const [active, setActive] = useState("rewards");
+  const { ownedMiners } = useContext(UserContext);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  return (
+  return ownedMiners.length > 0 ? (
     <div className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 flex flex-col gap-5">
       <div className="flex flex-col gap-5" id="payout-table">
         <PayoutTopSection active={active} setActive={setActive} />
@@ -30,5 +33,7 @@ export default function PayoutPage() {
         </Link>
       </div>
     </div>
+  ) : (
+    <StartMiner />
   );
 }

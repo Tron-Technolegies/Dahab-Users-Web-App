@@ -13,9 +13,9 @@ export default function DashBoardPage() {
   return (
     <div className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 ">
       {ownedMiners?.length > 0 ? <StatsSection /> : <NewUserLanding />}
-      {/* <NewUserLanding />
-      <StatsSection /> */}
-      {/* <LivePrice /> */}
+      {/* <NewUserLanding /> */}
+
+      <LivePrice />
       <ProductSuggestions />
     </div>
   );
