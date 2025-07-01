@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import FormInput from "../../components/FormInput";
 import Button from "../../components/Button";
 import { Link } from "react-router-dom";
+import useLogin from "../../hooks/auth/useLogin";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { loading, login } = useLogin();
   return (
     <div className="min-h-screen flex md:flex-row flex-col justify-center items-center gap-10 lg:gap-20 p-10">
       <div>
@@ -33,7 +35,7 @@ export default function LoginPage() {
             styles={"bg-white text-black"}
             placeholder={"Enter Your Password"}
             value={password}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <Link
             className="text-xs text-right text-[#76C6E0]"
@@ -41,7 +43,14 @@ export default function LoginPage() {
           >
             Forgot Password?
           </Link>
-          <Button name={"Login"} styles={"bg-[#07EAD3] mt-3"} />
+          <Button
+            name={"Login"}
+            clickFunction={(e) => {
+              e.preventDefault();
+              login({ email, password });
+            }}
+            styles={"bg-[#07EAD3] mt-3"}
+          />
         </form>
         <p className="text-xs text-center">
           Dont have an account?&nbsp;

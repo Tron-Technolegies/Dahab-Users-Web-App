@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import FormInput from "../../components/FormInput";
 import { Link } from "react-router-dom";
 import Button from "../../components/Button";
+import useRegister from "../../hooks/auth/useRegister";
+import AlertBox from "../../components/Alert";
+import { UserContext } from "../../UserContext";
 
 export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  const { loading, register } = useRegister();
   return (
-    <div className="min-h-screen flex md:flex-row flex-col justify-center items-center gap-10 lg:gap-20 p-10">
+    <div className="min-h-screen flex md:flex-row flex-col justify-center items-center gap-10 lg:gap-20 p-10 ">
       <div>
         <img
           src="/home/logo.png"
@@ -46,7 +51,14 @@ export default function Register() {
             onChange={(e) => setConfirmPassword(e.target.value)}
             placeholder={"Confirm Your Password"}
           />
-          <Button name={"Sign Up"} styles={"bg-[#07EAD3] mt-3"} />
+          <Button
+            name={"Sign Up"}
+            styles={"bg-[#07EAD3] mt-3"}
+            clickFunction={(e) => {
+              e.preventDefault();
+              register({ email, password, confirmPassword });
+            }}
+          />
         </form>
         <p className="text-xs text-center">
           Already have an account?&nbsp;

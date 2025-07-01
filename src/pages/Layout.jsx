@@ -1,12 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import Header from "../components/Header/Header";
 import { Outlet, useNavigate } from "react-router-dom";
 import Footer from "../components/footer/Footer";
 import { TourProvider, useTour } from "@reactour/tour";
+import AlertBox from "../components/Alert";
+import { UserContext } from "../UserContext";
+import useGetUserInfo from "../hooks/auth/useGetUserInfo";
+import Loading from "../components/Loading";
 
 export default function Layout() {
   const navigate = useNavigate();
   const { setIsOpen, setCurrentStep } = useTour();
+  const { alertError, alertSuccess, setAlertError, setAlertSuccess } =
+    useContext(UserContext);
+  const { loading } = useGetUserInfo();
   const steps = [
     {
       action: () => navigate("/"),
@@ -100,12 +107,29 @@ export default function Layout() {
     },
   ];
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <div className="text-black">
       <TourProvider steps={steps} scrollSmooth>
         <div className="text-white">
           <Header />
-          <div className="min-h-screen">
+
+          <div className="min-h-screen relative">
+            {alertSuccess && (
+              <AlertBox
+                message={alertSuccess}
+                severity={"success"}
+                onClose={() => setAlertSuccess("")}
+              />
+            )}
+            {alertError && (
+              <AlertBox
+                message={alertError}
+                severity={"error"}
+                onClose={() => setAlertError("")}
+              />
+            )}
             <Outlet />
           </div>
           <Footer />

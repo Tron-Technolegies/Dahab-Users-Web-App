@@ -4,11 +4,13 @@ import { cartItems as items, minersMock } from "./utils/miners";
 export const UserContext = createContext();
 
 const UserContextProvider = ({ children }) => {
-  const [user, setUser] = useState({ name: "Shafi" });
-  const [ownedMiners, setOwnedMiners] = useState([1]);
+  const [user, setUser] = useState(null);
+  const [ownedMiners, setOwnedMiners] = useState([]);
   const [selectedMiner, setSelectedMiner] = useState(minersMock[0]);
   const [cartItems, setCartItems] = useState(items);
   const [run, setRun] = useState(true);
+  const [alertError, setAlertError] = useState("");
+  const [alertSuccess, setAlertSuccess] = useState("");
 
   return (
     <UserContext.Provider
@@ -23,6 +25,10 @@ const UserContextProvider = ({ children }) => {
         setCartItems,
         run,
         setRun,
+        alertError,
+        setAlertError,
+        alertSuccess,
+        setAlertSuccess,
       }}
     >
       {children}

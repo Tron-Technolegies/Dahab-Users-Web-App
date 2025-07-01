@@ -36,7 +36,7 @@ export default function AccountSettings({ user }) {
           aria-expanded={open ? "true" : undefined}
         >
           <Avatar sx={{ width: 32, height: 32 }}>
-            {user.name.slice(0, 1)}
+            {user.username.slice(0, 1)}
           </Avatar>
         </IconButton>
       </Tooltip>
