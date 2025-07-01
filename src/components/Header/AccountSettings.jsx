@@ -11,12 +11,15 @@ import NotificationSettings from "./NotificationSettings";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { useTour } from "@reactour/tour";
 import { UserContext } from "../../UserContext";
+import useLogout from "../../hooks/auth/useLogout";
+import Loading from "../Loading";
 
 export default function AccountSettings({ user }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const { ownedMiners } = useContext(UserContext);
   const { setIsOpen, setCurrentStep } = useTour();
   const [openNotification, setOpenNotification] = useState(false);
+  const { loading, logout } = useLogout();
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -143,12 +146,18 @@ export default function AccountSettings({ user }) {
               borderColor: "#07EAD338",
             }}
           />
-          <MenuItem onClick={handleClose}>
+          <MenuItem
+            onClick={async () => {
+              await logout();
+              handleClose;
+            }}
+          >
             <div className="flex gap-2 items-center text-[#07EAD3]">
               <IoLogOutOutline />
               <p>Logout</p>
             </div>
           </MenuItem>
+          {loading && <Loading />}
         </div>
       </Menu>
       <NotificationSettings
