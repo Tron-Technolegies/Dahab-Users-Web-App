@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import CartTable from "../../components/buyminers/cart/CartTable";
 import { Link } from "react-router-dom";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import CheckoutSection from "../../components/buyminers/cart/CheckoutSection";
 import { AnimatePresence, motion } from "framer-motion";
+import { UserContext } from "../../UserContext";
 
 export default function CartPage() {
   const [showCheckout, setShowCheckout] = useState(false);
+  const { user } = useContext(UserContext);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -19,7 +21,8 @@ export default function CartPage() {
       <CartTable />
       <button
         onClick={() => setShowCheckout(true)}
-        className="px-10 py-2 rounded-full bg-[#07EAD3] text-black w-fit mx-auto cursor-pointer"
+        className="px-10 py-2 rounded-full bg-[#07EAD3] text-black w-fit mx-auto cursor-pointer disabled:cursor-not-allowed"
+        disabled={user?.cartItems?.length < 1}
       >
         Proceed to Checkout
       </button>

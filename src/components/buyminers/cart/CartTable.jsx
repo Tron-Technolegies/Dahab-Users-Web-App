@@ -10,16 +10,12 @@ import QuantitySwitcher from "./QuantitySwitcher";
 import { UserContext } from "../../../UserContext";
 
 export default function CartTable() {
-  const { cartItems, setCartItems } = useContext(UserContext);
-  const handleQuantityChange = (id, newQty) => {
-    const updatedItems = cartItems.map((item) =>
-      item.id === id ? { ...item, quantity: newQty } : item
-    );
-    setCartItems(updatedItems);
-  };
+  const { user } = useContext(UserContext);
+
   return (
     <div className="flex flex-col gap-5 my-5">
-      <p>Total Items: 4</p>
+      <p>Total Items: {user?.cartItems?.length}</p>
+      {user?.cartItems?.length < 1 && <p>Your Cart is Empty</p>}
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -52,70 +48,69 @@ export default function CartTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {cartItems.map((row) => (
-              <TableRow
-                key={row.id}
-                sx={{
-                  //
+            {user?.cartItems?.length > 0 &&
+              user?.cartItems.map((row) => (
+                <TableRow
+                  key={row._id}
+                  sx={{
+                    //
 
-                  backgroundColor: "#011532",
-                  "&:hover": {
-                    backgroundColor: "#011840",
-                  },
-                }}
-              >
-                <TableCell
-                  sx={{
-                    textAlign: "center",
-                    border: "0",
-                    borderBottom: "2px solid #000C26",
-                    color: "#FFFFFF",
+                    backgroundColor: "#011532",
+                    "&:hover": {
+                      backgroundColor: "#011840",
+                    },
                   }}
                 >
-                  <div className="flex justify-center items-center gap-2">
-                    <img src={row.image} className="w-10 object-cover" />
-                    <p>{row.name}</p>
-                  </div>
-                </TableCell>
-                <TableCell
-                  sx={{
-                    textAlign: "center",
-                    border: "0",
-                    borderBottom: "2px solid #000C26",
-                    color: "#FFFFFF",
-                  }}
-                >
-                  <div className="flex justify-center">
-                    <QuantitySwitcher
-                      qty={row.quantity}
-                      onChange={(newQty) =>
-                        handleQuantityChange(row.id, newQty)
-                      }
-                    />
-                  </div>
-                </TableCell>
-                <TableCell
-                  sx={{
-                    textAlign: "center",
-                    border: "0",
-                    borderBottom: "2px solid #000C26",
-                    color: "#FFFFFF",
-                  }}
-                >
-                  AED {row.price}
-                </TableCell>
-                <TableCell
-                  sx={{
-                    textAlign: "center",
-                    border: "0",
-                    borderBottom: "2px solid #000C26",
-                    color: "#FFFFFF",
-                  }}
-                >
-                  AED {parseInt(row.price) * row.quantity}
-                </TableCell>
-              </TableRow>
-            ))}
+                  <TableCell
+                    sx={{
+                      textAlign: "center",
+                      border: "0",
+                      borderBottom: "2px solid #000C26",
+                      color: "#FFFFFF",
+                    }}
+                  >
+                    <div className="flex justify-center items-center gap-2">
+                      <img
+                        src={row.itemId?.image}
+                        className="w-10 object-cover"
+                      />
+                      <p>{row.itemId?.name}</p>
+                    </div>
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      textAlign: "center",
+                      border: "0",
+                      borderBottom: "2px solid #000C26",
+                      color: "#FFFFFF",
+                    }}
+                  >
+                    <div className="flex justify-center">
+                      <QuantitySwitcher qty={row.qty} id={row._id} />
+                    </div>
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      textAlign: "center",
+                      border: "0",
+                      borderBottom: "2px solid #000C26",
+                      color: "#FFFFFF",
+                    }}
+                  >
+                    AED {row.itemId?.price}
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      textAlign: "center",
+                      border: "0",
+                      borderBottom: "2px solid #000C26",
+                      color: "#FFFFFF",
+                    }}
+                  >
+                    AED {parseInt(row.itemId?.price) * row.qty}
+                  </TableCell>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>

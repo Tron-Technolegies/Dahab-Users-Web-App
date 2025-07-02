@@ -9,11 +9,11 @@ import StartMiner from "../../components/myminer/StartMiner";
 
 export default function PayoutPage() {
   const [active, setActive] = useState("rewards");
-  const { ownedMiners } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  return ownedMiners.length > 0 ? (
+  return user?.ownedMiners?.length > 0 ? (
     <div className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 flex flex-col gap-5">
       <div className="flex flex-col gap-5" id="payout-table">
         <PayoutTopSection active={active} setActive={setActive} />

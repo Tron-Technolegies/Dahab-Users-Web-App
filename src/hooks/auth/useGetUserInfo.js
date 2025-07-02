@@ -41,7 +41,11 @@ const useGetUserInfo = () => {
     }
   }, [user]);
 
-  return { loading };
+  const refetch = async () => {
+    await getUserInfo();
+  };
+
+  return { loading, refetch };
 };
 
 export default useGetUserInfo;

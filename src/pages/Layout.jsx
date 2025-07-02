@@ -11,9 +11,14 @@ import Loading from "../components/Loading";
 export default function Layout() {
   const navigate = useNavigate();
   const { setIsOpen, setCurrentStep } = useTour();
-  const { alertError, alertSuccess, setAlertError, setAlertSuccess } =
-    useContext(UserContext);
-  const { loading } = useGetUserInfo();
+  const {
+    alertError,
+    alertSuccess,
+    setAlertError,
+    setAlertSuccess,
+    refetchTrigger,
+  } = useContext(UserContext);
+  const { loading, refetch } = useGetUserInfo();
   const steps = [
     {
       action: () => navigate("/"),
@@ -107,6 +112,9 @@ export default function Layout() {
     },
   ];
 
+  useEffect(() => {
+    refetch();
+  }, [refetchTrigger]);
   return loading ? (
     <Loading />
   ) : (

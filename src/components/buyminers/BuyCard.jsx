@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { BsCartPlus } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAddToCart from "../../hooks/cart/useAddToCart";
+import Loading from "../Loading";
+import { UserContext } from "../../UserContext";
 
 export default function BuyCard({
   hashRate,
@@ -9,7 +12,11 @@ export default function BuyCard({
   image,
   name,
   price,
+  id,
 }) {
+  const { loading, addToCart } = useAddToCart();
+  const navigate = useNavigate();
+  const { refetchTrigger, setRefetchTrigger } = useContext(UserContext);
   return (
     <div
       className={`p-5 rounded-2xl border border-[#76C6E038] flex flex-col gap-3 items-center w-full ${
@@ -42,24 +49,33 @@ export default function BuyCard({
       </div>
       {stock > 0 ? (
         <div className="flex gap-2 items-center w-full">
-          <Link
-            to={"/buy/cart"}
+          <button
+            onClick={async () => {
+              await addToCart({ itemId: id });
+              setRefetchTrigger(!refetchTrigger);
+              navigate("/buy/cart");
+            }}
             className="bg-[#0194FE] w-full py-2 rounded-md text-center cursor-pointer"
           >
             Buy Now
-          </Link>
-          <Link
-            to={"/buy/cart"}
-            className="p-2 bg-[#42E8E0] rounded-md text-2xl text-black cursor-pointer"
+          </button>
+          <button
+            onClick={async () => {
+              await addToCart({ itemId: id });
+              setRefetchTrigger(!refetchTrigger);
+            }}
+            className="p-2 bg-[#42E8E0] rounded-md text-2xl text-black
+            cursor-pointer"
           >
             <BsCartPlus />
-          </Link>
+          </button>
         </div>
       ) : (
         <button className="bg-[#198FA6] w-full py-2 rounded-md cursor-pointer">
           Join Waitlist
         </button>
       )}
+      {loading && <Loading />}
     </div>
   );
 }

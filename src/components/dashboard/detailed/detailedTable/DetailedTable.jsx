@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import FormSelect from "../../../FormSelect";
 import { IoSearch } from "react-icons/io5";
 import Table from "@mui/material/Table";
@@ -10,10 +10,12 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Backdrop from "@mui/material/Backdrop";
 import SingleGraph from "./SingleGraph";
+import { UserContext } from "../../../../UserContext";
 
 export default function DetailedTable() {
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
+  const { user } = useContext(UserContext);
   const handleClose = () => {
     setName("");
     setOpen(false);
@@ -22,112 +24,7 @@ export default function DetailedTable() {
     setName(name);
     setOpen(true);
   };
-  const rows = [
-    {
-      name: "001",
-      status: "Active",
-      h1_hash: "61.30 TH",
-      h24_hash: "65.44 TH",
-      h1_efficiency: "100.00%",
-      h24_efficiency: "99.94%",
-      h24_revenue: "0.00003383 BTC",
-      h1_valid: "194",
-      h1_stale: "0",
-      h1_rejected: "0",
-      last_share: "25-03-25: 12:00:00",
-    },
-    {
-      name: "002",
-      status: "Inactive",
-      h1_hash: "61.30 TH",
-      h24_hash: "65.44 TH",
-      h1_efficiency: "100.00%",
-      h24_efficiency: "99.94%",
-      h24_revenue: "0.00003383 BTC",
-      h1_valid: "194",
-      h1_stale: "0",
-      h1_rejected: "0",
-      last_share: "25-03-25: 12:00:00",
-    },
-    {
-      name: "003",
-      status: "Warning",
-      h1_hash: "61.30 TH",
-      h24_hash: "65.44 TH",
-      h1_efficiency: "100.00%",
-      h24_efficiency: "99.94%",
-      h24_revenue: "0.00003383 BTC",
-      h1_valid: "194",
-      h1_stale: "0",
-      h1_rejected: "0",
-      last_share: "25-03-25: 12:00:00",
-    },
-    {
-      name: "004",
-      status: "Active",
-      h1_hash: "61.30 TH",
-      h24_hash: "65.44 TH",
-      h1_efficiency: "100.00%",
-      h24_efficiency: "99.94%",
-      h24_revenue: "0.00003383 BTC",
-      h1_valid: "194",
-      h1_stale: "0",
-      h1_rejected: "0",
-      last_share: "25-03-25: 12:00:00",
-    },
-    {
-      name: "005",
-      status: "Active",
-      h1_hash: "61.30 TH",
-      h24_hash: "65.44 TH",
-      h1_efficiency: "100.00%",
-      h24_efficiency: "99.94%",
-      h24_revenue: "0.00003383 BTC",
-      h1_valid: "194",
-      h1_stale: "0",
-      h1_rejected: "0",
-      last_share: "25-03-25: 12:00:00",
-    },
-    {
-      name: "006",
-      status: "Active",
-      h1_hash: "61.30 TH",
-      h24_hash: "65.44 TH",
-      h1_efficiency: "100.00%",
-      h24_efficiency: "99.94%",
-      h24_revenue: "0.00003383 BTC",
-      h1_valid: "194",
-      h1_stale: "0",
-      h1_rejected: "0",
-      last_share: "25-03-25: 12:00:00",
-    },
-    {
-      name: "007",
-      status: "Active",
-      h1_hash: "61.30 TH",
-      h24_hash: "65.44 TH",
-      h1_efficiency: "100.00%",
-      h24_efficiency: "99.94%",
-      h24_revenue: "0.00003383 BTC",
-      h1_valid: "194",
-      h1_stale: "0",
-      h1_rejected: "0",
-      last_share: "25-03-25: 12:00:00",
-    },
-    {
-      name: "008",
-      status: "Active",
-      h1_hash: "61.30 TH",
-      h24_hash: "65.44 TH",
-      h1_efficiency: "100.00%",
-      h24_efficiency: "99.94%",
-      h24_revenue: "0.00003383 BTC",
-      h1_valid: "194",
-      h1_stale: "0",
-      h1_rejected: "0",
-      last_share: "25-03-25: 12:00:00",
-    },
-  ];
+
   return (
     <div className="flex flex-col gap-10" id="miner-table">
       <div className="flex items-center gap-5">
@@ -210,9 +107,9 @@ export default function DetailedTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
+            {user?.ownedMiners.map((row) => (
               <TableRow
-                key={row.name}
+                key={row._id}
                 sx={{
                   //
                   cursor: "pointer",
@@ -222,73 +119,73 @@ export default function DetailedTable() {
                   },
                 }}
                 onClick={() => {
-                  handleOpen(row.name);
+                  handleOpen(row?.itemId?.name);
                 }}
               >
                 <TableCell
                   sx={{ textAlign: "center", border: "0", color: "#FFFFFF" }}
                 >
-                  {row.name}
+                  {row?.itemId?.name}
                 </TableCell>
                 <TableCell
                   sx={{ textAlign: "center", border: "0", color: "#FFFFFF" }}
                 >
                   <p
                     className={`${
-                      row.status === "Active"
+                      row?.itemId?.status === "Active"
                         ? "text-[#07EAD3]"
                         : row.status === "Warning"
                         ? "text-[#F7931A]"
                         : "text-[#E11A38]"
                     }`}
                   >
-                    {row.status}
+                    {row?.itemId?.status}
                   </p>
                 </TableCell>
                 <TableCell
                   sx={{ textAlign: "center", border: "0", color: "#FFFFFF" }}
                 >
-                  {row.h1_hash}
+                  {row?.itemId?.h1_hashRate}
                 </TableCell>
                 <TableCell
                   sx={{ textAlign: "center", border: "0", color: "#FFFFFF" }}
                 >
-                  {row.h24_hash}
+                  {row?.itemId?.h24_hashRate}
                 </TableCell>
                 <TableCell
                   sx={{ textAlign: "center", border: "0", color: "#FFFFFF" }}
                 >
-                  {row.h1_efficiency}
+                  {row?.itemId?.h1_efficiency}
                 </TableCell>
                 <TableCell
                   sx={{ textAlign: "center", border: "0", color: "#FFFFFF" }}
                 >
-                  {row.h24_efficiency}
+                  {row?.itemId?.h24_efficiency}
                 </TableCell>
                 <TableCell
                   sx={{ textAlign: "center", border: "0", color: "#FFFFFF" }}
                 >
-                  {row.h24_revenue}
+                  {row?.itemId?.h24_revenue}
                 </TableCell>
                 <TableCell
                   sx={{ textAlign: "center", border: "0", color: "#FFFFFF" }}
                 >
-                  {row.h1_valid}
+                  {row?.itemId?.h1_validShare}
                 </TableCell>
                 <TableCell
                   sx={{ textAlign: "center", border: "0", color: "#FFFFFF" }}
                 >
-                  {row.h1_stale}
+                  {row?.itemId?.h1_staleShare}
                 </TableCell>
                 <TableCell
                   sx={{ textAlign: "center", border: "0", color: "#FFFFFF" }}
                 >
-                  {row.h1_rejected}
+                  {row?.itemId?.h1_rejectedShare}
                 </TableCell>
                 <TableCell
                   sx={{ textAlign: "center", border: "0", color: "#FFFFFF" }}
                 >
-                  {row.last_share}
+                  {row?.itemId?.lastShare}
                 </TableCell>
               </TableRow>
             ))}

@@ -11,6 +11,7 @@ const UserContextProvider = ({ children }) => {
   const [run, setRun] = useState(true);
   const [alertError, setAlertError] = useState("");
   const [alertSuccess, setAlertSuccess] = useState("");
+  const [refetchTrigger, setRefetchTrigger] = useState(false);
 
   return (
     <UserContext.Provider
@@ -29,6 +30,8 @@ const UserContextProvider = ({ children }) => {
         setAlertError,
         alertSuccess,
         setAlertSuccess,
+        refetchTrigger,
+        setRefetchTrigger,
       }}
     >
       {children}

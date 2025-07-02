@@ -2,25 +2,16 @@ import { motion } from "framer-motion";
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../../UserContext";
 import { useTour } from "@reactour/tour";
+import usePurchase from "../../../hooks/cart/usePurchase";
+import useGetUserInfo from "../../../hooks/auth/useGetUserInfo";
 
 export default function CheckoutSection() {
-  const [qty, setQty] = useState(0);
-  const [price, setPrice] = useState(0);
   const [pay, setPay] = useState("fiat");
-  const { cartItems } = useContext(UserContext);
+  const { user, refetchTrigger, setRefetchTrigger } = useContext(UserContext);
+  const { refetch } = useGetUserInfo();
+  const { loading, purchase } = usePurchase();
   const { setIsOpen, setCurrentStep } = useTour();
 
-  useEffect(() => {
-    if (cartItems.length > 0) {
-      const totalQty = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-      const totalPrice = cartItems.reduce(
-        (sum, item) => sum + item.quantity * parseInt(item.price),
-        0
-      );
-      setQty(totalQty);
-      setPrice(totalPrice);
-    }
-  }, [cartItems]);
   return (
     <div className="flex lg:flex-row flex-col lg:justify-between my-10 items-center duration-300 ease-in-out">
       <div className="my-10 w-full">
@@ -59,15 +50,25 @@ export default function CheckoutSection() {
         <div className="flex flex-col gap-3">
           <div className="flex justify-between items-center">
             <p>Quantity</p>
-            <p>{qty} items</p>
+            <p>
+              {user?.cartItems.reduce((sum, item) => sum + item.qty, 0)} items
+            </p>
           </div>
           <div className="flex justify-between items-center">
             <p>Total Price</p>
-            <p className="text-[#07EAD3]">AED {price}</p>
+            <p className="text-[#07EAD3]">
+              AED{" "}
+              {user?.cartItems?.reduce(
+                (sum, item) => sum + item.qty * parseInt(item?.itemId?.price),
+                0
+              )}
+            </p>
           </div>
         </div>
         <button
-          onClick={() => {
+          onClick={async () => {
+            await purchase();
+            await refetch();
             setCurrentStep(0);
             setIsOpen(true);
           }}
