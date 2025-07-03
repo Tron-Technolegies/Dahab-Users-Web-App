@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import useAddToCart from "../../hooks/cart/useAddToCart";
 import Loading from "../Loading";
 import { UserContext } from "../../UserContext";
+import DangerBar from "../DangerBar";
+import InfoContainer from "./InfoContainer";
 
 export default function BuyCard({
   hashRate,
@@ -46,6 +48,18 @@ export default function BuyCard({
       <div className="flex flex-col gap-1 items-center">
         <p>{name}</p>
         <p className="text-[#07EAD3]">AED {price}</p>
+      </div>
+      <div className="w-full flex flex-col gap-3 justify-center">
+        <div className="justify-between">
+          <p>
+            <span className="text-[#07EAD3]">Coin</span> - BTC
+          </p>
+        </div>
+        <InfoContainer name={"Investment"} percent={50} />
+        <InfoContainer name={"Revenue"} percent={60} />
+        <InfoContainer name={"Efficiency"} percent={70} />
+        <InfoContainer name={"Risk"} percent={20} />
+        <InfoContainer name={"Hosting"} percent={40} />
       </div>
       {stock > 0 ? (
         <div className="flex gap-2 items-center w-full">
