@@ -39,7 +39,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="flex flex-col gap-3 text-sm font-medium text-white">
-          <Link to={"/"}>Dashboard</Link>
+          <Link to={"/dashboard"}>Dashboard</Link>
           <Link to={"/my-miners"}>My Miners</Link>
           <Link to={"/payouts"}>Payout</Link>
           <Link to={"/buy"}>Buy Miners</Link>

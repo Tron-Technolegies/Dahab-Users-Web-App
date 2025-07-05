@@ -9,6 +9,7 @@ import LoginPage from "./Login/LoginPage";
 import MyMinerPage from "./myminer/MyMinerPage";
 import Notifications from "./Notifications";
 import OTPVerify from "./otp-verify/OTPVerify";
+import Page0 from "./page0/Page0";
 import PayoutPage from "./payout/PayoutPage";
 import WithdrawPage from "./payout/WithdrawPage";
 import PrivacyPolicy from "./PrivacyPolicy";
@@ -21,6 +22,7 @@ import VerifyCode from "./verifyCode/VerifyCode";
 export {
   BuyMinersPage,
   DashBoardPage,
+  Page0,
   ErrorPage,
   Layout,
   MyMinerPage,

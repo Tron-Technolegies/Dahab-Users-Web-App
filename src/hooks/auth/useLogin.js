@@ -22,7 +22,7 @@ const useLogin = () => {
       );
       const data = response.data;
       setAlertSuccess("Successfully Logged in");
-      navigate("/");
+      navigate("/dashboard");
     } catch (error) {
       setAlertError(
         error?.response?.data?.error ||

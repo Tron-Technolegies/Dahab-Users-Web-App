@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 body {
-  background-color: #000c26;
+  background-color: #000518;
   color: white;
 }
 
@@ -47,4 +47,14 @@ body {
 
 .overwrite:hover {
   color: white !important;
+}
+
+.zero-landing {
+  min-height: calc(100vh - 80px);
+}
+
+@media (max-width: 768px) {
+  .zero-landing {
+    min-height: calc(100vh - 64px);
+  }
 }

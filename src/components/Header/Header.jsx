@@ -18,7 +18,7 @@ export default function Header() {
       className="md:h-20 h-16 px-5 md:px-10 lg:px-[120px] xl:px-[180px] md:py-5 py-2 flex justify-between items-center"
     >
       <Link
-        to={"/"}
+        to={"/dashboard"}
         className="md:w-36 md:h-14 w-28 h-12 mt-5"
         onClick={() => window.scrollTo(0, 0)}
       >
@@ -31,7 +31,8 @@ export default function Header() {
       <nav className="md:flex lg:gap-5 gap-3 xl:gap-10 text-sm xl:text-base font-medium hidden">
         <NavLink
           className={` ${
-            location.pathname === "/" || location.pathname.includes("detailed")
+            location.pathname === "/dashboard" ||
+            location.pathname.includes("detailed")
               ? "text-[#07EAD3]"
               : "text-white"
           }`}
@@ -46,7 +47,7 @@ export default function Header() {
               ? "text-[#07EAD3]"
               : "text-white"
           }`}
-          to={"/my-miners"}
+          to={"/dashboard/my-miners"}
         >
           My Miners
         </NavLink>
@@ -57,7 +58,7 @@ export default function Header() {
               ? "text-[#07EAD3]"
               : "text-white"
           }`}
-          to={"/payouts"}
+          to={"/dashboard/payouts"}
         >
           Payouts
         </NavLink>
@@ -65,7 +66,7 @@ export default function Header() {
           className={` ${
             location.pathname.includes("buy") ? "text-[#07EAD3]" : "text-white"
           }`}
-          to={"/buy"}
+          to={"/dashboard/buy"}
         >
           Buy Miners
         </NavLink>

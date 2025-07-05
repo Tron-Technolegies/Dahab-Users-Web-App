@@ -26,7 +26,7 @@ const useRegister = () => {
       );
       const data = response.data;
       setAlertSuccess("Successfully Registered");
-      navigate("/");
+      navigate("/dashboard");
     } catch (error) {
       setAlertError(
         error?.response?.data?.error ||

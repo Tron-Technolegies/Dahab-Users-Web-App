@@ -12,6 +12,7 @@ import {
   MyMinerPage,
   Notifications,
   OTPVerify,
+  Page0,
   PayoutPage,
   PrivacyPolicy,
   Register,
@@ -26,8 +27,9 @@ import CartPage from "./pages/buyminers/CartPage";
 
 export default function App() {
   const router = createBrowserRouter([
+    { path: "/", element: <Page0 /> },
     {
-      path: "/",
+      path: "/dashboard",
       element: <Layout />,
       errorElement: <ErrorPage />,
       children: [

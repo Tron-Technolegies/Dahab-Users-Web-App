@@ -21,7 +21,7 @@ export default function Layout() {
   const { loading, refetch } = useGetUserInfo();
   const steps = [
     {
-      action: () => navigate("/"),
+      action: () => navigate("/dashboard"),
       selector: "#navbar",
       content: "Now Lets begin the tour",
     },
@@ -45,7 +45,7 @@ export default function Layout() {
       content: "You can switch between the payout modes here",
     },
     {
-      action: () => navigate("/"),
+      action: () => navigate("/dashboard"),
       selector: "#navbar",
       content: "Now Lets go to the detailed page",
     },
