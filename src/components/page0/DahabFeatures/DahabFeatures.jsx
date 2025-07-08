@@ -2,9 +2,15 @@ import { motion } from "framer-motion";
 import React from "react";
 import { FaCircle } from "react-icons/fa";
 
-export default function DahabFeatures() {
+export default function DahabFeatures({ oneA }) {
   return (
-    <div className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] md:py-5 py-2 my-10 flex flex-col gap-7 items-center">
+    <div
+      className={`${
+        oneA
+          ? "my-10 flex flex-col gap-7 items-center"
+          : " px-5 md:px-10 lg:px-[120px] xl:px-[180px] md:py-5 py-2 my-10 flex flex-col gap-7 items-center"
+      }`}
+    >
       <h3 className="text-[#76C6E0] text-3xl font-semibold text-center my-10">
         What Makes Dahab’s App Different?
       </h3>
@@ -14,7 +20,9 @@ export default function DahabFeatures() {
         <p className="w-full">No Headaches</p>
       </div>
       <motion.div
-        className="sm:p-10 p-3 flex sm:flex-row flex-col justify-between max-w-[1000px] w-full my-10"
+        className={`sm:p-10 p-3 flex sm:flex-row flex-col justify-between ${
+          oneA ? "max-w-full" : "max-w-[1000px]"
+        }  w-full my-10`}
         initial={{
           borderImageSource:
             "linear-gradient(to bottom right, #004DF480 0%, transparent 50%, transparent 50%, #0194FE80 100%)",

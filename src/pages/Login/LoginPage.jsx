@@ -3,6 +3,7 @@ import FormInput from "../../components/FormInput";
 import Button from "../../components/Button";
 import { Link } from "react-router-dom";
 import useLogin from "../../hooks/auth/useLogin";
+import Loading from "../../components/Loading";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -51,6 +52,7 @@ export default function LoginPage() {
             }}
             styles={"bg-[#07EAD3] mt-3"}
           />
+          {loading && <Loading />}
         </form>
         <p className="text-xs text-center">
           Dont have an account?&nbsp;

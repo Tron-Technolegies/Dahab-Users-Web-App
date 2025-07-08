@@ -5,6 +5,7 @@ import Button from "../../components/Button";
 import useRegister from "../../hooks/auth/useRegister";
 import AlertBox from "../../components/Alert";
 import { UserContext } from "../../UserContext";
+import Loading from "../../components/Loading";
 
 export default function Register() {
   const [email, setEmail] = useState("");
@@ -59,6 +60,7 @@ export default function Register() {
               register({ email, password, confirmPassword });
             }}
           />
+          {loading && <Loading />}
         </form>
         <p className="text-xs text-center">
           Already have an account?&nbsp;

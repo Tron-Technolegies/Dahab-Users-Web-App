@@ -1,9 +1,15 @@
 import React from "react";
 import PayoutBox from "./PayoutBox";
 
-export default function PayoutInfo() {
+export default function PayoutInfo({ oneA }) {
   return (
-    <div className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] md:py-5 py-2 my-10">
+    <div
+      className={`${
+        oneA
+          ? "py-2 my-10"
+          : "px-5 md:px-10 lg:px-[120px] xl:px-[180px] md:py-5 py-2 my-10"
+      } `}
+    >
       <h3 className="text-[#76C6E0] text-3xl font-semibold text-center">
         Two Simple Payout Modes You Choose
       </h3>

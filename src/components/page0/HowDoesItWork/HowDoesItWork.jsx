@@ -1,12 +1,22 @@
 import React from "react";
 
-export default function HowDoesItWork() {
+export default function HowDoesItWork({ oneA }) {
   return (
-    <div className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] md:py-5 py-2 my-10 z-10">
+    <div
+      className={`${
+        oneA
+          ? "z-10 my-10"
+          : "px-5 md:px-10 lg:px-[120px] xl:px-[180px] md:py-5 py-2 my-10 z-10"
+      }`}
+    >
       <h3 className="text-[#76C6E0] text-3xl text-center my-10">
         How does it Work?
       </h3>
-      <div className="grid lg:grid-cols-3 gap-2 z-10 max-w-[1000px] mx-auto">
+      <div
+        className={`grid lg:grid-cols-3 gap-2 z-10 ${
+          oneA ? "max-w-full" : "max-w-[1000px]"
+        }  mx-auto`}
+      >
         <div className="bg-[#041637] rounded-md md:h-[320px] h-[400px] flex flex-col relative">
           <div className="absolute inset-0 bg-[#101e39e5] opacity-40 z-10"></div>
           <div className="flex flex-col gap-2 pt-5 px-5">
