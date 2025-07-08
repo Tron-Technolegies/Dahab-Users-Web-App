@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function CollectCoins() {
   return (
@@ -8,15 +9,20 @@ export default function CollectCoins() {
           <img src="/page0/img-1.png" className="overflow-hidden" />
         </div>
         <div className="flex flex-col gap-5 justify-between p-3 md:w-auto w-full">
-          <p className="lg:text-3xl text-xl font-semibold">
-            You just collect your bitcoins. We do everything else.
+          <p className="lg:text-2xl text-xl font-semibold">
+            You don’t need to understand mining — just own it.
+            <br />
+            We run the machines. You collect the Bitcoin. It’s that simple.
           </p>
           <p className="text-[#9F9F9F]">
-            If you have any questions, our support team is here to help 24/7
+            And yes — we’re here 24/7 if you ever need help.
           </p>
-          <button className="px-4 py-1.5 border border-white rounded-md w-fit">
+          <Link
+            to={"/login"}
+            className="px-4 py-1.5 border border-white rounded-md w-fit"
+          >
             Get Started
-          </button>
+          </Link>
         </div>
       </div>
     </div>

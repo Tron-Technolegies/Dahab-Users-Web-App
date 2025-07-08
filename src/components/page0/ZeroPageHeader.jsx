@@ -26,9 +26,12 @@ export default function ZeroPageHeader() {
         <a>Terms</a>
         <a>About Us</a>
       </nav> */}
-      <button className="px-4 py-2 rounded-full bg-[#07EAD3] w-fit ">
+      <Link
+        to={"/dashboard"}
+        className="px-4 py-2 rounded-full bg-[#07EAD3] w-fit "
+      >
         Get Started
-      </button>
+      </Link>
     </header>
   );
 }

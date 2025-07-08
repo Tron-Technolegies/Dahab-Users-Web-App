@@ -10,13 +10,13 @@ export default function LoginPage() {
   const { loading, login } = useLogin();
   return (
     <div className="min-h-screen flex md:flex-row flex-col justify-center items-center gap-10 lg:gap-20 p-10">
-      <div>
+      <Link to={"/"}>
         <img
           src="/home/logo.png"
           className="md:w-56 w-40"
           alt="Logo of dahab"
         />
-      </div>
+      </Link>
       <div className="bg-[#011532] p-10 rounded-lg lg:min-w-[500px] flex flex-col gap-5">
         <p className="text-2xl font-semibold">Login</p>
         <p className="text-xs">Login to access your Dahab Miners account</p>

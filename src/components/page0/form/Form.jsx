@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import FormInput from "../../FormInput";
+import { handleWhatsapp } from "../../../utils/whatsapp";
 
 export default function Form() {
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [message, setMessage] = useState("");
   return (
     <div className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] md:py-5 py-2 my-10">
       <h3 className="text-3xl font-semibold text-[#76C6E0] text-center">
@@ -15,23 +19,45 @@ export default function Form() {
         <div className="w-full">
           <p className="text-2xl">Submit Form</p>
           <form className="w-full">
-            <FormInput placeholder={"Email"} styles={"bg-[#FFFFFF0D] w-full"} />
+            <FormInput
+              placeholder={"Email"}
+              type={"email"}
+              styles={"bg-[#FFFFFF0D] w-full"}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
             <FormInput
               placeholder={"Phone Number"}
+              type={"number"}
               styles={"bg-[#FFFFFF0D] w-full"}
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
             />
             <textarea
-              className="bg-[#FFFFFF0D] p-2 rounded-md my-3 w-full
-              "
+              className="bg-[#FFFFFF0D] p-2 rounded-md my-3 w-full"
               placeholder="Message"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
               rows={7}
+              required
             ></textarea>
             <button
               style={{
                 background:
                   "linear-gradient(90deg, #004DF4 0%, #42E8E0 117.18%)",
               }}
-              className="px-4 py-1.5 w-full rounded-md"
+              className="px-4 py-1.5 w-full rounded-md cursor-pointer"
+              onClick={(e) => {
+                e.preventDefault();
+                if (email === "" || phone === "" || message === "") {
+                  alert("Please fill in all fields");
+                  return;
+                }
+                handleWhatsapp({ email, phone, message });
+                setEmail("");
+                setMessage("");
+                setPhone("");
+              }}
             >
               Get Offer
             </button>

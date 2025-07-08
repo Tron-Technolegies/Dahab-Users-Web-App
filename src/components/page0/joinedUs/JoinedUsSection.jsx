@@ -5,29 +5,34 @@ export default function JoinedUsSection() {
   return (
     <div className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] md:py-5 py-2 my-10">
       <h3 className="text-3xl text-[#76C6E0] font-semibold text-center">
-        Who Already Joined Us
+        Who’s Already Mining With Us?
       </h3>
       <div className="grid sm:grid-cols-2 gap-5 my-10 justify-items-center-safe max-w-[700px] mx-auto">
         <JoinedCard
           heading={"Private miners"}
           content={
-            "looking to profit in a growing market: you can start with a single piece of hardware"
+            "Individuals entering the Bitcoin space for the first time — starting with just one machine and building from there."
           }
           image={"/page0/img-2.png"}
           style={"w-[150px] overflow-hidden self-center mt-5"}
         />
         <JoinedCard
-          heading={"Experienced miners"}
+          heading={
+            <p className="flex flex-col">
+              Other Hosting Companies
+              <span style={{ fontSize: "14px" }}>(yes, they use us too)</span>
+            </p>
+          }
           content={
-            "looking to profit in a growing market: you can start with a single piece of hardware"
+            "Even industry players are switching to Dahab — because they’re tired of slow setups, deposits, and long contracts.We made it simpler, faster, and cheaper — and they noticed."
           }
           image={"/page0/img-3.png"}
-          style={"w-[150px] overflow-hidden self-center mt-5"}
+          style={"w-[150px] overflow-hidden self-center "}
         />
         <JoinedCard
           heading={"Investors"}
           content={
-            "looking into diversifying their assets: we’ll help you figure out legal and tax aspects before you get started"
+            "Looking to diversify their assets through digital infrastructure. We help you understand the legal and tax side before you begin."
           }
           image={"/page0/img-4.png"}
           style={"w-[250px] self-center mt-auto"}
@@ -35,7 +40,7 @@ export default function JoinedUsSection() {
         <JoinedCard
           heading={"Businesses"}
           content={
-            "exploring additional income streams: we’ll help you develop a comprehensive business plan"
+            "Adding Bitcoin mining as a new revenue stream? We’ll help you structure a scalable plan that fits your company’s goals."
           }
           image={"/page0/img-5.png"}
           style={"w-[180px] self-center"}

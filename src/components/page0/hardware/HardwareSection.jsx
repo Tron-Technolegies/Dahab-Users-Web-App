@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import React from "react";
 import InfoContainer from "../../buyminers/InfoContainer";
+import { Link } from "react-router-dom";
 
 function HardwareSection() {
   return (
@@ -58,9 +59,12 @@ function HardwareSection() {
             <InfoContainer name={"Risk"} percent={20} />
             <InfoContainer name={"Hosting"} percent={40} />
           </div>
-          <button className="px-4 py-2 rounded-full bg-[#07EAD3] w-fit md:me-auto mx-auto ">
+          <Link
+            to={"/login"}
+            className="px-4 py-2 rounded-full bg-[#07EAD3] w-fit md:me-auto mx-auto "
+          >
             Get Started Now
-          </button>
+          </Link>
         </div>
       </motion.div>
     </div>
