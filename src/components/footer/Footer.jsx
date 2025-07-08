@@ -5,7 +5,7 @@ import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { CiLocationOn, CiMail, CiPhone } from "react-icons/ci";
 
-export default function Footer() {
+export default function Footer({ isZero }) {
   return (
     <motion.footer
       className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] pt-5 bg-[#000618]"
@@ -39,10 +39,14 @@ export default function Footer() {
           </div>
         </div>
         <div className="flex flex-col gap-3 text-sm font-medium text-white">
-          <Link to={"/dashboard"}>Dashboard</Link>
-          <Link to={"/my-miners"}>My Miners</Link>
-          <Link to={"/payouts"}>Payout</Link>
-          <Link to={"/buy"}>Buy Miners</Link>
+          {!isZero && (
+            <>
+              <Link to={"/dashboard"}>Dashboard</Link>
+              <Link to={"/dashboard/my-miners"}>My Miners</Link>
+              <Link to={"/dashboard/payouts"}>Payout</Link>
+              <Link to={"/dashboard/buy"}>Buy Miners</Link>
+            </>
+          )}
           <div className="flex gap-5 text-base font-normal text-white mt-5">
             <FooterLinks
               link={"https://www.instagram.com/dahabminersuae/"}

@@ -91,7 +91,7 @@ export default function AccountSettings({ user }) {
             <AccountSettingItem
               name={"Profile"}
               handleClose={handleClose}
-              link={"/profile"}
+              link={"/dashboard/profile"}
             />
             <AccountSettingItem
               name={"Notifications"}
@@ -101,7 +101,7 @@ export default function AccountSettings({ user }) {
             <AccountSettingItem
               name={"2FA"}
               handleClose={handleClose}
-              link={"/2fa"}
+              link={"/dashboard/2fa"}
             />
           </div>
           <Divider
@@ -114,7 +114,7 @@ export default function AccountSettings({ user }) {
             <AccountSettingItem
               name={"Help"}
               handleClose={handleClose}
-              link={"/help"}
+              link={"/dashboard/help"}
             />
             <MenuItem>
               <button

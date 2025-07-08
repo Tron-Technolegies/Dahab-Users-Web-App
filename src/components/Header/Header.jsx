@@ -36,7 +36,7 @@ export default function Header() {
               ? "text-[#07EAD3]"
               : "text-white"
           }`}
-          to={"/"}
+          to={"/dashboard"}
         >
           Dashboard
         </NavLink>

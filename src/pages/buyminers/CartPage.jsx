@@ -14,7 +14,7 @@ export default function CartPage() {
   }, []);
   return (
     <div className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 flex flex-col">
-      <Link to={"/buy"} className="flex gap-3 items-center ms-auto">
+      <Link to={"/dashboard/buy"} className="flex gap-3 items-center ms-auto">
         <IoIosArrowRoundBack /> Go Back
       </Link>
       <p className="text-xl">Cart Items</p>

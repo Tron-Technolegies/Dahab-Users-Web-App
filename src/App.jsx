@@ -44,10 +44,10 @@ export default function App() {
         { path: "2fA", element: <TwoFactor /> },
         { path: "help", element: <FAQ /> },
         { path: "notifications", element: <Notifications /> },
-        { path: "terms", element: <Terms /> },
-        { path: "privacy", element: <PrivacyPolicy /> },
       ],
     },
+    { path: "terms", element: <Terms /> },
+    { path: "privacy", element: <PrivacyPolicy /> },
     {
       path: "/login",
       element: <LoginPage />,

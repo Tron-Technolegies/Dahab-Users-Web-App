@@ -10,7 +10,7 @@ export default function StatsSection() {
     <div className="flex flex-col gap-3 items-center">
       <TopSection />
       <Link
-        to={"/detailed"}
+        to={"/dashboard/detailed"}
         className="px-4 py-2 mb-3 rounded-md bg-[#0194FE] hover:bg-[#01d4fe] hover:scale-105 ease-in-out duration-300"
       >
         {"View More Details >"}

@@ -67,7 +67,7 @@ export default function BuyCard({
             onClick={async () => {
               await addToCart({ itemId: id });
               setRefetchTrigger(!refetchTrigger);
-              navigate("/buy/cart");
+              navigate("/dashboard/buy/cart");
             }}
             className="bg-[#0194FE] w-full py-2 rounded-md text-center cursor-pointer"
           >

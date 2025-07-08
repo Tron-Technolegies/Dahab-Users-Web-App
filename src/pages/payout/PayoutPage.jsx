@@ -26,7 +26,7 @@ export default function PayoutPage() {
       >
         <PayoutSelector />
         <Link
-          to={"/payouts/withdraw"}
+          to={"/dashboard/payouts/withdraw"}
           className="px-6 py-1 rounded-full bg-[#07EAD3] text-black"
         >
           Withdraw

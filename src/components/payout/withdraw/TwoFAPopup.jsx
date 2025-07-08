@@ -57,7 +57,7 @@ export default function TwoFAPopup({ open, setOpen }) {
                 <button
                   onClick={() => {
                     setOpen(false);
-                    navigate("/payouts");
+                    navigate("/dashboard/payouts");
                   }}
                   className="px-10 py-1 rounded-full bg-[#07EAD3] text-black cursor-pointer"
                 >
