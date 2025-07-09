@@ -61,7 +61,13 @@ export default function BuyCard({
         <InfoContainer name={"Risk"} percent={20} />
         <InfoContainer name={"Hosting"} percent={40} />
       </div>
-      {stock > 0 ? (
+      <Link
+        to={`/dashboard/buy/${id}`}
+        className="bg-[#0194FE] w-full py-2 rounded-md text-center cursor-pointer"
+      >
+        View Details
+      </Link>
+      {/* {stock > 0 ? (
         <div className="flex gap-2 items-center w-full">
           <button
             onClick={async () => {
@@ -88,7 +94,7 @@ export default function BuyCard({
         <button className="bg-[#198FA6] w-full py-2 rounded-md cursor-pointer">
           Join Waitlist
         </button>
-      )}
+      )} */}
       {loading && <Loading />}
     </div>
   );

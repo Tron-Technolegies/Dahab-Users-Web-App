@@ -24,6 +24,7 @@ import {
   WithdrawPage,
 } from "./pages";
 import CartPage from "./pages/buyminers/CartPage";
+import ProductInnerPage from "./pages/buyminers/ProductInnerPage";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -40,6 +41,7 @@ export default function App() {
         { path: "payouts/withdraw", element: <WithdrawPage /> },
         { path: "buy", element: <BuyMinersPage /> },
         { path: "buy/cart", element: <CartPage /> },
+        { path: "buy/:id", element: <ProductInnerPage /> },
         { path: "profile", element: <UpdateProfile /> },
         { path: "2fA", element: <TwoFactor /> },
         { path: "help", element: <FAQ /> },

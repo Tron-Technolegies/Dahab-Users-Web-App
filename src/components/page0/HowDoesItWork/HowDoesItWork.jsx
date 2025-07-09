@@ -9,7 +9,11 @@ export default function HowDoesItWork({ oneA }) {
           : "px-5 md:px-10 lg:px-[120px] xl:px-[180px] md:py-5 py-2 my-10 z-10"
       }`}
     >
-      <h3 className="text-[#76C6E0] text-3xl text-center my-10">
+      <h3
+        className={`text-[#76C6E0] text-3xl text-center my-10 ${
+          oneA && "hidden"
+        }`}
+      >
         How does it Work?
       </h3>
       <div
