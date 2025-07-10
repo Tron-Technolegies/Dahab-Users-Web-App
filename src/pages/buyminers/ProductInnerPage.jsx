@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import ProductDetails from "../../components/buyminers/productSingle/ProductDetails";
+import DetailsAndSpecs from "../../components/buyminers/productSingle/DetailsAndSpecs";
+import ROICalculator from "../../components/buyminers/productSingle/ROICalculator/ROICalculator";
 
 export default function ProductInnerPage() {
   useEffect(() => {
@@ -8,6 +10,8 @@ export default function ProductInnerPage() {
   return (
     <div className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10">
       <ProductDetails />
+      <DetailsAndSpecs />
+      <ROICalculator />
     </div>
   );
 }

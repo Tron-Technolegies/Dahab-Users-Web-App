@@ -6,12 +6,16 @@ export default function FormSelect({
   list,
   onChange,
   value,
+  styles,
+  full,
 }) {
   return (
-    <div className="flex flex-col gap-2 w-fit">
+    <div className={`flex flex-col gap-3 ${full ? "w-full" : "w-fit"}`}>
       {title && <label className="text-sm">{title}</label>}
       <select
-        className="p-2 text-[#0194FE] bg-[#011532] rounded-md outline-0"
+        className={`p-2 text-[#0194FE] rounded-md outline-0 ${
+          styles ? styles : "bg-[#011532]"
+        }`}
         value={value}
         onChange={onChange}
       >

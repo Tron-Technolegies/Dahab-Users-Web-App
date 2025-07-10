@@ -16,7 +16,7 @@ export default function ProductDetails() {
   return loading ? (
     <Loading />
   ) : (
-    <div className="flex justify-between items-center">
+    <div className="flex lg:flex-row flex-col justify-between items-center">
       <div className="bg-[#011532] p-7 px-10 rounded-xl flex flex-col gap-5">
         <div className="flex justify-between items-start w-full">
           <div className="flex flex-col gap-1">
@@ -37,11 +37,13 @@ export default function ProductDetails() {
             )}
           </p>
         </div>
-        <img src={miner?.image} className="w-[280px] object-cover" />
+        <img src={miner?.image} className="lg:w-[280px] w-full object-cover" />
       </div>
       <div className="p-3 max-w-[550px] flex flex-col gap-5">
-        <h1 className="text-2xl text-[#1ECBAF] font-semibold">{miner?.name}</h1>
-        <p>{`${miner?.name} is a high-performance Bitcoin miner known for its efficiency and reliability. It delivers 100 terahashes per second, making it ideal for maximizing mining profits.`}</p>
+        <h1 className="text-2xl text-[#1ECBAF] lg:text-left text-center font-semibold">
+          {miner?.name}
+        </h1>
+        <p className="lg:text-left text-justify">{`${miner?.name} is a high-performance Bitcoin miner known for its efficiency and reliability. It delivers 100 terahashes per second, making it ideal for maximizing mining profits.`}</p>
         <div className="w-full flex flex-col gap-3 justify-center">
           <div className="justify-between">
             <p>
@@ -80,6 +82,7 @@ export default function ProductDetails() {
             >
               <BsCartPlus />
             </button>
+            {cartLoading && <Loading />}
           </div>
         ) : (
           <button className="bg-[#198FA6] w-full py-2 rounded-md cursor-pointer">
