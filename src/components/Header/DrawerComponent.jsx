@@ -44,7 +44,7 @@ export default function DrawerComponent({ openDrawer, setOpenDrawer }) {
                   ? "text-[#07EAD3]"
                   : "text-white"
               } border-b w-full pb-2`}
-              to={"/"}
+              to={"/dashboard"}
             >
               Dashboard
             </NavLink>
@@ -54,7 +54,7 @@ export default function DrawerComponent({ openDrawer, setOpenDrawer }) {
                   ? "text-[#07EAD3]"
                   : "text-white"
               }  border-b w-full pb-2`}
-              to={"/my-miners"}
+              to={"/dashboard/my-miners"}
             >
               My Miners
             </NavLink>
@@ -64,7 +64,7 @@ export default function DrawerComponent({ openDrawer, setOpenDrawer }) {
                   ? "text-[#07EAD3]"
                   : "text-white"
               }  border-b w-full pb-2`}
-              to={"/payouts"}
+              to={"/dashboard/payouts"}
             >
               Payouts
             </NavLink>
@@ -74,7 +74,7 @@ export default function DrawerComponent({ openDrawer, setOpenDrawer }) {
                   ? "text-[#07EAD3]"
                   : "text-white"
               }  border-b w-full pb-2`}
-              to={"/buy"}
+              to={"/dashboard/buy"}
             >
               Buy Miners
             </NavLink>
