@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import FormSelect from "../../../FormSelect";
 import FormInput from "../../../FormInput";
 import Table from "@mui/material/Table";
@@ -12,6 +12,10 @@ import TableRowComponent from "./TableRowComponent";
 const rows = [];
 
 export default function ROICalculator() {
+  const [miners, setMiners] = useState(1);
+  const [hostingPeriod, setHostingPeriod] = useState("3 Year");
+  const [btcPrice, setBtcPrice] = useState(118000);
+  const [expectedPrice, setExpectedPrice] = useState(200000);
   return (
     <div className="flex flex-col gap-3 my-20">
       <h3 className="text-3xl font-semibold text-center text-[#76C6E0]">
@@ -25,22 +29,30 @@ export default function ROICalculator() {
             title={"No of Miners"}
             type={"number"}
             styles={"bg-[#858E9147]"}
+            value={miners}
+            onChange={(e) => setMiners(e.target.value)}
           />
           <FormSelect
             title={"Hosting Period"}
             list={["3 Year", "1 Year", "2 Year", "4 Year", "5 Year"]}
             styles={"bg-[#858E9147] w-full"}
+            value={hostingPeriod}
+            onChange={(e) => setHostingPeriod(e.target.value)}
             full
           />
           <FormInput
             title={"Current BTC Price"}
             type={"number"}
             styles={"bg-[#858E9147]"}
+            value={btcPrice}
+            onChange={(e) => setBtcPrice(e.target.value)}
           />
           <FormInput
             title={"Expected BTC Price(3 Years)"}
             type={"number"}
             styles={"bg-[#858E9147]"}
+            value={expectedPrice}
+            onChange={(e) => setExpectedPrice(e.target.value)}
           />
         </div>
         <div>
