@@ -3,10 +3,11 @@ import React from "react";
 export default function HowDoesItWork({ oneA }) {
   return (
     <div
+      id="working"
       className={`${
         oneA
           ? "z-10 my-10"
-          : "px-5 md:px-10 lg:px-[120px] xl:px-[180px] md:py-5 py-2 my-10 z-10"
+          : "px-5 md:px-10 lg:px-[120px]  md:py-5 py-2 my-10 z-10"
       }`}
     >
       <h3

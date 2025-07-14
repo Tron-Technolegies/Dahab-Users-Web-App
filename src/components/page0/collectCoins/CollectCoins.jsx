@@ -5,9 +5,7 @@ export default function CollectCoins({ oneA }) {
   return (
     <div
       className={`${
-        oneA
-          ? "my-10"
-          : "px-5 md:px-10 lg:px-[120px] xl:px-[180px] md:py-5 py-2 my-10"
+        oneA ? "my-10" : "px-5 md:px-10 lg:px-[120px] md:py-5 py-2 my-10"
       } `}
     >
       <div

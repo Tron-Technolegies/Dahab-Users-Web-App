@@ -1,8 +1,13 @@
 @import "tailwindcss";
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: #000518;
   color: white;
+  font-family: "Inter", sans-serif;
 }
 
 .btn-bg {
@@ -57,4 +62,8 @@ body {
   .zero-landing {
     min-height: calc(100vh - 64px);
   }
+}
+
+.inter {
+  font-family: "Inter", sans-serif;
 }

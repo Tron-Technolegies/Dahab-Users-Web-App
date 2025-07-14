@@ -3,28 +3,26 @@ import JoinedCard from "./JoinedCard";
 
 export default function JoinedUsSection() {
   return (
-    <div className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] md:py-5 py-2 my-10">
-      <h3 className="text-3xl text-[#76C6E0] font-semibold text-center">
+    <div
+      id="customers"
+      className="px-5 md:px-10 lg:px-[120px] md:py-5 py-2 my-10"
+    >
+      <h3 className="text-3xl text-[#76C6E0] max-w-[400px] mx-auto font-semibold text-center">
         Who’s Already Mining With Us?
       </h3>
-      <div className="grid sm:grid-cols-2 gap-5 my-10 justify-items-center-safe max-w-[700px] mx-auto">
+      <div className="grid sm:grid-cols-2 gap-5 gap-y-14 my-10 justify-items-center-safe max-w-[800px] mx-auto">
         <JoinedCard
           heading={"Private miners"}
           content={
-            "Individuals entering the Bitcoin space for the first time — starting with just one machine and building from there."
+            "Individuals entering the Bitcoin space for the first time - starting with just one machine and building from there."
           }
           image={"/page0/img-2.png"}
           style={"w-[150px] overflow-hidden self-center mt-5"}
         />
         <JoinedCard
-          heading={
-            <p className="flex flex-col">
-              Other Hosting Companies
-              <span style={{ fontSize: "14px" }}>(yes, they use us too)</span>
-            </p>
-          }
+          heading={"Other Hosting Companies"}
           content={
-            "Even industry players are switching to Dahab — because they’re tired of slow setups, deposits, and long contracts.We made it simpler, faster, and cheaper — and they noticed."
+            "Even industry players are switching to Dahab - because they’re tired of slow setups, deposits, and long contracts.We made it simpler, faster, and cheaper - and they noticed."
           }
           image={"/page0/img-3.png"}
           style={"w-[150px] overflow-hidden self-center "}

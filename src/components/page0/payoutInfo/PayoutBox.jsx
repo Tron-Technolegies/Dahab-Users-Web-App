@@ -4,7 +4,7 @@ import { FaCircle } from "react-icons/fa";
 
 export default function PayoutBox({ heading, list, recommended }) {
   return (
-    <div className="border border-[#76C6E0] lg:p-10 p-3 rounded-lg flex flex-col gap-5 relative">
+    <div className="border border-[#76C6E0] lg:p-10 p-3 rounded-lg flex flex-col gap-5 relative bg-[#050F25]">
       {recommended && (
         <p className="absolute right-5 top-5 bg-[#2558B0] py-1 px-2 rounded-full text-sm">
           Recommended

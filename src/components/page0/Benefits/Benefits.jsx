@@ -3,16 +3,19 @@ import BenefitCard from "./BenefitCard";
 
 export default function Benefits() {
   return (
-    <div className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] md:py-5 py-2 my-10 flex md:flex-row flex-col gap-10 justify-around items-center">
-      <div className="flex flex-col gap-5 min-w-[350px]">
+    <div
+      id="benefits"
+      className="px-5 md:px-10 lg:px-[120px] md:py-5 py-2 my-10 flex md:flex-row flex-col gap-10 justify-between items-center max-w-[1200px] mx-auto"
+    >
+      <div className="flex flex-col gap-5 max-w-[280px]">
         <h3 className="text-3xl text-[#76C6E0] font-semibold md:text-left text-center">
           Benefits
         </h3>
-        <p className="md:text-xl md:m-0 mb-5 md:text-left text-center">
+        <p className="md:text-[22px] md:m-0 mb-5 md:text-left text-center">
           Simple, secure, and ready to mine — everything in one place.
         </p>
       </div>
-      <div className="grid grid-cols-2 gap-5">
+      <div className="grid grid-cols-2 gap-5 w-full">
         <BenefitCard
           icon={"/page0/icon-8.png"}
           content={"Data Center Infrastructure"}

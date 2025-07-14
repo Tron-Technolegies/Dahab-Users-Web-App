@@ -7,7 +7,10 @@ export default function Form() {
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
   return (
-    <div className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] md:py-5 py-2 my-10">
+    <div
+      id="contact"
+      className="px-5 md:px-10 lg:px-[120px] md:py-5 py-2 my-10"
+    >
       <h3 className="text-3xl font-semibold text-[#76C6E0] text-center">
         Fill out the form and get a personalized offer
       </h3>
