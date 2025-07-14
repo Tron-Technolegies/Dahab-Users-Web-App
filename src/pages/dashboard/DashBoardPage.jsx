@@ -15,7 +15,7 @@ export default function DashBoardPage() {
       {user?.ownedMiners?.length > 0 ? <StatsSection /> : <NewUserSection />}
       {/* <NewUserLanding /> */}
 
-      <LivePrice />
+      {/* <LivePrice /> */}
       <ProductSuggestions />
     </div>
   );

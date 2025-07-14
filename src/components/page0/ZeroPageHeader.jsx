@@ -31,7 +31,7 @@ export default function ZeroPageHeader() {
       </nav>
       <Link
         to={"/dashboard"}
-        className="px-4 py-2 rounded-full bg-[#07EAD3] w-fit md:block hidden"
+        className="px-4 py-2 rounded-full bg-[#07EAD3] w-fit md:block hidden btn-shadow hover:scale-105 ease-out duration-150"
       >
         Get Started
       </Link>

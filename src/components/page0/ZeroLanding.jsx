@@ -19,7 +19,7 @@ export default function ZeroLanding() {
         </p>
         <Link
           to={"/dashboard"}
-          className="px-4 py-2 rounded-full bg-[#07EAD3] w-fit "
+          className="px-4 py-2 rounded-full bg-[#07EAD3] w-fit btn-shadow hover:scale-105 ease-out duration-150 "
         >
           Start Mining Now
         </Link>

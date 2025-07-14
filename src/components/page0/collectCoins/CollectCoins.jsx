@@ -26,7 +26,7 @@ export default function CollectCoins({ oneA }) {
             And yes — we’re here 24/7 if you ever need help.
           </p>
           <Link
-            to={"/login"}
+            to={"/dashboard"}
             className="px-4 py-1.5 border border-white rounded-md w-fit"
           >
             Get Started

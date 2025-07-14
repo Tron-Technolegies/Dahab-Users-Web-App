@@ -15,14 +15,14 @@ export default function StatsSection() {
       >
         {"View More Details >"}
       </Link>
-      <div className="flex lg:flex-row flex-col justify-center gap-10 lg:gap-20">
+      {/* <div className="flex lg:flex-row flex-col justify-center gap-10 lg:gap-20">
         <AlertContainer />
         <CreateContainer />
       </div>
       <div id="payout-selector-1">
         {" "}
         <PayoutSelector />
-      </div>
+      </div> */}
     </div>
   );
 }

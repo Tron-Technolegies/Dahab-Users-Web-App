@@ -22,6 +22,9 @@ body {
   box-shadow: 0px 14px 30px 0px #22def96e;
 }
 
+.btn-shadow {
+  box-shadow: 0px 10px 20px 0px #22def96e;
+}
 .copyright-bg {
   background: linear-gradient(
     90deg,

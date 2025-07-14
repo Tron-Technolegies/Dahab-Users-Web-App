@@ -83,7 +83,10 @@ export default function Header() {
         </div>
       ) : (
         <div className="flex gap-5 items-center ">
-          <Link to={"/register"} className="md:block hidden">
+          <Link
+            to={"/register"}
+            className="md:block hidden btn-shadow hover:scale-105 ease-out duration-150"
+          >
             Create Account
           </Link>
           <motion.button

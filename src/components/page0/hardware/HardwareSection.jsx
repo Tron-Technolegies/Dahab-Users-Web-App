@@ -60,7 +60,7 @@ function HardwareSection() {
             <InfoContainer name={"Hosting"} percent={40} />
           </div>
           <Link
-            to={"/login"}
+            to={"/dashboard/buy"}
             className="px-4 py-2 rounded-full bg-[#07EAD3] w-fit md:me-auto mx-auto "
           >
             Get Started Now

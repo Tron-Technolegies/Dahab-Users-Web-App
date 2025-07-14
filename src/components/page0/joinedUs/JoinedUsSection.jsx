@@ -7,7 +7,7 @@ export default function JoinedUsSection() {
       id="customers"
       className="px-5 md:px-10 lg:px-[120px] md:py-5 py-2 my-10"
     >
-      <h3 className="text-3xl text-[#76C6E0] max-w-[400px] mx-auto font-semibold text-center">
+      <h3 className="text-3xl text-[#76C6E0] max-w-[360px] mx-auto font-semibold text-center">
         Who’s Already Mining With Us?
       </h3>
       <div className="grid sm:grid-cols-2 gap-5 gap-y-14 my-10 justify-items-center-safe max-w-[800px] mx-auto">
