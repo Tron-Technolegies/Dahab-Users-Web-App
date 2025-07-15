@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import FormSelect from "../../../FormSelect";
 import FormInput from "../../../FormInput";
 import Table from "@mui/material/Table";
@@ -9,13 +9,35 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import TableRowComponent from "./TableRowComponent";
+import { CalculatorContext } from "../../../../CalculatorContext";
 const rows = [];
 
 export default function ROICalculator() {
-  const [miners, setMiners] = useState(1);
-  const [hostingPeriod, setHostingPeriod] = useState("3 Year");
-  const [btcPrice, setBtcPrice] = useState(118000);
-  const [expectedPrice, setExpectedPrice] = useState(200000);
+  const {
+    miners,
+    setMiners,
+    hostingPeriod,
+    setHostingPeriod,
+    btcPrice,
+    setBtcPrice,
+    expectedPrice,
+    setExpectedPrice,
+    minerPrice,
+    setMinerPrice,
+    electricity,
+    setElectricity,
+    investment,
+    btcEarnedByBuying,
+    btcEarnedByMining,
+    btcValueBuying,
+    btcValueMining,
+    netProfitBuying,
+    netProfitMining,
+    roiBuying,
+    roiMining,
+    buyingRatio,
+    miningRatio,
+  } = useContext(CalculatorContext);
   return (
     <div className="flex flex-col gap-3 my-20">
       <h3 className="text-3xl font-semibold text-center text-[#76C6E0]">
@@ -33,8 +55,8 @@ export default function ROICalculator() {
             onChange={(e) => setMiners(e.target.value)}
           />
           <FormSelect
-            title={"Hosting Period"}
-            list={["3 Year", "1 Year", "2 Year", "4 Year", "5 Year"]}
+            title={"Hosting Period (years)"}
+            list={[3, 1, 2, 4, 5]}
             styles={"bg-[#858E9147] w-full"}
             value={hostingPeriod}
             onChange={(e) => setHostingPeriod(e.target.value)}
@@ -85,30 +107,70 @@ export default function ROICalculator() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                <TableRowComponent type={"Miner Price"} />
-                <TableRowComponent type={"Electricity Cost"} />
-                <TableRowComponent type={"Total Cost Incurred"} />
-                <TableRowComponent type={"BTC Earned"} />
-                <TableRowComponent type={"Expected BTC Price"} />
-                <TableRowComponent type={"Your BTC Value"} />
-                <TableRowComponent type={"Net Profit"} />
-                <TableRowComponent type={"ROI"} />
-                <TableRowComponent type={"Profit: Investment"} />
+                <TableRowComponent
+                  type={"Miner Price"}
+                  btcValue={0}
+                  minerValue={minerPrice}
+                  setMinerChange={setMinerPrice}
+                />
+                <TableRowComponent
+                  type={"Electricity Cost"}
+                  btcValue={0}
+                  minerValue={electricity}
+                  setMinerChange={setElectricity}
+                />
+                <TableRowComponent
+                  type={"Total Cost Incurred"}
+                  btcValue={investment}
+                  minerValue={investment}
+                />
+                <TableRowComponent
+                  type={"BTC Earned"}
+                  btcValue={btcEarnedByBuying}
+                  minerValue={btcEarnedByMining}
+                />
+                <TableRowComponent
+                  type={"Expected BTC Price"}
+                  btcValue={expectedPrice}
+                  setBtcChange={setExpectedPrice}
+                  minerValue={expectedPrice}
+                  setMinerChange={setExpectedPrice}
+                />
+                <TableRowComponent
+                  type={"Your BTC Value"}
+                  btcValue={btcValueBuying}
+                  minerValue={btcValueMining}
+                />
+                <TableRowComponent
+                  type={"Net Profit"}
+                  btcValue={netProfitBuying}
+                  minerValue={netProfitMining}
+                />
+                <TableRowComponent
+                  type={"ROI %"}
+                  btcValue={roiBuying}
+                  minerValue={roiMining}
+                />
+                <TableRowComponent
+                  type={"Profit: Investment"}
+                  btcValue={buyingRatio}
+                  minerValue={miningRatio}
+                />
               </TableBody>
             </Table>
           </TableContainer>
           <div className="bg-[#011532] px-5 py-10 flex flex-col gap-2">
-            <p className="text-[#07EAD3] text-2xl">
+            <p className="text-[#07EAD3] text-2xl text-center">
               Mining is more profitable.
             </p>
-            <div className="flex gap-2 items-center text-sm">
+            {/* <div className="flex gap-2 items-center text-sm">
               <img src="/page0/icon-12.png" />
               <p>You spend ₹1,60,000 and get ₹6,00,000 in value.</p>
             </div>
             <div className="flex gap-2 items-center text-sm">
               <img src="/page0/icon-13.png" />
               <p>If you bought 1 BTC directly, you’d need ₹3,00,000.</p>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

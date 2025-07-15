@@ -3,7 +3,13 @@ import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import FormInput from "../../../FormInput";
 
-export default function TableRowComponent({ type }) {
+export default function TableRowComponent({
+  type,
+  btcValue,
+  setBtcChange,
+  minerValue,
+  setMinerChange,
+}) {
   return (
     <TableRow
       sx={{
@@ -30,7 +36,11 @@ export default function TableRowComponent({ type }) {
           color: "#FFFFFF",
         }}
       >
-        <FormInput styles={"bg-[#858E9147]"} />
+        <FormInput
+          styles={"bg-[#858E9147]"}
+          value={btcValue}
+          onChange={(e) => setBtcChange(e.target.value)}
+        />
       </TableCell>
       <TableCell
         sx={{
@@ -40,7 +50,11 @@ export default function TableRowComponent({ type }) {
           color: "#FFFFFF",
         }}
       >
-        <FormInput styles={"bg-[#858E9147]"} />
+        <FormInput
+          styles={"bg-[#858E9147]"}
+          value={minerValue}
+          onChange={(e) => setMinerChange(e.target.value)}
+        />
       </TableCell>
     </TableRow>
   );

@@ -3,11 +3,14 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
 import UserContextProvider from "./UserContext.jsx";
+import CalculatorContextProvider from "./CalculatorContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <UserContextProvider>
-      <App />
+      <CalculatorContextProvider>
+        <App />
+      </CalculatorContextProvider>
     </UserContextProvider>
   </StrictMode>
 );
