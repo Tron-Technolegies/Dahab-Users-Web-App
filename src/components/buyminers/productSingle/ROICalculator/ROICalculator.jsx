@@ -159,11 +159,12 @@ export default function ROICalculator() {
               </TableBody>
             </Table>
           </TableContainer>
-          <div className="bg-[#011532] px-5 py-10 flex flex-col gap-2">
-            <p className="text-[#07EAD3] text-2xl text-center">
-              Mining is more profitable.
-            </p>
-            {/* <div className="flex gap-2 items-center text-sm">
+          {roiMining > roiBuying && (
+            <div className="bg-[#011532] px-5 py-10 flex flex-col gap-2">
+              <p className="text-[#07EAD3] text-2xl text-center">
+                Mining is more profitable.
+              </p>
+              {/* <div className="flex gap-2 items-center text-sm">
               <img src="/page0/icon-12.png" />
               <p>You spend ₹1,60,000 and get ₹6,00,000 in value.</p>
             </div>
@@ -171,7 +172,8 @@ export default function ROICalculator() {
               <img src="/page0/icon-13.png" />
               <p>If you bought 1 BTC directly, you’d need ₹3,00,000.</p>
             </div> */}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

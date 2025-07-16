@@ -57,52 +57,27 @@ export default function DetailedTable() {
               <TableCell
                 sx={{ color: "#0194FE", border: "0", textAlign: "center" }}
               >
-                Status
+                HashRate
               </TableCell>
               <TableCell
                 sx={{ color: "#0194FE", border: "0", textAlign: "center" }}
               >
-                1H Hashrate
+                Power
               </TableCell>
               <TableCell
                 sx={{ color: "#0194FE", border: "0", textAlign: "center" }}
               >
-                24H Hashrate
+                Mined Revenue
               </TableCell>
               <TableCell
                 sx={{ color: "#0194FE", border: "0", textAlign: "center" }}
               >
-                1H Efficiency
+                Purchased On
               </TableCell>
               <TableCell
                 sx={{ color: "#0194FE", border: "0", textAlign: "center" }}
               >
-                24H Efficiency
-              </TableCell>
-              <TableCell
-                sx={{ color: "#0194FE", border: "0", textAlign: "center" }}
-              >
-                Revenue (24H)
-              </TableCell>
-              <TableCell
-                sx={{ color: "#0194FE", border: "0", textAlign: "center" }}
-              >
-                1H Valid Shares
-              </TableCell>
-              <TableCell
-                sx={{ color: "#0194FE", border: "0", textAlign: "center" }}
-              >
-                1H Stale Shares
-              </TableCell>
-              <TableCell
-                sx={{ color: "#0194FE", border: "0", textAlign: "center" }}
-              >
-                1H Rejected Shares
-              </TableCell>
-              <TableCell
-                sx={{ color: "#0194FE", border: "0", textAlign: "center" }}
-              >
-                Last Share Time
+                Validity Left
               </TableCell>
             </TableRow>
           </TableHead>
@@ -112,15 +87,15 @@ export default function DetailedTable() {
                 key={row._id}
                 sx={{
                   //
-                  cursor: "pointer",
+                  // cursor: "pointer",
                   backgroundColor: "#000C26",
-                  "&:hover": {
-                    backgroundColor: "#011840",
-                  },
+                  // "&:hover": {
+                  //   backgroundColor: "#011840",
+                  // },
                 }}
-                onClick={() => {
-                  handleOpen(row?.itemId?.name);
-                }}
+                // onClick={() => {
+                //   handleOpen(row?.itemId?.name);
+                // }}
               >
                 <TableCell
                   sx={{ textAlign: "center", border: "0", color: "#FFFFFF" }}
@@ -130,69 +105,34 @@ export default function DetailedTable() {
                 <TableCell
                   sx={{ textAlign: "center", border: "0", color: "#FFFFFF" }}
                 >
-                  <p
-                    className={`${
-                      row?.itemId?.status === "Active"
-                        ? "text-[#07EAD3]"
-                        : row.status === "Warning"
-                        ? "text-[#F7931A]"
-                        : "text-[#E11A38]"
-                    }`}
-                  >
-                    {row?.itemId?.status}
-                  </p>
-                </TableCell>
-                <TableCell
-                  sx={{ textAlign: "center", border: "0", color: "#FFFFFF" }}
-                >
-                  {row?.itemId?.h1_hashRate}
-                </TableCell>
-                <TableCell
-                  sx={{ textAlign: "center", border: "0", color: "#FFFFFF" }}
-                >
                   {row?.itemId?.h24_hashRate}
                 </TableCell>
                 <TableCell
                   sx={{ textAlign: "center", border: "0", color: "#FFFFFF" }}
                 >
-                  {row?.itemId?.h1_efficiency}
+                  {row?.itemId?.power}
                 </TableCell>
                 <TableCell
                   sx={{ textAlign: "center", border: "0", color: "#FFFFFF" }}
                 >
-                  {row?.itemId?.h24_efficiency}
+                  {row?.itemId?.minedRewards || "N/A"}
                 </TableCell>
                 <TableCell
                   sx={{ textAlign: "center", border: "0", color: "#FFFFFF" }}
                 >
-                  {row?.itemId?.h24_revenue}
+                  {row?.itemId?.purchased_on || "N/A"}
                 </TableCell>
                 <TableCell
                   sx={{ textAlign: "center", border: "0", color: "#FFFFFF" }}
                 >
-                  {row?.itemId?.h1_validShare}
-                </TableCell>
-                <TableCell
-                  sx={{ textAlign: "center", border: "0", color: "#FFFFFF" }}
-                >
-                  {row?.itemId?.h1_staleShare}
-                </TableCell>
-                <TableCell
-                  sx={{ textAlign: "center", border: "0", color: "#FFFFFF" }}
-                >
-                  {row?.itemId?.h1_rejectedShare}
-                </TableCell>
-                <TableCell
-                  sx={{ textAlign: "center", border: "0", color: "#FFFFFF" }}
-                >
-                  {row?.itemId?.lastShare}
+                  {row?.itemId?.validity || "N/A"}
                 </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </TableContainer>
-      <Backdrop
+      {/* <Backdrop
         sx={(theme) => ({
           color: "#fff",
           zIndex: theme.zIndex.drawer + 1,
@@ -203,7 +143,7 @@ export default function DetailedTable() {
         onClick={handleClose}
       >
         <SingleGraph name={name} />
-      </Backdrop>
+      </Backdrop> */}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import GraphStat from "./GraphStat";
@@ -9,46 +9,46 @@ export default function StatsMainCard() {
   return (
     <div
       className={`p-10 ${
-        on ? "bg-gray-200" : "bg-gradient-to-r from-[#0692DC] to-[#59b3e4]"
+        on
+          ? "bg-gray-200"
+          : "bg-gradient-to-r from-[#59b3e4] via-[#0692DC] to-[#59b3e4]"
       } lg:w-3/5 sm:w-3/4 w-full rounded-4xl relative flex flex-col gap-3 items-center mb-10`}
       id="main-stat-card"
     >
       {on ? (
         <GraphStat />
       ) : (
-        <div className="flex flex-col gap-5 items-center w-full text-black">
-          <div className="flex flex-col gap-2 items-center bg-gray-200 p-4 rounded-xl">
+        <div className="flex flex-col gap-2 items-center w-full ">
+          <div className="flex flex-col gap-2 items-center w-full p-4 border-b border-[#57B9FF]">
             <p>Current Balance</p>
             <div className="flex gap-5 justify-center items-center">
               <img src="/home/bitcoin.png" className="w-10" />
-              <p className="text-2xl">0.00012 BTC</p>
+              <p className="text-2xl font-semibold">0.00012 BTC</p>
             </div>
+            <p className=" p-2 w-full text-center rounded-lg">
+              Total Miners - <span className="text-xl  font-bold">2</span>
+            </p>
           </div>
 
           <div className="flex lg:flex-row flex-col lg:text-left text-center gap-5 justify-between w-full">
-            <p className="bg-gray-200 p-2 w-full rounded-lg">
+            <p className=" p-2 w-full rounded-lg">
               Total Hashrate -{" "}
-              <span className="text-xl text-black font-bold">12.5 TH/s</span>
+              <span className="text-xl  font-bold">12.5 TH/s</span>
             </p>
-            <p className="bg-gray-200 p-2 w-full rounded-lg">
-              Total Miners -{" "}
-              <span className="text-xl text-black font-bold">2</span>
+            <p className=" p-2 w-full text-center rounded-lg">
+              Payout Mode - <span className="text-xl  font-bold">BTC Hold</span>
             </p>
           </div>
           <div className="flex lg:flex-row flex-col lg:text-left text-center gap-5 justify-between w-full">
-            <p className="bg-gray-200 p-2 w-full rounded-lg">
+            <p className=" p-2 w-full rounded-lg">
               Hosting Fee Due -{" "}
-              <span className="text-xl text-black font-bold">1000 AED</span>
+              <span className="text-xl  font-bold">1000 AED</span>
             </p>
-            <p className="bg-gray-200 p-2 w-full rounded-lg">
+            <p className=" p-2 w-full rounded-lg">
               Avg. Validity Left -{" "}
-              <span className="text-xl text-black font-bold">900 Days</span>
+              <span className="text-xl  font-bold">900 Days</span>
             </p>
           </div>
-          <p className="bg-gray-200 p-2 w-full text-center rounded-lg">
-            Payout Mode -{" "}
-            <span className="text-xl text-black font-bold">BTC Hold</span>
-          </p>
         </div>
       )}
 

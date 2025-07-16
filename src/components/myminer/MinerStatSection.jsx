@@ -4,6 +4,7 @@ import DetailedTable from "../dashboard/detailed/detailedTable/DetailedTable";
 import SIngleMinerStats from "./SIngleMinerStats";
 import { UserContext } from "../../UserContext";
 import ReportIssue from "./ReportIssue";
+import ProjectionSection from "./Projection/ProjectionSection";
 
 export default function MinerStatSection({ selectedMiner }) {
   const [open, setOpen] = useState(false);
@@ -19,6 +20,7 @@ export default function MinerStatSection({ selectedMiner }) {
         </button>
       </div>
       <SIngleMinerStats data={selectedMiner} />
+      <ProjectionSection />
       <p className="md:text-2xl text-lg my-5">Other Workers</p>
       <DetailedTable />
       <ReportIssue open={open} setOpen={setOpen} />
