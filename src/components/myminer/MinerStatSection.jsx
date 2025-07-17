@@ -11,7 +11,7 @@ export default function MinerStatSection({ selectedMiner }) {
   return (
     <section id="stat" className="col-span-full">
       <div className="flex md:flex-row flex-col justify-between items-center my-5">
-        <p className="md:text-2xl text-lg">{selectedMiner?.name}</p>
+        <p className="md:text-2xl text-lg">{selectedMiner?.itemId?.name}</p>
         <button
           onClick={() => setOpen(true)}
           className="px-3 py-1 rounded-md bg-[#011532] border border-[#76C6E054] cursor-pointer"

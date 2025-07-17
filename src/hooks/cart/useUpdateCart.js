@@ -11,7 +11,7 @@ const useUpdateCart = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${base_url}/auth/updateCart`,
+        `${base_url}/product/updateCart`,
         {
           itemId,
           qty,

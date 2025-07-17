@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function DetailsAndSpecs() {
+export default function DetailsAndSpecs({ miner }) {
   const [selected, setSelected] = useState("Description");
   return (
     <div>
@@ -22,19 +22,13 @@ export default function DetailsAndSpecs() {
           Specification
         </button>
       </div>
-      {selected === "Description" && (
-        <p>
-          The Bitmain Antminer S19J Pro (100Th) is a high-performance Bitcoin
-          miner known for its efficiency and reliability. It delivers 100
-          terahashes per second, making it ideal for maximizing mining profits.
-        </p>
-      )}
+      {selected === "Description" && <p>{miner?.description}</p>}
       {selected === "Specification" && (
         <div>
-          <li>Power: N/A</li>
-          <li>HashRate: N/A</li>
-          <li>Coin Type: N/A</li>
-          <li>Algorithm: N/A</li>
+          <li>Power: {miner?.power} KW/h</li>
+          <li>HashRate: {miner?.hashRate} TH/s</li>
+          <li>Coin Type: {miner?.coin}</li>
+          <li>Algorithm: {miner?.algorithm}</li>
         </div>
       )}
     </div>

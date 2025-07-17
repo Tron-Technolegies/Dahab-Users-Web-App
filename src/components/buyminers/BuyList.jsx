@@ -16,7 +16,7 @@ export default function BuyList() {
           <BuyCard
             key={item._id}
             name={item.name}
-            hashRate={item.h24_hashRate}
+            hashRate={item.hashRate}
             power={item.power}
             stock={item.stock}
             image={item.image}

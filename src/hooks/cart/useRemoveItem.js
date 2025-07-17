@@ -11,7 +11,7 @@ const useRemoveItem = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${base_url}/auth/removeItem`,
+        `${base_url}/product/removeItem`,
         { itemId },
         { withCredentials: true }
       );

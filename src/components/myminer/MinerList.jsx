@@ -20,16 +20,17 @@ export default function MinerList() {
           <MyMinerCard
             image={item?.itemId?.image}
             name={item?.itemId?.name}
-            hashrate={item?.itemId?.h24_hashRate}
+            hashrate={item?.itemId?.hashRate}
             power={item?.itemId?.power}
-            status={item?.itemId?.status}
             isSelected={selectedId === item._id}
             setSelected={setSelectedId}
             id={item._id}
+            qty={item.qty}
+            batchId={item.batchId}
           />
           {selectedId === item._id && (
             <div className="col-span-full">
-              <MinerStatSection selectedMiner={item?.itemId} />
+              <MinerStatSection selectedMiner={item} />
             </div>
           )}
         </div>

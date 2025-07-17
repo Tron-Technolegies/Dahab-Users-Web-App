@@ -7,26 +7,23 @@ import { BsCartPlus } from "react-icons/bs";
 import useAddToCart from "../../../hooks/cart/useAddToCart";
 import { UserContext } from "../../../UserContext";
 
-export default function ProductDetails() {
+export default function ProductDetails({ miner }) {
   const { id } = useParams();
-  const { loading, miner } = useGetSingleProduct({ id });
   const { loading: cartLoading, addToCart } = useAddToCart();
   const navigate = useNavigate();
   const { refetchTrigger, setRefetchTrigger } = useContext(UserContext);
-  return loading ? (
-    <Loading />
-  ) : (
+  return (
     <div className="flex lg:flex-row flex-col justify-between items-center">
       <div className="bg-[#011532] p-7 px-10 rounded-xl flex flex-col gap-5">
         <div className="flex justify-between items-start w-full">
           <div className="flex flex-col gap-1">
             <p className="flex gap-2 items-center">
               <img src={"/my-miners/i2.png"} className="w-2" />
-              {miner?.h24_hashRate}
+              {miner?.hashRate} TH/s
             </p>
             <p className="flex gap-2 items-center">
               <img src={"/my-miners/i1.png"} className="w-2" />
-              {miner?.power}
+              {miner?.power.toFixed(2)} KW/h
             </p>
           </div>
           <p>
@@ -43,7 +40,7 @@ export default function ProductDetails() {
         <h1 className="text-2xl text-[#1ECBAF] lg:text-left text-center font-semibold">
           {miner?.name}
         </h1>
-        <p className="lg:text-left text-justify">{`${miner?.name} is a high-performance Bitcoin miner known for its efficiency and reliability. It delivers 100 terahashes per second, making it ideal for maximizing mining profits.`}</p>
+        <p className="lg:text-left text-justify">{miner?.description}</p>
         <div className="w-full flex flex-col gap-3 justify-center">
           <div className="justify-between">
             <p>

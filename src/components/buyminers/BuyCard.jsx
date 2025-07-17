@@ -1,10 +1,4 @@
-import React, { useContext } from "react";
-import { BsCartPlus } from "react-icons/bs";
-import { Link, useNavigate } from "react-router-dom";
-import useAddToCart from "../../hooks/cart/useAddToCart";
-import Loading from "../Loading";
-import { UserContext } from "../../UserContext";
-import DangerBar from "../DangerBar";
+import { Link } from "react-router-dom";
 import InfoContainer from "./InfoContainer";
 
 export default function BuyCard({
@@ -16,9 +10,6 @@ export default function BuyCard({
   price,
   id,
 }) {
-  const { loading, addToCart } = useAddToCart();
-  const navigate = useNavigate();
-  const { refetchTrigger, setRefetchTrigger } = useContext(UserContext);
   return (
     <div
       className={`p-5 rounded-2xl border border-[#76C6E038] flex flex-col gap-3 items-center w-full ${
@@ -29,11 +20,11 @@ export default function BuyCard({
         <div className="flex flex-col gap-1">
           <p className="flex gap-2 items-center">
             <img src={"/my-miners/i2.png"} className="w-2" />
-            {hashRate}
+            {hashRate} TH/s
           </p>
           <p className="flex gap-2 items-center">
             <img src={"/my-miners/i1.png"} className="w-2" />
-            {power}
+            {power.toFixed(2)} KW/h
           </p>
         </div>
         <p>
@@ -95,7 +86,6 @@ export default function BuyCard({
           Join Waitlist
         </button>
       )} */}
-      {loading && <Loading />}
     </div>
   );
 }

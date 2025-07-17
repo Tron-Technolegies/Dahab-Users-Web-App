@@ -11,7 +11,7 @@ const usePurchase = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${base_url}/auth/purchase`,
+        `${base_url}/product/purchase`,
         {},
         { withCredentials: true }
       );

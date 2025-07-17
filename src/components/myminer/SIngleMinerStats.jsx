@@ -2,8 +2,12 @@ import React from "react";
 import StatElement1 from "../dashboard/detailed/TopSection/StatElement1";
 import FormSelect from "../FormSelect";
 import GraphElement1 from "../dashboard/detailed/TopSection/GraphElement1";
+import dayjs from "dayjs";
 
 export default function SIngleMinerStats({ data }) {
+  const future = dayjs(data?.validity);
+  const today = dayjs();
+  const daysLeft = future.diff(today, "day");
   return (
     <div className="flex flex-col gap-5 items-start">
       <div className="flex flex-col gap-10 w-full">
@@ -48,19 +52,38 @@ export default function SIngleMinerStats({ data }) {
           </div>
         </div> */}
         <div className="grid md:grid-cols-2 gap-3">
-          <StatElement1 stat={data?.h24_hashRate} statName={" Hashrate"} />
-          <StatElement1 stat={data?.power} statName={"Power"} />
-          <StatElement1 stat={data?.minedRewards} statName={"Mined Revenue"} />
+          <StatElement1 stat={`${data?.qty}`} statName={"Total Miners"} />
+          <StatElement1 stat={`${data?.batchId}`} statName={"Batch No"} />
           <StatElement1
-            stat={data?.hostingFeePaid || "N/A"}
+            stat={`${data?.itemId?.hashRate * data?.qty} TH/s (${
+              data?.itemId?.hashRate
+            } TH/s x ${data?.qty})`}
+            statName={"Total Hashrate"}
+          />
+          <StatElement1
+            stat={`${(data?.itemId?.power * data?.qty).toFixed(2)} KW/h (${
+              data?.itemId?.power
+            } KW/h x ${data?.qty})`}
+            statName={"Power"}
+          />
+          <StatElement1
+            stat={`${data?.minedRevenue} BTC`}
+            statName={"Mined Revenue"}
+          />
+          <StatElement1
+            stat={data?.hostingFeePaid}
             statName={"Hosting Fee Paid"}
           />
           <StatElement1
-            stat={data?.hostingFeePaid || "N/A"}
+            stat={data?.HostingFeeDue}
             statName={"Hosting Fee Due"}
           />
           <StatElement1
-            stat={data?.hostingFeePaid || "N/A"}
+            stat={data?.purchasedOn.slice(0, 10)}
+            statName={"Purchased On"}
+          />
+          <StatElement1
+            stat={`${daysLeft} days (till ${data?.validity.slice(0, 10)})`}
             statName={"Validity Left"}
           />
         </div>

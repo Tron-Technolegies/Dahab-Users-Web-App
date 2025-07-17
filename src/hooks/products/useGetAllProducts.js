@@ -9,7 +9,7 @@ const useGetAllProducts = () => {
   const getMiners = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`${base_url}/auth/miners`, {
+      const response = await axios.get(`${base_url}/product/miners`, {
         withCredentials: true,
       });
       const data = response.data;

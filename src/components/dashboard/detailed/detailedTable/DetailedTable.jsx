@@ -8,22 +8,30 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import Backdrop from "@mui/material/Backdrop";
-import SingleGraph from "./SingleGraph";
+// import Backdrop from "@mui/material/Backdrop";
+// import SingleGraph from "./SingleGraph";
 import { UserContext } from "../../../../UserContext";
+import dayjs from "dayjs";
 
 export default function DetailedTable() {
-  const [open, setOpen] = useState(false);
-  const [name, setName] = useState("");
+  // const [open, setOpen] = useState(false);
+  // const [name, setName] = useState("");
   const { user } = useContext(UserContext);
-  const handleClose = () => {
-    setName("");
-    setOpen(false);
-  };
-  const handleOpen = (name) => {
-    setName(name);
-    setOpen(true);
-  };
+
+  function calculateValidity(date) {
+    const future = dayjs(date);
+    const today = dayjs();
+    const daysLeft = future.diff(today, "day");
+    return daysLeft;
+  }
+  // const handleClose = () => {
+  //   setName("");
+  //   setOpen(false);
+  // };
+  // const handleOpen = (name) => {
+  //   setName(name);
+  //   setOpen(true);
+  // };
 
   return (
     <div className="flex flex-col gap-10" id="miner-table">
@@ -52,17 +60,27 @@ export default function DetailedTable() {
               <TableCell
                 sx={{ color: "#0194FE", border: "0", textAlign: "center" }}
               >
-                Name
+                Batch
               </TableCell>
               <TableCell
                 sx={{ color: "#0194FE", border: "0", textAlign: "center" }}
               >
-                HashRate
+                Miner
               </TableCell>
               <TableCell
                 sx={{ color: "#0194FE", border: "0", textAlign: "center" }}
               >
-                Power
+                Qty
+              </TableCell>
+              <TableCell
+                sx={{ color: "#0194FE", border: "0", textAlign: "center" }}
+              >
+                Total HashRate (TH/s)
+              </TableCell>
+              <TableCell
+                sx={{ color: "#0194FE", border: "0", textAlign: "center" }}
+              >
+                Total Power (KW/h)
               </TableCell>
               <TableCell
                 sx={{ color: "#0194FE", border: "0", textAlign: "center" }}
@@ -77,7 +95,7 @@ export default function DetailedTable() {
               <TableCell
                 sx={{ color: "#0194FE", border: "0", textAlign: "center" }}
               >
-                Validity Left
+                Validity Left (days)
               </TableCell>
             </TableRow>
           </TableHead>
@@ -100,32 +118,46 @@ export default function DetailedTable() {
                 <TableCell
                   sx={{ textAlign: "center", border: "0", color: "#FFFFFF" }}
                 >
+                  {`Batch-${row?.batchId.slice(-10)}`}
+                </TableCell>
+                <TableCell
+                  sx={{ textAlign: "center", border: "0", color: "#FFFFFF" }}
+                >
                   {row?.itemId?.name}
                 </TableCell>
                 <TableCell
                   sx={{ textAlign: "center", border: "0", color: "#FFFFFF" }}
                 >
-                  {row?.itemId?.h24_hashRate}
+                  {row?.qty}
                 </TableCell>
                 <TableCell
                   sx={{ textAlign: "center", border: "0", color: "#FFFFFF" }}
                 >
-                  {row?.itemId?.power}
+                  {`${row?.itemId?.hashRate * row?.qty} (${
+                    row?.itemId?.hashRate
+                  } x ${row?.qty})`}
                 </TableCell>
                 <TableCell
                   sx={{ textAlign: "center", border: "0", color: "#FFFFFF" }}
                 >
-                  {row?.itemId?.minedRewards || "N/A"}
+                  {`${(row?.itemId?.power * row?.qty).toFixed(2)} (${
+                    row?.itemId?.power
+                  } x ${row?.qty})`}
                 </TableCell>
                 <TableCell
                   sx={{ textAlign: "center", border: "0", color: "#FFFFFF" }}
                 >
-                  {row?.itemId?.purchased_on || "N/A"}
+                  {row?.minedRevenue}
                 </TableCell>
                 <TableCell
                   sx={{ textAlign: "center", border: "0", color: "#FFFFFF" }}
                 >
-                  {row?.itemId?.validity || "N/A"}
+                  {row?.purchasedOn.slice(0, 10)}
+                </TableCell>
+                <TableCell
+                  sx={{ textAlign: "center", border: "0", color: "#FFFFFF" }}
+                >
+                  {calculateValidity(row?.validity)}
                 </TableCell>
               </TableRow>
             ))}
