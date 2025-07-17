@@ -6,8 +6,9 @@ export default function PayoutSelector() {
   const [payout, setPayout] = useState("profit");
   const [showInfo, setShowInfo] = useState(false);
   return (
-    <div className="my-10">
-      <div className="flex gap-7 items-center">
+    <div className="my-10 flex flex-col gap-5">
+      <p className="text-2xl text-[#76C6E0]">Select Your Payout Mode</p>
+      <div className="flex gap-7 items-center relative">
         <p className="relative">
           Payout{" "}
           <span
@@ -20,7 +21,7 @@ export default function PayoutSelector() {
         </p>
         {showInfo && (
           <div
-            className="bg-black p-5 rounded-lg max-w-[300px] absolute"
+            className="bg-black p-5 rounded-lg max-w-[300px] absolute top-16"
             onMouseEnter={() => setShowInfo(true)}
             onMouseLeave={() => setShowInfo(false)}
           >

@@ -103,6 +103,11 @@ export default function AccountSettings({ user }) {
               handleClose={handleClose}
               link={"/dashboard/2fa"}
             />
+            <AccountSettingItem
+              name={"Payout Mode"}
+              handleClose={handleClose}
+              link={"/dashboard/payout-switch"}
+            />
           </div>
           <Divider
             sx={{

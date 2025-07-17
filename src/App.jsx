@@ -25,6 +25,7 @@ import {
 } from "./pages";
 import CartPage from "./pages/buyminers/CartPage";
 import ProductInnerPage from "./pages/buyminers/ProductInnerPage";
+import PayoutSwitchPage from "./pages/PayoutSwitchPage";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -46,6 +47,7 @@ export default function App() {
         { path: "2fA", element: <TwoFactor /> },
         { path: "help", element: <FAQ /> },
         { path: "notifications", element: <Notifications /> },
+        { path: "payout-switch", element: <PayoutSwitchPage /> },
       ],
     },
     { path: "terms", element: <Terms /> },
