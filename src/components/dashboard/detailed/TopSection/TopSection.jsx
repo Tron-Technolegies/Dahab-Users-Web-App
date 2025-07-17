@@ -13,9 +13,9 @@ export default function TopSection({ hidden }) {
       id="detailed-total-miners"
     >
       <div className="flex flex-col gap-10 w-full">
-        <div className="self-start">
+        {/* <div className="self-start">
           <FormSelect list={["24 hr", "7 day", "30 days"]} />
-        </div>
+        </div> */}
 
         {/* <GraphElement1 /> */}
       </div>

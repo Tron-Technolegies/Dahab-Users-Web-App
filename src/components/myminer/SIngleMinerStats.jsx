@@ -7,11 +7,11 @@ export default function SIngleMinerStats({ data }) {
   return (
     <div className="flex flex-col gap-5 items-start">
       <div className="flex flex-col gap-10 w-full">
-        <FormSelect list={["24 hr", "7 day", "30 days"]} />
+        {/* <FormSelect list={["24 hr", "7 day", "30 days"]} /> */}
         {/* <GraphElement1 /> */}
       </div>
       <div className="flex flex-col gap-5 w-full">
-        <div
+        {/* <div
           className={`rounded-md  p-5 ${
             data?.status === "Inactive" ? "bg-gray-600" : "bg-[#011532]"
           }`}
@@ -46,7 +46,7 @@ export default function SIngleMinerStats({ data }) {
 
             {data?.status !== "Active" && <p>Reason: Fan Failure</p>}
           </div>
-        </div>
+        </div> */}
         <div className="grid md:grid-cols-2 gap-3">
           <StatElement1 stat={data?.h24_hashRate} statName={" Hashrate"} />
           <StatElement1 stat={data?.power} statName={"Power"} />
