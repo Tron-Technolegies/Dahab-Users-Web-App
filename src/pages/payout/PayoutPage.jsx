@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import PayoutTopSection from "../../components/payout/PayoutTopSection";
 import PayoutTable from "../../components/payout/PayoutTable";
-import PayoutSelector from "../../components/dashboard/statsSection/PayoutSelector";
+
 import RewardsTable from "../../components/payout/RewardsTable";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../UserContext";
@@ -24,7 +24,6 @@ export default function PayoutPage() {
         className="flex sm:flex-row flex-col justify-center sm:gap-10 items-center"
         id="withdraw"
       >
-        <PayoutSelector />
         <Link
           to={"/dashboard/payouts/withdraw"}
           className="px-6 py-1 rounded-full bg-[#07EAD3] text-black"
