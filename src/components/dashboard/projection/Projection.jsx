@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
 import React, { useContext } from "react";
-import FieldItem from "../../dashboard/FinancialAnalysis/FieldItem";
+import FieldItem from "../FinancialAnalysis/FieldItem";
 import { CalculatorContext } from "../../../CalculatorContext";
 
-export default function ProjectionSection() {
+export default function Projection() {
   const { btcPrice } = useContext(CalculatorContext);
   return (
     <motion.div
-      className="my-10 bg-[#011532] max-w-[600px] w-[600px] mx-auto"
+      className="my-10 bg-[#011532] max-w-[900px] lg:w-[900px] w-[600px] mx-auto"
       initial={{
         borderImageSource:
           "linear-gradient(to bottom right, #004DF480 0%, transparent 50%, transparent 50%, #0194FE80 100%)",
@@ -39,17 +39,17 @@ export default function ProjectionSection() {
           item={"Total Investment"}
           value={"N/A"}
           formula={
-            "Miner Purchased in current Batch + Hosting Fees Paid Already + Avg.Hosting Fees To be Paid "
+            "Miner Purchased in All Batch + Hosting Fees Paid Already + Avg.Hosting Fees To be Paid "
           }
-          description={`<p>This indicates the sum of all the miners purchased on the current batch, Hosting fees that has been paid already and the average hosting fees to be paid in the future.</p><p>Miner Purchased - ${"N/A"}</p><p>Hosting Fee Paid - ${"N/A"}</p><p>Avg.Hosting fee to be paid - ${`3.55kw * 24 hr * number of miners in current batch * validity in days for batch * 0.051 AED`}</p>`}
+          description={`<p>This indicates the sum of all the miners purchased on all batches, Hosting fees that has been paid already and the average hosting fees to be paid in the future.</p><p>Miner Purchased - ${"N/A"}</p><p>Hosting Fee Paid - ${"N/A"}</p><p>Avg.Hosting fee to be paid - ${`3.55kw * 24 hr * number of miners in all batches * validity in days for all batches * 0.051 AED`}</p>`}
         />
         <FieldItem
           item={"Total BTC Mined"}
           value={"N/A"}
           formula={
-            "Mined Revenue of Current Batch + Avg. BTC to be mined by machines of the current Batch in Future"
+            "Mined Revenue of All Batch + Avg. BTC to be mined by machines of the all Batches in Future"
           }
-          description={`<p>This indicates the total BTC mined by the machines of the current batch in 3 years. This will be the sum of the already mined BTC and the avg BTC that will be mined by the machines in the remaining validity of the current batch.</p><p>Current Mined Revenue - ${"N/A"}</p><p>Avg. BTC To be Mined - ${"0.0000075 BTC * Hashrate of current batch * number of machines in current batch * validity remaining in days"}</p>`}
+          description={`<p>This indicates the total BTC mined by the machines of the all batches in 3 years. This will be the sum of the already mined BTC and the avg BTC that will be mined by the machines in the remaining validity of the all batches.</p><p>Current Mined Revenue - ${"N/A"}</p><p>Avg. BTC To be Mined - ${"0.0000075 BTC * Hashrate of all batches * number of machines in all batches * validity remaining in days"}</p>`}
         />
         <FieldItem
           item={"BTC Price (After 3 yrs)"}
