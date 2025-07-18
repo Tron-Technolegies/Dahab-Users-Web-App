@@ -21,6 +21,11 @@ export default function BuyList() {
             stock={item.stock}
             image={item.image}
             price={item.price}
+            hosting={item.hostingFactor}
+            investment={item.investmentFactor}
+            risk={item.riskFactor}
+            revenue={item.revenueFactor}
+            efficiency={item.efficiencyFactor}
             id={item._id}
           />
         ))}

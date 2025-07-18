@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import useGetSingleProduct from "../../../hooks/products/useGetSingleProduct";
 import Loading from "../../Loading";
 import InfoContainer from "../InfoContainer";
 import { BsCartPlus } from "react-icons/bs";
@@ -40,6 +39,9 @@ export default function ProductDetails({ miner }) {
         <h1 className="text-2xl text-[#1ECBAF] lg:text-left text-center font-semibold">
           {miner?.name}
         </h1>
+        <p className="lg:text-left text-justify font-semibold">
+          {miner?.subtitle}
+        </p>
         <p className="lg:text-left text-justify">{miner?.description}</p>
         <div className="w-full flex flex-col gap-3 justify-center">
           <div className="justify-between">
@@ -47,11 +49,32 @@ export default function ProductDetails({ miner }) {
               <span className="text-[#07EAD3]">Coin</span> - BTC
             </p>
           </div>
-          <InfoContainer name={"Investment"} percent={50} />
-          <InfoContainer name={"Revenue"} percent={60} />
-          <InfoContainer name={"Efficiency"} percent={70} />
-          <InfoContainer name={"Risk"} percent={20} />
-          <InfoContainer name={"Hosting"} percent={40} />
+          <div className="flex gap-2 item-center w-full">
+            <InfoContainer
+              name={"Investment"}
+              percent={miner?.investmentFactor}
+            />
+            <div className="text-[#0194FE]">{`${miner?.investmentFactor}%`}</div>
+          </div>
+          <div className="flex gap-2 item-center w-full">
+            <InfoContainer name={"Revenue"} percent={miner?.revenueFactor} />
+            <p className="text-[#0194FE]">{miner?.revenueFactor}%</p>
+          </div>
+          <div className="flex gap-2 item-center w-full">
+            <InfoContainer
+              name={"Efficiency"}
+              percent={miner?.efficiencyFactor}
+            />
+            <p className="text-[#0194FE]">{miner?.efficiencyFactor}%</p>
+          </div>
+          <div className="flex gap-2 item-center w-full">
+            <InfoContainer name={"Risk"} percent={miner?.riskFactor} />
+            <p className="text-[#0194FE]">{miner?.riskFactor}%</p>
+          </div>
+          <div className="flex gap-2 item-center w-full">
+            <InfoContainer name={"Hosting"} percent={miner?.hostingFactor} />
+            <p className="text-[#0194FE]">{miner?.hostingFactor}%</p>
+          </div>
         </div>
         <div>
           <p className="text-[#1ECBAF] text-2xl">{`AED ${miner?.price}`}</p>

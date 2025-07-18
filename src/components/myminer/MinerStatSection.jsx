@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
-import TopSection from "../dashboard/detailed/TopSection/TopSection";
-import DetailedTable from "../dashboard/detailed/detailedTable/DetailedTable";
+// import TopSection from "../dashboard/detailed/TopSection/TopSection";
+// import DetailedTable from "../dashboard/detailed/detailedTable/DetailedTable";
 import SIngleMinerStats from "./SIngleMinerStats";
 import { UserContext } from "../../UserContext";
 import ReportIssue from "./ReportIssue";
@@ -21,8 +21,8 @@ export default function MinerStatSection({ selectedMiner }) {
       </div>
       <SIngleMinerStats data={selectedMiner} />
       <ProjectionSection />
-      <p className="md:text-2xl text-lg my-5">Other Workers</p>
-      <DetailedTable />
+      {/* <p className="md:text-2xl text-lg my-5">Other Workers</p>
+      <DetailedTable /> */}
       <ReportIssue open={open} setOpen={setOpen} />
     </section>
   );

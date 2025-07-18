@@ -9,6 +9,11 @@ export default function BuyCard({
   name,
   price,
   id,
+  investment,
+  efficiency,
+  risk,
+  revenue,
+  hosting,
 }) {
   return (
     <div
@@ -46,11 +51,11 @@ export default function BuyCard({
             <span className="text-[#07EAD3]">Coin</span> - BTC
           </p>
         </div>
-        <InfoContainer name={"Investment"} percent={50} />
-        <InfoContainer name={"Revenue"} percent={60} />
-        <InfoContainer name={"Efficiency"} percent={70} />
-        <InfoContainer name={"Risk"} percent={20} />
-        <InfoContainer name={"Hosting"} percent={40} />
+        <InfoContainer name={"Investment"} percent={investment} />
+        <InfoContainer name={"Revenue"} percent={revenue} />
+        <InfoContainer name={"Efficiency"} percent={efficiency} />
+        <InfoContainer name={"Risk"} percent={risk} />
+        <InfoContainer name={"Hosting"} percent={hosting} />
       </div>
       <Link
         to={`/dashboard/buy/${id}`}

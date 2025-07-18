@@ -1,12 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import FormSelect from "../../../FormSelect";
 import StatElement1 from "./StatElement1";
 // import ActiveButtonCard from "../../statsSection/ActiveButtonCard";
 // import GraphElement1 from "./GraphElement1";
 import { FaRegCircleQuestion } from "react-icons/fa6";
+import { DashboardContext } from "../../../../DashBoardContext";
 
 export default function TopSection({ hidden }) {
   const [showInfo, setShowInfo] = useState(false);
+  const {
+    totalHashrate,
+    totalMiners,
+    currentBalance,
+    hostingDue,
+    minedRevenue,
+    avgValidity,
+    hostingPaid,
+  } = useContext(DashboardContext);
   return (
     <div
       className="flex flex-col gap-7 items-start my-7 w-full h-full"
@@ -21,11 +31,28 @@ export default function TopSection({ hidden }) {
       </div>
       <div className="flex lg:flex-row flex-col gap-5 justify-between w-full ">
         <div className="flex flex-col gap-3 lg:w-2/3" id="dash-stats">
-          <StatElement1 stat={"2"} statName={"Total Miners"} />
-          <StatElement1 stat={"3.64 PH"} statName={"Hashrate"} />
-          <StatElement1 stat={"0.00183547 BTC"} statName={"Mined Rewards"} />
-          <StatElement1 stat={"1200 AED"} statName={"Total Hosting Fee Paid"} />
-          <StatElement1 stat={"1200 AED"} statName={"Hosting Fee Due"} />
+          <StatElement1 stat={totalMiners} statName={"Total Miners"} />
+          <StatElement1 stat={`${totalHashrate} TH/s`} statName={"Hashrate"} />
+          <StatElement1
+            stat={`${minedRevenue} BTC`}
+            statName={"Mined Rewards"}
+          />
+          <StatElement1
+            stat={`${currentBalance} BTC`}
+            statName={"Current Balance"}
+          />
+          <StatElement1
+            stat={`${hostingPaid} AED`}
+            statName={"Total Hosting Fee Paid"}
+          />
+          <StatElement1
+            stat={`${hostingDue} AED`}
+            statName={"Hosting Fee Due"}
+          />
+          <StatElement1
+            stat={`${avgValidity} days`}
+            statName={"Avg. Validity Left"}
+          />
         </div>
         <div className="relative flex flex-col gap-3">
           <div className="flex gap-3 items-center">

@@ -4,7 +4,7 @@ import DetailsAndSpecs from "../../components/buyminers/productSingle/DetailsAnd
 import ROICalculator from "../../components/buyminers/productSingle/ROICalculator/ROICalculator";
 import useGetBitCoinData from "../../hooks/coins/useGetBitCoinData";
 import Loading from "../../components/Loading";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useGetSingleProduct from "../../hooks/products/useGetSingleProduct";
 
 export default function ProductInnerPage() {
@@ -15,7 +15,10 @@ export default function ProductInnerPage() {
   const { id } = useParams();
   const { loading: minerLoading, miner } = useGetSingleProduct({ id });
   return (
-    <div className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10">
+    <div className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 flex flex-col">
+      <Link className="ms-auto" to={"/dashboard/buy"}>
+        <span></span>Go Back
+      </Link>
       {minerLoading ? (
         <Loading />
       ) : (
