@@ -16,6 +16,7 @@ export default function DashBoardContextProvider({ children }) {
   const [hostingPaid, setHostingPaid] = useState(0);
   const [totalInvestment, setTotalInvestment] = useState(0);
   const [ownedBTCValue, setOwnedBTCValue] = useState(0);
+  const [totalMinerPrice, setTotalMinerPrice] = useState(0);
   const [roi, setRoi] = useState(0);
   const { user } = useContext(UserContext);
 
@@ -58,6 +59,7 @@ export default function DashBoardContextProvider({ children }) {
     const totalMinerPrice = user?.ownedMiners.reduce((acc, item) => {
       return acc + item.itemId.price * item.qty;
     }, 0);
+    setTotalMinerPrice(totalMinerPrice);
     const totalInv = totalMinerPrice + totalHostingPaid;
     setTotalInvestment(totalInv);
     const ownedBTCVlu = minedRevenue * convertUsdToAed(btcPrice);
@@ -83,6 +85,7 @@ export default function DashBoardContextProvider({ children }) {
         totalInvestment,
         convertUsdToAed,
         ownedBTCValue,
+        totalMinerPrice,
         roi,
       }}
     >

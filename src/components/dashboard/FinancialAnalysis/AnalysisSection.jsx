@@ -6,8 +6,16 @@ import { DashboardContext } from "../../../DashBoardContext";
 
 export default function AnalysisSection() {
   const { btcPrice } = useContext(CalculatorContext);
-  const { totalInvestment, minedRevenue, convertUsdToAed, ownedBTCValue, roi } =
-    useContext(DashboardContext);
+  const {
+    totalInvestment,
+    minedRevenue,
+    convertUsdToAed,
+    ownedBTCValue,
+    totalMinerPrice,
+    hostingPaid,
+    currentBalance,
+    roi,
+  } = useContext(DashboardContext);
   return (
     <motion.div
       className="max-w-[600px] md:w-[600px] bg-[#011532]"
@@ -53,13 +61,13 @@ export default function AnalysisSection() {
           item={"Total Investment"}
           value={`${totalInvestment} AED`}
           formula={"Total Miner Price + Total Hosting Fees Paid"}
-          description={`<p>This Value represents the total amount you have spent on purchasing all the machines plus the amount that has been spend on paying the hosting fees</p><p>Cost of Total Miners-${"NA"}</p><p>Total Hosting Paid-${"NA"}</p>`}
+          description={`<p>This Value represents the total amount you have spent on purchasing all the machines plus the amount that has been spend on paying the hosting fees</p><p>Cost of Total Miners-${totalMinerPrice} AED</p><p>Total Hosting Paid-${hostingPaid} AED</p>`}
         />
         <FieldItem
           item={"Total BTC Mined"}
           value={`${minedRevenue} BTC`}
           formula={"Current BTC Balance + Sum of Withdrawals"}
-          description={`<p>This value represents the total BTC mined in your account. This is the sum of your current BTC Balance and the total sum of all the BTC withdrawals you made</p><p>Current Balance - ${"N/A"}</p><p>Sum of total Withdrawals - ${"N/A"}</p>`}
+          description={`<p>This value represents the total BTC mined in your account. This is the sum of your current BTC Balance and the total sum of all the BTC withdrawals you made</p><p>Current Balance - ${currentBalance} AED</p><p>Sum of total Withdrawals - ${"N/A"}</p>`}
         />
         {/* <FieldItem
           item={"Total Hosting Due"}
@@ -70,13 +78,15 @@ export default function AnalysisSection() {
           item={"Your BTC Value"}
           value={`${ownedBTCValue} AED`}
           formula={"Total BTC Mined x Current BTC Value"}
-          description={`<p>This indicates the total value of the bitcoin you owned.</p><p>Total Bitcoin Owned - ${"N/A"}</p><p>Current BTC Value - ${btcPrice}</p>`}
+          description={`<p>This indicates the total value of the bitcoin you owned.</p><p>Total Bitcoin Owned - ${minedRevenue} AED</p><p>Current BTC Value - ${convertUsdToAed(
+            btcPrice
+          )} AED</p>`}
         />
         <FieldItem
           item={"ROI (%)"}
           value={roi}
           formula={"(Your BTC Value x  100) / Total Investment"}
-          description={`<p>This value represents the Return of Investment. It gives the info about how much percentage more returns you got compared to your investment.</p><p> >100 % - Positive Returns</p><p> <100 % - Negative Returns</p><p> =100 % - No Returns</p>`}
+          description={`<p>This value represents the Return of Investment. It gives the info about how much percentage more returns you got compared to your investment.</p><p>Your BTC Value - ${ownedBTCValue} AED</p><p>Total Investment - ${totalInvestment} AED</p><p> >100 % - Positive Returns</p><p> <100 % - Negative Returns</p><p> =100 % - No Returns</p>`}
         />
       </div>
     </motion.div>

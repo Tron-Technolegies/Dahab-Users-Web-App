@@ -3,10 +3,11 @@ import { minersMock } from "../../utils/miners";
 import MyMinerCard from "./MyMinerCard";
 import MinerStatSection from "./MinerStatSection";
 import { UserContext } from "../../UserContext";
+import { ProjectionContext } from "../../ProjectionContext";
 
 export default function MinerList() {
-  const [selectedId, setSelectedId] = useState(null);
   const { user } = useContext(UserContext);
+  const { selectedId, setSelectedId } = useContext(ProjectionContext);
   return (
     <div
       id="my-miners"

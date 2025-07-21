@@ -5,13 +5,16 @@ import App from "./App.jsx";
 import UserContextProvider from "./UserContext.jsx";
 import CalculatorContextProvider from "./CalculatorContext.jsx";
 import DashBoardContextProvider from "./DashBoardContext.jsx";
+import ProjectionContextProvider from "./ProjectionContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <UserContextProvider>
       <CalculatorContextProvider>
         <DashBoardContextProvider>
-          <App />
+          <ProjectionContextProvider>
+            <App />
+          </ProjectionContextProvider>
         </DashBoardContextProvider>
       </CalculatorContextProvider>
     </UserContextProvider>
