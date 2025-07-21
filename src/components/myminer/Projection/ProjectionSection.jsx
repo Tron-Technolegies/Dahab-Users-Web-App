@@ -7,7 +7,7 @@ export default function ProjectionSection() {
   const { btcPrice } = useContext(CalculatorContext);
   return (
     <motion.div
-      className="my-10 bg-[#011532] max-w-[600px] w-[600px] mx-auto"
+      className="my-10 bg-[#011532] max-w-[600px] md:w-[600px] w-full mx-auto"
       initial={{
         borderImageSource:
           "linear-gradient(to bottom right, #004DF480 0%, transparent 50%, transparent 50%, #0194FE80 100%)",

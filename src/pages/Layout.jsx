@@ -7,6 +7,7 @@ import AlertBox from "../components/Alert";
 import { UserContext } from "../UserContext";
 import useGetUserInfo from "../hooks/auth/useGetUserInfo";
 import Loading from "../components/Loading";
+import useGetBitCoinData from "../hooks/coins/useGetBitCoinData";
 
 export default function Layout() {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ export default function Layout() {
     refetchTrigger,
   } = useContext(UserContext);
   const { loading, refetch } = useGetUserInfo();
+  const { loading: coinLoading } = useGetBitCoinData();
   const steps = [
     {
       action: () => navigate("/dashboard"),

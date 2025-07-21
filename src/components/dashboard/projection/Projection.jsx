@@ -7,7 +7,7 @@ export default function Projection() {
   const { btcPrice } = useContext(CalculatorContext);
   return (
     <motion.div
-      className="my-10 bg-[#011532] max-w-[900px] lg:w-[900px] w-[600px] mx-auto"
+      className="my-10 bg-[#011532] max-w-[900px] lg:w-[900px] md:w-[600px] w-full md:mx-auto"
       initial={{
         borderImageSource:
           "linear-gradient(to bottom right, #004DF480 0%, transparent 50%, transparent 50%, #0194FE80 100%)",
@@ -28,7 +28,7 @@ export default function Projection() {
         borderStyle: "solid",
       }}
     >
-      <div className="flex flex-col items-center gap-0 py-5 border-b border-[#0194FE]">
+      <div className="flex flex-col items-center md:gap-0 py-5 border-b border-[#0194FE]">
         <p className="text-lg">Financial Projection (3 Years)</p>
         <p className="text-xs text-[#949494]">
           Overview of your Bitcoin portfolio performance
