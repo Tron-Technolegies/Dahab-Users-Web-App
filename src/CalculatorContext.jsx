@@ -40,7 +40,12 @@ export default function CalculatorContextProvider({ children }) {
   function calculateAll() {
     const totalInv = (
       minerPage?.price * miners +
-      minerPage?.power * 24 * miners * 365 * hostingPeriod * 0.051
+      minerPage?.power *
+        24 *
+        miners *
+        365 *
+        hostingPeriod *
+        minerPage?.hostingFeePerKw
     ).toFixed(2);
     setInvestment(totalInv);
     const btcEarnedBuying = (totalInv / convertUsdToAed(btcPrice)).toFixed(4);

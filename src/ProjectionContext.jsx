@@ -44,7 +44,7 @@ export default function ProjectionContextProvider({ children }) {
       24 *
       selectedBatch?.qty *
       parseInt(daysLeft) *
-      0.051
+      selectedBatch?.itemId.hostingFeePerKw
     ).toFixed(2);
     setAvgHostingToPay(avgHostingPay);
     const totalInv = (
