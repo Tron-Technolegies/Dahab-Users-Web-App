@@ -1,11 +1,18 @@
 import React, { useState } from "react";
 import { IoInformationCircleOutline } from "react-icons/io5";
 
-export default function FieldItem({ item, value, formula, description }) {
+export default function FieldItem({
+  item,
+  value,
+  formula,
+  description,
+  style,
+  style2,
+}) {
   const [showInfo, setShowInfo] = useState(false);
   return (
     <div className="w-full flex justify-between relative">
-      <p className="flex gap-2 items-center">
+      <p className={`flex gap-2 items-center ${style}`}>
         {item}{" "}
         <span
           className="text-[#0194FE] text-sm cursor-pointer"
@@ -15,10 +22,10 @@ export default function FieldItem({ item, value, formula, description }) {
           <IoInformationCircleOutline />
         </span>
       </p>
-      <p>{value}</p>
+      <p className={style2}>{value}</p>
       {showInfo && (
         <div
-          className="absolute bg-[#000518] p-5 rounded-lg z-10 lg:w-[400px] w-[300px] flex flex-col gap-3 items-center"
+          className="absolute bg-black p-5 rounded-lg z-10 lg:w-[400px] w-[300px] flex flex-col gap-3 items-center"
           onMouseEnter={() => setShowInfo(true)}
           onMouseLeave={() => setShowInfo(false)}
         >

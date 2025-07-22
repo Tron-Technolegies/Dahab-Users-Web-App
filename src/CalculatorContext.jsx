@@ -16,12 +16,11 @@ import {
 } from "./utils/calculatorFunctions";
 
 export default function CalculatorContextProvider({ children }) {
+  const [minerPage, setMinerPage] = useState(null);
   const [miners, setMiners] = useState(1);
   const [hostingPeriod, setHostingPeriod] = useState(3);
   const [btcPrice, setBtcPrice] = useState(118000);
   const [expectedPrice, setExpectedPrice] = useState(200000);
-  const [minerPrice, setMinerPrice] = useState(1997);
-  const [electricity, setElectricity] = useState(0);
   const [investment, setInvestment] = useState(0);
   const [btcEarnedByBuying, setBtcEarnedByBuying] = useState(0);
   const [btcEarnedByMining, setBtcEarnedByMining] = useState(0);
@@ -34,73 +33,76 @@ export default function CalculatorContextProvider({ children }) {
   const [buyingRatio, setBuyingRatio] = useState(0);
   const [miningRatio, setMiningRatio] = useState(0);
 
+  function convertUsdToAed(usd) {
+    return (usd * 3.65).toFixed(2);
+  }
+
+  function calculateAll() {
+    const totalInv = (
+      minerPage?.price * miners +
+      minerPage?.power * 24 * miners * 365 * hostingPeriod * 0.051
+    ).toFixed(2);
+    setInvestment(totalInv);
+    const btcEarnedBuying = (totalInv / convertUsdToAed(btcPrice)).toFixed(4);
+    setBtcEarnedByBuying(btcEarnedBuying);
+    const btcEarnedMining = (
+      0.00000075 *
+      minerPage?.hashRate *
+      miners *
+      365 *
+      hostingPeriod
+    ).toFixed(4);
+    setBtcEarnedByMining(btcEarnedMining);
+    const valueBuying = (
+      btcEarnedBuying * convertUsdToAed(expectedPrice)
+    ).toFixed(2);
+    setBtcValueBuying(valueBuying);
+    const valueMining = (
+      btcEarnedMining * convertUsdToAed(expectedPrice)
+    ).toFixed(2);
+    setBtcValueMining(valueMining);
+    const profitBuying = (valueBuying - totalInv).toFixed(2);
+    setNetProfitBuying(profitBuying);
+    const profitMining = (valueMining - totalInv).toFixed(2);
+    setNetProfitMining(profitMining);
+    const roi1 = ((valueBuying / totalInv) * 100).toFixed(2);
+    setRoiBuying(roi1);
+    const roi2 = ((valueMining / totalInv) * 100).toFixed(2);
+    setRoiMining(roi2);
+    const ratio1 = (profitBuying / totalInv).toFixed(2);
+    setBuyingRatio(ratio1);
+    const ratio2 = (profitMining / totalInv).toFixed(2);
+    setMiningRatio(ratio2);
+  }
+
   useEffect(() => {
-    setMinerPrice(calculateMinerPrice(miners));
-    setElectricity(calculateElectricity(miners, hostingPeriod));
-    setInvestment(totalInvestment(minerPrice, electricity));
-    setBtcEarnedByBuying(btcEarned1(investment, btcPrice));
-    setBtcEarnedByMining(calculateBtcEarnedByMining(miners, hostingPeriod));
-    setBtcValueBuying(calculateBtcValue(expectedPrice, btcEarnedByBuying));
-    setBtcValueMining(calculateBtcValue(expectedPrice, btcEarnedByMining));
-    setNetProfitBuying(CalculateNetProfit(btcValueBuying, investment));
-    setNetProfitMining(CalculateNetProfit(btcValueMining, investment));
-    setRoiBuying(calculateROI(btcValueBuying, investment));
-    setRoiMining(calculateROI(btcValueMining, investment));
-    setBuyingRatio(CalculateProfitRatio(netProfitBuying, investment));
-    setMiningRatio(CalculateProfitRatio(netProfitMining, investment));
-  }, [
-    miners,
-    hostingPeriod,
-    electricity,
-    minerPrice,
-    investment,
-    btcPrice,
-    expectedPrice,
-    btcValueBuying,
-    btcValueMining,
-    btcEarnedByBuying,
-    btcEarnedByMining,
-    netProfitBuying,
-    netProfitMining,
-  ]);
+    calculateAll();
+  }, [minerPage, miners, expectedPrice, hostingPeriod]);
 
   return (
     <CalculatorContext.Provider
       value={{
         miners,
         setMiners,
-        hostingPeriod,
-        setHostingPeriod,
+        setMinerPage,
         btcPrice,
         setBtcPrice,
         expectedPrice,
         setExpectedPrice,
-        minerPrice,
-        setMinerPrice,
-        electricity,
-        setElectricity,
+        hostingPeriod,
+        setHostingPeriod,
         investment,
-        setInvestment,
         btcEarnedByBuying,
-        setBtcEarnedByBuying,
         btcEarnedByMining,
-        setBtcEarnedByMining,
+        convertUsdToAed,
         btcValueBuying,
-        setBtcValueBuying,
         btcValueMining,
-        setBtcValueMining,
         netProfitBuying,
-        setNetProfitBuying,
         netProfitMining,
-        setNetProfitMining,
         roiBuying,
-        setRoiBuying,
         roiMining,
-        setRoiMining,
-        buyingRatio,
-        setBuyingRatio,
         miningRatio,
-        setMiningRatio,
+        buyingRatio,
       }}
     >
       {children}

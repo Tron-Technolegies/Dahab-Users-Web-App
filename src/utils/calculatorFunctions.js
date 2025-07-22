@@ -4,8 +4,8 @@ export const calculateElectricity = (miners, hostingPeriod) => {
   );
 };
 
-export const calculateMinerPrice = (miners) => {
-  return parseInt(miners * 1997);
+export const calculateMinerPrice = (miners, price) => {
+  return parseInt(miners * price);
 };
 
 export const totalInvestment = (minerPrice, electricity) => {
