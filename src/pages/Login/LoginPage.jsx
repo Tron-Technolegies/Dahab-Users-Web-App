@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import FormInput from "../../components/FormInput";
 import Button from "../../components/Button";
 import { Link } from "react-router-dom";
 import useLogin from "../../hooks/auth/useLogin";
 import Loading from "../../components/Loading";
+import { UserContext } from "../../UserContext";
+import AlertBox from "../../components/Alert";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { loading, login } = useLogin();
+  const { alertError, setAlertError } = useContext(UserContext);
   return (
     <div className="min-h-screen flex md:flex-row flex-col justify-center items-center gap-10 lg:gap-20 p-10">
       <Link to={"/"}>
@@ -53,24 +56,43 @@ export default function LoginPage() {
             styles={"bg-[#07EAD3] mt-3"}
           />
           {loading && <Loading />}
+          {alertError !== "" && (
+            <AlertBox
+              message={alertError}
+              severity={"error"}
+              onClose={() => setAlertError("")}
+            />
+          )}
         </form>
-        <p className="text-xs text-center">
-          Dont have an account?&nbsp;
-          <Link className="text-[#07EAD3]" to={"/register"}>
-            {" "}
-            Sign Up
-          </Link>
-        </p>
-        <p className="text-xs text-center">
-          By signing up, you agree to our{" "}
-          <Link to={"/privacy-policy"} className="text-[#76C6E0]">
-            privacy policy
-          </Link>{" "}
-          and{" "}
-          <Link to={"/terms"} className="text-[#76C6E0]">
-            terms of use
-          </Link>
-        </p>
+        <div className="flex flex-col gap-2">
+          <p className="text-xs text-center">
+            Dont have an account?&nbsp;
+            <Link className="text-[#07EAD3]" to={"/register"}>
+              {" "}
+              Sign Up
+            </Link>
+          </p>
+          <p className="text-xs text-center">
+            Account not verified?&nbsp;
+            <Link
+              to={"/verify-account"}
+              className="text-[#07EAD3] cursor-pointer"
+            >
+              {" "}
+              verify
+            </Link>
+          </p>
+          <p className="text-xs text-center">
+            By signing up, you agree to our{" "}
+            <Link to={"/privacy-policy"} className="text-[#76C6E0]">
+              privacy policy
+            </Link>{" "}
+            and{" "}
+            <Link to={"/terms"} className="text-[#76C6E0]">
+              terms of use
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );

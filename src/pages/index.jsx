@@ -1,4 +1,6 @@
 import BuyMinersPage from "./buyminers/BuyMinersPage";
+import CartPage from "./buyminers/CartPage";
+import ProductInnerPage from "./buyminers/ProductInnerPage";
 import DashBoardPage from "./dashboard/DashBoardPage";
 import DetailedPage from "./dashboard/DetailedPage";
 import ErrorPage from "./error/ErrorPage";
@@ -8,10 +10,12 @@ import Layout from "./Layout";
 import LoginPage from "./Login/LoginPage";
 import MyMinerPage from "./myminer/MyMinerPage";
 import Notifications from "./Notifications";
+import EmailPrompt from "./otp-verify/EmailPrompt";
 import OTPVerify from "./otp-verify/OTPVerify";
 import Page0 from "./page0/Page0";
 import PayoutPage from "./payout/PayoutPage";
 import WithdrawPage from "./payout/WithdrawPage";
+import PayoutSwitchPage from "./PayoutSwitchPage";
 import PrivacyPolicy from "./PrivacyPolicy";
 import Register from "./Register/Register";
 import ResetPassword from "./resetPassword/ResetPassword";
@@ -41,4 +45,8 @@ export {
   Notifications,
   PrivacyPolicy,
   Terms,
+  EmailPrompt,
+  CartPage,
+  ProductInnerPage,
+  PayoutSwitchPage,
 };

@@ -62,23 +62,35 @@ export default function Register() {
           />
           {loading && <Loading />}
         </form>
-        <p className="text-xs text-center">
-          Already have an account?&nbsp;
-          <Link className="text-[#07EAD3]" to={"/login"}>
-            {" "}
-            Login
-          </Link>
-        </p>
-        <p className="text-xs text-center">
-          By signing up, you agree to our{" "}
-          <Link to={"/privacy-policy"} className="text-[#76C6E0]">
-            privacy policy
-          </Link>{" "}
-          and{" "}
-          <Link to={"/terms"} className="text-[#76C6E0]">
-            terms of use
-          </Link>
-        </p>
+        <div className="flex flex-col gap-2">
+          <p className="text-xs text-center">
+            Already have an account?&nbsp;
+            <Link className="text-[#07EAD3]" to={"/login"}>
+              {" "}
+              Login
+            </Link>
+          </p>
+          <p className="text-xs text-center">
+            Account not verified?&nbsp;
+            <Link
+              to={"/verify-account"}
+              className="text-[#07EAD3] cursor-pointer"
+            >
+              {" "}
+              verify
+            </Link>
+          </p>
+          <p className="text-xs text-center">
+            By signing up, you agree to our{" "}
+            <Link to={"/privacy-policy"} className="text-[#76C6E0]">
+              privacy policy
+            </Link>{" "}
+            and{" "}
+            <Link to={"/terms"} className="text-[#76C6E0]">
+              terms of use
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );

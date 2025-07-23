@@ -6,7 +6,8 @@ import { UserContext } from "../../UserContext";
 
 const useLogout = () => {
   const [loading, setLoading] = useState(false);
-  const { setAlertError, setAlertSuccess } = useContext(UserContext);
+
+  const { setAlertError, setAlertSuccess, setUser } = useContext(UserContext);
   const navigate = useNavigate();
   const logout = async () => {
     setLoading(true);
@@ -18,6 +19,7 @@ const useLogout = () => {
       );
       const data = response.data;
       setAlertSuccess("successfully logged out");
+      setUser(null);
       navigate("/login");
     } catch (error) {
       setAlertError(

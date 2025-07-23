@@ -2,8 +2,10 @@ import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import {
   BuyMinersPage,
+  CartPage,
   DashBoardPage,
   DetailedPage,
+  EmailPrompt,
   ErrorPage,
   FAQ,
   ForgotPassword,
@@ -14,7 +16,9 @@ import {
   OTPVerify,
   Page0,
   PayoutPage,
+  PayoutSwitchPage,
   PrivacyPolicy,
+  ProductInnerPage,
   Register,
   ResetPassword,
   Terms,
@@ -23,9 +27,6 @@ import {
   VerifyCode,
   WithdrawPage,
 } from "./pages";
-import CartPage from "./pages/buyminers/CartPage";
-import ProductInnerPage from "./pages/buyminers/ProductInnerPage";
-import PayoutSwitchPage from "./pages/PayoutSwitchPage";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -60,6 +61,7 @@ export default function App() {
     { path: "/forgot-password", element: <ForgotPassword /> },
     { path: "/verify", element: <VerifyCode /> },
     { path: "/reset-password", element: <ResetPassword /> },
+    { path: "/verify-account", element: <EmailPrompt /> },
     { path: "/otp", element: <OTPVerify /> },
   ]);
   return <RouterProvider router={router} />;

@@ -26,17 +26,20 @@ const useRegister = () => {
       );
       const data = response.data;
       setAlertSuccess("Successfully Registered");
-      navigate("/dashboard");
+      localStorage.setItem("register_email", email);
+      navigate("/otp");
     } catch (error) {
       setAlertError(
         error?.response?.data?.error ||
           error?.response?.data?.message ||
+          error?.response?.data?.msg ||
           error?.message ||
           "something went wrong"
       );
       console.error(
         error?.response?.data?.error ||
           error?.response?.data?.message ||
+          error?.response?.data?.msg ||
           error?.message ||
           "something went wrong"
       );

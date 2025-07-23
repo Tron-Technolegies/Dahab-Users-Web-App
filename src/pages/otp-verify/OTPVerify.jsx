@@ -1,11 +1,20 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { IoChevronBackOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import FormInput from "../../components/FormInput";
 import Button from "../../components/Button";
+import { UserContext } from "../../UserContext";
+import AlertBox from "../../components/Alert";
+import useVerifyOTP from "../../hooks/auth/useVerifyOTP";
+import Loading from "../../components/Loading";
+import useVerifyAccount from "../../hooks/auth/useVerifyAccount";
 
 export default function OTPVerify() {
   const [otp, setOtp] = useState(["", "", "", ""]);
+  const { alertError, setAlertError, alertSuccess, setAlertSuccess } =
+    useContext(UserContext);
+  const { loading, verifyOtp } = useVerifyOTP();
+  const { loading: resendLoading, sendOtp } = useVerifyAccount();
 
   const handleChange = (e, index) => {
     const value = e.target.value;
@@ -44,7 +53,7 @@ export default function OTPVerify() {
         </Link>
         <p className="text-2xl font-semibold">OTP Verification</p>
         <p className="text-xs">We sent your code to your email</p>
-        <form className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3">
           <div className="flex justify-center items-center gap-5">
             {otp.map((digit, index) => (
               <input
@@ -59,9 +68,40 @@ export default function OTPVerify() {
               />
             ))}
           </div>
-          <Button name={"Verify"} styles={"bg-[#07EAD3] mt-3"} />
-        </form>
-        <p className="text-xs text-center cursor-pointer">Resend OTP</p>
+          <Button
+            name={"Verify"}
+            styles={"bg-[#07EAD3] mt-3"}
+            clickFunction={() => {
+              verifyOtp({ code: otp.join("") });
+            }}
+          />
+          {loading && <Loading />}
+          {alertError !== "" && (
+            <AlertBox
+              message={alertError}
+              severity={"error"}
+              onClose={() => setAlertError("")}
+            />
+          )}
+          {alertSuccess && (
+            <AlertBox
+              message={alertSuccess}
+              severity={"success"}
+              onClose={() => setAlertSuccess("")}
+            />
+          )}
+        </div>
+        <button
+          className="text-xs text-center cursor-pointer"
+          disabled={resendLoading}
+          onClick={() => {
+            const email = localStorage.getItem("register_email");
+            sendOtp({ email });
+          }}
+        >
+          Resend OTP
+        </button>
+        {resendLoading && <Loading />}
       </div>
     </div>
   );

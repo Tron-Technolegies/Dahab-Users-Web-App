@@ -1,27 +1,26 @@
-import axios from "axios";
 import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { base_url } from "../../utils/constants";
 import { UserContext } from "../../UserContext";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { base_url } from "../../utils/constants";
 
-const useLogin = () => {
+const useVerifyOTP = () => {
   const [loading, setLoading] = useState(false);
   const { setAlertError, setAlertSuccess } = useContext(UserContext);
   const navigate = useNavigate();
 
-  const login = async ({ email, password }) => {
+  const verifyOtp = async ({ code }) => {
     setLoading(true);
     try {
+      const email = localStorage.getItem("register_email");
       const response = await axios.post(
-        `${base_url}/auth/login`,
-        {
-          email,
-          password,
-        },
+        `${base_url}/auth/verify`,
+        { code, email },
         { withCredentials: true }
       );
       const data = response.data;
-      setAlertSuccess("Successfully Logged in");
+      setAlertSuccess("Account verified successfully");
+      localStorage.removeItem("register_email");
       navigate("/dashboard");
     } catch (error) {
       setAlertError(
@@ -42,7 +41,7 @@ const useLogin = () => {
       setLoading(false);
     }
   };
-  return { loading, login };
+  return { loading, verifyOtp };
 };
 
-export default useLogin;
+export default useVerifyOTP;

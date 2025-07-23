@@ -2,19 +2,6 @@ import { createContext, useEffect, useState } from "react";
 
 export const CalculatorContext = createContext();
 
-import React from "react";
-import {
-  btcEarned1,
-  calculateBtcEarnedByMining,
-  calculateBtcValue,
-  calculateElectricity,
-  calculateMinerPrice,
-  CalculateNetProfit,
-  CalculateProfitRatio,
-  calculateROI,
-  totalInvestment,
-} from "./utils/calculatorFunctions";
-
 export default function CalculatorContextProvider({ children }) {
   const [minerPage, setMinerPage] = useState(null);
   const [miners, setMiners] = useState(1);
