@@ -50,7 +50,7 @@ export default function StatsMainCard() {
           </div>
           <div className="flex lg:flex-row flex-col lg:text-left text-center gap-5 justify-between w-full">
             <p className=" p-2 w-full rounded-lg">
-              Hosting Fee Due -{" "}
+              Wallet Balance -{" "}
               <span className="text-xl  font-bold">{hostingDue} AED</span>
             </p>
             <p className=" p-2 w-full rounded-lg">

@@ -6,7 +6,7 @@ import { UserContext } from "./UserContext";
 export const DashboardContext = createContext();
 
 export default function DashBoardContextProvider({ children }) {
-  const { btcPrice } = useContext(CalculatorContext);
+  const { btcPrice, expectedPrice } = useContext(CalculatorContext);
   const [totalHashrate, setTotalHashrate] = useState(0);
   const [totalMiners, setTotalMiners] = useState(0);
   const [minedRevenue, setMinedRevenue] = useState(0);
@@ -18,6 +18,15 @@ export default function DashBoardContextProvider({ children }) {
   const [ownedBTCValue, setOwnedBTCValue] = useState(0);
   const [totalMinerPrice, setTotalMinerPrice] = useState(0);
   const [roi, setRoi] = useState(0);
+  const [totalInvestment3Yrs, setTotalInvestment3Yrs] = useState(0);
+  const [avgHostingFee3Yrs, setAvgHostingFee3Yrs] = useState(0);
+  const [avgBTCToMine3Yrs, setAvgBTCToMine3Yrs] = useState(0);
+  const [totalMined3Yrs, setTotalMined3Yrs] = useState(0);
+  const [valueIn3Yrs, setValueIn3Yrs] = useState(0);
+  const [netProfit3Yrs, setNetProfit3Yrs] = useState(0);
+  const [profitRatio3Yrs, setProfitRatio3Yrs] = useState(0);
+  const [roi3Yrs, setRoi3yrs] = useState(0);
+  const [buyingBTCNow, setBuyingBTCNow] = useState(0);
   const { user } = useContext(UserContext);
 
   function convertUsdToAed(usd) {
@@ -46,7 +55,7 @@ export default function DashBoardContextProvider({ children }) {
       const future = dayjs(item.validity);
       const today = dayjs();
       const daysLeft = future.diff(today, "day");
-      return acc + parseInt(daysLeft * item.qty);
+      return acc + parseFloat(daysLeft * item.qty);
     }, 0);
     const aveValidity = (
       parseInt(totalValidity) / parseInt(totalMiners)
@@ -62,10 +71,49 @@ export default function DashBoardContextProvider({ children }) {
     setTotalMinerPrice(totalMinerPrice);
     const totalInv = totalMinerPrice + totalHostingPaid;
     setTotalInvestment(totalInv);
-    const ownedBTCVlu = minedRevenue * convertUsdToAed(btcPrice);
+    const ownedBTCVlu = totalRevenue * convertUsdToAed(btcPrice);
     setOwnedBTCValue(ownedBTCVlu);
     const ROI = (ownedBTCVlu * 100) / totalInv;
     setRoi(ROI);
+    const totalAvgHosting3Yr = user?.ownedMiners.reduce((acc, item) => {
+      const future = dayjs(item.validity);
+      const today = dayjs();
+      const daysLeft = future.diff(today, "day");
+      return (
+        acc +
+        item.itemId.power *
+          24 *
+          item.qty *
+          parseInt(daysLeft) *
+          item.itemId.hostingFeePerKw
+      );
+    }, 0);
+    setAvgHostingFee3Yrs(totalAvgHosting3Yr);
+    const totalInv3Yr = totalMinerPrice + totalHostingPaid + totalAvgHosting3Yr;
+    setTotalInvestment3Yrs(totalInv3Yr);
+    const totalAvgcoinToMine = user?.ownedMiners.reduce((acc, item) => {
+      const future = dayjs(item.validity);
+      const today = dayjs();
+      const daysLeft = future.diff(today, "day");
+      return (
+        acc + 0.0000075 * item.itemId.hashRate * item.qty * parseInt(daysLeft)
+      );
+    }, 0);
+    setAvgBTCToMine3Yrs(totalAvgcoinToMine);
+    const totalCombinedMined = (totalRevenue + totalAvgcoinToMine).toFixed(4);
+    setTotalMined3Yrs(totalCombinedMined);
+    const valueIn3 = (
+      totalCombinedMined * convertUsdToAed(expectedPrice)
+    ).toFixed(2);
+    setValueIn3Yrs(valueIn3);
+    const profitIn3Yrs = (valueIn3 - totalInv3Yr).toFixed(2);
+    setNetProfit3Yrs(profitIn3Yrs);
+    const profitByInvestment = (profitIn3Yrs / totalInv3Yr).toFixed(2);
+    setProfitRatio3Yrs(profitByInvestment);
+    const threeYrRoi = ((valueIn3 * 100) / totalInv3Yr).toFixed(2);
+    setRoi3yrs(threeYrRoi);
+    const buyingBTC = (totalInv3Yr / convertUsdToAed(btcPrice)).toFixed(4);
+    setBuyingBTCNow(buyingBTC);
   }
   useEffect(() => {
     calculateDashboardStats();
@@ -87,6 +135,15 @@ export default function DashBoardContextProvider({ children }) {
         ownedBTCValue,
         totalMinerPrice,
         roi,
+        avgHostingFee3Yrs,
+        totalInvestment3Yrs,
+        avgBTCToMine3Yrs,
+        totalMined3Yrs,
+        valueIn3Yrs,
+        netProfit3Yrs,
+        profitRatio3Yrs,
+        roi3Yrs,
+        buyingBTCNow,
       }}
     >
       {children}
