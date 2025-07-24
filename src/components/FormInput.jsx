@@ -7,6 +7,7 @@ export default function FormInput({
   value,
   placeholder,
   onChange,
+  disabled,
 }) {
   return (
     <div className="flex flex-col gap-3 w-full">
@@ -16,7 +17,8 @@ export default function FormInput({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className={`px-4 py-2 rounded-md outline-0 ${styles}`}
+        disabled={disabled}
+        className={`px-4 py-2 rounded-md outline-0 disabled:cursor-not-allowed ${styles}`}
       />
     </div>
   );

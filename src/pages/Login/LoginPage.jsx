@@ -11,7 +11,8 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { loading, login } = useLogin();
-  const { alertError, setAlertError } = useContext(UserContext);
+  const { alertError, setAlertError, alertSuccess, setAlertSuccess } =
+    useContext(UserContext);
   return (
     <div className="min-h-screen flex md:flex-row flex-col justify-center items-center gap-10 lg:gap-20 p-10">
       <Link to={"/"}>
@@ -61,6 +62,13 @@ export default function LoginPage() {
               message={alertError}
               severity={"error"}
               onClose={() => setAlertError("")}
+            />
+          )}
+          {alertSuccess && (
+            <AlertBox
+              message={alertSuccess}
+              severity={"success"}
+              onClose={() => setAlertSuccess("")}
             />
           )}
         </form>

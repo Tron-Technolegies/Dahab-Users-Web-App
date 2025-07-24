@@ -4,23 +4,23 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { base_url } from "../../utils/constants";
 
-const useForgotPassword = () => {
+const useVerifyPasswordReset = () => {
   const [loading, setLoading] = useState(false);
   const { setAlertError, setAlertSuccess } = useContext(UserContext);
   const navigate = useNavigate();
 
-  const forgotPassword = async ({ email }) => {
+  const verify = async ({ code }) => {
+    const email = localStorage.getItem("forgot_email");
     setLoading(true);
     try {
       const response = await axios.post(
-        `${base_url}/auth/forgot-password`,
-        { email },
+        `${base_url}/auth/verify-passwordReset`,
+        { email, code },
         { withCredentials: true }
       );
       const data = response.data;
-      setAlertSuccess("OTP successfully sent");
-      localStorage.setItem("forgot_email", email);
-      navigate("/verify");
+      setAlertSuccess("Verified Success");
+      navigate("/reset-password");
     } catch (error) {
       setAlertError(
         error?.response?.data?.error ||
@@ -40,7 +40,7 @@ const useForgotPassword = () => {
       setLoading(false);
     }
   };
-  return { loading, forgotPassword };
+  return { loading, verify };
 };
 
-export default useForgotPassword;
+export default useVerifyPasswordReset;

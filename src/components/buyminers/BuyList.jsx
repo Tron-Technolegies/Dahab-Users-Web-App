@@ -27,6 +27,7 @@ export default function BuyList() {
             revenue={item.revenueFactor}
             efficiency={item.efficiencyFactor}
             id={item._id}
+            hostingFee={item.hostingFeePerKw}
           />
         ))}
       </div>

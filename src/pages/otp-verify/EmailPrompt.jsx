@@ -11,7 +11,8 @@ import AlertBox from "../../components/Alert";
 export default function EmailPrompt() {
   const [email, setEmail] = useState("");
   const { loading, sendOtp } = useVerifyAccount();
-  const { alertError, setAlertError } = useContext(UserContext);
+  const { alertError, setAlertError, alertSuccess, setAlertSuccess } =
+    useContext(UserContext);
   return (
     <div className="min-h-screen flex md:flex-row flex-col justify-center items-center gap-10 lg:gap-20 p-10">
       <Link to={"/"}>
@@ -54,6 +55,13 @@ export default function EmailPrompt() {
               message={alertError}
               severity={"error"}
               onClose={() => setAlertError("")}
+            />
+          )}
+          {alertSuccess && (
+            <AlertBox
+              message={alertSuccess}
+              severity={"success"}
+              onClose={() => setAlertSuccess("")}
             />
           )}
 

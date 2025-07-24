@@ -5,7 +5,7 @@ import { CalculatorContext } from "../../../CalculatorContext";
 import { ProjectionContext } from "../../../ProjectionContext";
 
 export default function ProjectionSection() {
-  const { btcPrice } = useContext(CalculatorContext);
+  const { btcPrice, thPerDay } = useContext(CalculatorContext);
   const {
     currentBatch,
     totalInvestment,
@@ -69,7 +69,11 @@ export default function ProjectionSection() {
           }
           description={`<p>This indicates the total BTC mined by the machines of the current batch in 3 years. This will be the sum of the already mined BTC and the avg BTC that will be mined by the machines in the remaining validity of the current batch.</p><p>Current Mined Revenue - ${
             currentBatch?.minedRevenue
-          } BTC</p><p>Avg. BTC To be Mined - ${`0.0000075 BTC * ${currentBatch?.itemId.hashRate} (Hashrate of current batch) * ${currentBatch?.qty} (number of machines in current batch) * ${daysToLeft} (validity remaining in days)`} = ${avgCoinToMine}</p>`}
+          } BTC</p><p>Avg. BTC To be Mined - ${`${thPerDay.toFixed(9)} BTC * ${
+            currentBatch?.itemId.hashRate
+          } (Hashrate of current batch) * ${
+            currentBatch?.qty
+          } (number of machines in current batch) * ${daysToLeft} (validity remaining in days)`} = ${avgCoinToMine}</p>`}
         />
         <FieldItem
           item={"BTC Price (After 3 yrs)"}

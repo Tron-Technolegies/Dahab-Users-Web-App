@@ -11,7 +11,8 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
+  const { alertError, setAlertError, alertSuccess, setAlertSuccess } =
+    useContext(UserContext);
   const { loading, register } = useRegister();
   return (
     <div className="min-h-screen flex md:flex-row flex-col justify-center items-center gap-10 lg:gap-20 p-10 ">
@@ -92,6 +93,20 @@ export default function Register() {
           </p>
         </div>
       </div>
+      {alertError && (
+        <AlertBox
+          message={alertError}
+          severity={"error"}
+          onClose={() => setAlertError("")}
+        />
+      )}
+      {alertSuccess && (
+        <AlertBox
+          message={alertSuccess}
+          severity={"success"}
+          onClose={() => setAlertSuccess("")}
+        />
+      )}
     </div>
   );
 }

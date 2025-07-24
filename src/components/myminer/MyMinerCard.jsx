@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { AiOutlineRise } from "react-icons/ai";
 import { UserContext } from "../../UserContext";
 import { minersMock } from "../../utils/miners";
+import { MdOutlineAttachMoney } from "react-icons/md";
 
 export default function MyMinerCard({
   hashrate,
@@ -13,6 +14,7 @@ export default function MyMinerCard({
   id,
   qty,
   batchId,
+  hostingFee,
 }) {
   const handleScrollToStat = () => {
     const statSection = document.getElementById("stat");
@@ -51,9 +53,19 @@ export default function MyMinerCard({
             <p>{power} KW/h</p>
           </div>
         </div>
-        <div>
+        <div className="flex flex-col gap-1 items-end">
           <p className={`${isSelected ? "text-white" : "text-[#76C6E0]"}`}>
             Qty : {qty}
+          </p>
+          <p
+            className={`flex gap-1 items-center text-sm ${
+              isSelected ? "text-white" : "text-[#76C6E0]"
+            }`}
+          >
+            <span className=" p-0">
+              <MdOutlineAttachMoney />
+            </span>
+            {hostingFee} per KW/h
           </p>
         </div>
       </div>

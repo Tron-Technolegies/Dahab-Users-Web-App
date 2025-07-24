@@ -14,37 +14,7 @@ export default function CheckoutSection() {
 
   return (
     <div className="flex lg:flex-row flex-col lg:justify-between my-10 items-center duration-300 ease-in-out">
-      <div className="my-10 w-full">
-        <div className="flex gap-3 items-center">
-          <p>Pay With</p>
-          <div
-            className={`bg-[#011532]  p-1 border border-[#76C6E04D] rounded-s-full rounded-e-full flex items-center gap-5`}
-          >
-            <motion.button
-              className={`text-white p-1 px-2 `}
-              animate={{
-                backgroundColor: pay === "fiat" ? "#0194FE" : "#011532",
-                borderRadius: pay === "fiat" ? "999px" : "0px",
-              }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-              onClick={() => setPay("fiat")}
-            >
-              Fiat
-            </motion.button>
-            <motion.button
-              className={`text-white p-1 px-2`}
-              animate={{
-                backgroundColor: pay === "crypto" ? "#0194FE" : "",
-                borderRadius: pay === "crypto" ? "999px" : "0px",
-              }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-              onClick={() => setPay("crypto")}
-            >
-              Crypto
-            </motion.button>
-          </div>
-        </div>
-      </div>
+      <div className="my-10 w-full"></div>
       <div className="p-10 bg-[#011532] rounded-md lg:w-1/2 flex flex-col gap-5 w-full">
         <p className="text-[#76C6E0] text-xl">Grand Total</p>
         <div className="flex flex-col gap-3">

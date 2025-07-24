@@ -51,6 +51,7 @@ export default function DetailsAndSpecs({ miner }) {
           <li>HashRate: {miner?.hashRate} TH/s</li>
           <li>Coin Type: {miner?.coin}</li>
           <li>Algorithm: {miner?.algorithm}</li>
+          <li>Validity: 3 Years</li>
         </div>
       )}
     </div>

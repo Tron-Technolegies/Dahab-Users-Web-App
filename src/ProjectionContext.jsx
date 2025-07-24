@@ -9,7 +9,7 @@ import { CalculatorContext } from "./CalculatorContext";
 
 export default function ProjectionContextProvider({ children }) {
   const { user } = useContext(UserContext);
-  const { btcPrice } = useContext(CalculatorContext);
+  const { btcPrice, thPerDay } = useContext(CalculatorContext);
   const [selectedId, setSelectedId] = useState(null);
   const [currentBatch, setCurrentBatch] = useState(null);
   const [totalInvestment, setTotalInvestment] = useState(0);
@@ -29,7 +29,7 @@ export default function ProjectionContextProvider({ children }) {
   }
   function calculateProjectionStats() {
     const selectedBatch = user?.ownedMiners.find(
-      (item) => item._id.toString() === selectedId.toString()
+      (item) => item._id?.toString() === selectedId?.toString()
     );
     setCurrentBatch(selectedBatch);
     const totalMinersPurchasedPrice =
@@ -54,15 +54,15 @@ export default function ProjectionContextProvider({ children }) {
     ).toFixed(2);
     setTotalInvestment(totalInv);
     const avgBTCToMine = (
-      0.0000075 *
+      thPerDay *
       parseFloat(selectedBatch?.qty) *
       parseFloat(selectedBatch?.itemId.hashRate) *
       parseFloat(daysLeft)
-    ).toFixed(2);
+    ).toFixed(4);
     setAvgCoinToMine(avgBTCToMine);
     const threeYearCoin = (
       parseFloat(selectedBatch?.minedRevenue) + parseFloat(avgBTCToMine)
-    ).toFixed(2);
+    ).toFixed(4);
     setCoinIn3Yrs(threeYearCoin);
     const threeYearValue = (
       parseFloat(threeYearCoin) * convertUsdToAed(200000)

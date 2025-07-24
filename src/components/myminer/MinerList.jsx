@@ -28,6 +28,7 @@ export default function MinerList() {
             id={item._id}
             qty={item.qty}
             batchId={item.batchId}
+            hostingFee={item?.itemId?.hostingFeePerKw}
           />
           {selectedId === item._id && (
             <div className="col-span-full">

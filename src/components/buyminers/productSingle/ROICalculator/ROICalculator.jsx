@@ -39,6 +39,7 @@ export default function ROICalculator({ miner }) {
     roiMining,
     miningRatio,
     buyingRatio,
+    thPerDay,
   } = useContext(CalculatorContext);
 
   return (
@@ -48,7 +49,16 @@ export default function ROICalculator({ miner }) {
       </h3>
       <p className="text-center">Buy vs Mining</p>
       <div className="max-w-[1000px] w-full mx-auto flex flex-col gap-7 border-b border-[#011E34]">
-        <FormSelect list={["BTC Hold", "BTC Profit"]} />
+        <div className={`flex flex-col gap-3 w-fit`}>
+          <select
+            className={`p-2 text-[#0194FE] rounded-md outline-0 bg-[#011532] disabled:cursor-not-allowed`}
+          >
+            <option>BTC Hold</option>
+            <option className="disabled:cursor-not-allowed" disabled>
+              BTC Profit
+            </option>
+          </select>
+        </div>
         <div className="bg-[#011532] p-5 px-10 rounded-md grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 items-center gap-7 border-t border-[#4D8DAF]">
           <FormInput
             title={"No of Miners"}
@@ -57,13 +67,13 @@ export default function ROICalculator({ miner }) {
             value={miners}
             onChange={(e) => setMiners(e.target.value)}
           />
-          <FormSelect
+          <FormInput
             title={"Hosting Period (years)"}
-            list={[3, 1, 2, 4, 5]}
+            type={"number"}
             styles={"bg-[#07EAD314] w-full"}
             value={hostingPeriod}
             onChange={(e) => setHostingPeriod(e.target.value)}
-            full
+            disabled
           />
           <FormInput
             title={"Current BTC Price (USD)"}
@@ -71,6 +81,7 @@ export default function ROICalculator({ miner }) {
             styles={"bg-[#07EAD314]"}
             value={btcPrice}
             onChange={(e) => setBtcPrice(e.target.value)}
+            disabled
           />
           <FormInput
             title={"Expected Price(3 Years-USD)"}
@@ -239,7 +250,11 @@ export default function ROICalculator({ miner }) {
                 item={"BTC Earned"}
                 value={`${btcEarnedByMining} BTC`}
                 style={"text-[#A4A4A6]"}
-                description={`<p>The BTC expected to earn if the miners operate at 100% uptime and successfully mine BTC</p><p>BTC earned = 0.00000075(Current BTC earned for 1TH/s for a day ) x ${miner?.hashRate} (miner's Hashrate) x ${miners} (total miners) x 365 days x ${hostingPeriod} (hosting period)</p>`}
+                description={`<p>The BTC expected to earn if the miners operate at 100% uptime and successfully mine BTC</p><p>BTC earned = ${thPerDay.toFixed(
+                  9
+                )}(Current BTC earned for 1TH/s for a day ) x ${
+                  miner?.hashRate
+                } (miner's Hashrate) x ${miners} (total miners) x 365 days x ${hostingPeriod} (hosting period)</p>`}
               />
               <FieldItem
                 item={"Expected BTC Price"}

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import InfoContainer from "./InfoContainer";
+import { MdOutlineAttachMoney } from "react-icons/md";
 
 export default function BuyCard({
   hashRate,
@@ -14,6 +15,7 @@ export default function BuyCard({
   risk,
   revenue,
   hosting,
+  hostingFee,
 }) {
   return (
     <div
@@ -22,7 +24,7 @@ export default function BuyCard({
       }`}
     >
       <div className="flex justify-between items-start w-full">
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-1 text-[#76C6E0]">
           <p className="flex gap-2 items-center">
             <img src={"/my-miners/i2.png"} className="w-2" />
             {hashRate} TH/s
@@ -32,13 +34,21 @@ export default function BuyCard({
             {power.toFixed(2)} KW/h
           </p>
         </div>
-        <p>
-          {stock > 0 ? (
-            <span className="text-[#07EAD3]">In Stock</span>
-          ) : (
-            <span className="text-red-500">Out Of Stock</span>
-          )}
-        </p>
+        <div className="flex flex-col gap-1 text-[#76C6E0] items-end">
+          <p>
+            {stock > 0 ? (
+              <span className="text-[#07EAD3]">In Stock</span>
+            ) : (
+              <span className="text-red-500">Out Of Stock</span>
+            )}
+          </p>
+          <p className="flex gap-1 items-center">
+            <span className=" p-0">
+              <MdOutlineAttachMoney />
+            </span>
+            {hostingFee} per KW/h
+          </p>
+        </div>
       </div>
       <img src={image} className="w-32 object-cover" />
       <div className="flex flex-col gap-1 items-center">

@@ -5,7 +5,7 @@ import { CalculatorContext } from "../../../CalculatorContext";
 import { DashboardContext } from "../../../DashBoardContext";
 
 export default function Projection() {
-  const { btcPrice, expectedPrice } = useContext(CalculatorContext);
+  const { btcPrice, expectedPrice, thPerDay } = useContext(CalculatorContext);
   const {
     avgHostingFee3Yrs,
     totalInvestment3Yrs,
@@ -67,7 +67,9 @@ export default function Projection() {
           formula={
             "Mined Revenue of All Batch + Avg. BTC to be mined by machines of the all Batches in Future"
           }
-          description={`<p>This indicates the total BTC mined by the machines of the all batches in 3 years. This will be the sum of the already mined BTC and the avg BTC that will be mined by the machines in the remaining validity of the all batches.</p><p>Current Mined Revenue = ${minedRevenue} BTC</p><p>Avg. BTC To be Mined = ${"0.0000075 BTC * Hashrate of all batches * number of machines in all batches * validity remaining in days "} = ${avgBTCToMine3Yrs.toFixed(
+          description={`<p>This indicates the total BTC mined by the machines of the all batches in 3 years. This will be the sum of the already mined BTC and the avg BTC that will be mined by the machines in the remaining validity of the all batches.</p><p>Current Mined Revenue = ${minedRevenue} BTC</p><p>Avg. BTC To be Mined = ${thPerDay.toFixed(
+            9
+          )}${"BTC * Hashrate of all batches * validity remaining in days "} = ${avgBTCToMine3Yrs.toFixed(
             4
           )} BTC</p>`}
         />

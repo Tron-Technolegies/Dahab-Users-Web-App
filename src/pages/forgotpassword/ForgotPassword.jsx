@@ -1,11 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import FormInput from "../../components/FormInput";
 import { Link } from "react-router-dom";
 import Button from "../../components/Button";
 import { IoChevronBackOutline } from "react-icons/io5";
+import { UserContext } from "../../UserContext";
+import useForgotPassword from "../../hooks/auth/useForgotPassword";
+import Loading from "../../components/Loading";
+import AlertBox from "../../components/Alert";
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
+  const { alertError, setAlertError, alertSuccess, setAlertSuccess } =
+    useContext(UserContext);
+  const { loading, forgotPassword } = useForgotPassword();
   return (
     <div className="min-h-screen flex md:flex-row flex-col justify-center items-center gap-10 lg:gap-20 p-10">
       <Link to={"/"}>
@@ -36,8 +43,30 @@ export default function ForgotPassword() {
             onChange={(e) => setEmail(e.target.value)}
             styles={"bg-white text-black"}
           />
-          <Button name={"Submit"} styles={"bg-[#07EAD3] mt-3"} />
+          <Button
+            name={"Submit"}
+            styles={"bg-[#07EAD3] mt-3"}
+            clickFunction={(e) => {
+              e.preventDefault();
+              forgotPassword({ email });
+            }}
+          />
+          {loading && <Loading />}
         </form>
+        {alertError && (
+          <AlertBox
+            message={alertError}
+            severity={"error"}
+            onClose={() => setAlertError("")}
+          />
+        )}
+        {alertSuccess && (
+          <AlertBox
+            message={alertSuccess}
+            severity={"success"}
+            onClose={() => setAlertSuccess("")}
+          />
+        )}
       </div>
     </div>
   );

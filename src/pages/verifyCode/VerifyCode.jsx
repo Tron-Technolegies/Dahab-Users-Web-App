@@ -1,11 +1,21 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { IoChevronBackOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import FormInput from "../../components/FormInput";
 import Button from "../../components/Button";
+import { UserContext } from "../../UserContext";
+import AlertBox from "../../components/Alert";
+import useVerifyPasswordReset from "../../hooks/auth/useVerifyPasswordReset";
+import Loading from "../../components/Loading";
+import useForgotPassword from "../../hooks/auth/useForgotPassword";
 
 export default function VerifyCode() {
   const [code, setCode] = useState("");
+  const { alertError, setAlertError, alertSuccess, setAlertSuccess } =
+    useContext(UserContext);
+  const { loading, verify } = useVerifyPasswordReset();
+  const { loading: resendLoading, forgotPassword } = useForgotPassword();
+  const email = localStorage.getItem("forgot_email");
   return (
     <div className="min-h-screen flex md:flex-row flex-col justify-center items-center gap-10 lg:gap-20 p-10">
       <Link to={"/"}>
@@ -35,12 +45,43 @@ export default function VerifyCode() {
             value={code}
             onChange={(e) => setCode(e.target.value)}
           />
-          <Button name={"Verify"} styles={"bg-[#07EAD3] mt-3"} />
+          <Button
+            name={"Verify"}
+            styles={"bg-[#07EAD3] mt-3"}
+            clickFunction={(e) => {
+              e.preventDefault();
+              verify({ code });
+            }}
+          />
         </form>
+        {loading && <Loading />}
+        {alertError && (
+          <AlertBox
+            message={alertError}
+            severity={"error"}
+            onClose={() => setAlertError("")}
+          />
+        )}
+        {alertSuccess && (
+          <AlertBox
+            message={alertSuccess}
+            severity={"success"}
+            onClose={() => setAlertSuccess("")}
+          />
+        )}
         <p className="text-xs text-center">
           Code not recieved?{" "}
-          <span className="cursor-pointer text-[#76C6E0]">Resend</span>
+          <button
+            className="cursor-pointer text-[#76C6E0]"
+            disabled={resendLoading}
+            onClick={() => {
+              forgotPassword({ email });
+            }}
+          >
+            Resend
+          </button>
         </p>
+        {resendLoading && <Loading />}
       </div>
     </div>
   );

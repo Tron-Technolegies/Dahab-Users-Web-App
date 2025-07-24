@@ -6,7 +6,7 @@ import { UserContext } from "./UserContext";
 export const DashboardContext = createContext();
 
 export default function DashBoardContextProvider({ children }) {
-  const { btcPrice, expectedPrice } = useContext(CalculatorContext);
+  const { btcPrice, expectedPrice, thPerDay } = useContext(CalculatorContext);
   const [totalHashrate, setTotalHashrate] = useState(0);
   const [totalMiners, setTotalMiners] = useState(0);
   const [minedRevenue, setMinedRevenue] = useState(0);
@@ -96,7 +96,7 @@ export default function DashBoardContextProvider({ children }) {
       const today = dayjs();
       const daysLeft = future.diff(today, "day");
       return (
-        acc + 0.0000075 * item.itemId.hashRate * item.qty * parseInt(daysLeft)
+        acc + thPerDay * item.itemId.hashRate * item.qty * parseInt(daysLeft)
       );
     }, 0);
     setAvgBTCToMine3Yrs(totalAvgcoinToMine);

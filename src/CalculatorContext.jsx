@@ -4,6 +4,7 @@ export const CalculatorContext = createContext();
 
 export default function CalculatorContextProvider({ children }) {
   const [minerPage, setMinerPage] = useState(null);
+  const [thPerDay, setThPerDay] = useState(0.0000005);
   const [miners, setMiners] = useState(1);
   const [hostingPeriod, setHostingPeriod] = useState(3);
   const [btcPrice, setBtcPrice] = useState(118000);
@@ -38,7 +39,7 @@ export default function CalculatorContextProvider({ children }) {
     const btcEarnedBuying = (totalInv / convertUsdToAed(btcPrice)).toFixed(4);
     setBtcEarnedByBuying(btcEarnedBuying);
     const btcEarnedMining = (
-      0.00000075 *
+      thPerDay *
       minerPage?.hashRate *
       miners *
       365 *
@@ -95,6 +96,8 @@ export default function CalculatorContextProvider({ children }) {
         roiMining,
         miningRatio,
         buyingRatio,
+        thPerDay,
+        setThPerDay,
       }}
     >
       {children}
