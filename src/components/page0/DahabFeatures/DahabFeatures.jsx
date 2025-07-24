@@ -47,86 +47,86 @@ export default function DahabFeatures({ oneA }) {
         <div className="p-5 w-full flex flex-col justify-between gap-10 sm:items-center">
           <div>
             <p className="text-[#76C6E0] my-5">
-              With other mining companies, you usually have to:
+              With Other Mining Companies, You Deal With:
             </p>
             <div className="ms-5 flex flex-col gap-2">
               <p className="flex gap-2 items-center">
                 <span className="text-[8px]">
                   <FaCircle />
                 </span>
-                <span>Wait weeks for your machine to arrive</span>
+                <span>Weeks of delay for shipping and customs</span>
               </p>
               <p className="flex gap-2 items-center">
                 <span className="text-[8px]">
                   <FaCircle />
                 </span>
-                <span>Deal with customs, shipping, and import taxes</span>
+                <span>Complicated setup, deposits, and paperwork</span>
               </p>
               <p className="flex gap-2 items-center">
                 <span className="text-[8px]">
                   <FaCircle />
                 </span>
-                <span>Pay setup fees, deposits, and complicated paperwork</span>
+                <span>High risk if your miner goes offline</span>
               </p>
               <p className="flex gap-2 items-center">
                 <span className="text-[8px]">
                   <FaCircle />
                 </span>
-                <span>Hope everything gets connected properly</span>
+                <span>Surprise repair or hosting costs</span>
+              </p>
+              <p className="flex gap-2 items-center">
+                <span className="text-[8px]">
+                  <FaCircle />
+                </span>
+                <span>Confusing softwares and Multiple apps</span>
               </p>
             </div>
           </div>
           <p className=" my-5 text-[#76C6E0]">
-            It’s slow, risky, and frustrating — especially for beginners.
+            It’s slow, risky, and frustrating - especially for beginners.
           </p>
         </div>
 
         <div className="sm:border-s border-[#76C6E0] p-5 w-full flex flex-col justify-between gap-10 sm:items-center">
           <div>
-            <p className="text-[#76C6E0] my-5">
-              With Dahab, you skip all of that:
-            </p>
+            <p className="text-[#76C6E0] my-5">With Dahab, It’s Seamless:</p>
             <div className="ms-5 flex flex-col gap-2">
               <p className="flex gap-2 items-center">
                 <span className="text-[8px]">
                   <FaCircle />
                 </span>
-                <span>The machines are already online and running</span>
+                <span>Miners are already online in our mining farms</span>
+              </p>
+              <p className="flex gap-2 items-center">
+                <span className="text-[8px]">
+                  <FaCircle />
+                </span>
+                <span>You simply buy - your Dahab Miner starts instantly</span>
+              </p>
+              <p className="flex gap-2 items-center">
+                <span className="text-[8px]">
+                  <FaCircle />
+                </span>
+                <span>No setup, no repair worries, no delays</span>
+              </p>
+              <p className="flex gap-2 items-center">
+                <span className="text-[8px]">
+                  <FaCircle />
+                </span>
+                <span>Daily payouts based on your share of total power</span>
               </p>
               <p className="flex gap-2 items-center">
                 <span className="text-[8px]">
                   <FaCircle />
                 </span>
                 <span>
-                  You simply buy — and your miner starts working instantly
-                </span>
-              </p>
-              <p className="flex gap-2 items-center">
-                <span className="text-[8px]">
-                  <FaCircle />
-                </span>
-                <span>No hidden fees, no deposits, no delays</span>
-              </p>
-              <p className="flex gap-2 items-center">
-                <span className="text-[8px]">
-                  <FaCircle />
-                </span>
-                <span>Full transparency, full control</span>
-              </p>
-              <p className="flex gap-2 items-center">
-                <span className="text-[8px]">
-                  <FaCircle />
-                </span>
-                <span>
-                  Track your earnings live through your personal dashboard
+                  24/7 dashboard to track earnings and control payouts
                 </span>
               </p>
             </div>
           </div>
 
-          <p className=" my-5 text-[#76C6E0]">
-            Real mining made instant — and effortless.
-          </p>
+          <p className=" my-5 text-[#76C6E0]">Real mining. Zero stress.</p>
         </div>
       </motion.div>
     </div>

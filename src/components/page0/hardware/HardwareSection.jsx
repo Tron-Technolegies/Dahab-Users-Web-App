@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 function HardwareSection() {
   return (
     <div className="px-5 md:px-10 lg:px-[120px] md:py-5 py-2 my-10">
-      <h3 className="text-3xl text-[#76C6E0] max-w-[500px] mx-auto font-semibold text-center">
-        We offer top hardware directly from leading manufacturers
+      <h3 className="text-3xl text-[#76C6E0] max-w-[600px] mx-auto font-semibold text-center">
+        Our Digital Dahab Miners Are Backed by Real Hardware
       </h3>
       <div className="flex justify-center gap-5 my-10">
         <img src="/page0/icon-5.png" className="h-[50px] object-cover" />

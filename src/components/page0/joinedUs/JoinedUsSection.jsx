@@ -12,17 +12,17 @@ export default function JoinedUsSection() {
       </h3>
       <div className="grid sm:grid-cols-2 gap-5 gap-y-14 my-10 justify-items-center-safe max-w-[800px] mx-auto">
         <JoinedCard
-          heading={"Private miners"}
+          heading={"First-Time Miners"}
           content={
-            "Individuals entering the Bitcoin space for the first time - starting with just one machine and building from there."
+            "Beginners entering Bitcoin for the first time, Starting with just one Dahab Miner and learning as they go."
           }
           image={"/page0/img-2.png"}
           style={"w-[150px] overflow-hidden self-center mt-5"}
         />
         <JoinedCard
-          heading={"Other Hosting Companies"}
+          heading={"Businesses & Brands"}
           content={
-            "Even industry players are switching to Dahab - because they’re tired of slow setups, deposits, and long contracts.We made it simpler, faster, and cheaper - and they noticed."
+            "Adding Bitcoin mining as a revenue stream or reserve asset. Dahab helps structure scalable, low-maintenance plans."
           }
           image={"/page0/img-3.png"}
           style={"w-[150px] overflow-hidden self-center "}
@@ -30,15 +30,15 @@ export default function JoinedUsSection() {
         <JoinedCard
           heading={"Investors"}
           content={
-            "Looking to diversify their assets through digital infrastructure. We help you understand the legal and tax side before you begin."
+            "Looking to diversify with real Bitcoin infrastructure. We simplify the legal, tax, and technical side, While you collect real BTC."
           }
           image={"/page0/img-4.png"}
           style={"w-[250px] self-center mt-auto"}
         />
         <JoinedCard
-          heading={"Businesses"}
+          heading={"Crypto Believers & Stackers"}
           content={
-            "Adding Bitcoin mining as a new revenue stream? We’ll help you structure a scalable plan that fits your company’s goals."
+            "Those who don’t want the hassle of buying real hardware — but still want real Bitcoin, daily. From students to seasoned hodlers, anyone can start from AED 2,000."
           }
           image={"/page0/img-5.png"}
           style={"w-[180px] self-center"}

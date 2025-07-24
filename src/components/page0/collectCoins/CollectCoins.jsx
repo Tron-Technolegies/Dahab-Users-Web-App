@@ -18,12 +18,12 @@ export default function CollectCoins({ oneA }) {
         </div>
         <div className="flex flex-col gap-5 justify-between p-3 md:w-auto w-full">
           <p className="lg:text-2xl text-xl font-semibold">
-            You don’t need to understand mining — just own it.
-            <br />
-            We run the machines. You collect the Bitcoin. It’s that simple.
+            You don’t need to understand mining - just own your Dahab Digital
+            Miner
           </p>
           <p className="text-[#9F9F9F]">
-            And yes — we’re here 24/7 if you ever need help.
+            We handle the hardware, hosting, repairs and maintenance. You
+            collect the Bitcoin. It’s really that simple.
           </p>
           <Link
             to={"/dashboard"}

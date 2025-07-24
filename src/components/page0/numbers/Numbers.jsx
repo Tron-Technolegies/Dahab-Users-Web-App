@@ -12,33 +12,25 @@ export default function Numbers() {
       </p> */}
       <div className="grid md:grid-cols-4 grid-cols-2 md:gap-3 gap-7 my-14">
         <NumberBox
-          heading={"10,000+ Miners Under Management"}
-          content={
-            "Thousands of machines running across our facilities in the UAE and Ethiopia."
-          }
+          heading={"5,000+ Miners Under Management"}
+          content={"Running across our UAE and Ethiopia facilities"}
           styles={"md:border-e border-[#02285F]"}
         />
         <NumberBox
-          heading={"Lowest Hosting Rates in the Industry"}
-          content={
-            "Hosting starts from just $0.051/kWh — no deposits, no surprises."
-          }
+          heading={"Lowest Hosting Rates - From $0.055/kWh"}
+          content={"No deposits, Repair or Setup Fees."}
           styles={"md:border-e border-[#02285F]"}
         />
         <hr className="text-[#02285F] md:hidden" />
         <hr className="text-[#02285F] md:hidden" />
         <NumberBox
-          heading={"100% Managed by Our In-House Team"}
-          content={
-            "From installation to maintenance — no outsourcing, no middlemen."
-          }
+          heading={"100% Operated by Our Own Team"}
+          content={"No middlemen. No outsourcing."}
           styles={"md:border-e border-[#02285F]"}
         />
         <NumberBox
-          heading={"Trusted by Clients in 20+ Countries"}
-          content={
-            "From individuals to institutions — people choose Dahab for real mining."
-          }
+          heading={"Clients in 20+ Countries"}
+          content={"From everyday users to global investors"}
         />
       </div>
     </div>

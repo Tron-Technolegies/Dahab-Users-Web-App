@@ -25,14 +25,14 @@ export default function HowDoesItWork({ oneA }) {
         <div className="bg-[#041637] rounded-md md:h-[320px] h-[400px] flex flex-col relative">
           <div className="absolute inset-0 bg-[#101e39e5] opacity-40 z-10"></div>
           <div className="flex flex-col gap-2 pt-5 px-5">
-            <p className="text-2xl">What is Bitcoin Mining, Really?</p>
+            <p className="text-[21px]">What Is Bitcoin Mining?</p>
             <p className="text-[#9F9F9F] text-sm">
-              Bitcoin mining is the process of using powerful computers to solve
-              complex problems that secure the Bitcoin network.
+              Bitcoin is earned — not printed. Mining is the process where
+              powerful computers solve puzzles to keep the Bitcoin network
+              secure. In return, miners are rewarded with new Bitcoin.
             </p>
             <p className="text-[#9F9F9F] text-sm">
-              As a reward, miners earn newly generated Bitcoin — which makes
-              mining one of the few ways to earn Bitcoin directly.
+              One of the very few ways to earn Bitcoin directly.
             </p>
           </div>
 
@@ -46,49 +46,50 @@ export default function HowDoesItWork({ oneA }) {
         <div className="lg:col-span-2 bg-[#041637] rounded-md flex justify-between md:h-[320px] h-[400px] relative">
           <div className="absolute inset-0 bg-[#101e39e5] opacity-40 z-10"></div>
           <div className="flex flex-col gap-2 p-5">
-            <p className="text-2xl">
-              What Do You Usually Need to Start Mining?
+            <p className="text-[21px]">
+              Why Most People Struggle to Start Mining
             </p>
             <p className="text-[#9F9F9F] text-sm">
-              If you’ve ever tried mining on your own, you know how exhausting
-              it can be:
+              If you have tried it before, You know Getting into mining can be
+              difficult:
             </p>
             <p className="text-[#9F9F9F] text-sm ms-2">
-              <li>Searching for reliable hardware sellers</li>
-              <li>Waiting weeks for delivery and customs clearance</li>
-              <li>Finding a secure location with enough power</li>
               <li>
-                Paying upfront for setup, hosting, deposits, and hidden fees
+                Hardware is expensive, Finding Reliable supplier even harder
+              </li>
+              <li>Shipping and customs take weeks</li>
+              <li>
+                Hosting setup is technical, Electricity and cooling are
+                complicated
               </li>
               <li>
-                Dealing with overheating, firmware issues, and constant
-                monitoring
+                Finding a reliable Hosting Partner, Paying setup, deposit and
+                hidden fees
               </li>
+              <li>And you still need to monitor everything 24/7</li>
             </p>
             <p className="text-[#9F9F9F] text-sm">
-              And after all that? You're still not sure if your machine is even
-              earning properly..No wonder most people give up before they even
-              get started.
+              That’s why most beginners give up before they even begin.
             </p>
           </div>
           <div className="overflow-hidden flex justify-end items-end">
             <img
               src="/page0/icon-4.png"
-              className="xl:w-[280px] xl:block hidden object-cover"
+              className="xl:w-[200px] xl:block hidden object-cover"
             />
           </div>
         </div>
         <div className="lg:col-span-2 bg-[#041637] rounded-md relative md:h-[250px] h-[400px] flex sm:flex-row flex-col">
           <div className="absolute inset-0 bg-[#101e39e5] opacity-40 z-10"></div>
           <div className="flex flex-col gap-3 p-5">
-            <p className="text-2xl">Dahab Makes It Easy</p>
+            <p className="text-[21px]">Dahab Makes It Simple</p>
             <p className="text-[#9F9F9F] text-sm">
-              At Dahab, we’ve already done all the hard work. The machines are
-              live in our data centers — just pick one, and it starts mining for
-              you in minutes.
+              We’ve already done all the heavy lifting. Our Machines are running
+              in secure farms — you just choose your digital Dahab Miners and
+              start earning from real miners.
             </p>
             <p className="text-[#9F9F9F] text-sm">
-              No shipping. No setup. No waiting.
+              No setup. No shipping. No stress.
             </p>
           </div>
           <div className=" overflow-hidden pt-5 sm:self-end">
@@ -101,11 +102,10 @@ export default function HowDoesItWork({ oneA }) {
         <div className="bg-[#041637] rounded-md  sm:h-[250px] h-[300px] flex flex-col relative">
           <div className="absolute inset-0 bg-[#101e39e5] opacity-40 z-10"></div>
           <div className="flex flex-col gap-5 pt-5 px-5">
-            <p className="text-2xl">Fully Remote, Fully Yours</p>
+            <p className="text-[21px]">Fully Remote, Fully Yours</p>
             <p className="text-[#9F9F9F] text-sm">
-              Once your machine is active, you can monitor everything from your
-              phone or laptop. Track earnings, choose payout modes, and stay in
-              control — wherever you are.
+              You’re in control at all times. Track your earnings, switch payout
+              modes, and manage everything from your phone — wherever you are.
             </p>
           </div>
           <div className="overflow-hidden flex items-start justify-end">

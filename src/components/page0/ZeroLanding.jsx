@@ -10,13 +10,13 @@ export default function ZeroLanding() {
       {/* <div className="absolute inset-0 bg-black opacity-50 z-0"></div> */}
       <div className="flex flex-col gap-5 items-center z-10 ">
         <h1 className="text-[#76C6E0] max-w-[780px] capitalize md:text-4xl text-2xl font-semibold text-center inter md:mt-14">
-          Start Earning Bitcoin - With Dahab, Your Trusted Mining Partner
+          Start Mining Bitcoin - With Dahab’s Miners
         </h1>
         <p className="text-center md:text-sm text-sm max-w-[550px]">
-          No waiting, no setup. Your mining machine is already live in our data
-          centers. Just a few clicks — and you’re already on your way to earning
-          your first Bitcoin
+          Own a Digital Dahab Miner and earn from real hardware in our farms.No
+          setup, No Delays - just daily Bitcoin rewards.
         </p>
+
         <Link
           to={"/dashboard"}
           className="px-4 py-2 rounded-full bg-[#07EAD3] w-fit btn-shadow hover:scale-105 ease-out duration-150 "
