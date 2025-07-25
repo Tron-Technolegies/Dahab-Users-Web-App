@@ -23,6 +23,7 @@ import Terms from "./Terms";
 import TwoFactor from "./TwoFactor";
 import UpdateProfile from "./UpdateProfile";
 import VerifyCode from "./verifyCode/VerifyCode";
+import WalletPage from "./wallet/WalletPage";
 export {
   BuyMinersPage,
   DashBoardPage,
@@ -48,5 +49,6 @@ export {
   EmailPrompt,
   CartPage,
   ProductInnerPage,
+  WalletPage,
   PayoutSwitchPage,
 };

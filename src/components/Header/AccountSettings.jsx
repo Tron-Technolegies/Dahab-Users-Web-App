@@ -99,6 +99,11 @@ export default function AccountSettings({ user }) {
               click={() => setOpenNotification(true)}
             />
             <AccountSettingItem
+              name={"My Wallet"}
+              handleClose={handleClose}
+              link={"/dashboard/wallet"}
+            />
+            <AccountSettingItem
               name={"2FA"}
               handleClose={handleClose}
               link={"/dashboard/2fa"}

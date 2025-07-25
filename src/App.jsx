@@ -25,6 +25,7 @@ import {
   TwoFactor,
   UpdateProfile,
   VerifyCode,
+  WalletPage,
   WithdrawPage,
 } from "./pages";
 
@@ -45,6 +46,7 @@ export default function App() {
         { path: "buy/cart", element: <CartPage /> },
         { path: "buy/:id", element: <ProductInnerPage /> },
         { path: "profile", element: <UpdateProfile /> },
+        { path: "wallet", element: <WalletPage /> },
         { path: "2fA", element: <TwoFactor /> },
         { path: "help", element: <FAQ /> },
         { path: "notifications", element: <Notifications /> },
