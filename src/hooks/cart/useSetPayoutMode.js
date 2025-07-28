@@ -1,26 +1,27 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "../../UserContext";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { base_url } from "../../utils/constants";
-import { useNavigate } from "react-router-dom";
 
-const usePurchase = () => {
+const useSetPayoutMode = () => {
   const [loading, setLoading] = useState(false);
-  const { setAlertError, setAlertSuccess, user } = useContext(UserContext);
+  const { setAlertError, setAlertSuccess } = useContext(UserContext);
   const navigate = useNavigate();
 
-  const purchase = async () => {
+  const selectPayout = async ({ mode }) => {
     setLoading(true);
-    localStorage.setItem("cart_items", JSON.stringify(user.cartItems));
     try {
       const response = await axios.post(
-        `${base_url}/product/purchase`,
-        {},
+        `${base_url}/product/payoutMode`,
+        {
+          mode,
+        },
         { withCredentials: true }
       );
       const data = response.data;
-      setAlertSuccess("successfully purchased");
-      navigate("/dashboard/success");
+      setAlertSuccess("Payout Mode Selected");
+      navigate("/dashboard");
     } catch (error) {
       setAlertError(
         error?.response?.data?.error ||
@@ -40,7 +41,7 @@ const usePurchase = () => {
       setLoading(false);
     }
   };
-  return { loading, purchase };
+  return { loading, selectPayout };
 };
 
-export default usePurchase;
+export default useSetPayoutMode;

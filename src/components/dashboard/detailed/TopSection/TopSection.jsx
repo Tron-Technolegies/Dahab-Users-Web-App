@@ -5,9 +5,11 @@ import StatElement1 from "./StatElement1";
 // import GraphElement1 from "./GraphElement1";
 import { FaRegCircleQuestion } from "react-icons/fa6";
 import { DashboardContext } from "../../../../DashBoardContext";
+import { UserContext } from "../../../../UserContext";
 
 export default function TopSection({ hidden }) {
   const [showInfo, setShowInfo] = useState(false);
+  const { user } = useContext(UserContext);
   const {
     totalHashrate,
     totalMiners,
@@ -64,8 +66,8 @@ export default function TopSection({ hidden }) {
               <FaRegCircleQuestion />
             </p>
             <p>Your Current Payout Mode</p>
-            <p className="p-3 bg-[#011532] rounded-full text-center">
-              BTC Hold
+            <p className="p-3 bg-[#011532] rounded-full text-center capitalize">
+              BTC {user?.payoutMode}
             </p>
           </div>
           <p className="text-xs text-center">

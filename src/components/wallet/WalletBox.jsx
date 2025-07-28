@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext } from "../../UserContext";
 
 export default function WalletBox() {
+  const { user } = useContext(UserContext);
   return (
     <div className="p-7 bg-[#0194FE] max-w-[700px] mx-auto w-full rounded-lg">
       <div className="flex justify-between items-center pb-5 border-b border-[#26DDFF5E]">
@@ -14,8 +16,8 @@ export default function WalletBox() {
         </button>
       </div>
       <div className="py-5 border-b border-[#26DDFF5E] flex justify-around items-center">
-        <p className="text-3xl">
-          0.0 <span className="text-sm">AED</span>
+        <p className={`text-3xl ${user?.walletBalance <= 0 && "text-red-600"}`}>
+          {user?.walletBalance} <span className="text-sm">AED</span>
         </p>
         <p className="text-sm text-[#c1e4fd]">Est. Hosting Fee/Day: 100 AED</p>
       </div>

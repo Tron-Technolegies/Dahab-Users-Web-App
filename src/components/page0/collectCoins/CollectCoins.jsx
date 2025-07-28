@@ -26,7 +26,7 @@ export default function CollectCoins({ oneA }) {
             collect the Bitcoin. It’s really that simple.
           </p>
           <Link
-            to={"/dashboard"}
+            to={`${oneA ? "/dashboard/buy" : "/dashboard"}`}
             className="px-4 py-1.5 border border-white rounded-md w-fit"
           >
             Get Started

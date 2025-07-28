@@ -3,6 +3,7 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import GraphStat from "./GraphStat";
 import { DashboardContext } from "../../../DashBoardContext";
+import { UserContext } from "../../../UserContext";
 
 export default function StatsMainCard() {
   const [on, setOn] = useState(false);
@@ -13,6 +14,7 @@ export default function StatsMainCard() {
     hostingDue,
     avgValidity,
   } = useContext(DashboardContext);
+  const { user } = useContext(UserContext);
 
   return (
     <div
@@ -20,7 +22,7 @@ export default function StatsMainCard() {
         on
           ? "bg-gray-200"
           : "bg-gradient-to-r from-[#59b3e4] via-[#0692DC] to-[#59b3e4]"
-      } lg:w-3/5 sm:w-3/4 w-full rounded-4xl relative flex flex-col gap-3 items-center mb-10`}
+      } lg:w-3/4 sm:w-3/4 w-full rounded-4xl relative flex flex-col gap-3 items-center mb-10`}
       id="main-stat-card"
     >
       {on ? (
@@ -45,13 +47,25 @@ export default function StatsMainCard() {
               <span className="text-xl  font-bold">{totalHashrate} TH/s</span>
             </p>
             <p className=" p-2 w-full text-center rounded-lg">
-              Payout Mode - <span className="text-xl  font-bold">BTC Hold</span>
+              Payout Mode -{" "}
+              <span className="text-xl capitalize font-bold">
+                BTC {user?.payoutMode}
+              </span>
             </p>
           </div>
           <div className="flex lg:flex-row flex-col lg:text-left text-center gap-5 justify-between w-full">
-            <p className=" p-2 w-full rounded-lg">
+            <p
+              className={`p-2 w-full flex gap-1 lg:justify-start justify-center items-center rounded-lg ${
+                user?.walletBalance <= 0 && "text-red-600"
+              }`}
+            >
               Wallet Balance -{" "}
-              <span className="text-xl  font-bold">{hostingDue} AED</span>
+              <span className="text-xl  font-bold">
+                {user?.walletBalance} AED
+              </span>
+              <button className="ms-2 text-sm rounded-lg cursor-pointer px-3 py-1 border text-white">
+                Topup
+              </button>
             </p>
             <p className=" p-2 w-full rounded-lg">
               Avg. Validity Left -{" "}

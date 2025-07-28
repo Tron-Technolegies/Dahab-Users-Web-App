@@ -19,6 +19,7 @@ import PayoutSwitchPage from "./PayoutSwitchPage";
 import PrivacyPolicy from "./PrivacyPolicy";
 import Register from "./Register/Register";
 import ResetPassword from "./resetPassword/ResetPassword";
+import SuccessPage from "./success/SuccessPage";
 import Terms from "./Terms";
 import TwoFactor from "./TwoFactor";
 import UpdateProfile from "./UpdateProfile";
@@ -51,4 +52,5 @@ export {
   ProductInnerPage,
   WalletPage,
   PayoutSwitchPage,
+  SuccessPage,
 };

@@ -121,30 +121,30 @@ export default function Layout() {
     <Loading />
   ) : (
     <div className="text-black">
-      <TourProvider steps={steps} scrollSmooth>
-        <div className="text-white">
-          <Header />
+      {/* <TourProvider steps={steps} scrollSmooth> */}
+      <div className="text-white">
+        <Header />
 
-          <div className="min-h-screen relative">
-            {alertSuccess && (
-              <AlertBox
-                message={alertSuccess}
-                severity={"success"}
-                onClose={() => setAlertSuccess("")}
-              />
-            )}
-            {alertError && (
-              <AlertBox
-                message={alertError}
-                severity={"error"}
-                onClose={() => setAlertError("")}
-              />
-            )}
-            <Outlet />
-          </div>
-          <Footer />
+        <div className="min-h-screen relative">
+          {alertSuccess && (
+            <AlertBox
+              message={alertSuccess}
+              severity={"success"}
+              onClose={() => setAlertSuccess("")}
+            />
+          )}
+          {alertError && (
+            <AlertBox
+              message={alertError}
+              severity={"error"}
+              onClose={() => setAlertError("")}
+            />
+          )}
+          <Outlet />
         </div>
-      </TourProvider>
+        <Footer />
+      </div>
+      {/* </TourProvider> */}
     </div>
   );
 }

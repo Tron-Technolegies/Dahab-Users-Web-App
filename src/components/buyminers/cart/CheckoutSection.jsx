@@ -1,16 +1,16 @@
-import { motion } from "framer-motion";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { UserContext } from "../../../UserContext";
-import { useTour } from "@reactour/tour";
+// import { useTour } from "@reactour/tour";
 import usePurchase from "../../../hooks/cart/usePurchase";
 import useGetUserInfo from "../../../hooks/auth/useGetUserInfo";
+import Loading from "../../Loading";
 
 export default function CheckoutSection() {
-  const [pay, setPay] = useState("fiat");
-  const { user, refetchTrigger, setRefetchTrigger } = useContext(UserContext);
+  // const [pay, setPay] = useState("fiat");
+  const { user } = useContext(UserContext);
   const { refetch } = useGetUserInfo();
   const { loading, purchase } = usePurchase();
-  const { setIsOpen, setCurrentStep } = useTour();
+  // const { setIsOpen, setCurrentStep } = useTour();
 
   return (
     <div className="flex lg:flex-row flex-col lg:justify-between my-10 items-center duration-300 ease-in-out">
@@ -39,13 +39,12 @@ export default function CheckoutSection() {
           onClick={async () => {
             await purchase();
             await refetch();
-            setCurrentStep(0);
-            setIsOpen(true);
           }}
           className="w-full py-2 rounded-lg bg-[#07EAD3] text-black cursor-pointer"
         >
           CONFIRM PURCHASE
         </button>
+        {loading && <Loading />}
       </div>
     </div>
   );

@@ -18,7 +18,7 @@ export default function NewUserLanding() {
           the first BTC rewards in just 24 hours
         </p>
         <Link
-          to={"/buy"}
+          to={"/dashboard/buy"}
           className="bg-[#07EAD3] px-5 py-2 w-fit md:self-start self-center text-center rounded-md text-black"
         >
           Start Mining Now
