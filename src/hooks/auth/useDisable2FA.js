@@ -1,28 +1,22 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "../../UserContext";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { base_url } from "../../utils/constants";
 
-const useSetPayoutMode = () => {
+const useDisable2FA = () => {
   const [loading, setLoading] = useState(false);
-  const { setAlertError, setAlertSuccess } = useContext(UserContext);
-  const navigate = useNavigate();
-
-  const selectPayout = async ({ mode }) => {
+  const { setAlertError, setAlertSuccess, setUser } = useContext(UserContext);
+  const disable2FA = async () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${base_url}/product/payoutMode`,
-        {
-          mode,
-        },
+        `${base_url}/auth/disable2FA`,
+        {},
         { withCredentials: true }
       );
       const data = response.data;
-      setAlertSuccess("Payout Mode Selected");
-      localStorage.removeItem("cart_items");
-      navigate("/dashboard");
+      setAlertSuccess("Successfully disabled 2FA");
+      setUser(data.user);
     } catch (error) {
       setAlertError(
         error?.response?.data?.error ||
@@ -42,7 +36,7 @@ const useSetPayoutMode = () => {
       setLoading(false);
     }
   };
-  return { loading, selectPayout };
+  return { loading, disable2FA };
 };
 
-export default useSetPayoutMode;
+export default useDisable2FA;

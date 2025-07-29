@@ -21,8 +21,13 @@ const useLogin = () => {
         { withCredentials: true }
       );
       const data = response.data;
-      setAlertSuccess("Successfully Logged in");
-      navigate("/dashboard");
+      if (data.msg === "successfully logged in. Enter 2FA") {
+        localStorage.setItem("login_email", email);
+        navigate("/verify2FA");
+      } else {
+        navigate("/dashboard");
+        setAlertSuccess("Successfully Logged in");
+      }
     } catch (error) {
       setAlertError(
         error?.response?.data?.error ||

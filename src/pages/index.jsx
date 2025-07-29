@@ -22,6 +22,7 @@ import ResetPassword from "./resetPassword/ResetPassword";
 import SuccessPage from "./success/SuccessPage";
 import Terms from "./Terms";
 import TwoFactor from "./TwoFactor";
+import TwoFactorLoginPage from "./twoFactorLogin/TwoFactorLoginPage";
 import UpdateProfile from "./UpdateProfile";
 import VerifyCode from "./verifyCode/VerifyCode";
 import WalletPage from "./wallet/WalletPage";
@@ -53,4 +54,5 @@ export {
   WalletPage,
   PayoutSwitchPage,
   SuccessPage,
+  TwoFactorLoginPage,
 };

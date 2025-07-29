@@ -41,7 +41,9 @@ export default function PayoutSelectorSuccess() {
         </div>
       </div>
       <button
-        onClick={() => selectPayout({ mode: payout })}
+        onClick={() => {
+          selectPayout({ mode: payout });
+        }}
         className="capitalize px-3 py-2 rounded-lg bg-[#07EAD3] cursor-pointer text-black"
       >{`Continue with BTC ${payout} Mode`}</button>
       {loading && <Loading />}

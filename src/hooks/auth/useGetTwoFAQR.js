@@ -1,28 +1,21 @@
-import React, { useContext, useState } from "react";
-import { UserContext } from "../../UserContext";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import React, { useContext, useState } from "react";
 import { base_url } from "../../utils/constants";
+import { UserContext } from "../../UserContext";
 
-const useSetPayoutMode = () => {
+const useGetTwoFAQR = () => {
   const [loading, setLoading] = useState(false);
+  const [qr, setQr] = useState("");
   const { setAlertError, setAlertSuccess } = useContext(UserContext);
-  const navigate = useNavigate();
 
-  const selectPayout = async ({ mode }) => {
+  const getQR = async () => {
     setLoading(true);
     try {
-      const response = await axios.post(
-        `${base_url}/product/payoutMode`,
-        {
-          mode,
-        },
-        { withCredentials: true }
-      );
+      const response = await axios.get(`${base_url}/auth/send2FAQR`, {
+        withCredentials: true,
+      });
       const data = response.data;
-      setAlertSuccess("Payout Mode Selected");
-      localStorage.removeItem("cart_items");
-      navigate("/dashboard");
+      setQr(data);
     } catch (error) {
       setAlertError(
         error?.response?.data?.error ||
@@ -42,7 +35,7 @@ const useSetPayoutMode = () => {
       setLoading(false);
     }
   };
-  return { loading, selectPayout };
+  return { loading, getQR, qr };
 };
 
-export default useSetPayoutMode;
+export default useGetTwoFAQR;

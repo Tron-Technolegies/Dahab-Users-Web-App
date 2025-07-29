@@ -21,6 +21,7 @@ export default function SuccessPage() {
         <Link
           className="px-3 py-2 rounded-lg bg-[#07EAD3] cursor-pointer text-black"
           to={"/dashboard"}
+          onClick={() => localStorage.removeItem("cart_items")}
         >
           Continue
         </Link>

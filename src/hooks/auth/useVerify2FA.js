@@ -1,28 +1,23 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "../../UserContext";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { base_url } from "../../utils/constants";
 
-const useSetPayoutMode = () => {
+const useVerify2FA = () => {
   const [loading, setLoading] = useState(false);
-  const { setAlertError, setAlertSuccess } = useContext(UserContext);
-  const navigate = useNavigate();
+  const { setAlertSuccess, setAlertError, setUser } = useContext(UserContext);
 
-  const selectPayout = async ({ mode }) => {
+  const verify2FA = async ({ code }) => {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${base_url}/product/payoutMode`,
-        {
-          mode,
-        },
+        `${base_url}/auth/verify2FA`,
+        { code },
         { withCredentials: true }
       );
       const data = response.data;
-      setAlertSuccess("Payout Mode Selected");
-      localStorage.removeItem("cart_items");
-      navigate("/dashboard");
+      setAlertSuccess("Successfully verified");
+      setUser(data.user);
     } catch (error) {
       setAlertError(
         error?.response?.data?.error ||
@@ -42,7 +37,7 @@ const useSetPayoutMode = () => {
       setLoading(false);
     }
   };
-  return { loading, selectPayout };
+  return { loading, verify2FA };
 };
 
-export default useSetPayoutMode;
+export default useVerify2FA;
