@@ -41,19 +41,19 @@ export default function StatsMainCard() {
             </p>
           </div>
 
-          <div className="flex lg:flex-row flex-col lg:text-left text-center gap-5 justify-between w-full">
+          <div className="flex lg:flex-row flex-col lg:text-left text-center lg:gap-5 justify-between w-full">
             <p className=" p-2 w-full rounded-lg">
               Total Hashrate -{" "}
               <span className="text-xl  font-bold">{totalHashrate} TH/s</span>
             </p>
-            <p className=" p-2 w-full text-center rounded-lg">
+            <p className=" p-2 w-full text-center rounded-lg lg:text-end">
               Payout Mode -{" "}
               <span className="text-xl capitalize font-bold">
                 BTC {user?.payoutMode}
               </span>
             </p>
           </div>
-          <div className="flex lg:flex-row flex-col lg:text-left text-center gap-5 justify-between w-full">
+          <div className="flex lg:flex-row flex-col-reverse lg:text-left text-center lg:gap-5 justify-between w-full">
             <p
               className={`p-2 w-full flex gap-1 lg:justify-start justify-center items-center rounded-lg ${
                 user?.walletBalance <= 0 && "text-red-600"
@@ -67,7 +67,7 @@ export default function StatsMainCard() {
                 Topup
               </button>
             </p>
-            <p className=" p-2 w-full rounded-lg">
+            <p className=" p-2 w-full rounded-lg lg:text-end">
               Avg. Validity Left -{" "}
               <span className="text-xl  font-bold">{avgValidity} Days</span>
             </p>
