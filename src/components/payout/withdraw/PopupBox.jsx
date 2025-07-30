@@ -5,8 +5,6 @@ import Fade from "@mui/material/Fade";
 import Backdrop from "@mui/material/Backdrop";
 import { IoMdClose } from "react-icons/io";
 
-import TwoFAPopup from "./TwoFAPopup";
-
 const style = {
   position: "absolute",
   top: "50%",
@@ -24,8 +22,6 @@ const style = {
 };
 
 export default function PopupBox({ open, setOpen }) {
-  const [twoFA, setTwoFa] = useState(false);
-
   return (
     <>
       <Modal
@@ -50,30 +46,19 @@ export default function PopupBox({ open, setOpen }) {
               >
                 <IoMdClose />
               </button>
-              <p>Fee increased to 0.0001 BTC.</p>
-              <p className="text-xl text-[#07EAD3]">Proceed</p>
+              <p>Please Enable Two Factor Authentication for Withdrawal</p>
               <div className="flex gap-5 ">
                 <button
                   onClick={() => setOpen(false)}
                   className="px-10 py-1 bg-[#76C6E063] rounded-md cursor-pointer"
                 >
-                  No
-                </button>
-                <button
-                  onClick={() => {
-                    setOpen(false);
-                    setTwoFa(true);
-                  }}
-                  className="px-10 py-1 bg-[#0194FE] rounded-md cursor-pointer"
-                >
-                  Yes
+                  OK
                 </button>
               </div>
             </div>
           </Box>
         </Fade>
       </Modal>
-      <TwoFAPopup open={twoFA} setOpen={setTwoFa} />
     </>
   );
 }

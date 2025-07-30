@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext } from "../../../UserContext";
 
 export default function CurrentBalance() {
+  const { user } = useContext(UserContext);
   return (
     <div
       className="p-2 border border-[#42E8E03B] rounded-md w-full h-fit"
@@ -10,7 +12,7 @@ export default function CurrentBalance() {
         <img src="/home/bitcoin.png" className="w-10" />
         <div>
           <p className="text-xl text-[#587078]">Current Balance</p>
-          <p className="text-2xl">0.0005897 BTC</p>
+          <p className="text-2xl">{user?.currentBalance} BTC</p>
         </div>
       </div>
     </div>

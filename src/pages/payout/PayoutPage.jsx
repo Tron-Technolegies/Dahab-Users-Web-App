@@ -6,6 +6,7 @@ import RewardsTable from "../../components/payout/RewardsTable";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../UserContext";
 import StartMiner from "../../components/myminer/StartMiner";
+import PayoutSelector from "../../components/dashboard/statsSection/PayoutSelector";
 
 export default function PayoutPage() {
   const [active, setActive] = useState("rewards");
@@ -19,6 +20,7 @@ export default function PayoutPage() {
         <PayoutTopSection active={active} setActive={setActive} />
         {active === "payouts" && <PayoutTable />}
         {active === "rewards" && <RewardsTable />}
+        {active === "mode" && <PayoutSelector inside />}
       </div>
       <div
         className="flex sm:flex-row flex-col justify-center sm:gap-10 items-center"

@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
 import Backdrop from "@mui/material/Backdrop";
 import { IoMdClose } from "react-icons/io";
-import { useNavigate } from "react-router-dom";
+import useVerifyWithdrawal from "../../../hooks/auth/useVerifyWithdrawal";
 
 const style = {
   position: "absolute",
@@ -23,7 +23,9 @@ const style = {
 };
 
 export default function TwoFAPopup({ open, setOpen }) {
-  const navigate = useNavigate();
+  const [code, setCode] = useState("");
+  const { loading, verifyWithdrawal } = useVerifyWithdrawal();
+
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -47,17 +49,20 @@ export default function TwoFAPopup({ open, setOpen }) {
             >
               <IoMdClose />
             </button>
-            <div className="flex flex-col gap-5">
-              <p>Enter Your Confirmation Code</p>
+            <div className="flex flex-col items-center gap-5">
+              <p>Enter Your 2FA Code</p>
               <div className="flex flex-col gap-3 items-center">
                 <input
                   type="number"
                   className="px-4 py-2 rounded-md outline-0 bg-[#858E9147] text-[#CCF2FF]"
+                  value={code}
+                  onChange={(e) => setCode(e.target.value)}
                 />
                 <button
-                  onClick={() => {
+                  onClick={async () => {
+                    await verifyWithdrawal({ code });
                     setOpen(false);
-                    navigate("/dashboard/payouts");
+                    setCode("");
                   }}
                   className="px-10 py-1 rounded-full bg-[#07EAD3] text-black cursor-pointer"
                 >

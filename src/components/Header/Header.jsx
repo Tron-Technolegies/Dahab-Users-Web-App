@@ -4,6 +4,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { UserContext } from "../../UserContext";
 import { IoNotifications } from "react-icons/io5";
 import { FaUserCircle, FaAlignRight } from "react-icons/fa";
+import { FaCartShopping } from "react-icons/fa6";
 import DrawerComponent from "./DrawerComponent";
 import AccountSettings from "./AccountSettings";
 
@@ -73,10 +74,16 @@ export default function Header() {
       </nav>
       {user ? (
         <div className="flex gap-2 items-center text-2xl">
-          <span className="text-[#07EAD3]">
+          {/* <span className="text-[#07EAD3]">
             <IoNotifications />
-          </span>
+          </span> */}
           <AccountSettings user={user} />
+          <Link to={`/dashboard/buy/cart`} className="relative">
+            <FaCartShopping />
+            <p className="text-sm w-6 h-6 rounded-full flex justify-center items-center bg-blue-500 absolute -top-3 -right-3">
+              {user?.cartItems.length}
+            </p>
+          </Link>
           <p className="text-xl md:hidden" onClick={() => setOpenDrawer(true)}>
             <FaAlignRight />
           </p>

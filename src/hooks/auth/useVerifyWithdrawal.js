@@ -1,34 +1,27 @@
-import axios from "axios";
 import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../UserContext";
+import axios from "axios";
 import { base_url } from "../../utils/constants";
+import { useNavigate } from "react-router-dom";
 
-const useRegister = () => {
+const useVerifyWithdrawal = () => {
   const [loading, setLoading] = useState(false);
   const { setAlertError, setAlertSuccess } = useContext(UserContext);
   const navigate = useNavigate();
 
-  const register = async ({ email, password, confirmPassword, username }) => {
+  const verifyWithdrawal = async ({ code }) => {
     setLoading(true);
-    if (password !== confirmPassword) {
-      setAlertError("Password doesnt match");
-      return;
-    }
     try {
       const response = await axios.post(
-        `${base_url}/auth/register`,
+        `${base_url}/auth/withdrawVerify`,
         {
-          email,
-          password,
-          username,
+          code,
         },
         { withCredentials: true }
       );
       const data = response.data;
-      setAlertSuccess("Successfully Registered");
-      localStorage.setItem("register_email", email);
-      navigate("/otp");
+      setAlertSuccess("Transfer Successfully Processed");
+      navigate("/dashboard/payouts");
     } catch (error) {
       setAlertError(
         error?.response?.data?.error ||
@@ -48,7 +41,7 @@ const useRegister = () => {
       setLoading(false);
     }
   };
-  return { loading, register };
+  return { loading, verifyWithdrawal };
 };
 
-export default useRegister;
+export default useVerifyWithdrawal;

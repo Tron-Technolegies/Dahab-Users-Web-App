@@ -83,19 +83,25 @@ export default function TopSection({ hidden }) {
                 Only able to switch once every 60 days
               </p>
               <p className="text-sm mb-2">BTC Profit</p>
-              <p className="text-xs mb-2">
-                Segregates electricity payments from mining revenue, with all
-                BTC earnings going directly to the user\'s wallet. Users are
-                responsible for paying electricity separately
-              </p>
+              <div className="text-xs mb-2">
+                <li>
+                  Electricity cost is auto-deducted from your daily earnings
+                </li>
+                <li>You receive the remaining profit - withdraw anytime</li>
+                <li>Easiest option with no wallets to manage</li>
+                <li>Great for short-term profits or passive BTC flow</li>
+                <li>You choose the style: saving or spending</li>
+              </div>
               <p className="text-sm mb-2">BTC Hold</p>
-              <p className="text-xs">
-                Integrates electricity payments directly with mining revenue,
-                using an intermediary wallet to deduct costs before transferring
-                the net profit to the user. This mode also facilitates
-                commission payments to service providers from
-                the mining earnings
-              </p>
+              <div className="text-xs">
+                <li>You receive 100% of the Bitcoin mined</li>
+                <li>Electricity is paid separately - in crypto or fiat</li>
+                <li>Best for those who want to accumulate and grow Bitcoin</li>
+                <li>
+                  Like owning a personal BTC ATM - mine daily at a fixed cost
+                </li>
+                <li>Recommended if you believe Bitcoin will rise over time</li>
+              </div>
             </div>
           )}
         </div>

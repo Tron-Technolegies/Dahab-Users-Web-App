@@ -1,48 +1,21 @@
 import { motion } from "framer-motion";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { CiCircleInfo } from "react-icons/ci";
+import { UserContext } from "../../../UserContext";
+import PayoutBox from "../../page0/payoutInfo/PayoutBox";
 
-export default function PayoutSelector() {
-  const [payout, setPayout] = useState("profit");
-  const [showInfo, setShowInfo] = useState(false);
+export default function PayoutSelector({ inside }) {
+  const { user } = useContext(UserContext);
+  const [payout, setPayout] = useState(user?.payoutMode);
+
   return (
     <div className="my-10 flex flex-col gap-5">
-      <p className="text-2xl text-[#76C6E0]">Select Your Payout Mode</p>
-      <div className="flex gap-7 items-center relative">
-        <p className="relative">
-          Payout{" "}
-          <span
-            className="absolute text-yellow-600 font-bold -top-2 -right-6 text-xl cursor-pointer"
-            onMouseEnter={() => setShowInfo(true)}
-            onMouseLeave={() => setShowInfo(false)}
-          >
-            <CiCircleInfo />
-          </span>
-        </p>
-        {showInfo && (
-          <div
-            className="bg-black p-5 rounded-lg max-w-[300px] absolute top-16"
-            onMouseEnter={() => setShowInfo(true)}
-            onMouseLeave={() => setShowInfo(false)}
-          >
-            <p className="text-sm mb-2 text-yellow-400">
-              Only able to switch once every 60 days
-            </p>
-            <p className="text-sm mb-2">BTC Profit</p>
-            <p className="text-xs mb-2">
-              Segregates electricity payments from mining revenue, with all BTC
-              earnings going directly to the user\'s wallet. Users are
-              responsible for paying electricity separately
-            </p>
-            <p className="text-sm mb-2">BTC Hold</p>
-            <p className="text-xs">
-              Integrates electricity payments directly with mining revenue,
-              using an intermediary wallet to deduct costs before transferring
-              the net profit to the user. This mode also facilitates commission
-              payments to service providers from the mining earnings
-            </p>
-          </div>
-        )}
+      {!inside && (
+        <p className="text-2xl text-[#76C6E0]">Select Your Payout Mode</p>
+      )}
+
+      <div className="flex gap-7 justify-between items-center py-5 border-b border-[#244A66]">
+        <p className="text-lg font-semibold">Payout Mode</p>
         <div
           className={`bg-[#011532]  p-1 border border-[#76C6E04D] rounded-s-full rounded-e-full flex items-center gap-5`}
         >
@@ -71,6 +44,30 @@ export default function PayoutSelector() {
             BTC Hold
           </motion.button>
         </div>
+      </div>
+      <p className="text-sm">Only able to change once in every 60 days</p>
+      <div className="flex md:flex-row flex-col justify-center gap-10 my-10 max-w-[1000px] mx-auto">
+        <PayoutBox
+          heading={"BTC Hold Mode"}
+          list={[
+            "You receive 100% of the Bitcoin mined",
+            "Electricity is paid separately - in crypto or fiat",
+            "Best for those who want to accumulate and grow Bitcoin",
+            "Like owning a personal BTC ATM - mine daily at a fixed cost",
+            "Recommended if you believe Bitcoin will rise over time",
+          ]}
+          recommended
+        />
+        <PayoutBox
+          heading={"BTC Profit Mode"}
+          list={[
+            "Electricity cost is auto-deducted from your daily earnings",
+            "You receive the remaining profit - withdraw anytime",
+            "Easiest option with no wallets to manage",
+            "Great for short-term profits or passive BTC flow",
+            "You choose the style: saving or spending",
+          ]}
+        />
       </div>
     </div>
   );

@@ -9,6 +9,10 @@ export default function AlertBox({ message, severity, onClose }) {
 
     return () => clearTimeout(timer); // Cleanup if component unmounts earlier
   }, [onClose]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <Alert
       variant="filled"

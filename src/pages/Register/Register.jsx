@@ -9,6 +9,7 @@ import Loading from "../../components/Loading";
 
 export default function Register() {
   const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const { alertError, setAlertError, alertSuccess, setAlertSuccess } =
@@ -29,6 +30,14 @@ export default function Register() {
           Let’s get you all st up so you can access your personal account.
         </p>
         <form className="flex flex-col gap-3">
+          <FormInput
+            title={"Username"}
+            type={"text"}
+            value={username}
+            styles={"bg-white text-black"}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder={"Enter Your Username"}
+          />
           <FormInput
             title={"Email"}
             type={"email"}
@@ -58,7 +67,7 @@ export default function Register() {
             styles={"bg-[#07EAD3] mt-3"}
             clickFunction={(e) => {
               e.preventDefault();
-              register({ email, password, confirmPassword });
+              register({ email, password, confirmPassword, username });
             }}
           />
           {loading && <Loading />}
