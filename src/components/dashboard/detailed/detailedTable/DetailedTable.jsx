@@ -147,7 +147,7 @@ export default function DetailedTable() {
                 <TableCell
                   sx={{ textAlign: "center", border: "0", color: "#FFFFFF" }}
                 >
-                  {row?.minedRevenue}
+                  {row?.minedRevenue?.toFixed(8)}
                 </TableCell>
                 <TableCell
                   sx={{ textAlign: "center", border: "0", color: "#FFFFFF" }}

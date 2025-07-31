@@ -65,9 +65,11 @@ export default function AnalysisSection() {
         />
         <FieldItem
           item={"Total BTC Mined"}
-          value={`${minedRevenue} BTC`}
+          value={`${minedRevenue?.toFixed(8)} BTC`}
           formula={"Current BTC Balance + Sum of Withdrawals"}
-          description={`<p>This value represents the total BTC mined in your account. This is the sum of your current BTC Balance and the total sum of all the BTC withdrawals you made</p><p>Current Balance - ${currentBalance} AED</p><p>Sum of total Withdrawals - ${"N/A"}</p>`}
+          description={`<p>This value represents the total BTC mined in your account. This is the sum of your current BTC Balance and the total sum of all the BTC withdrawals you made</p><p>Current Balance - ${currentBalance?.toFixed(
+            8
+          )} AED</p><p>Sum of total Withdrawals - ${"N/A"}</p>`}
         />
         {/* <FieldItem
           item={"Total Hosting Due"}
@@ -76,15 +78,17 @@ export default function AnalysisSection() {
         /> */}
         <FieldItem
           item={"Your BTC Value"}
-          value={`${ownedBTCValue} AED`}
+          value={`${ownedBTCValue?.toFixed(3)} AED`}
           formula={"Total BTC Mined x Current BTC Value"}
-          description={`<p>This indicates the total value of the bitcoin you owned.</p><p>Total Bitcoin Owned - ${minedRevenue} AED</p><p>Current BTC Value - ${convertUsdToAed(
+          description={`<p>This indicates the total value of the bitcoin you owned.</p><p>Total Bitcoin Owned - ${minedRevenue?.toFixed(
+            8
+          )} BTC</p><p>Current BTC Value - ${convertUsdToAed(
             btcPrice
           )} AED</p>`}
         />
         <FieldItem
           item={"ROI (%)"}
-          value={roi}
+          value={roi?.toFixed(3)}
           formula={"(Your BTC Value x  100) / Total Investment"}
           description={`<p>This value represents the Return of Investment. It gives the info about how much percentage more returns you got compared to your investment.</p><p>Your BTC Value - ${ownedBTCValue} AED</p><p>Total Investment - ${totalInvestment} AED</p><p> >100 % - Positive Returns</p><p> <100 % - Negative Returns</p><p> =100 % - No Returns</p>`}
         />

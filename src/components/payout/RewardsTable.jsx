@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -6,42 +6,10 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { UserContext } from "../../UserContext";
 
 export default function RewardsTable() {
-  const rows = [
-    { id: 1, date: "2025/04/25", amount: "0.000000234 BTC", status: "Pending" },
-    {
-      id: 2,
-      date: "2025/04/26",
-      amount: "0.000000234 BTC",
-      status: "Completed",
-    },
-    {
-      id: 3,
-      date: "2025/04/27",
-      amount: "0.000000234 BTC",
-      status: "Completed",
-    },
-    {
-      id: 4,
-      date: "2025/04/28",
-      amount: "0.000000234 BTC",
-      status: "Completed",
-    },
-    { id: 5, date: "2025/04/29", amount: "0.000000234 BTC", status: "Pending" },
-    {
-      id: 6,
-      date: "2025/04/30",
-      amount: "0.000000234 BTC",
-      status: "Completed",
-    },
-    {
-      id: 7,
-      date: "2025/04/31",
-      amount: "0.000000234 BTC",
-      status: "Completed",
-    },
-  ];
+  const { user } = useContext(UserContext);
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -65,9 +33,9 @@ export default function RewardsTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {user?.allMinedRewards?.map((row, i) => (
             <TableRow
-              key={row.id}
+              key={i}
               sx={{
                 //
                 cursor: "pointer",
@@ -86,7 +54,7 @@ export default function RewardsTable() {
                   color: "#FFFFFF",
                 }}
               >
-                {row.date}
+                {row.date.slice(0, 10)}
               </TableCell>
               <TableCell
                 sx={{
@@ -96,7 +64,7 @@ export default function RewardsTable() {
                   color: "#FFFFFF",
                 }}
               >
-                {row.amount}
+                {row.amount.toFixed(8)}
               </TableCell>
             </TableRow>
           ))}

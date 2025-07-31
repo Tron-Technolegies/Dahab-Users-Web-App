@@ -33,7 +33,9 @@ export default function StatsMainCard() {
             <p>Current Balance</p>
             <div className="flex gap-5 justify-center items-center">
               <img src="/home/bitcoin.png" className="w-10" />
-              <p className="text-2xl font-semibold">{currentBalance} BTC</p>
+              <p className="text-2xl font-semibold">
+                {currentBalance?.toFixed(8)} BTC
+              </p>
             </div>
             <p className=" p-2 w-full text-center rounded-lg">
               Total Miners -{" "}

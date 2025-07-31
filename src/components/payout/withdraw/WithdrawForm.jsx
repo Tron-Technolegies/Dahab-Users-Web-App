@@ -15,7 +15,7 @@ export default function WithdrawForm() {
   const [amount, setAmount] = useState(MIN);
   const [open, setOpen] = useState(false);
   const [info, setInfo] = useState(false);
-  const [MAX, setMAX] = useState(user?.currentBalance);
+  const [MAX, setMAX] = useState(user?.currentBalance?.toFixed(8));
   const [address, setAddress] = useState("");
   const marks = [
     {

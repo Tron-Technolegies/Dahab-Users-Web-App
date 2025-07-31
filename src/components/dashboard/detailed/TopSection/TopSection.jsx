@@ -36,11 +36,11 @@ export default function TopSection({ hidden }) {
           <StatElement1 stat={totalMiners} statName={"Total Miners"} />
           <StatElement1 stat={`${totalHashrate} TH/s`} statName={"Hashrate"} />
           <StatElement1
-            stat={`${minedRevenue} BTC`}
+            stat={`${minedRevenue?.toFixed(8)} BTC`}
             statName={"Mined Rewards"}
           />
           <StatElement1
-            stat={`${currentBalance} BTC`}
+            stat={`${currentBalance?.toFixed(8)} BTC`}
             statName={"Current Balance"}
           />
           <StatElement1

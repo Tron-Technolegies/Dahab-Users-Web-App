@@ -67,7 +67,7 @@ export default function SIngleMinerStats({ data }) {
             statName={"Total Power"}
           />
           <StatElement1
-            stat={`${data?.minedRevenue} BTC`}
+            stat={`${data?.minedRevenue?.toFixed(8)} BTC`}
             statName={"Mined Revenue"}
           />
           <StatElement1
