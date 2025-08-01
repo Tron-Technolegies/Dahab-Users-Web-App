@@ -9,7 +9,7 @@ import StartMiner from "../../components/myminer/StartMiner";
 import PayoutSelector from "../../components/dashboard/statsSection/PayoutSelector";
 
 export default function PayoutPage() {
-  const [active, setActive] = useState("rewards");
+  const [active, setActive] = useState("payouts");
   const { user } = useContext(UserContext);
   useEffect(() => {
     window.scrollTo(0, 0);

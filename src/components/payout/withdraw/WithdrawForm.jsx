@@ -29,14 +29,14 @@ export default function WithdrawForm() {
   ];
 
   function handleConfirm() {
-    // if (amount === 0 || amount > MAX) {
-    //   setAlertError("Invalid Amount");
-    //   return;
-    // }
-    // if (address === "") {
-    //   setAlertError("Please Enter valid BTC Address");
-    //   return;
-    // }
+    if (amount === 0 || amount > MAX) {
+      setAlertError("Invalid Amount");
+      return;
+    }
+    if (address === "") {
+      setAlertError("Please Enter valid BTC Address");
+      return;
+    }
     if (user?.is2FAEnabled) {
       setOpen(true);
     } else {
@@ -112,7 +112,12 @@ export default function WithdrawForm() {
         Confirm
       </button>
       <PopupBox open={info} setOpen={setInfo} />
-      <TwoFAPopup open={open} setOpen={setOpen} />
+      <TwoFAPopup
+        open={open}
+        setOpen={setOpen}
+        amount={amount}
+        btcAddress={address}
+      />
     </div>
   );
 }

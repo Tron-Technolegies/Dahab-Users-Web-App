@@ -1,27 +1,26 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "../../UserContext";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { base_url } from "../../utils/constants";
-import { useNavigate } from "react-router-dom";
 
-const useVerifyWithdrawal = () => {
+const useMakeWithdrawal = () => {
   const [loading, setLoading] = useState(false);
-  const { setAlertError, setAlertSuccess } = useContext(UserContext);
+  const { setAlertError, setAlertSuccess, setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
-  const verifyWithdrawal = async ({ code }) => {
+  const makeWithdrawal = async ({ amount, address }) => {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${base_url}/auth/withdrawVerify`,
-        {
-          code,
-        },
+        `${base_url}/payout`,
+        { amount, address },
         { withCredentials: true }
       );
       const data = response.data;
-      // setAlertSuccess("Transfer Successfully Processed");
-      // navigate("/dashboard/payouts");
+      setAlertSuccess("Withdrawal Successfully Processed");
+      setUser(data.user);
+      navigate("/dashboard/payouts");
     } catch (error) {
       setAlertError(
         error?.response?.data?.error ||
@@ -41,7 +40,7 @@ const useVerifyWithdrawal = () => {
       setLoading(false);
     }
   };
-  return { loading, verifyWithdrawal };
+  return { loading, makeWithdrawal };
 };
 
-export default useVerifyWithdrawal;
+export default useMakeWithdrawal;

@@ -5,6 +5,8 @@ import Fade from "@mui/material/Fade";
 import Backdrop from "@mui/material/Backdrop";
 import { IoMdClose } from "react-icons/io";
 import useVerifyWithdrawal from "../../../hooks/auth/useVerifyWithdrawal";
+import Loading from "../../Loading";
+import useMakeWithdrawal from "../../../hooks/payout/useMakeWithdrawal";
 
 const style = {
   position: "absolute",
@@ -22,9 +24,10 @@ const style = {
   p: 4,
 };
 
-export default function TwoFAPopup({ open, setOpen }) {
+export default function TwoFAPopup({ open, setOpen, amount, btcAddress }) {
   const [code, setCode] = useState("");
   const { loading, verifyWithdrawal } = useVerifyWithdrawal();
+  const { loading: withdrawLoading, makeWithdrawal } = useMakeWithdrawal();
 
   return (
     <Modal
@@ -60,14 +63,24 @@ export default function TwoFAPopup({ open, setOpen }) {
                 />
                 <button
                   onClick={async () => {
-                    await verifyWithdrawal({ code });
-                    setOpen(false);
-                    setCode("");
+                    try {
+                      await verifyWithdrawal({ code });
+                      await makeWithdrawal({ address: btcAddress, amount });
+                      setOpen(false);
+                      setCode("");
+                      setTimeout(() => {
+                        window.location.reload();
+                      }, 2000);
+                    } catch (error) {
+                      console.log("something went wrong");
+                    }
                   }}
                   className="px-10 py-1 rounded-full bg-[#07EAD3] text-black cursor-pointer"
                 >
                   Confirm
                 </button>
+                {loading && <Loading />}
+                {withdrawLoading && <Loading />}
               </div>
             </div>
           </div>
