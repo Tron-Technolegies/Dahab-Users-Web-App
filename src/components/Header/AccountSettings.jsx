@@ -93,11 +93,11 @@ export default function AccountSettings({ user }) {
               handleClose={handleClose}
               link={"/dashboard/profile"}
             />
-            <AccountSettingItem
+            {/* <AccountSettingItem
               name={"Notifications"}
               handleClose={handleClose}
               click={() => setOpenNotification(true)}
-            />
+            /> */}
             <AccountSettingItem
               name={"My Wallet"}
               handleClose={handleClose}

@@ -2,18 +2,24 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { base_url } from "../../utils/constants";
 
-const useGetPayouts = () => {
+const useGetPayouts = ({ currentPage, status }) => {
   const [loading, setLoading] = useState(false);
   const [payouts, setPayouts] = useState([]);
+  const [totalPages, setTotalPages] = useState(1);
 
   const getPayouts = async () => {
     setLoading(true);
     try {
       const response = await axios.get(`${base_url}/payout/user`, {
         withCredentials: true,
+        params: {
+          currentPage,
+          status,
+        },
       });
       const data = response.data;
-      setPayouts(data);
+      setPayouts(data.payouts);
+      setTotalPages(data.totalPages);
     } catch (error) {
       console.error(
         error?.response?.data?.error ||
@@ -34,7 +40,7 @@ const useGetPayouts = () => {
     await getPayouts();
   };
 
-  return { loading, payouts, refetch };
+  return { loading, payouts, refetch, totalPages };
 };
 
 export default useGetPayouts;

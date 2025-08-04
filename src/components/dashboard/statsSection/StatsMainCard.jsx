@@ -46,7 +46,9 @@ export default function StatsMainCard() {
           <div className="flex lg:flex-row flex-col lg:text-left text-center lg:gap-5 justify-between w-full">
             <p className=" p-2 w-full rounded-lg">
               Total Hashrate -{" "}
-              <span className="text-xl  font-bold">{totalHashrate} TH/s</span>
+              <span className="text-xl  font-bold">
+                {totalHashrate / 1000} PH/s
+              </span>
             </p>
             <p className=" p-2 w-full text-center rounded-lg lg:text-end">
               Payout Mode -{" "}

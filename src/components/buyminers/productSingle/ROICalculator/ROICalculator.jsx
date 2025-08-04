@@ -48,7 +48,7 @@ export default function ROICalculator({ miner }) {
         Bitcoin ROI Calculator
       </h3>
       <p className="text-center">Buy vs Mining</p>
-      <div className="max-w-[1000px] w-full mx-auto flex flex-col gap-7 border-b border-[#011E34]">
+      <div className=" w-full mx-auto flex flex-col gap-7 border-b border-[#011E34]">
         <div className={`flex flex-col gap-3 w-fit`}>
           <select
             className={`p-2 text-[#0194FE] rounded-md outline-0 bg-[#011532] disabled:cursor-not-allowed`}

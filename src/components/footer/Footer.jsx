@@ -101,10 +101,10 @@ export default function Footer({ isZero }) {
               <p
                 className="cursor-pointer"
                 onClick={() =>
-                  (window.location.href = `mailto:Rizwan@dahabminers.ae`)
+                  (window.location.href = `mailto:support@dahabminers.ae`)
                 }
               >
-                Rizwan@dahabminers.ae
+                support@dahabminers.ae
               </p>
             </div>
             <div className="flex gap-3 items-center">
@@ -113,9 +113,9 @@ export default function Footer({ isZero }) {
               </div>
               <p
                 className="cursor-pointer"
-                onClick={() => (window.location.href = `tel:${+971568145866}`)}
+                onClick={() => (window.location.href = `tel:${+971509669623}`)}
               >
-                +971568145866
+                +971509669623
               </p>
             </div>
           </div>

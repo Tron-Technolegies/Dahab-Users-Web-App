@@ -19,7 +19,7 @@ export default function BuyCard({
 }) {
   return (
     <div
-      className={`p-5 rounded-2xl border border-[#76C6E038] flex flex-col gap-3 items-center w-full ${
+      className={`p-5 rounded-2xl border border-[#76C6E038] flex flex-col justify-between gap-3 items-center w-full ${
         stock > 0 ? "bg-[#011532]" : "bg-gray-700"
       }`}
     >
@@ -50,7 +50,7 @@ export default function BuyCard({
           </p>
         </div>
       </div>
-      <img src={image} className="w-32 object-cover" />
+      <img src={image} className="w-[250px] object-cover" />
       <div className="flex flex-col gap-1 items-center">
         <p>{name}</p>
         <p className="text-[#07EAD3]">AED {price}</p>

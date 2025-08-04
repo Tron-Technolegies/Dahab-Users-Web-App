@@ -6,6 +6,7 @@ import Loading from "../../components/Loading";
 import { Link, useParams } from "react-router-dom";
 import useGetSingleProduct from "../../hooks/products/useGetSingleProduct";
 import { CalculatorContext } from "../../CalculatorContext";
+import ProductDescription from "../../components/buyminers/productSingle/ProductDescription";
 
 export default function ProductInnerPage() {
   useEffect(() => {
@@ -20,7 +21,7 @@ export default function ProductInnerPage() {
   }, [minerLoading, miner]);
 
   return (
-    <div className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 flex flex-col">
+    <div className="px-5 md:px-10 lg:px-[120px] xl:px-[180px]  py-10 flex flex-col">
       <Link
         className="ms-auto bg-[#011532] px-3 py-1 rounded-md mb-3"
         to={"/dashboard/buy"}
@@ -32,8 +33,9 @@ export default function ProductInnerPage() {
       ) : (
         <>
           <ProductDetails miner={miner} />
-          <DetailsAndSpecs miner={miner} />
           <ROICalculator miner={miner} />
+          <ProductDescription miner={miner} />
+          <DetailsAndSpecs miner={miner} />
         </>
       )}
     </div>

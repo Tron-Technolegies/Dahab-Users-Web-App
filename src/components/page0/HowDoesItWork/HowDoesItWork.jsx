@@ -23,7 +23,7 @@ export default function HowDoesItWork({ oneA }) {
         }  mx-auto`}
       >
         <div className="bg-[#041637] rounded-md md:h-[320px] h-[400px] flex flex-col relative">
-          <div className="absolute inset-0 bg-[#101e39e5] opacity-40 z-10"></div>
+          {/* <div className="absolute inset-0 bg-[#101e39e5] opacity-40 z-10"></div> */}
           <div className="flex flex-col gap-2 pt-5 px-5">
             <p className="text-[21px]">What Is Bitcoin Mining?</p>
             <p className="text-[#9F9F9F] text-sm">
@@ -44,7 +44,7 @@ export default function HowDoesItWork({ oneA }) {
           </div>
         </div>{" "}
         <div className="lg:col-span-2 bg-[#041637] rounded-md flex justify-between md:h-[320px] h-[400px] relative">
-          <div className="absolute inset-0 bg-[#101e39e5] opacity-40 z-10"></div>
+          {/* <div className="absolute inset-0 bg-[#101e39e5] opacity-40 z-10"></div> */}
           <div className="flex flex-col gap-2 p-5">
             <p className="text-[21px]">
               Why Most People Struggle to Start Mining
@@ -80,7 +80,7 @@ export default function HowDoesItWork({ oneA }) {
           </div>
         </div>
         <div className="lg:col-span-2 bg-[#041637] rounded-md relative md:h-[250px] h-[400px] flex sm:flex-row flex-col">
-          <div className="absolute inset-0 bg-[#101e39e5] opacity-40 z-10"></div>
+          {/* <div className="absolute inset-0 bg-[#101e39e5] opacity-40 z-10"></div> */}
           <div className="flex flex-col gap-3 p-5">
             <p className="text-[21px]">Dahab Makes It Simple</p>
             <p className="text-[#9F9F9F] text-sm">
@@ -100,7 +100,7 @@ export default function HowDoesItWork({ oneA }) {
           </div>
         </div>
         <div className="bg-[#041637] rounded-md  sm:h-[250px] h-[300px] flex flex-col relative">
-          <div className="absolute inset-0 bg-[#101e39e5] opacity-40 z-10"></div>
+          {/* <div className="absolute inset-0 bg-[#101e39e5] opacity-40 z-10"></div> */}
           <div className="flex flex-col gap-5 pt-5 px-5">
             <p className="text-[21px]">Fully Remote, Fully Yours</p>
             <p className="text-[#9F9F9F] text-sm">

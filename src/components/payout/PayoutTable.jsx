@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -9,14 +9,30 @@ import Paper from "@mui/material/Paper";
 import FormSelect from "../FormSelect";
 import useGetPayouts from "../../hooks/payout/useGetPayouts";
 import Loading from "../Loading";
+import PaginationComponent from "./Pagination";
 
 export default function PayoutTable() {
-  const { loading, payouts } = useGetPayouts();
+  const [status, setStatus] = useState("All");
+  const [page, setPage] = useState(1);
+  const { loading, payouts, refetch, totalPages } = useGetPayouts({
+    currentPage: page,
+    status,
+  });
+  function handlePageChange(event, value) {
+    setPage(value);
+  }
+  useEffect(() => {
+    refetch();
+  }, [page, status]);
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2 self-end">
         <label>Sort</label>
-        <FormSelect list={["All", "Pending", "Completed"]} />
+        <FormSelect
+          list={["All", "Pending", "Completed", "Failed"]}
+          value={status}
+          onChange={(e) => setStatus(e.target.value)}
+        />
       </div>
       {loading ? (
         <Loading />
@@ -106,6 +122,13 @@ export default function PayoutTable() {
             </TableBody>
           </Table>
         </TableContainer>
+      )}
+      {totalPages > 1 && (
+        <PaginationComponent
+          totalPage={totalPages}
+          page={page}
+          pageChange={handlePageChange}
+        />
       )}
     </div>
   );
