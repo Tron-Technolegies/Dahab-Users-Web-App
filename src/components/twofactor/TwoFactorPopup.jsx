@@ -4,8 +4,8 @@ import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
 import Backdrop from "@mui/material/Backdrop";
 import { IoMdClose } from "react-icons/io";
-import useDisable2FA from "../../hooks/auth/useDisable2FA";
-import Loading from "../Loading";
+// import useDisable2FA from "../../hooks/auth/useDisable2FA";
+// import Loading from "../Loading";
 
 const style = {
   position: "absolute",
@@ -24,7 +24,7 @@ const style = {
 };
 
 export default function TwoFactorPopup({ open, setOpen, setChecked }) {
-  const { loading, disable2FA } = useDisable2FA();
+  // const { loading, disable2FA } = useDisable2FA();
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -55,7 +55,7 @@ export default function TwoFactorPopup({ open, setOpen, setChecked }) {
               <IoMdClose />
             </button>
             <p className="text-xl text-[#76C6E0] text-center">
-              Are you sure want to Disable Two Factor Authentication?
+              Two Factor Authentication is Mandatory
             </p>
             <div className="flex justify-center gap-5 items-center">
               <button
@@ -65,19 +65,10 @@ export default function TwoFactorPopup({ open, setOpen, setChecked }) {
                   setChecked(true);
                 }}
               >
-                No
-              </button>
-              <button
-                onClick={async () => {
-                  await disable2FA();
-                  setOpen(false);
-                }}
-                className="px-3 py-1 rounded-md bg-blue-800 cursor-pointer min-w-20"
-              >
-                Yes
+                OK
               </button>
             </div>
-            {loading && <Loading />}
+            {/* {loading && <Loading />} */}
           </div>
         </Box>
       </Fade>

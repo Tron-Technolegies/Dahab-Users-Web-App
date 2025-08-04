@@ -29,7 +29,7 @@ export default function MyMinerCard({
   // };
   return (
     <div
-      className={`p-5 rounded-md flex flex-col items-center gap-1 w-[300px] hover:scale-105 hover:bg-[#0194FE] duration-300 ease-in-out ${
+      className={`p-5 rounded-md flex flex-col justify-between items-center gap-1 w-[300px] min-h-[300px] hover:scale-105 hover:bg-[#0194FE] duration-300 ease-in-out ${
         isSelected ? "bg-[#0194FE] scale-105" : "bg-[#011532]"
       }`}
       onClick={() => {
@@ -73,12 +73,12 @@ export default function MyMinerCard({
       <p className="text-center">{name}</p>
       <div className="flex flex-col justify-center gap-5 items-center">
         <p className="text-xs">Batch Id - xxxx-xxxx-{batchId.slice(-5)}</p>
-        <button
+        {/* <button
           className="flex gap-2 items-center px-2 py-1 rounded-md disabled:cursor-not-allowed border border-[#CCF2FF2E] text-sm"
           disabled
         >
           DOA <img src="/my-miners/i4.png" />
-        </button>
+        </button> */}
       </div>
     </div>
   );

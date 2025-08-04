@@ -33,7 +33,7 @@ import {
 
 export default function App() {
   const router = createBrowserRouter([
-    { path: "/", element: <Page0 /> },
+    { path: "/", element: <Page0 />, errorElement: <ErrorPage /> },
     {
       path: "/dashboard",
       element: <Layout />,
