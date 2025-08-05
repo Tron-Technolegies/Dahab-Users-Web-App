@@ -18,62 +18,69 @@ export default function StatsMainCard() {
 
   return (
     <div
-      className={`p-10 ${
+      className={`md:p-10 py-5 px-2 ${
         on
           ? "bg-gray-200"
           : "bg-gradient-to-r from-[#59b3e4] via-[#0692DC] to-[#59b3e4]"
-      } lg:w-3/4 sm:w-3/4 w-full rounded-4xl relative flex flex-col gap-3 items-center mb-10`}
+      } lg:w-3/4 sm:w-3/4 w-full rounded-4xl relative flex flex-col md:gap-3 gap-5 items-center mb-10`}
       id="main-stat-card"
     >
       {on ? (
         <GraphStat />
       ) : (
         <div className="flex flex-col gap-2 items-center w-full ">
-          <div className="flex flex-col gap-2 items-center w-full p-4 border-b border-[#57B9FF]">
+          <div className="flex flex-col gap-2 md:items-center items-start w-full p-4 border-b border-[#57B9FF]">
             <p>Current Balance</p>
-            <div className="flex gap-5 justify-center items-center">
-              <img src="/home/bitcoin.png" className="w-10" />
-              <p className="text-2xl font-semibold">
+            <div className="flex gap-5 md:justify-center items-center md:border-0 border-b border-[#57B9FF] md:pb-0 pb-2 w-full">
+              <img src="/home/bitcoin.png" className="md:w-10 w-8" />
+              <p className="md:text-2xl text-lg font-semibold">
                 {currentBalance?.toFixed(8)} BTC
               </p>
             </div>
-            <p className=" p-2 w-full text-center rounded-lg">
+            <p className=" md:p-2 w-full md:text-center text-left rounded-lg">
               Total Miners -{" "}
-              <span className="text-xl  font-bold">{totalMiners}</span>
+              <span className="md:text-xl text-base font-bold">
+                {totalMiners}
+              </span>
             </p>
           </div>
 
-          <div className="flex lg:flex-row flex-col lg:text-left text-center lg:gap-5 justify-between w-full">
-            <p className=" p-2 w-full rounded-lg">
+          <div className="md:p-0 px-4 flex lg:flex-row flex-col lg:text-left md:text-center lg:gap-5 gap-2 justify-between w-full">
+            <p className=" md:p-2 w-full rounded-lg">
               Total Hashrate -{" "}
-              <span className="text-xl  font-bold">
+              <span className="md:text-xl text-base  font-bold">
                 {totalHashrate / 1000} PH/s
               </span>
             </p>
-            <p className=" p-2 w-full text-center rounded-lg lg:text-end">
+            <p className=" md:p-2 w-full md:text-center rounded-lg lg:text-end">
               Payout Mode -{" "}
-              <span className="text-xl capitalize font-bold">
+              <span className="md:text-xl text-base capitalize font-bold">
                 BTC {user?.payoutMode}
               </span>
             </p>
           </div>
-          <div className="flex lg:flex-row flex-col-reverse lg:text-left text-center lg:gap-5 justify-between w-full">
+          <div className="md:p-0 px-4 flex lg:flex-row flex-col-reverse lg:text-left md:text-center lg:gap-5 gap-2 justify-between w-full md:border-0 border-b md:pb-0 pb-3 border-[#57B9FF]">
+            <button className=" text-sm rounded-lg cursor-pointer px-3 py-1 border text-white md:hidden w-fit">
+              Topup
+            </button>
             <p
-              className={`p-2 w-full flex gap-1 lg:justify-start justify-center items-center rounded-lg ${
+              className={`md:p-2 w-full flex gap-1 lg:justify-start md:justify-center items-center rounded-lg ${
                 user?.walletBalance <= 0 && "text-red-600"
               }`}
             >
               Wallet Balance -{" "}
-              <span className="text-xl  font-bold">
+              <span className="md:text-xl text-base  font-bold">
                 {user?.walletBalance} AED
               </span>
-              <button className="ms-2 text-sm rounded-lg cursor-pointer px-3 py-1 border text-white">
+              <button className="ms-2 text-sm rounded-lg cursor-pointer px-3 py-1 border text-white md:block hidden">
                 Topup
               </button>
             </p>
-            <p className=" p-2 w-full rounded-lg lg:text-end">
+            <p className=" md:p-2 w-full rounded-lg lg:text-end">
               Avg. Validity Left -{" "}
-              <span className="text-xl  font-bold">{avgValidity} Days</span>
+              <span className="md:text-xl text-base font-bold">
+                {avgValidity} Days
+              </span>
             </p>
           </div>
         </div>
