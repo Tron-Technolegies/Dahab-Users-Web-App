@@ -57,7 +57,7 @@ export default function TopSection({ hidden }) {
           />
         </div>
         <div className="relative flex flex-col gap-3">
-          <div className="flex gap-3 items-center">
+          <div className="flex md:gap-3 gap-2 items-center">
             <p
               className="text-[#07EAD3] cursor-pointer"
               onMouseEnter={() => setShowInfo(true)}
@@ -65,8 +65,8 @@ export default function TopSection({ hidden }) {
             >
               <FaRegCircleQuestion />
             </p>
-            <p>Your Current Payout Mode</p>
-            <p className="p-3 bg-[#011532] rounded-full text-center capitalize">
+            <p className="md:text-base text-sm">Your Current Payout Mode</p>
+            <p className="md:p-3 p-2 bg-[#011532] md:text-base text-sm rounded-full text-center capitalize">
               BTC {user?.payoutMode}
             </p>
           </div>

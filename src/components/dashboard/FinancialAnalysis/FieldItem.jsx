@@ -12,7 +12,7 @@ export default function FieldItem({
   const [showInfo, setShowInfo] = useState(false);
   return (
     <div className="w-full flex justify-between relative">
-      <p className={`flex gap-2 items-center ${style}`}>
+      <p className={`flex gap-2 items-center md:text-base text-sm ${style}`}>
         {item}{" "}
         <span
           className="text-[#0194FE] text-sm cursor-pointer"
@@ -22,7 +22,7 @@ export default function FieldItem({
           <IoInformationCircleOutline />
         </span>
       </p>
-      <p className={style2}>{value}</p>
+      <p className={`md:text-base text-sm ${style2}`}>{value}</p>
       {showInfo && (
         <div
           className="absolute bg-black p-5 rounded-lg z-10 lg:w-[400px] w-[300px] flex flex-col gap-3 items-center"

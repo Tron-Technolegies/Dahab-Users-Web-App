@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import CurrentBalance from "../../components/payout/withdraw/CurrentBalance";
-import EarningsGraph from "../../components/payout/withdraw/EarningsGraph";
+// import EarningsGraph from "../../components/payout/withdraw/EarningsGraph";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { Link } from "react-router-dom";
 import WithdrawForm from "../../components/payout/withdraw/WithdrawForm";
@@ -16,7 +16,7 @@ export default function WithdrawPage() {
       </Link>
       <div className="flex lg:flex-row flex-col justify-center gap-10">
         <CurrentBalance />
-        <EarningsGraph />
+        {/* <EarningsGraph /> */}
       </div>
       <WithdrawForm />
     </div>

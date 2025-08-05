@@ -24,10 +24,10 @@ export default function ProductDetails({ miner }) {
         <img src={miner?.image} className="lg:w-[400px] w-full object-cover" />
       </div>
       <div>
-        <h1 className="text-2xl text-[#1ECBAF] lg:text-left text-center font-semibold">
+        <h1 className="md:text-2xl text-xl text-[#1ECBAF] lg:text-left text-center font-semibold">
           {miner?.name}
         </h1>
-        <p className="lg:text-left text-justify font-semibold">
+        <p className="lg:text-left text-justify md:text-base text-sm font-semibold">
           {miner?.subtitle}
         </p>
       </div>

@@ -43,8 +43,8 @@ export default function ROICalculator({ miner }) {
   } = useContext(CalculatorContext);
 
   return (
-    <div className="flex flex-col gap-5 mt-20 my-10 ">
-      <h3 className="text-3xl font-semibold text-center text-[#76C6E0]">
+    <div className="flex flex-col md:gap-5 gap-2 mt-20 my-10 ">
+      <h3 className="md:text-3xl text-xl font-semibold text-center text-[#76C6E0]">
         Bitcoin ROI Calculator
       </h3>
       <p className="text-center">Buy vs Mining</p>
@@ -59,7 +59,7 @@ export default function ROICalculator({ miner }) {
             </option>
           </select>
         </div>
-        <div className="bg-[#011532] p-5 px-10 rounded-md grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 items-center gap-7 border-t border-[#4D8DAF]">
+        <div className="bg-[#011532] p-5 md:px-10 rounded-md grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 items-center gap-7 border-t border-[#4D8DAF]">
           <FormInput
             title={"No of Miners"}
             type={"number"}
@@ -114,18 +114,18 @@ export default function ROICalculator({ miner }) {
           className="bg-[#011532] flex lg:flex-row flex-col justify-between items-start"
         >
           <div className="w-full">
-            <div className="flex items-center gap-2 justify-center border-b border-[#4D8DAF] py-3">
+            <div className="flex items-center gap-2 justify-center border-b border-[#4D8DAF] px-3 py-3">
               <div className="text-[#252528] text-4xl bg-[#5B5B5B] rounded-full">
                 <FaBitcoin />
               </div>
               <div>
-                <p>Buying BTC</p>
-                <p className="text-xs text-[#949494]">
+                <p className="md:text-base text-sm">Buying BTC</p>
+                <p className="md:text-xs text-[10px] text-[#949494]">
                   Overview of your Bitcoin portfolio performance
                 </p>
               </div>
             </div>
-            <div className="my-5 px-16 flex flex-col gap-3">
+            <div className="my-5 md:px-16 px-3 flex flex-col gap-3">
               <FieldItem
                 item={"Total Cost incurred"}
                 value={`${investment} AED`}
@@ -168,7 +168,7 @@ export default function ROICalculator({ miner }) {
                 )} AED</p>`}
               />
             </div>
-            <div className="w-full flex flex-col gap-2 px-16 pb-5 lg:hidden border-b border-[#4D8DAF]">
+            <div className="w-full flex flex-col gap-2 md:px-16 px-3 pb-5 lg:hidden border-b border-[#4D8DAF]">
               <FieldItem
                 item={"Net Profit"}
                 value={`${netProfitBuying} AED`}
@@ -196,18 +196,18 @@ export default function ROICalculator({ miner }) {
             </div>
           </div>
           <div className="w-full">
-            <div className="flex items-center justify-center gap-2 border-b border-[#4D8DAF] py-3">
+            <div className="flex items-center justify-center gap-2 border-b border-[#4D8DAF] p-3">
               <div className="text-[#5B5B5B] text-3xl bg-[#252528] rounded-full">
                 <GiMining />
               </div>
               <div>
-                <p>Buying Miner</p>
-                <p className="text-xs text-[#949494]">
+                <p className="md:text-base text-sm">Buying Miner</p>
+                <p className="md:text-xs text-[10px] text-[#949494]">
                   Overview of your Bitcoin portfolio performance
                 </p>
               </div>
             </div>
-            <div className="my-5 px-16 flex flex-col gap-3 border-l border-[#4D8DAF59] relative">
+            <div className="my-5 md:px-16 px-3 flex flex-col gap-3 border-l border-[#4D8DAF59] relative">
               <FieldItem
                 item={"Miner Price"}
                 value={`${parseFloat(miner?.price) * parseFloat(miners)} AED`}

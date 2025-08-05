@@ -73,18 +73,24 @@ export default function Header() {
         </NavLink>
       </nav>
       {user ? (
-        <div className="flex gap-2 items-center text-2xl">
+        <div className="flex gap-2 items-center md:text-2xl">
           {/* <span className="text-[#07EAD3]">
             <IoNotifications />
           </span> */}
           <AccountSettings user={user} />
-          <Link to={`/dashboard/buy/cart`} className="relative">
+          <Link
+            to={`/dashboard/buy/cart`}
+            className="relative md:text-base text-sm mr-1"
+          >
             <FaCartShopping />
-            <p className="text-sm w-6 h-6 rounded-full flex justify-center items-center bg-blue-500 absolute -top-3 -right-3">
+            <p className="md:text-sm md:w-6 w-4 md:h-6 h-4 rounded-full flex justify-center items-center bg-blue-500 absolute -top-3 -right-3">
               {user?.cartItems.length}
             </p>
           </Link>
-          <p className="text-xl md:hidden" onClick={() => setOpenDrawer(true)}>
+          <p
+            className="md:text-xl text-base md:hidden"
+            onClick={() => setOpenDrawer(true)}
+          >
             <FaAlignRight />
           </p>
         </div>

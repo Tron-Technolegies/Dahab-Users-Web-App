@@ -5,7 +5,7 @@ export default function PayoutTopSection({ active, setActive }) {
     <div className="flex gap-1">
       <button
         onClick={() => setActive("rewards")}
-        className={`px-4 py-1  cursor-pointer duration-100 ease-in-out border-r border-l rounded-b-md border-b ${
+        className={`md:px-4 px-2 py-1 md:text-base text-sm  cursor-pointer duration-100 ease-in-out border-r border-l rounded-b-md border-b ${
           active === "rewards"
             ? "text-white border-[#0194FE] scale-105"
             : "text-gray-500 border-gray-400"
@@ -15,7 +15,7 @@ export default function PayoutTopSection({ active, setActive }) {
       </button>
       <button
         onClick={() => setActive("payouts")}
-        className={`px-4 py-1 cursor-pointer duration-100 ease-in-out border-b border-l border-r rounded-b-md ${
+        className={`md:px-4 px-2 py-1 md:text-base text-sm cursor-pointer duration-100 ease-in-out border-b border-l border-r rounded-b-md ${
           active === "payouts"
             ? "text-white  border-[#0194FE] scale-105"
             : "text-gray-500 border-gray-600"
@@ -25,7 +25,7 @@ export default function PayoutTopSection({ active, setActive }) {
       </button>
       <button
         onClick={() => setActive("mode")}
-        className={`px-4 py-1 cursor-pointer duration-100 ease-in-out border-b border-l border-r rounded-b-md ${
+        className={`md:px-4 px-2 py-1 md:text-base text-sm cursor-pointer duration-100 ease-in-out border-b border-l border-r rounded-b-md ${
           active === "mode"
             ? "text-white  border-[#0194FE] scale-105"
             : "text-gray-500 border-gray-600"

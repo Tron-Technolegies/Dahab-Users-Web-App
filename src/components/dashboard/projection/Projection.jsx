@@ -45,12 +45,12 @@ export default function Projection() {
       }}
     >
       <div className="flex flex-col items-center md:gap-0 py-5 border-b border-[#0194FE]">
-        <p className="text-lg">Financial Projection (3 Years)</p>
-        <p className="text-xs text-[#949494]">
+        <p className="md:text-lg text-base">Financial Projection (3 Years)</p>
+        <p className="md:text-xs text-[10px] text-[#949494]">
           Overview of your Bitcoin portfolio performance
         </p>
       </div>
-      <div className="lg:px-20 px-5 py-10 flex flex-col gap-3">
+      <div className="lg:px-20 md:px-5 px-[6px] md:py-10 py-5 flex flex-col gap-3">
         <FieldItem
           item={"Total Investment"}
           value={`${totalInvestment3Yrs.toFixed(2)} AED`}
@@ -74,12 +74,12 @@ export default function Projection() {
           )} BTC</p>`}
         />
         <FieldItem
-          item={"BTC Price (After 3 yrs)"}
+          item={"BTC Price (3 yrs)"}
           value={`${convertUsdToAed(expectedPrice)} AED`}
           description={`<p>This indicates the expected BTC price after 3 years. This Value is just an assumption based on the current trend in market. This is not a real value</p>`}
         />
         <FieldItem
-          item={"Your BTC Value (After 3 yrs)"}
+          item={"Your BTC Value (3 yrs)"}
           value={`${valueIn3Yrs} AED`}
           formula={"Total BTC Mined in 3 Yrs x Expected BTC Price in 3 yrs"}
           description={`<p>This represents the value of BTC you owned after 3 years.</p><p>BTC Mined in 3 yrs - ${totalMined3Yrs} BTC</p><p>Expected BTC Price in 3 yrs - ${convertUsdToAed(

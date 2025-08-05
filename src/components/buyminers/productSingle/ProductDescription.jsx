@@ -13,13 +13,15 @@ export default function ProductDescription({ miner }) {
   const { refetchTrigger, setRefetchTrigger } = useContext(UserContext);
   return (
     <div className="p-3 w-full flex flex-col gap-5">
-      <h1 className="text-2xl text-[#1ECBAF] lg:text-left text-center font-semibold">
+      <h1 className="md:text-2xl text-xl text-[#1ECBAF] lg:text-left text-center font-semibold">
         {miner?.name}
       </h1>
-      <p className="lg:text-left text-justify font-semibold">
+      <p className="lg:text-left md:text-base text-sm text-justify font-semibold">
         {miner?.subtitle}
       </p>
-      <p className="lg:text-left text-justify">{miner?.description}</p>
+      <p className="lg:text-left md:text-base text-sm text-justify">
+        {miner?.description}
+      </p>
       <div className="w-full flex flex-col gap-3 justify-center">
         <div className="justify-between">
           <p>

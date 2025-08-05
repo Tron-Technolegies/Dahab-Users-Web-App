@@ -40,15 +40,15 @@ export default function AnalysisSection() {
       }}
     >
       <div className="flex items-center gap-0 px-10 py-2 border-b border-[#0194FE]">
-        <img src="/home/bitcoin-2.png" className="w-[70px] mt-4" />
+        <img src="/home/bitcoin-2.png" className="md:w-[70px] w-[50px] mt-4" />
         <div className="flex flex-col gap-0">
-          <p className="text-lg">Financial Analysis</p>
-          <p className="text-xs text-[#949494]">
+          <p className="md:text-lg text-base">Financial Analysis</p>
+          <p className="md:text-xs text-[10px] text-[#949494]">
             Overview of your Bitcoin portfolio performance
           </p>
         </div>
       </div>
-      <div className="lg:px-20 px-5 py-10 flex flex-col gap-3">
+      <div className="lg:px-20 md:px-5 px-[6px] md:py-10 py-3 flex flex-col gap-3">
         <FieldItem
           item={"Current BTC Value"}
           value={`${convertUsdToAed(btcPrice)} AED`}

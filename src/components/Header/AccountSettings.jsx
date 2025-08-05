@@ -38,7 +38,13 @@ export default function AccountSettings({ user }) {
           aria-haspopup="true"
           aria-expanded={open ? "true" : undefined}
         >
-          <Avatar sx={{ width: 32, height: 32 }}>
+          <Avatar
+            sx={{
+              width: { xs: 24, sm: 32 }, // 24px on extra-small, 32px on small and up
+              height: { xs: 24, sm: 32 },
+              fontSize: { xs: "0.8rem", sm: "1rem" },
+            }}
+          >
             {user.username.slice(0, 1)}
           </Avatar>
         </IconButton>

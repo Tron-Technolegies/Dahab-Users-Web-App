@@ -48,7 +48,7 @@ export default function WithdrawForm() {
   }
   return (
     <div
-      className="p-10 rounded-md bg-[#011532] flex flex-col items-center gap-5 lg:w-1/2 w-full mx-auto my-10"
+      className="md:p-10 p-3 rounded-md bg-[#011532] flex flex-col items-center gap-5 lg:w-1/2 w-full mx-auto my-10"
       id="withdraw-form"
     >
       {alertError && (
@@ -58,7 +58,7 @@ export default function WithdrawForm() {
           onClose={() => setAlertError("")}
         />
       )}
-      <Box sx={{ width: 330 }}>
+      <Box sx={{ minWidth: "80%" }}>
         <Slider
           aria-label="Custom marks"
           getAriaValueText={valuetext}
