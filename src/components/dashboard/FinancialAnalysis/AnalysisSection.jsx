@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import FieldItem from "./FieldItem";
 import { CalculatorContext } from "../../../CalculatorContext";
 import { DashboardContext } from "../../../DashBoardContext";
+import { UserContext } from "../../../UserContext";
 
 export default function AnalysisSection() {
   const { btcPrice } = useContext(CalculatorContext);
@@ -16,6 +17,7 @@ export default function AnalysisSection() {
     currentBalance,
     roi,
   } = useContext(DashboardContext);
+  const { user } = useContext(UserContext);
   return (
     <motion.div
       className="max-w-[600px] md:w-[600px] bg-[#011532]"
@@ -69,7 +71,9 @@ export default function AnalysisSection() {
           formula={"Current BTC Balance + Sum of Withdrawals"}
           description={`<p>This value represents the total BTC mined in your account. This is the sum of your current BTC Balance and the total sum of all the BTC withdrawals you made</p><p>Current Balance - ${currentBalance?.toFixed(
             8
-          )} AED</p><p>Sum of total Withdrawals - ${"N/A"}</p>`}
+          )} AED</p><p>Sum of total Withdrawals - ${user?.amountWithdrawed?.toFixed(
+            8
+          )}</p>`}
         />
         {/* <FieldItem
           item={"Total Hosting Due"}

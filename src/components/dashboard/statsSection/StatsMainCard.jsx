@@ -60,9 +60,12 @@ export default function StatsMainCard() {
             </p>
           </div>
           <div className="md:p-0 px-4 flex lg:flex-row flex-col-reverse lg:text-left md:text-center lg:gap-5 gap-2 justify-between w-full md:border-0 border-b md:pb-0 pb-3 border-[#57B9FF]">
-            <button className=" text-sm rounded-lg cursor-pointer px-3 py-1 border text-white md:hidden w-fit">
+            <Link
+              to={"/dashboard/wallet"}
+              className=" text-sm rounded-lg cursor-pointer px-3 py-1 border text-white md:hidden w-fit"
+            >
               Topup
-            </button>
+            </Link>
             <p
               className={`md:p-2 w-full flex gap-1 lg:justify-start md:justify-center items-center rounded-lg ${
                 user?.walletBalance <= 0 && "text-red-600"
@@ -72,9 +75,12 @@ export default function StatsMainCard() {
               <span className="md:text-xl text-base  font-bold">
                 {user?.walletBalance} AED
               </span>
-              <button className="ms-2 text-sm rounded-lg cursor-pointer px-3 py-1 border text-white md:block hidden">
+              <Link
+                to={"/dashboard/wallet"}
+                className="ms-2 text-sm rounded-lg cursor-pointer px-3 py-1 border text-white md:block hidden"
+              >
                 Topup
-              </button>
+              </Link>
             </p>
             <p className=" md:p-2 w-full rounded-lg lg:text-end">
               Avg. Validity Left -{" "}

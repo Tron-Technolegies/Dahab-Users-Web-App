@@ -7,7 +7,7 @@ import Loading from "../../Loading";
 
 export default function CheckoutSection() {
   // const [pay, setPay] = useState("fiat");
-  const { user } = useContext(UserContext);
+  const { user, setAlertError } = useContext(UserContext);
   const { refetch } = useGetUserInfo();
   const { loading, purchase } = usePurchase();
   // const { setIsOpen, setCurrentStep } = useTour();
@@ -37,6 +37,10 @@ export default function CheckoutSection() {
         </div>
         <button
           onClick={async () => {
+            if (user?.isTest) {
+              setAlertError("Test Users cannot buy new Machines");
+              return;
+            }
             await purchase();
             await refetch();
           }}

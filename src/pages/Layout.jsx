@@ -8,6 +8,7 @@ import { UserContext } from "../UserContext";
 import useGetUserInfo from "../hooks/auth/useGetUserInfo";
 import Loading from "../components/Loading";
 import useGetBitCoinData from "../hooks/coins/useGetBitCoinData";
+import useGetSats from "../hooks/useGetSats";
 
 export default function Layout() {
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ export default function Layout() {
     refetchTrigger,
   } = useContext(UserContext);
   const { loading, refetch } = useGetUserInfo();
+  const {} = useGetSats();
   const { loading: coinLoading } = useGetBitCoinData();
   const steps = [
     {
