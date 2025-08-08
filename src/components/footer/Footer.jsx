@@ -45,6 +45,8 @@ export default function Footer({ isZero }) {
               <Link to={"/dashboard/my-miners"}>My Miners</Link>
               <Link to={"/dashboard/payouts"}>Payout</Link>
               <Link to={"/dashboard/buy"}>Buy Miners</Link>
+              <Link to={"/terms"}>Privacy Policy</Link>
+              <Link to={"/privacy"}>Terms & Conditions</Link>
             </>
           )}
           <div className="flex gap-5 text-base font-normal text-white mt-5">

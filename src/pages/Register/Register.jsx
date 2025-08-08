@@ -92,7 +92,7 @@ export default function Register() {
           </p>
           <p className="text-xs text-center">
             By signing up, you agree to our{" "}
-            <Link to={"/privacy-policy"} className="text-[#76C6E0]">
+            <Link to={"/privacy"} className="text-[#76C6E0]">
               privacy policy
             </Link>{" "}
             and{" "}

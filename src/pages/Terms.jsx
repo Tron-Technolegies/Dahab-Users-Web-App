@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 export default function Terms() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
-    <div className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 flex flex-col gap-5">
+    <div className="px-5 md:px-10 lg:px-[120px] text-left py-10 flex flex-col gap-5">
       <p className="text-2xl text-[#76C6E0]">Terms & Conditions</p>
       <div className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-5">
         <div className="flex justify-center">
@@ -14,267 +17,261 @@ export default function Terms() {
           ></img>
         </div>
         <h1 className="my-8 text-3xl font-semibold text-center">
-          Terms And Conditions
+          Dahab Miners – Terms & Conditions & AML/KYC Policy
         </h1>
+        <p className="text-sm my-3">Effective Date - 01/08/2025</p>
         <div className="flex flex-col gap-5">
-          <h4 className="text-2xl font-semibold">1. Introduction</h4>
+          <h4 className="text-2xl font-semibold">
+            1. Anti-Money Laundering (AML) & Know Your Customer (KYC) Policy
+          </h4>
           <p>
-            Welcome to Dahab Miners Electrical Contracting LLC (“Dahab Miners,”
-            “we,” “our,” or “us”). By using our website, products, and services,
-            you (“Client,” “you,” or “your”) agree to comply with and be bound
-            by the following terms and conditions. If you do not agree with any
-            part of these terms, please refrain from using our services.
+            Dahab Miners is committed to full compliance with applicable
+            Anti-Money Laundering (AML) and Counter-Terrorist Financing (CTF)
+            laws and regulations in all jurisdictions where we operate.
           </p>
-          <h4 className="text-2xl font-semibold">2. Company Information</h4>
-          <ul className="font-light ms-10">
-            <li>
-              <span className="font-medium">Company Name:</span> Dahab Miners
-              Electrical Contracting LLC
-            </li>
-            <li>
-              <span className="font-medium">Registered Address:</span> Eastern
-              Mahadir - Mahdar Al Jabbana - Abu Dhabi, UAE
-            </li>
-            <li>
-              <span className="font-medium">Contact Email:</span>{" "}
-              rizwan@dahabminers.ae
-            </li>
-          </ul>
-          <h4 className="text-2xl font-semibold">3. Services Offered</h4>
-          <p>Dahab Miners offers the following services:</p>
-          <ul className="font-light ms-10">
-            <li>Sale of cryptocurrency mining machines</li>
-            <li>Hosting services for mining machines</li>
-            <li>Repair and maintenance of ASIC miners</li>
-            <li>
-              Free configuration assistance for customers setting up their
-              miners
-            </li>
-          </ul>
-          <h4 className="text-2xl font-semibold">
-            4. Payment & Pricing Policies
-          </h4>
-          <ul className="font-light ms-10">
-            <li>We accept all cryptocurrency payments and bank transfers.</li>
-            <li>
-              Hosting deposit & advance:
-              <ul className="ms-10">
-                <li>
-                  <span className="font-medium">UAE:</span> Equivalent to one
-                  month’s hosting fee is required in advance.
-                </li>
-                <li>
-                  <span className="font-medium">Ethiopia:</span> No deposit is
-                  required.
-                </li>
-              </ul>
-            </li>
-            <li>
-              Setup Fees:
-              <ul className="ms-10">
-                <li>
-                  <span className="font-medium">UAE:</span> A $75 setup fee
-                  applies unless the miner is purchased from Dahab Miners.
-                </li>
-                <li>
-                  <span className="font-medium">Ethiopia:</span> No setup fee
-                </li>
-              </ul>
-            </li>
-            <li>
-              Refund Policy: No refunds are offered on any services or hardware
-              purchases.
-            </li>
-          </ul>
-          <h4 className="text-2xl font-semibold">5. Hosting Terms</h4>
-          <ul className="ms-10">
-            <li>
-              <span className="font-medium">Electricity Rate:</span> $0.07 per
-              kWh.
-            </li>
-            <li>
-              <span className="font-medium">Uptime Guarantee:</span> Minimum 95%
-              uptime for hosted miners.
-            </li>
-            <li>
-              <span className="font-medium">Minimum Hosting Period:</span> 2
-              years (renewable for an additional 5 years).
-            </li>
-            <li>
-              <span className="font-medium">Client’s Responsibilities:</span>{" "}
-              Timely payment, ensuring the miner is in good working condition.
-            </li>
-            <li>
-              <span className="font-medium">
-                Dahab Miners’ Responsibilities:
-              </span>{" "}
-              Providing stable electricity, security, cooling, and maintenance.
-            </li>
-          </ul>
-          <h4 className="text-2xl font-semibold">6. Repair Services</h4>
-          <ul className="ms-10">
-            <li>
-              <span className="font-medium">Warranty on Repairs:</span> 1 week
-              from the date of repair completion.
-            </li>
-            <li>
-              <span className="font-medium">
-                Liability for Damages During Repair:
-              </span>{" "}
-              Dahab Miners assumes responsibility for damages caused during
-              repairs.
-            </li>
-            <li>
-              <span className="font-medium">Shipping Terms:</span> Customers are
-              responsible for shipping miners to and from our repair center.
-            </li>
-          </ul>
-          <h4 className="text-2xl font-semibold">7. Liability & Risk</h4>
-          <ul className="font-light ms-10">
-            <li>
-              Dahab Miners will take responsibility for theft, fire, or
-              water-related damages to miners due to our negligence.
-            </li>
-            <li>
-              Dahab Miners will not compensate for damages due to natural
-              disasters, power failures, or external factors beyond our control.
-            </li>
+          <ul className="flex flex-col gap-2 ms-5">
+            <li>1.1 Purpose</li>
+            <p>
+              This AML/KYC policy is designed to prevent our platform from being
+              used for money laundering, terrorist financing, fraud, or any
+              other financial crime.
+            </p>
+            <li>1.2 KYC Requirement</li>
+            <ul className="ms-5 flex flex-col gap-2">
+              <li>
+                - Every customer must complete identity verification (KYC)
+                before any withdrawal of funds from the platform.
+              </li>
+              <li>
+                - Dahab Miners will contact the customer using the email address
+                provided during account registration to initiate KYC.
+              </li>
+              <li>
+                - Failure to complete KYC within the time frame specified by
+                Dahab Miners will result in:
+                <ul className="ms-5 flex flex-col gap-2">
+                  <li>- Suspension of payouts</li>
+                  <li>
+                    - Inability to withdraw any balance until verification is
+                    complete
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <li>1.3 KYC Information Collected</li>
+            <div className="ms-5 flex flex-col gap-2">
+              <p>- Full legal name</p>
+              <p>- Date of birth</p>
+              <p>- Country of residence and nationality</p>
+              <p>
+                - Valid government-issued photo identification (passport,
+                national ID, or driving license)
+              </p>
+              <p>
+                - Proof of address (utility bill, bank statement, or government
+                correspondence dated within the last 3 months)
+              </p>
+              <p>
+                - For businesses: company registration documents, business
+                license, UBO declaration, and proof of address
+              </p>
+            </div>
+            <li>1.4 Ongoing Monitoring</li>
+            <div className="flex flex-col gap-2 ms-5">
+              <p>
+                - Dahab Miners may, at any time, request updated KYC documents.
+              </p>
+              <p>
+                - Accounts showing suspicious activity (e.g., unusual
+                withdrawals, sudden large deposits) may be suspended pending
+                review.
+              </p>
+              <p>
+                - We may refuse or reverse any transaction if it violates
+                AML/CTF laws.
+              </p>
+            </div>
+            <li>1.5 Sanctions & Prohibited Jurisdictions</li>
+            <p>
+              We do not provide services to individuals or businesses located
+              in, or associated with, jurisdictions under sanctions or
+              prohibited by our compliance partners. Dahab Miners reserves the
+              right to update this list without notice.
+            </p>
           </ul>
           <h4 className="text-2xl font-semibold">
-            8. Termination & Cancellation
+            2. Nature of Our Service – Digital Miners
           </h4>
-          <ul className="font-light ms-10">
-            <li>
-              Clients may terminate their hosting agreement with 30 days’
-              written notice.
-            </li>
-            <li>
-              Dahab Miners reserves the right to terminate services with 30
-              days' notice to the client.
-            </li>
-            <li>
-              If a client fails to make payments or violates the terms, services
-              may be suspended.
-            </li>
+          <ul className="ms-5 flex flex-col gap-2">
+            <li>2.1 Digital Miners Are Not Physical Machines</li>
+            <p>
+              When you purchase a “Digital Miner” through Dahab Miners, you are
+              not purchasing a physical cryptocurrency mining machine. Instead,
+              you are purchasing a digital contract backed by real mining
+              operations.
+            </p>
+            <li>2.2 Backing by Real Hardware</li>
+            <p>
+              Each Digital Miner is linked to real miners in Dahab’s operational
+              farms. The performance of your Digital Miner is tied to the
+              hashrate and uptime of these real-world miners.
+            </p>
+            <li>2.3 No Direct Ownership of Hardware</li>
+            <p>
+              Owning a Digital Miner does not grant you any ownership rights,
+              possession, or control over any physical mining hardware.
+            </p>
           </ul>
           <h4 className="text-2xl font-semibold">
-            9. Governing Law & Dispute Resolution
+            3. Performance, Uptime & Downtime Disclaimer
           </h4>
-          <ul className="font-light ms-10">
-            <li>
-              These terms are governed by the laws of Abu Dhabi and the UAE
-              federal laws.
-            </li>
-            <li>
-              Any disputes will be resolved through negotiation, arbitration, or
-              legal proceedings in Abu Dhabi.
-            </li>
+          <ul className="ms-5 flex flex-col gap-2">
+            <li>3.1 Uptime Dependency</li>
+            <div className="ms-5 flex flex-col gap-2">
+              <p>
+                - Your Digital Miner’s uptime will match the uptime of the
+                corresponding real-world miners.
+              </p>
+              <p>
+                - Any downtime in the physical mining facility (e.g., due to
+                maintenance, repairs, power outages, or other disruptions) will
+                result in proportional downtime for your Digital Miner.
+              </p>
+            </div>
+            <li>3.2 No 100% Uptime Guarantee</li>
+            <p>
+              We do not guarantee uninterrupted operation of mining services.
+              Mining performance may be affected by:
+            </p>
+            <div className="ms-5 flex flex-col gap-2">
+              <p>- Hardware failures</p>
+              <p>- Network outages</p>
+              <p>- Power interruptions</p>
+              <p>- Maintenance schedules</p>
+              <p>- Force majeure events</p>
+            </div>
           </ul>
           <h4 className="text-2xl font-semibold">
-            10. Modifications & Amendments
+            4. Earnings, Calculations & Risk Factors
           </h4>
-          <ul className="font-light ms-10">
-            <li>
-              Dahab Miners reserves the right to modify these terms at any time
-            </li>
-            <li>
-              Any changes will be posted on Any changes will be posted on our
-              website, and continued use of our services after modifications
-              constitutes acceptance of the revised terms.
-            </li>
-            <li>
-              Clients will be notified of significant updates affecting their
-              contractual rights
-            </li>
+          <ul className="ms-5 flex flex-col gap-2">
+            <li>4.1 Revenue Payout Modes</li>
+            <div className="ms-5 flex flex-col gap-2">
+              <p>
+                - Profit Mode: Earnings are credited daily after deducting
+                electricity/hosting costs.
+              </p>
+              <p>
+                - Hold Mode: Entire BTC payout is credited to you; hosting fees
+                must be paid separately in advance.
+              </p>
+            </div>
+            <li>4.2 Calculators & ROI Predictions</li>
+
+            <div className="ms-5 flex flex-col gap-2">
+              <p>
+                - Our app contains various calculators to estimate ROI, total
+                profits, and performance comparisons (e.g., “Buying Bitcoin vs.
+                Buying a Digital Miner”).
+              </p>
+              <p>
+                - All calculator outputs are projections only and are not
+                guaranteed.
+              </p>
+            </div>
+            <li>4.3 Risk Factors</li>
+            <p>
+              Mining profitability depends on multiple external variables
+              outside Dahab Miners’ control, including:
+            </p>
+            <div className="ms-5 flex flex-col gap-2">
+              <p>- Bitcoin price fluctuations</p>
+              <p>- Mining difficulty changes</p>
+              <p>- Network hashrate changes</p>
+              <p>- Electricity cost variations</p>
+              <p>- Unforeseen downtime</p>
+            </div>
+            <li>4.4 No Financial Advice</li>
+            <p>
+              All information provided is for educational purposes only. Dahab
+              Miners does not provide investment advice.
+            </p>
+            <div className="ms-5 flex flex-col gap-2">
+              <p>- Bitcoin price fluctuations</p>
+              <p>- Mining difficulty changes</p>
+              <p>- Network hashrate changes</p>
+              <p>- Electricity cost variations</p>
+              <p>- Unforeseen downtime</p>
+            </div>
           </ul>
           <h4 className="text-2xl font-semibold">
-            11. Limitation of Liability
+            5. Payouts, Withdrawals & Fees
           </h4>
-          <ul className="font-light ms-10">
-            <li>
-              Dahab Miners is not responsible for market fluctuations, mining
-              profitability, or external factors affecting cryptocurrency
-              prices.
-            </li>
-            <li>
-              We do not cover damages due to natural disasters such as floods,
-              earthquakes, or governmental actions.
-            </li>
-            <li>
-              Liability for any repair-related damages is covered for a maximum
-              of one week after service completion.
-            </li>
+          <ul className="ms-5 flex flex-col gap-2">
+            <li>5.1 Withdrawal Eligibility</li>
+            <div className="ms-5 flex flex-col gap-2">
+              <p>
+                - Payouts are processed only for accounts that have completed
+                KYC verification.
+              </p>
+              <p>
+                - Withdrawals are subject to minimum thresholds as displayed in
+                the app.
+              </p>
+            </div>
+            <li>5.2 Hosting & Electricity Fees</li>
+
+            <div className="ms-5 flex flex-col gap-2">
+              <p>
+                - In Profit Mode, fees are deducted automatically from mining
+                earnings.
+              </p>
+              <p>
+                - In Hold Mode, unpaid hosting fees will result in suspension of
+                mining until settlement.
+              </p>
+            </div>
           </ul>
-          <h4 className="text-2xl font-semibold">12. Governing Law</h4>
-          <ul className="font-light ms-10">
-            <li>
-              This agreement is governed by the laws of the Emirate of Abu Dhabi
-              and the federal laws of the United Arab Emirates.
-            </li>
-            <li>
-              Any legal disputes shall be settled within Abu Dhabi’s
-              jurisdiction.
-            </li>
-          </ul>
+          <h4 className="text-2xl font-semibold">6. User Responsibilities</h4>
+          <p>You agree to:</p>
+          <div className="ms-5 flex flex-col gap-2">
+            <p>- Provide accurate and up-to-date personal information.</p>
+            <p>- Maintain account security (passwords, 2FA, etc.).</p>
+            <p>
+              - Not engage in fraudulent or unlawful activities through the
+              platform.
+            </p>
+          </div>
+          <h4 className="text-2xl font-semibold">7. Limitation of Liability</h4>
+          <div className="ms-5 flex flex-col gap-2">
+            <p>
+              - Dahab Miners is not liable for losses due to market
+              fluctuations, changes in mining difficulty, or any downtime beyond
+              our control.
+            </p>
+            <p>
+              - Maximum liability is limited to the total amount you paid for
+              your Digital Miner contract.
+            </p>
+          </div>
           <h4 className="text-2xl font-semibold">
-            13. Termination of Agreement
+            8. Governing Law & Disputes
           </h4>
-          <ul className="font-light ms-10">
-            <li>
-              Clients may terminate this contract with 30 days' written notice.
-            </li>
-            <li>
-              Dahab Miners reserves the right to terminate hosting agreements
-              for non-payment, misuse, or breach of contract.
-            </li>
-            <li>
-              Upon termination, clients must settle any outstanding dues before
-              miners are returned.
-            </li>
-          </ul>
-          <h4 className="text-2xl font-semibold">
-            14. Warranty & Repair Policy
-          </h4>
-          <ul className="font-light ms-10">
-            <li>Repairs come with a 1-week warranty on serviced components.</li>
-            <li>
-              If issues arise within the warranty period due to faulty repairs,
-              Dahab Miners will fix them at no extra cost.
-            </li>
-            <li>
-              Customers are responsible for shipping faulty miners for repair
-              services. Dahab Miners does not cover shipping costs.
-            </li>
-          </ul>
-          <h4 className="text-2xl font-semibold">
-            15. Hosting & Equipment Return
-          </h4>
-          <ul className="font-light ms-10">
-            <li>
-              Clients can request miner return upon contract completion, subject
-              to full payment clearance.
-            </li>
-            <li>
-              Dahab Miners ensures the safe handling of miners but does not
-              guarantee transit safety after shipment.
-            </li>
-            <li>
-              If miners remain unpaid beyond 30 days, the host has the right to
-              suspend services until payment is received
-            </li>
-          </ul>
-          <h4 className="text-2xl font-semibold">16. Entire Agreement</h4>
-          <ul className="font-light ms-10">
-            <li>
-              This document represents the entire agreement between the Client
-              and Dahab Miners, superseding all prior discussions or
-              negotiations.
-            </li>
-            <li>
-              Any additional agreements or amendments must be in writing and
-              signed by both parties.
-            </li>
-          </ul>
+          <div className="ms-5 flex flex-col gap-2">
+            <p>
+              - These Terms & Conditions are governed by the laws of the United
+              Arab Emirates.
+            </p>
+            <p>
+              - Any disputes will be resolved in the competent courts of Abu
+              Dhabi, UAE.
+            </p>
+          </div>
+          <p className="my-5">
+            By using the Dahab Miners platform, you confirm that you have read,
+            understood, and agreed to these Terms & Conditions, including our
+            AML/KYC policy.
+          </p>
         </div>
       </div>
     </div>
