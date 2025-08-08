@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { UserContext } from "../../UserContext";
 
 export default function WalletBox() {
-  const { user } = useContext(UserContext);
+  const { user, estHostingFee, estDaysRemaining } = useContext(UserContext);
   return (
     <div className="p-7 bg-[#0194FE] max-w-[700px] mx-auto w-full rounded-lg">
       <div className="flex justify-between items-center pb-5 border-b border-[#26DDFF5E]">
@@ -17,13 +17,15 @@ export default function WalletBox() {
       </div>
       <div className="py-5 border-b border-[#26DDFF5E] flex justify-around items-center">
         <p className={`text-3xl ${user?.walletBalance <= 0 && "text-red-600"}`}>
-          {user?.walletBalance} <span className="text-sm">AED</span>
+          {user?.walletBalance?.toFixed(2)} <span className="text-sm">AED</span>
         </p>
-        <p className="text-sm text-[#c1e4fd]">Est. Hosting Fee/Day: 100 AED</p>
+        <p className="text-sm text-[#c1e4fd]">
+          Est. Hosting Fee/Day: {estHostingFee?.toFixed(2)} AED
+        </p>
       </div>
       <div className="py-5">
         <p className="text-sm text-[#c1e4fd] text-center">
-          Est. Days Remaining: 0 days
+          Est. Days Remaining: {Math.floor(estDaysRemaining)} days
         </p>
       </div>
     </div>

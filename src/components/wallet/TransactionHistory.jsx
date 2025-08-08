@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -8,18 +8,10 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { GoPlus } from "react-icons/go";
 import { FiMinus } from "react-icons/fi";
+import { UserContext } from "../../UserContext";
 
 export default function TransactionHistory() {
-  const rows = [
-    { id: 1, date: "29/10/2025", amount: "100", type: "fee", balance: "0.00" },
-    {
-      id: 2,
-      date: "28/10/2025",
-      amount: "100",
-      type: "recharge",
-      balance: "100",
-    },
-  ];
+  const { user } = useContext(UserContext);
   return (
     <div className="flex flex-col gap-3">
       <p
@@ -54,62 +46,65 @@ export default function TransactionHistory() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <TableRow
-                key={row.id}
-                sx={{
-                  //
-                  cursor: "pointer",
+            {user?.walletTransactions
+              ?.slice()
+              .reverse()
+              .map((row) => (
+                <TableRow
+                  key={row.id}
+                  sx={{
+                    //
+                    cursor: "pointer",
 
-                  backgroundColor: "#000C26",
-                  "&:hover": {
-                    backgroundColor: "#011840",
-                  },
-                }}
-              >
-                <TableCell
-                  sx={{
-                    textAlign: "center",
-                    border: "0",
-                    borderBottom: "1px solid #76C6E036",
-                    color: "#FFFFFF",
+                    backgroundColor: "#000C26",
+                    "&:hover": {
+                      backgroundColor: "#011840",
+                    },
                   }}
                 >
-                  {row.date}
-                </TableCell>
-                <TableCell
-                  sx={{
-                    textAlign: "center",
-                    border: "0",
-                    borderBottom: "1px solid #76C6E036",
-                    color: "#FFFFFF",
-                  }}
-                >
-                  <div className="flex justify-center items-center gap-5">
-                    {row.type === "fee" ? (
-                      <p className="text-red-500 text-xl font-semibold">
-                        <FiMinus />
-                      </p>
-                    ) : (
-                      <p className="text-green-600 text-xl font-semibold">
-                        <GoPlus />
-                      </p>
-                    )}
-                    {row.amount}
-                  </div>
-                </TableCell>
-                <TableCell
-                  sx={{
-                    textAlign: "center",
-                    border: "0",
-                    borderBottom: "1px solid #76C6E036",
-                    color: "#FFFFFF",
-                  }}
-                >
-                  {row.balance}
-                </TableCell>
-              </TableRow>
-            ))}
+                  <TableCell
+                    sx={{
+                      textAlign: "center",
+                      border: "0",
+                      borderBottom: "1px solid #76C6E036",
+                      color: "#FFFFFF",
+                    }}
+                  >
+                    {row.date.slice(0, 10)}
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      textAlign: "center",
+                      border: "0",
+                      borderBottom: "1px solid #76C6E036",
+                      color: "#FFFFFF",
+                    }}
+                  >
+                    <div className="flex justify-center items-center gap-5">
+                      {row.type === "debited" ? (
+                        <p className="text-red-500 text-xl font-semibold">
+                          <FiMinus />
+                        </p>
+                      ) : (
+                        <p className="text-green-600 text-xl font-semibold">
+                          <GoPlus />
+                        </p>
+                      )}
+                      {row.amount}
+                    </div>
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      textAlign: "center",
+                      border: "0",
+                      borderBottom: "1px solid #76C6E036",
+                      color: "#FFFFFF",
+                    }}
+                  >
+                    {row.currentWalletBalance?.toFixed(2)}
+                  </TableCell>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>

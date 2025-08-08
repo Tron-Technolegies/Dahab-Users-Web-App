@@ -73,7 +73,7 @@ export default function StatsMainCard() {
             >
               Wallet Balance -{" "}
               <span className="md:text-xl text-base  font-bold">
-                {user?.walletBalance} AED
+                {user?.walletBalance?.toFixed(2)} AED
               </span>
               <Link
                 to={"/dashboard/wallet"}
