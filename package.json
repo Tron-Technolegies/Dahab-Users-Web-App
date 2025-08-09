@@ -18,6 +18,7 @@
     "@reactour/tour": "^3.8.0",
     "@tailwindcss/vite": "^4.1.7",
     "axios": "^1.9.0",
+    "bitcoin-address-validation": "^3.0.0",
     "dayjs": "^1.11.13",
     "framer-motion": "^12.12.1",
     "react": "^19.1.0",

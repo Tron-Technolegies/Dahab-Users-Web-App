@@ -1,12 +1,34 @@
 import { motion } from "framer-motion";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { CiCircleInfo } from "react-icons/ci";
 import { UserContext } from "../../../UserContext";
 import PayoutBox from "../../page0/payoutInfo/PayoutBox";
+import useSetPayoutMode from "../../../hooks/cart/useSetPayoutMode";
+import Loading from "../../Loading";
 
 export default function PayoutSelector({ inside }) {
   const { user } = useContext(UserContext);
   const [payout, setPayout] = useState(user?.payoutMode);
+  const [isDisabled, setIsDisabled] = useState(true);
+  const { loading, selectPayout } = useSetPayoutMode();
+
+  useEffect(() => {
+    if (!user) {
+      setIsDisabled(true);
+      return;
+    }
+
+    if (!user.lastPayoutSelected) {
+      setIsDisabled(false);
+      return;
+    }
+
+    const lastPayoutDate = new Date(user.lastPayoutSelected);
+    const now = new Date();
+    const diffInDays = (now - lastPayoutDate) / (1000 * 60 * 60 * 24);
+
+    setIsDisabled(diffInDays < 60);
+  }, [user]);
 
   return (
     <div className="my-10 flex flex-col gap-5">
@@ -20,31 +42,40 @@ export default function PayoutSelector({ inside }) {
           className={`bg-[#011532]  p-1 border border-[#76C6E04D] rounded-s-full rounded-e-full flex items-center gap-5`}
         >
           <motion.button
-            className={`text-white p-1 px-2 disabled:cursor-not-allowed`}
+            className={`text-white p-1 px-2 cursor-pointer disabled:cursor-not-allowed`}
             animate={{
               backgroundColor: payout === "profit" ? "#0194FE" : "#011532",
               borderRadius: payout === "profit" ? "999px" : "0px",
             }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            onClick={() => setPayout("profit")}
-            disabled
+            onClick={async () => {
+              setPayout("profit");
+              await selectPayout({ mode: "profit" });
+              window.location.reload();
+            }}
+            disabled={isDisabled}
           >
             BTC Profit
           </motion.button>
           <motion.button
-            className={`text-white p-1 px-2 disabled:cursor-not-allowed`}
+            className={`text-white p-1 px-2 cursor-pointer disabled:cursor-not-allowed`}
             animate={{
               backgroundColor: payout === "hold" ? "#0194FE" : "",
               borderRadius: payout === "hold" ? "999px" : "0px",
             }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            onClick={() => setPayout("hold")}
-            disabled
+            onClick={async () => {
+              setPayout("hold");
+              await selectPayout({ mode: "hold" });
+              window.location.reload();
+            }}
+            disabled={isDisabled}
           >
             BTC Hold
           </motion.button>
         </div>
       </div>
+      {loading && <Loading />}
       <p className="text-sm">Only able to change once in every 60 days</p>
       <div className="flex md:flex-row flex-col justify-center gap-10 my-10 max-w-[1000px] mx-auto">
         <PayoutBox

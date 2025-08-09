@@ -25,7 +25,7 @@ export default function ProjectionContextProvider({ children }) {
   const [buyingBTC, setBuyingBTC] = useState(0);
 
   function convertUsdToAed(usd) {
-    return (usd * 3.65).toFixed(2);
+    return (usd * 3.67).toFixed(2);
   }
   function calculateProjectionStats() {
     const selectedBatch = user?.ownedMiners.find(
@@ -44,7 +44,8 @@ export default function ProjectionContextProvider({ children }) {
       24 *
       selectedBatch?.qty *
       parseInt(daysLeft) *
-      selectedBatch?.itemId.hostingFeePerKw
+      selectedBatch?.itemId.hostingFeePerKw *
+      3.67
     ).toFixed(2);
     setAvgHostingToPay(avgHostingPay);
     const totalInv = (
@@ -62,7 +63,7 @@ export default function ProjectionContextProvider({ children }) {
     setAvgCoinToMine(avgBTCToMine);
     const threeYearCoin = (
       parseFloat(selectedBatch?.minedRevenue) + parseFloat(avgBTCToMine)
-    ).toFixed(4);
+    ).toFixed(7);
     setCoinIn3Yrs(threeYearCoin);
     const threeYearValue = (
       parseFloat(threeYearCoin) * convertUsdToAed(200000)
@@ -79,7 +80,7 @@ export default function ProjectionContextProvider({ children }) {
     setRoi(newRoi);
     const buyingNow = (
       parseFloat(totalInv) / convertUsdToAed(btcPrice)
-    ).toFixed(2);
+    ).toFixed(7);
     setBuyingBTC(buyingNow);
   }
 

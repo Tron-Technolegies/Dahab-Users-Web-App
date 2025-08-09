@@ -6,6 +6,7 @@ import PopupBox from "./PopupBox";
 import TwoFAPopup from "./TwoFAPopup";
 import { UserContext } from "../../../UserContext";
 import AlertBox from "../../Alert";
+import validate from "bitcoin-address-validation";
 
 export default function WithdrawForm() {
   const { user, setAlertError, alertError } = useContext(UserContext);
@@ -35,6 +36,14 @@ export default function WithdrawForm() {
     }
     if (address === "") {
       setAlertError("Please Enter valid BTC Address");
+      return;
+    }
+    if (!validate(address.trim())) {
+      setAlertError("Invalid BTC Address");
+      return;
+    }
+    if (user?.walletBalance < 0) {
+      setAlertError("Unable to Withdraw due to negative Wallet Balance");
       return;
     }
     if (user?.is2FAEnabled) {

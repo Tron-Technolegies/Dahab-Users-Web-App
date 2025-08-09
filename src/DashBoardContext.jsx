@@ -30,7 +30,7 @@ export default function DashBoardContextProvider({ children }) {
   const { user } = useContext(UserContext);
 
   function convertUsdToAed(usd) {
-    return (usd * 3.65).toFixed(2);
+    return (usd * 3.67).toFixed(2);
   }
 
   function calculateDashboardStats() {
@@ -85,7 +85,8 @@ export default function DashBoardContextProvider({ children }) {
           24 *
           item.qty *
           parseInt(daysLeft) *
-          item.itemId.hostingFeePerKw
+          item.itemId.hostingFeePerKw *
+          3.67
       );
     }, 0);
     setAvgHostingFee3Yrs(totalAvgHosting3Yr);
@@ -100,7 +101,7 @@ export default function DashBoardContextProvider({ children }) {
       );
     }, 0);
     setAvgBTCToMine3Yrs(totalAvgcoinToMine);
-    const totalCombinedMined = (totalRevenue + totalAvgcoinToMine).toFixed(4);
+    const totalCombinedMined = (totalRevenue + totalAvgcoinToMine).toFixed(7);
     setTotalMined3Yrs(totalCombinedMined);
     const valueIn3 = (
       totalCombinedMined * convertUsdToAed(expectedPrice)
@@ -112,7 +113,7 @@ export default function DashBoardContextProvider({ children }) {
     setProfitRatio3Yrs(profitByInvestment);
     const threeYrRoi = ((valueIn3 * 100) / totalInv3Yr).toFixed(2);
     setRoi3yrs(threeYrRoi);
-    const buyingBTC = (totalInv3Yr / convertUsdToAed(btcPrice)).toFixed(4);
+    const buyingBTC = (totalInv3Yr / convertUsdToAed(btcPrice)).toFixed(7);
     setBuyingBTCNow(buyingBTC);
   }
   useEffect(() => {

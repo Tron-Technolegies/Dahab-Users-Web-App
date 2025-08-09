@@ -22,7 +22,7 @@ export default function CalculatorContextProvider({ children }) {
   const [miningRatio, setMiningRatio] = useState(0);
 
   function convertUsdToAed(usd) {
-    return (usd * 3.65).toFixed(2);
+    return (usd * 3.67).toFixed(2);
   }
 
   function calculateAll() {
@@ -33,7 +33,8 @@ export default function CalculatorContextProvider({ children }) {
         miners *
         365 *
         hostingPeriod *
-        minerPage?.hostingFeePerKw
+        minerPage?.hostingFeePerKw *
+        3.67
     ).toFixed(2);
     setInvestment(totalInv);
     const btcEarnedBuying = (totalInv / convertUsdToAed(btcPrice)).toFixed(4);

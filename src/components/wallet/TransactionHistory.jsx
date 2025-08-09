@@ -90,7 +90,7 @@ export default function TransactionHistory() {
                           <GoPlus />
                         </p>
                       )}
-                      {row.amount}
+                      {row.amount.toFixed(2)}
                     </div>
                   </TableCell>
                   <TableCell

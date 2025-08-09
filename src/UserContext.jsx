@@ -23,6 +23,7 @@ const UserContextProvider = ({ children }) => {
           item?.itemId?.power *
           24 *
           item?.itemId?.hostingFeePerKw *
+          3.67 *
           0.9
       );
     }, 0);

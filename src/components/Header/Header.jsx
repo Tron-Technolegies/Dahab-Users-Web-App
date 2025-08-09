@@ -77,7 +77,7 @@ export default function Header() {
           {/* <span className="text-[#07EAD3]">
             <IoNotifications />
           </span> */}
-          <AccountSettings user={user} />
+
           <Link
             to={`/dashboard/buy/cart`}
             className="relative md:text-base text-sm mr-1"
@@ -87,6 +87,7 @@ export default function Header() {
               {user?.cartItems.length}
             </p>
           </Link>
+          <AccountSettings user={user} />
           <p
             className="md:text-xl text-base md:hidden"
             onClick={() => setOpenDrawer(true)}

@@ -140,7 +140,8 @@ export default function ROICalculator({ miner }) {
                   miners *
                   365 *
                   hostingPeriod *
-                  parseFloat(miner?.hostingFeePerKw)
+                  parseFloat(miner?.hostingFeePerKw) *
+                  3.67
                 ).toFixed(2)} AED</p>`}
               />
               <FieldItem
@@ -223,10 +224,15 @@ export default function ROICalculator({ miner }) {
                   miners *
                   365 *
                   hostingPeriod *
-                  miner?.hostingFeePerKw
+                  miner?.hostingFeePerKw *
+                  3.67
                 ).toFixed(2)} AED`}
                 style={"text-[#A4A4A6]"}
-                description={`<p>The total electricity fees you have to pay for ${hostingPeriod} years. You can change the hosting years in the above options</p><p>Electricity Fees - ${miner?.power} (power of the machine) x 24 hrs x ${miners} (total miners) x 365 days x ${hostingPeriod} (hosting period) x ${miner?.hostingFeePerKw} (price for 1KW/h /day)</p>`}
+                description={`<p>The total electricity fees you have to pay for ${hostingPeriod} years. You can change the hosting years in the above options</p><p>Electricity Fees - ${
+                  miner?.power
+                } (power of the machine) x 24 hrs x ${miners} (total miners) x 365 days x ${hostingPeriod} (hosting period) x ${(
+                  miner?.hostingFeePerKw * 3.67
+                ).toFixed(4)} (price for 1KW/h /day)</p>`}
               />
               <FieldItem
                 item={"Total Cost incurred"}
@@ -243,7 +249,8 @@ export default function ROICalculator({ miner }) {
                   miners *
                   365 *
                   hostingPeriod *
-                  miner?.hostingFeePerKw
+                  miner?.hostingFeePerKw *
+                  3.67
                 ).toFixed(2)} AED</p>`}
               />
               <FieldItem

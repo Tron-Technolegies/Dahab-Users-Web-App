@@ -71,13 +71,13 @@ export default function SIngleMinerStats({ data }) {
             statName={"Mined Revenue"}
           />
           <StatElement1
-            stat={data?.hostingFeePaid}
+            stat={data?.hostingFeePaid?.toFixed(2)}
             statName={"Hosting Fee Paid"}
           />
-          <StatElement1
+          {/* <StatElement1
             stat={data?.HostingFeeDue}
             statName={"Hosting Fee Due"}
-          />
+          /> */}
           <StatElement1
             stat={data?.purchasedOn.slice(0, 10)}
             statName={"Purchased On"}

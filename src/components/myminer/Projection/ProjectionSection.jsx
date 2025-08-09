@@ -59,7 +59,13 @@ export default function ProjectionSection() {
           }
           description={`<p>This indicates the sum of all the miners purchased on the current batch, Hosting fees that has been paid already and the average hosting fees to be paid in the future.</p><p>Miner Purchased - ${minerPurchasedPrice} AED</p><p>Hosting Fee Paid - ${
             currentBatch?.hostingFeePaid
-          } AED</p><p>Avg.Hosting fee to be paid - ${`${currentBatch?.itemId.power}kw (current power) * 24 hr * ${currentBatch?.qty} (miners in current batch) * ${daysToLeft}(validity in days) * ${currentBatch?.itemId.hostingFeePerKw}(hosting fee per KW/h per day) AED`} = ${avgHostingToPay} AED</p>`}
+          } AED</p><p>Avg.Hosting fee to be paid - ${`${
+            currentBatch?.itemId.power
+          }kw (current power) * 24 hr * ${
+            currentBatch?.qty
+          } (miners in current batch) * ${daysToLeft}(validity in days) * ${
+            currentBatch?.itemId.hostingFeePerKw * 3.67
+          }(hosting fee per KW/h per day) AED`} = ${avgHostingToPay} AED</p>`}
         />
         <FieldItem
           item={"Total BTC Mined"}
@@ -119,7 +125,7 @@ export default function ProjectionSection() {
         <p className="mb-5 p-5 border-t border-[#0194FE] text-sm text-center">
           You will get{" "}
           <span className="text-lg font-semibold text-[#0194FE]">
-            {Math.floor(coinIn3Yrs / buyingBTC)}X
+            {(coinIn3Yrs / buyingBTC).toFixed(2)}X
           </span>{" "}
           coins if you do mining
         </p>

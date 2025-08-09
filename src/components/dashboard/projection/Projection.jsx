@@ -122,7 +122,7 @@ export default function Projection() {
           <p className=" border-t border-[#0194FE] text-sm text-center">
             You will get{" "}
             <span className="text-lg font-semibold text-[#0194FE]">
-              {Math.floor(totalMined3Yrs / buyingBTCNow)}X
+              {(totalMined3Yrs / buyingBTCNow).toFixed(2)}X
             </span>{" "}
             coins if you do mining
           </p>
