@@ -1,6 +1,7 @@
 import React from "react";
 import WalletBox from "../../components/wallet/WalletBox";
 import TransactionHistory from "../../components/wallet/TransactionHistory";
+import ProfitModeTable from "../../components/wallet/ProfitModeTable";
 
 export default function WalletPage() {
   return (
@@ -8,6 +9,7 @@ export default function WalletPage() {
       <p className="text-2xl text-[#76C6E0]">My Wallet</p>
       <WalletBox />
       <TransactionHistory />
+      <ProfitModeTable />
     </div>
   );
 }

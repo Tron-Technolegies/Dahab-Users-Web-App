@@ -34,6 +34,10 @@ export default function WithdrawForm() {
       setAlertError("Invalid Amount");
       return;
     }
+    if (amount < 0.005) {
+      setAlertError("Only able to withdraw amounts larger than 0.005BTC");
+      return;
+    }
     if (address === "") {
       setAlertError("Please Enter valid BTC Address");
       return;

@@ -11,6 +11,18 @@ export default function PayoutSelector({ inside }) {
   const [payout, setPayout] = useState(user?.payoutMode);
   const [isDisabled, setIsDisabled] = useState(true);
   const { loading, selectPayout } = useSetPayoutMode();
+  const [daysRemaining, setDaysRemaining] = useState(0);
+
+  const calculateDaysRemaining = () => {
+    const startDate = new Date(user.lastPayoutSelected);
+    const targetDate = new Date(startDate);
+    targetDate.setDate(startDate.getDate() + 60);
+    const today = new Date();
+
+    const daysLeftMs = targetDate - today;
+    const daysLeft = Math.ceil(daysLeftMs / (1000 * 60 * 60 * 24));
+    setDaysRemaining(daysLeft);
+  };
 
   useEffect(() => {
     if (!user) {
@@ -26,8 +38,14 @@ export default function PayoutSelector({ inside }) {
     const lastPayoutDate = new Date(user.lastPayoutSelected);
     const now = new Date();
     const diffInDays = (now - lastPayoutDate) / (1000 * 60 * 60 * 24);
-
     setIsDisabled(diffInDays < 60);
+
+    calculateDaysRemaining();
+    const interval = setInterval(() => {
+      calculateDaysRemaining();
+    }, 1000 * 60 * 60 * 24);
+
+    return () => clearInterval(interval);
   }, [user]);
 
   return (
@@ -76,7 +94,10 @@ export default function PayoutSelector({ inside }) {
         </div>
       </div>
       {loading && <Loading />}
-      <p className="text-sm">Only able to change once in every 60 days</p>
+      {isDisabled && (
+        <p className="text-sm">{`Only able to change once in every 60 days (${daysRemaining} Days Remaining)`}</p>
+      )}
+
       <div className="flex md:flex-row flex-col justify-center gap-10 my-10 max-w-[1000px] mx-auto">
         <PayoutBox
           heading={"BTC Hold Mode"}

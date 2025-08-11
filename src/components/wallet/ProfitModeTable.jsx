@@ -7,10 +7,9 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { UserContext } from "../../UserContext";
-import Pagination from "./Pagination";
-import PaginationComponent from "./Pagination";
+import PaginationComponent from "../payout/Pagination";
 
-export default function RewardsTable() {
+export default function ProfitModeTable() {
   const { user } = useContext(UserContext);
   const [page, setPage] = useState(1);
   const limit = 15;
@@ -18,7 +17,12 @@ export default function RewardsTable() {
   function handlePageChange(event, value) {
     setPage(value);
   }
-
+  const options = {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+    timeZone: "Asia/Dubai", // UAE timezone
+  };
   return (
     <>
       <TableContainer component={Paper}>
@@ -33,18 +37,27 @@ export default function RewardsTable() {
               <TableCell
                 sx={{ color: "#0194FE", border: "0", textAlign: "center" }}
               >
-                Settlement
+                Date (UAE)
               </TableCell>
               <TableCell
                 sx={{ color: "#0194FE", border: "0", textAlign: "center" }}
               >
-                Amount
+                Hosting Fee (AED)
+              </TableCell>
+              <TableCell
+                sx={{ color: "#0194FE", border: "0", textAlign: "center" }}
+              >
+                BTC Deducted
+              </TableCell>
+              <TableCell
+                sx={{ color: "#0194FE", border: "0", textAlign: "center" }}
+              >
+                Price of BTC
               </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {user?.allMinedRewards
-              ?.slice()
+            {user?.ProfitModeDeductions?.slice()
               .reverse()
               .slice((page - 1) * limit, page * limit)
               .map((row, i) => (
@@ -68,7 +81,15 @@ export default function RewardsTable() {
                       color: "#FFFFFF",
                     }}
                   >
-                    {row.date.slice(0, 10)}
+                    <div>
+                      <p> {row.date.slice(0, 10)}</p>
+                      <p>
+                        {new Date(row.date).toLocaleTimeString(
+                          "en-US",
+                          options
+                        )}
+                      </p>
+                    </div>
                   </TableCell>
                   <TableCell
                     sx={{
@@ -78,16 +99,36 @@ export default function RewardsTable() {
                       color: "#FFFFFF",
                     }}
                   >
-                    {row.amount.toFixed(8)}
+                    {row.amountAED.toFixed(2)}
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      textAlign: "center",
+                      border: "0",
+                      borderBottom: "1px solid #76C6E036",
+                      color: "#FFFFFF",
+                    }}
+                  >
+                    {row.amountBTC.toFixed(8)}
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      textAlign: "center",
+                      border: "0",
+                      borderBottom: "1px solid #76C6E036",
+                      color: "#FFFFFF",
+                    }}
+                  >
+                    {row.rateBTCNowAED.toFixed(2)}
                   </TableCell>
                 </TableRow>
               ))}
           </TableBody>
         </Table>
       </TableContainer>
-      {user?.allMinedRewards?.length > limit && (
+      {user?.ProfitModeDeductions?.length > limit && (
         <PaginationComponent
-          totalPage={Math.ceil(user?.allMinedRewards.length / limit)}
+          totalPage={Math.ceil(user?.ProfitModeDeductions?.length / limit)}
           page={page}
           pageChange={handlePageChange}
         />
