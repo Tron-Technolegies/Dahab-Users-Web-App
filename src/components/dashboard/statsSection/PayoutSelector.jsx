@@ -1,17 +1,15 @@
 import { motion } from "framer-motion";
 import React, { useContext, useEffect, useState } from "react";
-import { CiCircleInfo } from "react-icons/ci";
 import { UserContext } from "../../../UserContext";
 import PayoutBox from "../../page0/payoutInfo/PayoutBox";
-import useSetPayoutMode from "../../../hooks/cart/useSetPayoutMode";
-import Loading from "../../Loading";
+import ConfirmPopup from "../../payoutSelectorPage/ConfirmPopup";
 
 export default function PayoutSelector({ inside }) {
   const { user } = useContext(UserContext);
   const [payout, setPayout] = useState(user?.payoutMode);
   const [isDisabled, setIsDisabled] = useState(true);
-  const { loading, selectPayout } = useSetPayoutMode();
   const [daysRemaining, setDaysRemaining] = useState(0);
+  const [open, setOpen] = useState(false);
 
   const calculateDaysRemaining = () => {
     const startDate = new Date(user.lastPayoutSelected);
@@ -68,8 +66,7 @@ export default function PayoutSelector({ inside }) {
             transition={{ duration: 0.3, ease: "easeInOut" }}
             onClick={async () => {
               setPayout("profit");
-              await selectPayout({ mode: "profit" });
-              window.location.reload();
+              setOpen(true);
             }}
             disabled={isDisabled}
           >
@@ -84,8 +81,7 @@ export default function PayoutSelector({ inside }) {
             transition={{ duration: 0.3, ease: "easeInOut" }}
             onClick={async () => {
               setPayout("hold");
-              await selectPayout({ mode: "hold" });
-              window.location.reload();
+              setOpen(true);
             }}
             disabled={isDisabled}
           >
@@ -93,7 +89,7 @@ export default function PayoutSelector({ inside }) {
           </motion.button>
         </div>
       </div>
-      {loading && <Loading />}
+
       {isDisabled && (
         <p className="text-sm">{`Only able to change once in every 60 days (${daysRemaining} Days Remaining)`}</p>
       )}
@@ -121,6 +117,14 @@ export default function PayoutSelector({ inside }) {
           ]}
         />
       </div>
+      {open && (
+        <ConfirmPopup
+          open={open}
+          setOpen={setOpen}
+          mode={payout}
+          setMode={setPayout}
+        />
+      )}
     </div>
   );
 }

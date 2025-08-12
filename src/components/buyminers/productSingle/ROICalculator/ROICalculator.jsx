@@ -1,16 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import FormSelect from "../../../FormSelect";
+import { IoInformationCircleOutline } from "react-icons/io5";
 import FormInput from "../../../FormInput";
 import { FaBitcoin } from "react-icons/fa";
 import { GiMining } from "react-icons/gi";
-// import Table from "@mui/material/Table";
-// import TableBody from "@mui/material/TableBody";
-// import TableCell from "@mui/material/TableCell";
-// import TableContainer from "@mui/material/TableContainer";
-// import TableHead from "@mui/material/TableHead";
-// import TableRow from "@mui/material/TableRow";
-// import Paper from "@mui/material/Paper";
-// import TableRowComponent from "./TableRowComponent";
 import { CalculatorContext } from "../../../../CalculatorContext";
 import { motion } from "framer-motion";
 import FieldItem from "../../../dashboard/FinancialAnalysis/FieldItem";
@@ -41,11 +33,32 @@ export default function ROICalculator({ miner }) {
     buyingRatio,
     thPerDay,
   } = useContext(CalculatorContext);
+  const [showInfo, setShowInfo] = useState(false);
 
   return (
     <div className="flex flex-col md:gap-5 gap-2 mt-20 my-10 ">
-      <h3 className="md:text-3xl text-xl font-semibold text-center text-[#76C6E0]">
+      <h3 className="relative md:text-3xl text-xl flex gap-2 justify-center font-semibold text-center text-[#76C6E0]">
         Bitcoin ROI Calculator
+        <span
+          className="text-[#0194FE] text-sm cursor-pointer"
+          onMouseEnter={() => setShowInfo(true)}
+          onMouseLeave={() => setShowInfo(false)}
+        >
+          <IoInformationCircleOutline />
+        </span>
+        {showInfo && (
+          <div
+            className="absolute top-10 bg-black p-5 rounded-lg z-10 lg:w-[400px] w-[300px] flex flex-col gap-3 items-center"
+            onMouseEnter={() => setShowInfo(true)}
+            onMouseLeave={() => setShowInfo(false)}
+          >
+            <p className="text-center text-xs text-white font-normal">
+              These figures are estimates only and may change due to Bitcoin
+              price, mining difficulty, and operational factors. Past
+              performance is not a guarantee of future results.
+            </p>
+          </div>
+        )}
       </h3>
       <p className="text-center">Buy vs Mining</p>
       <div className=" w-full mx-auto flex flex-col gap-7 border-b border-[#011E34]">
@@ -379,101 +392,4 @@ export default function ROICalculator({ miner }) {
       )}
     </div>
   );
-}
-
-{
-  /* <div>
-  <TableContainer component={Paper} id="payout">
-    <Table
-      sx={{
-        minWidth: 650,
-        borderRadius: "6px",
-        borderBottom: "#3DB2E8",
-      }}
-      aria-label="simple table"
-    >
-      <TableHead>
-        <TableRow
-          sx={{
-            backgroundColor: "#3DB2E8",
-            fontWeight: "bolder",
-            color: "#011532",
-          }}
-        >
-          <TableCell sx={{ border: "0", textAlign: "center" }}>Cost</TableCell>
-          <TableCell sx={{ border: "0", textAlign: "center" }}>
-            Buying BTC
-          </TableCell>
-          <TableCell sx={{ border: "0", textAlign: "center" }}>
-            Buying Miner
-          </TableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        <TableRowComponent
-          type={"Miner Price"}
-          btcValue={0}
-          minerValue={minerPrice}
-        />
-        <TableRowComponent
-          type={"Electricity Cost"}
-          btcValue={0}
-          minerValue={electricity}
-        />
-        <TableRowComponent
-          type={"Total Cost Incurred"}
-          btcValue={investment}
-          minerValue={investment}
-        />
-        <TableRowComponent
-          type={"BTC Earned"}
-          btcValue={btcEarnedByBuying}
-          minerValue={btcEarnedByMining}
-        />
-        <TableRowComponent
-          type={"Expected BTC Price"}
-          btcValue={expectedPrice}
-          setBtcChange={setExpectedPrice}
-          minerValue={expectedPrice}
-          setMinerChange={setExpectedPrice}
-        />
-        <TableRowComponent
-          type={"Your BTC Value"}
-          btcValue={btcValueBuying}
-          minerValue={btcValueMining}
-        />
-        <TableRowComponent
-          type={"Net Profit"}
-          btcValue={netProfitBuying}
-          minerValue={netProfitMining}
-        />
-        <TableRowComponent
-          type={"ROI %"}
-          btcValue={roiBuying}
-          minerValue={roiMining}
-        />
-        <TableRowComponent
-          type={"Profit: Investment"}
-          btcValue={buyingRatio}
-          minerValue={miningRatio}
-        />
-      </TableBody>
-    </Table>
-  </TableContainer>
-  {roiMining > roiBuying && (
-    <div className="bg-[#011532] px-5 py-10 flex flex-col gap-2">
-      <p className="text-[#07EAD3] text-2xl text-center">
-        Mining is more profitable.
-      </p>
-      <div className="flex gap-2 items-center text-sm">
-        <img src="/page0/icon-12.png" />
-        <p>You spend ₹1,60,000 and get ₹6,00,000 in value.</p>
-      </div>
-      <div className="flex gap-2 items-center text-sm">
-        <img src="/page0/icon-13.png" />
-        <p>If you bought 1 BTC directly, you’d need ₹3,00,000.</p>
-      </div>
-    </div>
-  )}
-</div>; */
 }

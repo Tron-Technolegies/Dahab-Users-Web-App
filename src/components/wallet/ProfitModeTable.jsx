@@ -25,6 +25,7 @@ export default function ProfitModeTable() {
   };
   return (
     <>
+      <p className="font-semibold my-5">Profit Mode Transactions</p>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>

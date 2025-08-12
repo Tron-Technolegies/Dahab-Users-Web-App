@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import FieldItem from "../../dashboard/FinancialAnalysis/FieldItem";
 import { CalculatorContext } from "../../../CalculatorContext";
 import { ProjectionContext } from "../../../ProjectionContext";
+import { IoInformationCircleOutline } from "react-icons/io5";
 
 export default function ProjectionSection() {
   const { btcPrice, thPerDay } = useContext(CalculatorContext);
@@ -21,6 +22,7 @@ export default function ProjectionSection() {
     roi,
     buyingBTC,
   } = useContext(ProjectionContext);
+  const [showInfo, setShowInfo] = useState(false);
   return (
     <motion.div
       className="my-10 bg-[#011532] max-w-[600px] md:w-[600px] w-full mx-auto"
@@ -45,7 +47,29 @@ export default function ProjectionSection() {
       }}
     >
       <div className="flex flex-col items-center gap-0 py-5 border-b border-[#0194FE]">
-        <p className="md:text-lg">Financial Projection (3 Years)</p>
+        <p className="md:text-lg flex gap-2 justify-center relative">
+          Financial Projection (3 Years){" "}
+          <span
+            className="text-[#0194FE] text-sm cursor-pointer"
+            onMouseEnter={() => setShowInfo(true)}
+            onMouseLeave={() => setShowInfo(false)}
+          >
+            <IoInformationCircleOutline />
+          </span>
+          {showInfo && (
+            <div
+              className="absolute top-10 bg-black p-5 rounded-lg z-10 lg:w-[400px] w-[300px] flex flex-col gap-3 items-center"
+              onMouseEnter={() => setShowInfo(true)}
+              onMouseLeave={() => setShowInfo(false)}
+            >
+              <p className="text-center text-xs text-white font-normal">
+                These figures are estimates only and may change due to Bitcoin
+                price, mining difficulty, and operational factors. Past
+                performance is not a guarantee of future results.
+              </p>
+            </div>
+          )}
+        </p>
         <p className="md:text-xs text-[10px] text-[#949494]">
           Overview of your Bitcoin portfolio performance
         </p>

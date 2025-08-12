@@ -1,13 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import useAddToCart from "../../../hooks/cart/useAddToCart";
 import { UserContext } from "../../../UserContext";
 import InfoContainer from "../InfoContainer";
 import { BsCartPlus } from "react-icons/bs";
 import Loading from "../../Loading";
+import { IoInformationCircleOutline } from "react-icons/io5";
 
 export default function ProductDescription({ miner }) {
   const { id } = useParams();
+  const [showInfo, setShowInfo] = useState(false);
   const { loading: cartLoading, addToCart } = useAddToCart();
   const navigate = useNavigate();
   const { refetchTrigger, setRefetchTrigger } = useContext(UserContext);
@@ -60,7 +62,27 @@ export default function ProductDescription({ miner }) {
         <p className="text-xs">(incl. of all taxes)</p>
       </div>
       {miner?.stock > 0 ? (
-        <div className="flex gap-2 items-center w-full">
+        <div className="flex gap-2 items-center w-full relative">
+          <span
+            className="text-[#0194FE] text-sm cursor-pointer"
+            onMouseEnter={() => setShowInfo(true)}
+            onMouseLeave={() => setShowInfo(false)}
+          >
+            <IoInformationCircleOutline />
+          </span>
+          {showInfo && (
+            <div
+              className="absolute top-10 bg-black p-5 rounded-lg z-10 lg:w-[400px] w-[300px] flex flex-col gap-3 items-center"
+              onMouseEnter={() => setShowInfo(true)}
+              onMouseLeave={() => setShowInfo(false)}
+            >
+              <p className="text-center text-xs text-white font-normal">
+                You are purchasing a digital mining contract, not a physical
+                machine. Performance depends on the uptime of our actual mining
+                operations.
+              </p>
+            </div>
+          )}
           <button
             onClick={async () => {
               await addToCart({ itemId: id });
