@@ -21,6 +21,14 @@ export default function PayoutTable() {
   function handlePageChange(event, value) {
     setPage(value);
   }
+
+  const options = {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+    timeZone: "Asia/Dubai", // UAE timezone
+  };
+
   useEffect(() => {
     refetch();
   }, [page, status]);
@@ -49,7 +57,7 @@ export default function PayoutTable() {
                 <TableCell
                   sx={{ color: "#0194FE", border: "0", textAlign: "center" }}
                 >
-                  Date
+                  Date (MM/DD/YYYY)
                 </TableCell>
                 <TableCell
                   sx={{ color: "#0194FE", border: "0", textAlign: "center" }}
@@ -85,7 +93,7 @@ export default function PayoutTable() {
                       color: "#FFFFFF",
                     }}
                   >
-                    {row.date.slice(0, 10)}
+                    {new Date(row.date).toLocaleDateString("en-US", options)}
                   </TableCell>
                   <TableCell
                     sx={{

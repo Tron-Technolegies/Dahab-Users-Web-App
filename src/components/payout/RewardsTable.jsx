@@ -15,6 +15,12 @@ export default function RewardsTable() {
   const [page, setPage] = useState(1);
   const limit = 15;
 
+  const options = {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+    timeZone: "Asia/Dubai", // UAE timezone
+  };
   function handlePageChange(event, value) {
     setPage(value);
   }
@@ -33,7 +39,7 @@ export default function RewardsTable() {
               <TableCell
                 sx={{ color: "#0194FE", border: "0", textAlign: "center" }}
               >
-                Settlement
+                Settlement (MM/DD/YYYY)
               </TableCell>
               <TableCell
                 sx={{ color: "#0194FE", border: "0", textAlign: "center" }}
@@ -68,7 +74,7 @@ export default function RewardsTable() {
                       color: "#FFFFFF",
                     }}
                   >
-                    {row.date.slice(0, 10)}
+                    {new Date(row.date).toLocaleDateString("en-US", options)}
                   </TableCell>
                   <TableCell
                     sx={{

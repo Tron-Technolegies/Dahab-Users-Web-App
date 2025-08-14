@@ -38,7 +38,7 @@ export default function ProfitModeTable() {
               <TableCell
                 sx={{ color: "#0194FE", border: "0", textAlign: "center" }}
               >
-                Date (UAE)
+                Date (MM/DD/YYYY)
               </TableCell>
               <TableCell
                 sx={{ color: "#0194FE", border: "0", textAlign: "center" }}
@@ -82,15 +82,7 @@ export default function ProfitModeTable() {
                       color: "#FFFFFF",
                     }}
                   >
-                    <div>
-                      <p> {row.date.slice(0, 10)}</p>
-                      <p>
-                        {new Date(row.date).toLocaleTimeString(
-                          "en-US",
-                          options
-                        )}
-                      </p>
-                    </div>
+                    {new Date(row.date).toLocaleDateString("en-US", options)}
                   </TableCell>
                   <TableCell
                     sx={{
