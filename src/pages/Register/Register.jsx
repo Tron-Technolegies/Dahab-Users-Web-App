@@ -11,10 +11,20 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [agree, setAgree] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
   const { alertError, setAlertError, alertSuccess, setAlertSuccess } =
     useContext(UserContext);
   const { loading, register } = useRegister();
+
+  async function handleRegister(e) {
+    e.preventDefault();
+    if (!agree) {
+      setAlertError("Please agree to the terms and conditions");
+      return;
+    }
+    register({ email, password, confirmPassword, username });
+  }
   return (
     <div className="min-h-screen flex md:flex-row flex-col justify-center items-center gap-10 lg:gap-20 p-10 ">
       <Link to={"/"}>
@@ -65,14 +75,33 @@ export default function Register() {
           <Button
             name={"Sign Up"}
             styles={"bg-[#07EAD3] mt-3"}
-            clickFunction={(e) => {
-              e.preventDefault();
-              register({ email, password, confirmPassword, username });
-            }}
+            disabled={agree ? false : true}
+            clickFunction={handleRegister}
           />
           {loading && <Loading />}
         </form>
         <div className="flex flex-col gap-2">
+          <div className="flex gap-1 items-start">
+            <input
+              type="checkbox"
+              value={agree}
+              onChange={(e) => setAgree(e.target.checked)}
+            />
+            <p className="text-xs text-center max-w-[500px]">
+              I have read and agree to the of{" "}
+              <Link to={"/terms"} className="text-[#76C6E0]">
+                Terms & Conditions
+              </Link>{" "}
+              and{" "}
+              <Link to={"/privacy"} className="text-[#76C6E0]">
+                Privacy Policy
+              </Link>{" "}
+              of Dahab Miners. I understand that digital miners are not physical
+              machines, and that mining returns are subject to market risks and
+              operational factors.{" "}
+            </p>
+          </div>
+
           <p className="text-xs text-center">
             Already have an account?&nbsp;
             <Link className="text-[#07EAD3]" to={"/login"}>
@@ -88,16 +117,6 @@ export default function Register() {
             >
               {" "}
               verify
-            </Link>
-          </p>
-          <p className="text-xs text-center">
-            By signing up, you agree to our{" "}
-            <Link to={"/privacy"} className="text-[#76C6E0]">
-              privacy policy
-            </Link>{" "}
-            and{" "}
-            <Link to={"/terms"} className="text-[#76C6E0]">
-              terms of use
             </Link>
           </p>
         </div>

@@ -90,7 +90,7 @@ export default function LoginPage() {
               verify
             </Link>
           </p>
-          <p className="text-xs text-center">
+          {/* <p className="text-xs text-center">
             By signing up, you agree to our{" "}
             <Link to={"/privacy"} className="text-[#76C6E0]">
               privacy policy
@@ -99,7 +99,7 @@ export default function LoginPage() {
             <Link to={"/terms"} className="text-[#76C6E0]">
               terms of use
             </Link>
-          </p>
+          </p> */}
         </div>
       </div>
     </div>
