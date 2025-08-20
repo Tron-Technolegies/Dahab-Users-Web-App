@@ -35,7 +35,7 @@ export default function DetailedTable() {
 
   return (
     <div className="flex flex-col gap-10" id="miner-table">
-      <div className="flex items-center gap-5">
+      {/* <div className="flex items-center gap-5">
         <FormSelect list={["All", "Active", "Warning", "Inactive"]} />
         <div className="w-full relative">
           <p className="absolute text-xl text-[#0194FE] left-2 top-[10px]">
@@ -47,7 +47,7 @@ export default function DetailedTable() {
             placeholder="Search Worker"
           />
         </div>
-      </div>
+      </div> */}
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>

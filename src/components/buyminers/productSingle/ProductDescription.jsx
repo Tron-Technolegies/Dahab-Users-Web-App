@@ -5,7 +5,7 @@ import { UserContext } from "../../../UserContext";
 import InfoContainer from "../InfoContainer";
 import { BsCartPlus } from "react-icons/bs";
 import Loading from "../../Loading";
-import { IoInformationCircleOutline } from "react-icons/io5";
+import { IoInformationCircleOutline, IoWarningOutline } from "react-icons/io5";
 
 export default function ProductDescription({ miner }) {
   const { id } = useParams();
@@ -64,11 +64,11 @@ export default function ProductDescription({ miner }) {
       {miner?.stock > 0 ? (
         <div className="flex gap-2 items-center w-full relative">
           <span
-            className="text-[#0194FE] text-sm cursor-pointer"
+            className="text-orange-500 text-sm cursor-pointer"
             onMouseEnter={() => setShowInfo(true)}
             onMouseLeave={() => setShowInfo(false)}
           >
-            <IoInformationCircleOutline />
+            <IoWarningOutline />
           </span>
           {showInfo && (
             <div

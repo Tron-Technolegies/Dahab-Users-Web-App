@@ -20,12 +20,24 @@ export default function CalculatorContextProvider({ children }) {
   const [roiMining, setRoiMining] = useState(0);
   const [buyingRatio, setBuyingRatio] = useState(0);
   const [miningRatio, setMiningRatio] = useState(0);
+  //profit mode
+  const [btcEarnedPro, setBtcEarnedPro] = useState(0);
+  const [btcValueBuyingPro, setBtcValueBuyingPro] = useState(0);
+  const [btcValueMiningPro, setBtcValueMiningPro] = useState(0);
+  const [netProfitBuyingPro, setNetProfitBuyingPro] = useState(0);
+  const [netProfitMiningPro, setNetProfitMiningPro] = useState(0);
+  const [roiBuyingPro, setRoiBuyingPro] = useState(0);
+  const [roiMiningPro, setRoiMiningPro] = useState(0);
+  const [buyingRatioPro, setBuyingRatioPro] = useState(0);
+  const [miningRatioPro, setMiningRatioPro] = useState(0);
 
   function convertUsdToAed(usd) {
     return (usd * 3.67).toFixed(2);
   }
 
   function calculateAll() {
+    //Hold Mode
+    //calculating total Investment
     const totalInv = (
       minerPage?.price * miners +
       minerPage?.power *
@@ -37,8 +49,12 @@ export default function CalculatorContextProvider({ children }) {
         3.67
     ).toFixed(2);
     setInvestment(totalInv);
+
+    //calculating Total BTC Earned When Buying
     const btcEarnedBuying = (totalInv / convertUsdToAed(btcPrice)).toFixed(4);
     setBtcEarnedByBuying(btcEarnedBuying);
+
+    //calculating BTC earned When Mining
     const btcEarnedMining = (
       thPerDay *
       minerPage?.hashRate *
@@ -47,26 +63,48 @@ export default function CalculatorContextProvider({ children }) {
       hostingPeriod
     ).toFixed(4);
     setBtcEarnedByMining(btcEarnedMining);
+
+    //calculating value of BTC earned when buying
     const valueBuying = (
       btcEarnedBuying * convertUsdToAed(expectedPrice)
     ).toFixed(2);
     setBtcValueBuying(valueBuying);
+
+    //calculating value of BTC earned when Mining
     const valueMining = (
       btcEarnedMining * convertUsdToAed(expectedPrice)
     ).toFixed(2);
     setBtcValueMining(valueMining);
+
+    //calculating profit while buying
     const profitBuying = (valueBuying - totalInv).toFixed(2);
     setNetProfitBuying(profitBuying);
+
+    //calculating profit while mining
     const profitMining = (valueMining - totalInv).toFixed(2);
     setNetProfitMining(profitMining);
+
+    //calculating roi while buying
     const roi1 = ((valueBuying / totalInv) * 100).toFixed(2);
     setRoiBuying(roi1);
+
+    //calculating roi while mining
     const roi2 = ((valueMining / totalInv) * 100).toFixed(2);
     setRoiMining(roi2);
+
+    //calculating ratio while buying
     const ratio1 = (profitBuying / totalInv).toFixed(2);
     setBuyingRatio(ratio1);
+
+    //calculating ratio while mining
     const ratio2 = (profitMining / totalInv).toFixed(2);
     setMiningRatio(ratio2);
+
+    //profit mode
+    //calculating btc earned while buying and mining
+    const profitModeBTCEarned =
+      (minerPage?.price * miners) / convertUsdToAed(btcPrice);
+    setBtcEarnedPro(profitModeBTCEarned);
   }
 
   useEffect(() => {
@@ -99,6 +137,7 @@ export default function CalculatorContextProvider({ children }) {
         buyingRatio,
         thPerDay,
         setThPerDay,
+        btcEarnedPro,
       }}
     >
       {children}

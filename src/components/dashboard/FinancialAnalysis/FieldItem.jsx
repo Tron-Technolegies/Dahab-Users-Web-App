@@ -13,7 +13,6 @@ export default function FieldItem({
   return (
     <div className="w-full flex justify-between relative">
       <p className={`flex gap-2 items-center md:text-base text-sm ${style}`}>
-        {item}{" "}
         <span
           className="text-[#0194FE] text-sm cursor-pointer"
           onMouseEnter={() => setShowInfo(true)}
@@ -21,6 +20,7 @@ export default function FieldItem({
         >
           <IoInformationCircleOutline />
         </span>
+        {item}{" "}
       </p>
       <p className={`md:text-base text-sm ${style2}`}>{value}</p>
       {showInfo && (

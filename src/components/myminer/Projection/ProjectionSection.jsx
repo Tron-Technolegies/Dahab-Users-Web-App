@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import FieldItem from "../../dashboard/FinancialAnalysis/FieldItem";
 import { CalculatorContext } from "../../../CalculatorContext";
 import { ProjectionContext } from "../../../ProjectionContext";
-import { IoInformationCircleOutline } from "react-icons/io5";
+import { IoWarningOutline } from "react-icons/io5";
 
 export default function ProjectionSection() {
   const { btcPrice, thPerDay } = useContext(CalculatorContext);
@@ -50,11 +50,11 @@ export default function ProjectionSection() {
         <p className="md:text-lg flex gap-2 justify-center relative">
           Financial Projection (3 Years){" "}
           <span
-            className="text-[#0194FE] text-sm cursor-pointer"
+            className="text-orange-500 text-sm cursor-pointer"
             onMouseEnter={() => setShowInfo(true)}
             onMouseLeave={() => setShowInfo(false)}
           >
-            <IoInformationCircleOutline />
+            <IoWarningOutline />
           </span>
           {showInfo && (
             <div

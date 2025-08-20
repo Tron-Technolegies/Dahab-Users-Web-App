@@ -30,7 +30,7 @@ export default function DetailsAndSpecs({ miner }) {
             {miner?.features.map((item) => (
               <p key={item} className="flex gap-2 items-center">
                 <GoDotFill />
-                <p>{item}</p>
+                <span>{item}</span>
               </p>
             ))}
           </div>
@@ -39,7 +39,7 @@ export default function DetailsAndSpecs({ miner }) {
             {miner?.idealFor.map((item) => (
               <p key={item} className="flex gap-2 items-center">
                 <GoDotFill />
-                <p>{item}</p>
+                <span>{item}</span>
               </p>
             ))}
           </div>
