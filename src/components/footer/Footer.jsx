@@ -72,6 +72,19 @@ export default function Footer({ isZero }) {
             {/* <div className="flex sm:flex-row flex-col gap-5 justify-between items-start"> */}
             <a
               className="flex gap-3 items-start"
+              href="https://maps.app.goo.gl/eLqPGSFbuweek7788?g_st=ipc"
+              target="_blank"
+            >
+              <div>
+                <CiLocationOn />
+              </div>
+              <p>
+                Plot 122 Ad Doja 1 St - Musaffah - M40 - Abu Dhabi - United Arab
+                Emirates
+              </p>
+            </a>
+            <a
+              className="flex gap-3 items-start"
               href="https://maps.app.goo.gl/PCJcJS8TUPDGca6HA"
               target="_blank"
             >

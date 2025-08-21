@@ -69,11 +69,7 @@ export default function ROICalculator({ miner }) {
             className={`p-2 text-[#0194FE] rounded-md outline-0 bg-[#011532] disabled:cursor-not-allowed`}
           >
             <option value={"hold"}>BTC Hold</option>
-            <option
-              value={"profit"}
-              className="disabled:cursor-not-allowed"
-              disabled
-            >
+            <option value={"profit"} className="disabled:cursor-not-allowed">
               BTC Profit
             </option>
           </select>
