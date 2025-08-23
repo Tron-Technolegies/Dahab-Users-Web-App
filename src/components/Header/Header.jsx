@@ -7,9 +7,11 @@ import { FaUserCircle, FaAlignRight } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
 import DrawerComponent from "./DrawerComponent";
 import AccountSettings from "./AccountSettings";
+import NotificationDrawer from "./NotificationDrawer";
 
 export default function Header() {
   const [openDrawer, setOpenDrawer] = useState(false);
+
   const { user } = useContext(UserContext);
   const location = useLocation();
 
@@ -73,15 +75,9 @@ export default function Header() {
         </NavLink>
       </nav>
       {user ? (
-        <div className="flex gap-2 items-center md:text-2xl">
-          {/* <span className="text-[#07EAD3]">
-            <IoNotifications />
-          </span> */}
-
-          <Link
-            to={`/dashboard/buy/cart`}
-            className="relative md:text-base text-sm mr-1"
-          >
+        <div className="flex gap-5 items-center md:text-2xl">
+          <NotificationDrawer user={user} />
+          <Link to={`/dashboard/buy/cart`} className="relative ">
             <FaCartShopping />
             <p className="md:text-sm md:w-6 w-4 md:h-6 h-4 rounded-full flex justify-center items-center bg-blue-500 absolute -top-3 -right-3">
               {user?.cartItems.length}
