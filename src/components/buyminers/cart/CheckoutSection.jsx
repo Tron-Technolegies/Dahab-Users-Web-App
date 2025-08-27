@@ -41,8 +41,11 @@ export default function CheckoutSection() {
               setAlertError("Test Users cannot buy new Machines");
               return;
             }
-            await purchase();
-            await refetch();
+            setAlertError(
+              "App is in Test Mode. Only selected users are able to buy machines"
+            );
+            // await purchase();
+            // await refetch();
           }}
           className="w-full py-2 rounded-lg bg-[#07EAD3] text-black cursor-pointer"
         >
