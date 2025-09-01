@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import GraphStat from "./GraphStat";
 import { DashboardContext } from "../../../DashBoardContext";
 import { UserContext } from "../../../UserContext";
+import { sendTopupRequest } from "../../../utils/whatsapp";
 
 export default function StatsMainCard() {
   const [on, setOn] = useState(false);
@@ -69,12 +70,12 @@ export default function StatsMainCard() {
               <span className="md:text-xl text-base  font-bold">
                 {user?.walletBalance?.toFixed(2)} AED
               </span>
-              <Link
-                to={"/dashboard/wallet"}
+              <button
+                onClick={sendTopupRequest}
                 className="ms-2 text-sm rounded-lg cursor-pointer px-3 py-1 border text-white lg:block hidden"
               >
                 Topup
-              </Link>
+              </button>
             </p>
             <p className=" md:p-2 w-full rounded-lg lg:text-end flex gap-2 items-center lg:justify-end justify-between">
               Avg. Validity Left{" "}
@@ -121,12 +122,12 @@ export default function StatsMainCard() {
         >
           Detailed View
         </Link>
-        <Link
-          to={"/dashboard/wallet"}
+        <button
+          onClick={sendTopupRequest}
           className=" text-sm rounded-lg cursor-pointer px-3 py-1 border text-white lg:hidden w-fit"
         >
           Topup
-        </Link>
+        </button>
       </div>
     </div>
   );

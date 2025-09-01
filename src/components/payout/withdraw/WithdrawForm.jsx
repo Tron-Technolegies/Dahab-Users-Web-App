@@ -34,10 +34,10 @@ export default function WithdrawForm() {
       setAlertError("Invalid Amount");
       return;
     }
-    if (amount < 0.005) {
-      setAlertError("Only able to withdraw amounts larger than 0.005BTC");
-      return;
-    }
+    // if (amount < 0.005) {
+    //   setAlertError("Minimum withdrawal amount is 0.005 BTC. Please enter an amount equal to or greater than this threshold");
+    //   return;
+    // }
     if (address === "") {
       setAlertError("Please Enter valid BTC Address");
       return;
@@ -47,7 +47,9 @@ export default function WithdrawForm() {
       return;
     }
     if (user?.walletBalance < 0) {
-      setAlertError("Unable to Withdraw due to negative Wallet Balance");
+      setAlertError(
+        "Unable to Withdraw due to negative Wallet Balance, Please top-up your wallet balance to withdraw"
+      );
       return;
     }
     if (user?.is2FAEnabled) {

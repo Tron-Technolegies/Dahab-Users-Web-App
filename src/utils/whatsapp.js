@@ -6,3 +6,12 @@ export const handleWhatsapp = ({ email, phone, message }) => {
 
   window.open(whatsappUrl, "_blank");
 };
+
+export const sendTopupRequest = () => {
+  const phoneNumber = "+971568145866";
+  const messageContent = `I Would like to do a top-up for my wallet`;
+  const encodedMessage = encodeURIComponent(messageContent);
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+  window.open(whatsappUrl, "_blank");
+};

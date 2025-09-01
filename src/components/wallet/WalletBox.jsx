@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { UserContext } from "../../UserContext";
+import { sendTopupRequest } from "../../utils/whatsapp";
 
 export default function WalletBox() {
   const { user, estHostingFee, estDaysRemaining } = useContext(UserContext);
@@ -10,7 +11,10 @@ export default function WalletBox() {
           <img src="/wallet/icon-1.png" className="w-12" />
           <p>Available Balance</p>
         </div>
-        <button className="flex gap-2 items-center px-3 py-1 border rounded-lg border-[#26DDFF5E] cursor-pointer">
+        <button
+          onClick={sendTopupRequest}
+          className="flex gap-2 items-center px-3 py-1 border rounded-lg border-[#26DDFF5E] cursor-pointer"
+        >
           <img src="/wallet/icon-2.png" className="w-5" />
           Top-up
         </button>
