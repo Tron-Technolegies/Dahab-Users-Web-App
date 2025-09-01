@@ -107,7 +107,7 @@ export default function ProductDescription({ miner }) {
         </div>
       ) : (
         <button className="bg-[#198FA6] w-full py-2 rounded-md cursor-pointer">
-          Join Waitlist
+          Out of Stock
         </button>
       )}
     </div>

@@ -134,15 +134,15 @@ export default function Projection() {
             2
           )} AED</p><p> >100 % - Positive Returns</p><p> <100 % - Negative Returns</p><p> =100 % - No Returns</p>`}
         />
-        <FieldItem
+        {/* <FieldItem
           item={"Buying BTC Now"}
           value={`${buyingBTCNow} BTC`}
           formula={"Total Investment / BTC Price Now"}
           description={`<p>This indicates the Total BTC you can buy now with the investment you spent in 3 years</p><p>BTC Price Now - ${btcPrice} USD</p><p>Total Investment - ${totalInvestment3Yrs.toFixed(
             2
           )} AED</p>`}
-        />
-        {buyingBTCNow < totalMined3Yrs && (
+        /> */}
+        {/* {buyingBTCNow < totalMined3Yrs && (
           <p className=" border-t border-[#0194FE] text-sm text-center">
             You will get{" "}
             <span className="text-lg font-semibold text-[#0194FE]">
@@ -150,7 +150,7 @@ export default function Projection() {
             </span>{" "}
             coins if you do mining
           </p>
-        )}
+        )} */}
       </div>
     </motion.div>
   );
