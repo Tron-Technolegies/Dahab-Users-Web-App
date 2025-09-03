@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const useVerifyWithdrawal = () => {
   const [loading, setLoading] = useState(false);
+  const [res, setRes] = useState(null);
   const { setAlertError, setAlertSuccess } = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -20,6 +21,9 @@ const useVerifyWithdrawal = () => {
         { withCredentials: true }
       );
       const data = response.data;
+      if (data.msg !== "successfully verified") {
+        throw new Error("OTP verification failed");
+      }
       // setAlertSuccess("Transfer Successfully Processed");
       // navigate("/dashboard/payouts");
     } catch (error) {
@@ -37,11 +41,12 @@ const useVerifyWithdrawal = () => {
           error?.message ||
           "something went wrong"
       );
+      throw error;
     } finally {
       setLoading(false);
     }
   };
-  return { loading, verifyWithdrawal };
+  return { loading, verifyWithdrawal, res };
 };
 
 export default useVerifyWithdrawal;

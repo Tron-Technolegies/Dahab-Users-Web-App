@@ -65,6 +65,7 @@ export default function TwoFAPopup({ open, setOpen, amount, btcAddress }) {
                   onClick={async () => {
                     try {
                       await verifyWithdrawal({ code });
+
                       await makeWithdrawal({ address: btcAddress, amount });
                       setOpen(false);
                       setCode("");
