@@ -51,99 +51,6 @@ export default function HoldModeCalculator({ miner }) {
         className="bg-[#011532] flex lg:flex-row flex-col justify-between items-start"
       >
         <div className="w-full">
-          <div className="flex items-center gap-2 justify-center border-b border-[#4D8DAF] px-3 py-3">
-            <div className="text-[#252528] text-4xl bg-[#5B5B5B] rounded-full">
-              <FaBitcoin />
-            </div>
-            <div>
-              <p className="md:text-base text-sm">Buying BTC</p>
-              <p className="md:text-xs text-[10px] text-[#949494]">
-                Overview of your Bitcoin portfolio performance
-              </p>
-            </div>
-          </div>
-          <div className="my-5 md:px-16 px-3 flex flex-col gap-3">
-            <FieldItem
-              item={"Total Cost incurred"}
-              value={`${investment.toFixed(2)} AED`}
-              style={"text-[#A4A4A6]"}
-              description={`<p>The total cost incurred when purchasing ${miners} miner and paying its electricity fee for ${hostingPeriod} years </p><p>Miner Price = ${
-                miner?.price
-              } X ${miners} = ${
-                parseFloat(miner?.price) * parseFloat(miners)
-              } AED</p><p>Electricity Fee for ${hostingPeriod} yrs - ${(
-                miner?.power *
-                24 *
-                miners *
-                365 *
-                hostingPeriod *
-                parseFloat(miner?.hostingFeePerKw) *
-                3.67
-              ).toFixed(2)} AED</p>`}
-            />
-            <FieldItem
-              item={"BTC Earned"}
-              value={`${btcEarnedByBuying.toFixed(7)} BTC`}
-              style={"text-[#A4A4A6]"}
-              formula={"Total Cost Incurred / BTC Price Now in AED"}
-              description={`<p>This gives you how much BTC you can buy now with the total cost which will be otherwise spend on buying a machine and paying its electricity bill</p><p>Total Cost Incurred - ${investment} AED</p><p>BTC Price Now(AED) - ${convertUsdToAed(
-                btcPrice
-              )}</p>`}
-            />
-            <FieldItem
-              item={"Expected BTC Price"}
-              value={`${convertUsdToAed(expectedPrice)} AED`}
-              style={"text-[#A4A4A6]"}
-              description={`<p>This is the expected value of BTC in AED after the ${hostingPeriod} years. You can change the years and amount in the above options</p>`}
-            />
-            <FieldItem
-              item={"Your BTC Value"}
-              value={`${btcValueBuying.toFixed(2)} AED`}
-              style={"text-[#A4A4A6]"}
-              formula={`BTC Owned x Expected Price in ${hostingPeriod} years`}
-              description={`<p>This is the value of the BTC owned by you after ${hostingPeriod} years</p><p>BTC owned - ${btcEarnedByBuying.toFixed(
-                7
-              )} BTC</p><p>Expected Price in ${hostingPeriod} years - ${convertUsdToAed(
-                expectedPrice
-              )} AED</p>`}
-            />
-          </div>
-          <div className="w-full flex flex-col gap-2 md:px-16 px-3 pb-5 lg:hidden border-b border-[#4D8DAF]">
-            <FieldItem
-              item={"Net Profit"}
-              value={`${netProfitBuying.toFixed(2)} AED`}
-              style={"text-[#A4A4A6]"}
-              style2={"border border-[#26DDFF4F] px-3 py-1 rounded-md"}
-              formula={`Value of BTC Owned - Total Cost Incurred`}
-              description={`<p>This gives information about how much profit is gained in ${hostingPeriod} years if You buy bitcoin </p><p>Value of BTC owned - ${btcValueBuying.toFixed(
-                2
-              )} AED</p><p>Total Investment - ${investment.toFixed(2)} AED</p>`}
-            />
-            <FieldItem
-              item={"ROI %"}
-              value={`${roiBuying.toFixed(2)}`}
-              style={"text-[#A4A4A6]"}
-              style2={"border border-[#26DDFF4F] px-3 py-1 rounded-md"}
-              formula={`(Value of BTC Owned / Total Investment) x 100`}
-              description={`<p>This value represents the Return of Investment. It gives the info about how much percentage more returns you got compared to your investment.</p><p>Your BTC Value - ${btcValueBuying.toFixed(
-                2
-              )} AED</p><p>Total Investment - ${investment.toFixed(
-                2
-              )} AED</p><p> >100 % - Positive Returns</p><p> <100 % - Negative Returns</p><p> =100 % - No Returns</p>`}
-            />
-            <FieldItem
-              item={"Profit:Investment"}
-              value={buyingRatio.toFixed(2)}
-              style={"text-[#A4A4A6]"}
-              style2={"border border-[#26DDFF4F] px-3 py-1 rounded-md"}
-              formula={`Net Profit / Total Cost Incurred`}
-              description={`<p>This gives the ratio of the Net Profit to that of the total cost incurred</p><p>Net Profit - ${netProfitBuying.toFixed(
-                2
-              )}</p><p>Total cost Incurred - ${investment.toFixed(2)}</p>`}
-            />
-          </div>
-        </div>
-        <div className="w-full">
           <div className="flex items-center justify-center gap-2 border-b border-[#4D8DAF] p-3">
             <div className="text-[#5B5B5B] text-3xl bg-[#252528] rounded-full">
               <GiMining />
@@ -155,7 +62,7 @@ export default function HoldModeCalculator({ miner }) {
               </p>
             </div>
           </div>
-          <div className="my-5 md:px-16 px-3 flex flex-col gap-3 border-l border-[#4D8DAF59] relative">
+          <div className="my-5 md:px-16 px-3 flex flex-col gap-3  border-r border-[#4D8DAF59] relative">
             <FieldItem
               item={"Miner Price"}
               value={`${parseFloat(miner?.price) * parseFloat(miners)} AED`}
@@ -265,46 +172,105 @@ export default function HoldModeCalculator({ miner }) {
             </div>
             <img
               src="/buy-miners/icon-3.png"
-              className="w-14 rounded-full absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden lg:block"
+              className="w-14 rounded-full absolute -right-15 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden lg:block"
+            />
+          </div>
+        </div>
+        <div className="w-full">
+          <div className="flex items-center gap-2 justify-center border-b border-[#4D8DAF] px-3 py-3">
+            <div className="text-[#252528] text-4xl bg-[#5B5B5B] rounded-full">
+              <FaBitcoin />
+            </div>
+            <div>
+              <p className="md:text-base text-sm">Buying BTC</p>
+              <p className="md:text-xs text-[10px] text-[#949494]">
+                Overview of your Bitcoin portfolio performance
+              </p>
+            </div>
+          </div>
+          <div className="my-5 md:px-16 px-3 flex flex-col gap-3">
+            <FieldItem
+              item={"Total Cost incurred"}
+              value={`${investment.toFixed(2)} AED`}
+              style={"text-[#A4A4A6]"}
+              description={`<p>The total cost incurred when purchasing ${miners} miner and paying its electricity fee for ${hostingPeriod} years </p><p>Miner Price = ${
+                miner?.price
+              } X ${miners} = ${
+                parseFloat(miner?.price) * parseFloat(miners)
+              } AED</p><p>Electricity Fee for ${hostingPeriod} yrs - ${(
+                miner?.power *
+                24 *
+                miners *
+                365 *
+                hostingPeriod *
+                parseFloat(miner?.hostingFeePerKw) *
+                3.67
+              ).toFixed(2)} AED</p>`}
+            />
+            <FieldItem
+              item={"BTC Earned"}
+              value={`${btcEarnedByBuying.toFixed(7)} BTC`}
+              style={"text-[#A4A4A6]"}
+              formula={"Total Cost Incurred / BTC Price Now in AED"}
+              description={`<p>This gives you how much BTC you can buy now with the total cost which will be otherwise spend on buying a machine and paying its electricity bill</p><p>Total Cost Incurred - ${investment} AED</p><p>BTC Price Now(AED) - ${convertUsdToAed(
+                btcPrice
+              )}</p>`}
+            />
+            <FieldItem
+              item={"Expected BTC Price"}
+              value={`${convertUsdToAed(expectedPrice)} AED`}
+              style={"text-[#A4A4A6]"}
+              description={`<p>This is the expected value of BTC in AED after the ${hostingPeriod} years. You can change the years and amount in the above options</p>`}
+            />
+            <FieldItem
+              item={"Your BTC Value"}
+              value={`${btcValueBuying.toFixed(2)} AED`}
+              style={"text-[#A4A4A6]"}
+              formula={`BTC Owned x Expected Price in ${hostingPeriod} years`}
+              description={`<p>This is the value of the BTC owned by you after ${hostingPeriod} years</p><p>BTC owned - ${btcEarnedByBuying.toFixed(
+                7
+              )} BTC</p><p>Expected Price in ${hostingPeriod} years - ${convertUsdToAed(
+                expectedPrice
+              )} AED</p>`}
+            />
+          </div>
+          <div className="w-full flex flex-col gap-2 md:px-16 px-3 pb-5 lg:hidden border-b border-[#4D8DAF]">
+            <FieldItem
+              item={"Net Profit"}
+              value={`${netProfitBuying.toFixed(2)} AED`}
+              style={"text-[#A4A4A6]"}
+              style2={"border border-[#26DDFF4F] px-3 py-1 rounded-md"}
+              formula={`Value of BTC Owned - Total Cost Incurred`}
+              description={`<p>This gives information about how much profit is gained in ${hostingPeriod} years if You buy bitcoin </p><p>Value of BTC owned - ${btcValueBuying.toFixed(
+                2
+              )} AED</p><p>Total Investment - ${investment.toFixed(2)} AED</p>`}
+            />
+            <FieldItem
+              item={"ROI %"}
+              value={`${roiBuying.toFixed(2)}`}
+              style={"text-[#A4A4A6]"}
+              style2={"border border-[#26DDFF4F] px-3 py-1 rounded-md"}
+              formula={`(Value of BTC Owned / Total Investment) x 100`}
+              description={`<p>This value represents the Return of Investment. It gives the info about how much percentage more returns you got compared to your investment.</p><p>Your BTC Value - ${btcValueBuying.toFixed(
+                2
+              )} AED</p><p>Total Investment - ${investment.toFixed(
+                2
+              )} AED</p><p> >100 % - Positive Returns</p><p> <100 % - Negative Returns</p><p> =100 % - No Returns</p>`}
+            />
+            <FieldItem
+              item={"Profit:Investment"}
+              value={buyingRatio.toFixed(2)}
+              style={"text-[#A4A4A6]"}
+              style2={"border border-[#26DDFF4F] px-3 py-1 rounded-md"}
+              formula={`Net Profit / Total Cost Incurred`}
+              description={`<p>This gives the ratio of the Net Profit to that of the total cost incurred</p><p>Net Profit - ${netProfitBuying.toFixed(
+                2
+              )}</p><p>Total cost Incurred - ${investment.toFixed(2)}</p>`}
             />
           </div>
         </div>
       </motion.div>
       <div className="lg:flex justify-between gap-20 py-5 relative hidden">
-        <div className="w-full flex flex-col gap-3 px-5">
-          <FieldItem
-            item={"Net Profit"}
-            value={`${netProfitBuying.toFixed(2)} AED`}
-            style={"text-[#A4A4A6]"}
-            style2={"border border-[#26DDFF4F] px-3 py-1 rounded-md"}
-            formula={`Value of BTC Owned - Total Cost Incurred`}
-            description={`<p>This gives information about how much profit is gained in ${hostingPeriod} years if You buy bitcoin </p><p>Value of BTC owned - ${btcValueBuying.toFixed(
-              2
-            )} AED</p><p>Total Investment - ${investment.toFixed(2)} AED</p>`}
-          />
-          <FieldItem
-            item={"ROI %"}
-            value={roiBuying.toFixed(2)}
-            style={"text-[#A4A4A6]"}
-            style2={"border border-[#26DDFF4F] px-3 py-1 rounded-md"}
-            formula={`(Value of BTC Owned / Total Investment) x 100`}
-            description={`<p>This value represents the Return of Investment. It gives the info about how much percentage more returns you got compared to your investment.</p><p>Your BTC Value - ${btcValueBuying.toFixed(
-              2
-            )} AED</p><p>Total Investment - ${investment.toFixed(
-              2
-            )} AED</p><p> >100 % - Positive Returns</p><p> <100 % - Negative Returns</p><p> =100 % - No Returns</p>`}
-          />
-          <FieldItem
-            item={"Profit:Investment"}
-            value={buyingRatio.toFixed(2)}
-            style={"text-[#A4A4A6]"}
-            style2={"border border-[#26DDFF4F] px-3 py-1 rounded-md"}
-            formula={`Net Profit / Total Cost Incurred`}
-            description={`<p>This gives the ratio of the Net Profit to that of the total cost incurred</p><p>Net Profit - ${netProfitBuying.toFixed(
-              2
-            )}</p><p>Total cost Incurred - ${investment.toFixed(2)}</p>`}
-          />
-        </div>
         <div className="w-full flex flex-col gap-3 px-5">
           <FieldItem
             item={"Net Profit"}
@@ -335,6 +301,40 @@ export default function HoldModeCalculator({ miner }) {
             style2={"border border-[#26DDFF4F] px-3 py-1 rounded-md"}
             formula={`Net Profit / Total Cost Incurred`}
             description={`<p>This gives the ratio of the Net Profit to that of the total cost incurred</p><p>Net Profit - ${netProfitMining.toFixed(
+              2
+            )}</p><p>Total cost Incurred - ${investment.toFixed(2)}</p>`}
+          />
+        </div>
+        <div className="w-full flex flex-col gap-3 px-5">
+          <FieldItem
+            item={"Net Profit"}
+            value={`${netProfitBuying.toFixed(2)} AED`}
+            style={"text-[#A4A4A6]"}
+            style2={"border border-[#26DDFF4F] px-3 py-1 rounded-md"}
+            formula={`Value of BTC Owned - Total Cost Incurred`}
+            description={`<p>This gives information about how much profit is gained in ${hostingPeriod} years if You buy bitcoin </p><p>Value of BTC owned - ${btcValueBuying.toFixed(
+              2
+            )} AED</p><p>Total Investment - ${investment.toFixed(2)} AED</p>`}
+          />
+          <FieldItem
+            item={"ROI %"}
+            value={roiBuying.toFixed(2)}
+            style={"text-[#A4A4A6]"}
+            style2={"border border-[#26DDFF4F] px-3 py-1 rounded-md"}
+            formula={`(Value of BTC Owned / Total Investment) x 100`}
+            description={`<p>This value represents the Return of Investment. It gives the info about how much percentage more returns you got compared to your investment.</p><p>Your BTC Value - ${btcValueBuying.toFixed(
+              2
+            )} AED</p><p>Total Investment - ${investment.toFixed(
+              2
+            )} AED</p><p> >100 % - Positive Returns</p><p> <100 % - Negative Returns</p><p> =100 % - No Returns</p>`}
+          />
+          <FieldItem
+            item={"Profit:Investment"}
+            value={buyingRatio.toFixed(2)}
+            style={"text-[#A4A4A6]"}
+            style2={"border border-[#26DDFF4F] px-3 py-1 rounded-md"}
+            formula={`Net Profit / Total Cost Incurred`}
+            description={`<p>This gives the ratio of the Net Profit to that of the total cost incurred</p><p>Net Profit - ${netProfitBuying.toFixed(
               2
             )}</p><p>Total cost Incurred - ${investment.toFixed(2)}</p>`}
           />
