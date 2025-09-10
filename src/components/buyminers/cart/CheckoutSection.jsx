@@ -1,16 +1,16 @@
 import React, { useContext } from "react";
 import { UserContext } from "../../../UserContext";
 // import { useTour } from "@reactour/tour";
-import usePurchase from "../../../hooks/cart/usePurchase";
 import useGetUserInfo from "../../../hooks/auth/useGetUserInfo";
 import Loading from "../../Loading";
+import useCreatePaymentIntent from "../../../hooks/payment/useCreatePaymentIntent";
 
 export default function CheckoutSection() {
   // const [pay, setPay] = useState("fiat");
   const { user, setAlertError } = useContext(UserContext);
   const { refetch } = useGetUserInfo();
-  const { loading, purchase } = usePurchase();
-  // const { setIsOpen, setCurrentStep } = useTour();
+
+  const { loading, createPaymentIntent } = useCreatePaymentIntent();
 
   return (
     <div className="flex lg:flex-row flex-col lg:justify-between my-10 items-center duration-300 ease-in-out">
@@ -41,11 +41,15 @@ export default function CheckoutSection() {
               setAlertError("Test Users cannot buy new Machines");
               return;
             }
-            setAlertError(
-              "App is in Test Mode. Only selected users are able to buy machines"
-            );
-            // await purchase();
-            // await refetch();
+            // localStorage.setItem("cart_items", JSON.stringify(user.cartItems));
+            // createPaymentIntent({
+            //   amount: user?.cartItems?.reduce(
+            //     (sum, item) => sum + item.qty * parseInt(item?.itemId?.price),
+            //     0
+            //   ),
+            //   message: "miner purchase",
+            // });
+            setAlertError("Purchase option not available now");
           }}
           className="w-full py-2 rounded-lg bg-[#07EAD3] text-black cursor-pointer"
         >

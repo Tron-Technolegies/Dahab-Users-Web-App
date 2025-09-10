@@ -13,6 +13,9 @@ import Notifications from "./Notifications";
 import EmailPrompt from "./otp-verify/EmailPrompt";
 import OTPVerify from "./otp-verify/OTPVerify";
 import Page0 from "./page0/Page0";
+import PaymentCancel from "./payment/PaymentCancel";
+import PaymentFailure from "./payment/PaymentFailure";
+import PaymentSuccess from "./payment/PaymentSuccess";
 import PayoutPage from "./payout/PayoutPage";
 import WithdrawPage from "./payout/WithdrawPage";
 import PayoutSwitchPage from "./PayoutSwitchPage";
@@ -26,6 +29,7 @@ import TwoFactorLoginPage from "./twoFactorLogin/TwoFactorLoginPage";
 import UpdateProfile from "./UpdateProfile";
 import VerifyCode from "./verifyCode/VerifyCode";
 import WalletPage from "./wallet/WalletPage";
+
 export {
   BuyMinersPage,
   DashBoardPage,
@@ -55,4 +59,7 @@ export {
   PayoutSwitchPage,
   SuccessPage,
   TwoFactorLoginPage,
+  PaymentCancel,
+  PaymentFailure,
+  PaymentSuccess,
 };

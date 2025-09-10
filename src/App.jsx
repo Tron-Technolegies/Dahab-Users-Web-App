@@ -15,6 +15,9 @@ import {
   Notifications,
   OTPVerify,
   Page0,
+  PaymentCancel,
+  PaymentFailure,
+  PaymentSuccess,
   PayoutPage,
   PayoutSwitchPage,
   PrivacyPolicy,
@@ -69,6 +72,9 @@ export default function App() {
     { path: "/reset-password", element: <ResetPassword /> },
     { path: "/verify-account", element: <EmailPrompt /> },
     { path: "/otp", element: <OTPVerify /> },
+    { path: "/ziina-success", element: <PaymentSuccess /> },
+    { path: "/ziina-failure", element: <PaymentFailure /> },
+    { path: "/ziina-cancel", element: <PaymentCancel /> },
   ]);
   return <RouterProvider router={router} />;
 }
