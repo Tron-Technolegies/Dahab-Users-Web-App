@@ -70,12 +70,12 @@ export default function StatsMainCard() {
               <span className="md:text-xl text-base  font-bold">
                 {user?.walletBalance?.toFixed(2)} AED
               </span>
-              <button
-                onClick={sendTopupRequest}
+              <Link
+                to={"/dashboard/wallet"}
                 className="ms-2 text-sm rounded-lg cursor-pointer px-3 py-1 border text-white lg:block hidden"
               >
                 Topup
-              </button>
+              </Link>
             </p>
             <p className=" md:p-2 w-full rounded-lg lg:text-end flex gap-2 items-center lg:justify-end justify-between">
               Avg. Validity Left{" "}
@@ -122,12 +122,12 @@ export default function StatsMainCard() {
         >
           Detailed View
         </Link>
-        <button
-          onClick={sendTopupRequest}
+        <Link
+          to={"/dashboard/wallet"}
           className=" text-sm rounded-lg cursor-pointer px-3 py-1 border text-white lg:hidden w-fit"
         >
           Topup
-        </button>
+        </Link>
       </div>
     </div>
   );

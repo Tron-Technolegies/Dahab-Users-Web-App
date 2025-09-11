@@ -41,15 +41,15 @@ export default function CheckoutSection() {
               setAlertError("Test Users cannot buy new Machines");
               return;
             }
-            // localStorage.setItem("cart_items", JSON.stringify(user.cartItems));
-            // createPaymentIntent({
-            //   amount: user?.cartItems?.reduce(
-            //     (sum, item) => sum + item.qty * parseInt(item?.itemId?.price),
-            //     0
-            //   ),
-            //   message: "miner purchase",
-            // });
-            setAlertError("Purchase option not available now");
+            localStorage.setItem("cart_items", JSON.stringify(user.cartItems));
+            createPaymentIntent({
+              amount: user?.cartItems?.reduce(
+                (sum, item) => sum + item.qty * parseInt(item?.itemId?.price),
+                0
+              ),
+              message: "miner purchase",
+            });
+            // setAlertError("Purchase option not available now");
           }}
           className="w-full py-2 rounded-lg bg-[#07EAD3] text-black cursor-pointer"
         >

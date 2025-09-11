@@ -1,9 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { UserContext } from "../../UserContext";
 import { sendTopupRequest } from "../../utils/whatsapp";
+import RechargePopup from "./RechargePopup";
 
 export default function WalletBox() {
   const { user, estHostingFee, estDaysRemaining } = useContext(UserContext);
+  const [open, setOpen] = useState(false);
   return (
     <div className="p-7 bg-[#0194FE] max-w-[700px] mx-auto w-full rounded-lg">
       <div className="flex justify-between items-center pb-5 border-b border-[#26DDFF5E]">
@@ -12,7 +14,7 @@ export default function WalletBox() {
           <p>Available Balance</p>
         </div>
         <button
-          onClick={sendTopupRequest}
+          onClick={() => setOpen(true)}
           className="flex gap-2 items-center px-3 py-1 border rounded-lg border-[#26DDFF5E] cursor-pointer"
         >
           <img src="/wallet/icon-2.png" className="w-5" />
@@ -32,6 +34,7 @@ export default function WalletBox() {
           Est. Days Remaining: {Math.floor(estDaysRemaining)} days
         </p>
       </div>
+      <RechargePopup open={open} setOpen={setOpen} />
     </div>
   );
 }
