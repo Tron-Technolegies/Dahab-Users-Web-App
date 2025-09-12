@@ -61,6 +61,14 @@ export default function ProductDescription({ miner }) {
         <p className="text-[#1ECBAF] text-2xl">{`AED ${miner?.price}`}</p>
         <p className="text-xs">(incl. of all taxes)</p>
       </div>
+      <div className="border p-3 rounded-lg border-[#043377]">
+        <p className="text-[#1ECBAF]">Note</p>
+        <p className="text-sm">
+          First month’s hosting fee must be prepaid with your miner purchase.
+          Future fees will be auto-deduct. Withdrawals of mined BTC allowed only
+          if wallet balance ≥ 0.
+        </p>
+      </div>
       {miner?.stock > 0 ? (
         <div className="flex gap-2 items-center w-full relative">
           <span
@@ -83,6 +91,7 @@ export default function ProductDescription({ miner }) {
               </p>
             </div>
           )}
+
           <button
             onClick={async () => {
               await addToCart({ itemId: id });

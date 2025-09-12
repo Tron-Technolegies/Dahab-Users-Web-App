@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
@@ -6,6 +6,7 @@ import Backdrop from "@mui/material/Backdrop";
 import { IoMdClose } from "react-icons/io";
 import useCreatePaymentIntent from "../../hooks/payment/useCreatePaymentIntent";
 import Loading from "../Loading";
+import { UserContext } from "../../UserContext";
 
 const style = {
   position: "absolute",
@@ -26,6 +27,13 @@ const style = {
 export default function RechargePopup({ open, setOpen }) {
   const [amount, setAmount] = useState(0);
   const { loading, createPaymentIntent } = useCreatePaymentIntent();
+  const { user, setAlertError } = useContext(UserContext);
+
+  useEffect(() => {
+    if (user?.walletBalance < 0) {
+      setAmount(-Number(user?.walletBalance.toFixed(2)));
+    }
+  }, [user]);
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -66,6 +74,15 @@ export default function RechargePopup({ open, setOpen }) {
               <button
                 className="px-3 py-1 rounded-md bg-gray-600 cursor-pointer min-w-20"
                 onClick={async () => {
+                  if (
+                    user?.walletBalance < 0 &&
+                    Number(amount) < -Number(user?.walletBalance.toFixed(2))
+                  ) {
+                    setAlertError(
+                      "Only able to topup amounts greater than your current negative balance"
+                    );
+                    return;
+                  }
                   await createPaymentIntent({
                     amount: amount,
                     message: "wallet Topup",

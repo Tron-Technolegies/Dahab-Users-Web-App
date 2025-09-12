@@ -13,9 +13,14 @@ export default function CheckoutSection() {
   const { loading, createPaymentIntent } = useCreatePaymentIntent();
 
   return (
-    <div className="flex lg:flex-row flex-col lg:justify-between my-10 items-center duration-300 ease-in-out">
-      <div className="my-10 w-full"></div>
-      <div className="p-10 bg-[#011532] rounded-md lg:w-1/2 flex flex-col gap-5 w-full">
+    <div className="flex flex-col gap-5 lg:justify-between my-10 items-center duration-300 ease-in-out">
+      <div className="border p-3 rounded-lg border-[#043377] lg:w-1/2 w-full">
+        <p className="text-[#1ECBAF]">Note</p>
+        <p className="text-sm">
+          First month’s hosting fee must be prepaid with your miner purchase.
+        </p>
+      </div>
+      <div className="mx-auto p-10 bg-[#011532] rounded-md lg:w-1/2 flex flex-col gap-5 w-full">
         <p className="text-[#76C6E0] text-xl">Grand Total</p>
         <div className="flex flex-col gap-3">
           <div className="flex justify-between items-center">
