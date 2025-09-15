@@ -14,7 +14,8 @@ export default function WalletBox() {
           <p>Available Balance</p>
         </div>
         <button
-          onClick={() => setOpen(true)}
+          // onClick={() => setOpen(true)}
+          onClick={() => sendTopupRequest()}
           className="flex gap-2 items-center px-3 py-1 border rounded-lg border-[#26DDFF5E] cursor-pointer"
         >
           <img src="/wallet/icon-2.png" className="w-5" />
