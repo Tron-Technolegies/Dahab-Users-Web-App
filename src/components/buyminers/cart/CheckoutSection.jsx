@@ -79,7 +79,7 @@ export default function CheckoutSection() {
               amount: total,
               message: "miner purchase",
             });
-            setAlertError("Purchase option not available now");
+            // setAlertError("Purchase option not available now");
           }}
           className="w-full py-2 rounded-lg bg-[#07EAD3] text-black cursor-pointer"
         >
