@@ -16,31 +16,25 @@ export default function Layout() {
   const navigate = useNavigate();
   // const { setIsOpen, setCurrentStep } = useTour();
 
-  const [termsOpen, setTermsOpen] = useState(false);
   const {
     alertError,
     alertSuccess,
     setAlertError,
     setAlertSuccess,
     refetchTrigger,
+    termsOpen,
+    setTermsOpen,
     user,
   } = useContext(UserContext);
   const { loading, refetch } = useGetUserInfo();
   const {} = useGetSats();
   const { loading: coinLoading } = useGetBitCoinData();
-  const { privacy, terms } = useGetCurrent();
+  const { loading: termsLoading } = useGetCurrent();
 
   useEffect(() => {
     refetch();
   }, [refetchTrigger]);
 
-  // useEffect(() => {
-  //   if (user && user.username) {
-  //     if (privacy === true || terms === true) {
-  //       setTermsOpen(true);
-  //     }
-  //   }
-  // }, [user]);
   return loading ? (
     <Loading />
   ) : (

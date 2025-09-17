@@ -5,9 +5,7 @@ import { UserContext } from "../../UserContext";
 
 const useGetCurrent = () => {
   const [loading, setLoading] = useState(false);
-  const [terms, setTerms] = useState(false);
-  const [privacy, setPrivacy] = useState(false);
-  const { user } = useContext(UserContext);
+  const { user, termsOpen, setTermsOpen } = useContext(UserContext);
 
   const getCurrent = async () => {
     setLoading(true);
@@ -16,23 +14,19 @@ const useGetCurrent = () => {
         withCredentials: true,
       });
       const data = response.data;
-      if (
-        user &&
-        user.latestTermVersion &&
-        data.terms.version == user.latestTermVersion
-      ) {
-        setTerms(false);
-      } else {
-        setTerms(true);
+      if (user && !user.latestPrivacyVersion) {
+        setTermsOpen(true);
+      }
+      if (user && !user.latestTermVersion) {
+        setTermsOpen(true);
       }
       if (
-        user &&
-        user.latestPrivacyVersion &&
+        data.terms.version == user.latestTermVersion &&
         data.privacy.version == user.latestPrivacyVersion
       ) {
-        setPrivacy(false);
+        setTermsOpen(false);
       } else {
-        setPrivacy(true);
+        setTermsOpen(true);
       }
     } catch (error) {
       console.error(
@@ -51,7 +45,11 @@ const useGetCurrent = () => {
     getCurrent();
   }, []);
 
-  return { loading, privacy, terms };
+  useEffect(() => {
+    getCurrent();
+  }, [user]);
+
+  return { loading };
 };
 
 export default useGetCurrent;

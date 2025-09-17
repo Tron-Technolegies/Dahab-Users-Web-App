@@ -14,6 +14,7 @@ const UserContextProvider = ({ children }) => {
   const [refetchTrigger, setRefetchTrigger] = useState(false);
   const [estHostingFee, setEstHostingFee] = useState(0);
   const [estDaysRemaining, setEstDaysRemaining] = useState(0);
+  const [termsOpen, setTermsOpen] = useState(false);
 
   useEffect(() => {
     const estTotalFee = user?.ownedMiners.reduce((acc, item) => {
@@ -54,6 +55,8 @@ const UserContextProvider = ({ children }) => {
         setRefetchTrigger,
         estHostingFee,
         estDaysRemaining,
+        termsOpen,
+        setTermsOpen,
       }}
     >
       {children}
