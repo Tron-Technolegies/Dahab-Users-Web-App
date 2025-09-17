@@ -1,10 +1,16 @@
 import React, { useEffect } from "react";
-
+import useGetTerms from "../hooks/termsAndPrivacy/useGetTerms";
+import Loading from "../components/Loading";
+import "./policy.css";
 export default function Terms() {
+  const { loading, terms } = useGetTerms();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  return (
+
+  return loading ? (
+    <Loading />
+  ) : (
     <div className="px-5 md:px-10 lg:px-[120px] text-left py-10 flex flex-col gap-5">
       <p className="text-2xl text-[#76C6E0]">Terms & Conditions</p>
       <div className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-5">
@@ -16,7 +22,11 @@ export default function Terms() {
             title="Explore top-tier CRYPTO MINING MACHINES IN UAE at Dahab Miners. Specializing in high-efficiency ASIC miners in Abu Dhabi, UAE, we offer the best solutions for crypto mining in UAE. Browse our range today and enhance your mining setup!"
           ></img>
         </div>
-        <h1 className="my-8 text-3xl font-semibold text-center">
+        <div
+          className="my-5 text-justify flex flex-col gap-2"
+          dangerouslySetInnerHTML={{ __html: terms && terms.content }}
+        ></div>
+        {/* <h1 className="my-8 text-3xl font-semibold text-center">
           Dahab Miners – Terms & Conditions & AML/KYC Policy
         </h1>
         <p className="text-sm my-3">Effective Date - 01/08/2025</p>
@@ -272,7 +282,7 @@ export default function Terms() {
             understood, and agreed to these Terms & Conditions, including our
             AML/KYC policy.
           </p>
-        </div>
+        </div> */}
       </div>
     </div>
   );

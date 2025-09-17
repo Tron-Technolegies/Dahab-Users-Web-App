@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
+import useGetPrivacy from "../hooks/termsAndPrivacy/useGetPrivacy";
+import "./policy.css";
 
 export default function PrivacyPolicy() {
+  const { loading, policy } = useGetPrivacy();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -16,7 +19,11 @@ export default function PrivacyPolicy() {
             title="Explore top-tier CRYPTO MINING MACHINES IN UAE at Dahab Miners. Specializing in high-efficiency ASIC miners in Abu Dhabi, UAE, we offer the best solutions for crypto mining in UAE. Browse our range today and enhance your mining setup!"
           ></img>
         </div>
-        <h1 className="my-8 text-3xl font-semibold text-center">
+        <div
+          className="my-5 text-justify flex flex-col gap-2"
+          dangerouslySetInnerHTML={{ __html: policy && policy.content }}
+        ></div>
+        {/* <h1 className="my-8 text-3xl font-semibold text-center">
           Privacy Policy for Dahab Miners
         </h1>
         <div className="flex flex-col gap-5">
@@ -246,7 +253,7 @@ export default function PrivacyPolicy() {
             United Arab Emirates
           </p>
           <p>By using our services, you agree to this Privacy Policy.</p>
-        </div>
+        </div> */}
       </div>
     </div>
   );

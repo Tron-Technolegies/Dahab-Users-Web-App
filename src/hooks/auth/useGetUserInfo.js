@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const useGetUserInfo = () => {
   const [loading, setLoading] = useState(false);
+
   const { setUser, user } = useContext(UserContext);
   const navigate = useNavigate();
 
