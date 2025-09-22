@@ -96,7 +96,10 @@ export default function TransactionHistory() {
                           <GoPlus />
                         </p>
                       )}
-                      {row.amount.toFixed(2)}
+                      <p>{row.amount.toFixed(2)}</p>
+                      {row.message && (
+                        <p className="text-xs">({row.message})</p>
+                      )}
                     </div>
                   </TableCell>
                   <TableCell

@@ -92,7 +92,12 @@ export default function ProfitModeTable() {
                       color: "#FFFFFF",
                     }}
                   >
-                    {row.amountAED.toFixed(2)}
+                    <div>
+                      <p>{row.amountAED.toFixed(2)}</p>
+                      {row.message && (
+                        <p className="text-xs">({row.message})</p>
+                      )}
+                    </div>
                   </TableCell>
                   <TableCell
                     sx={{

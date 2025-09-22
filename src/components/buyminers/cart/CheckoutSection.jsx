@@ -4,16 +4,46 @@ import { UserContext } from "../../../UserContext";
 import useGetUserInfo from "../../../hooks/auth/useGetUserInfo";
 import Loading from "../../Loading";
 import useCreatePaymentIntent from "../../../hooks/payment/useCreatePaymentIntent";
+import { motion } from "framer-motion";
+import useCreateCryptoPaymentIntent from "../../../hooks/payment/useCreateCryptoPaymentIntent";
+import { QRCodeSVG } from "qrcode.react";
 
 export default function CheckoutSection() {
-  // const [pay, setPay] = useState("fiat");
   const { user, setAlertError } = useContext(UserContext);
   const { refetch } = useGetUserInfo();
   const [price, setPrice] = useState(0);
   const [fee, setFee] = useState(0);
   const [total, setTotal] = useState(0);
+  const [pay, setPay] = useState("fiat");
 
   const { loading, createPaymentIntent } = useCreatePaymentIntent();
+  const {
+    loading: cryptoLoading,
+    paymentData,
+    createCrptoPayment,
+  } = useCreateCryptoPaymentIntent();
+
+  async function handlePurchase() {
+    if (user?.isTest) {
+      setAlertError("Test Users cannot buy new Machines");
+      return;
+    }
+    localStorage.setItem("cart_items", JSON.stringify(user.cartItems));
+    if (pay === "fiat") {
+      createPaymentIntent({
+        amount: total,
+        message: "miner purchase",
+      });
+    }
+    if (pay === "crypto") {
+      createCrptoPayment({
+        amount: total,
+        message: "miner purchase",
+      });
+    }
+
+    // setAlertError("Purchase option not available now");
+  }
 
   useEffect(() => {
     if (user && user?.cartItems) {
@@ -39,12 +69,41 @@ export default function CheckoutSection() {
   }, [user]);
 
   return (
-    <div className="flex flex-col gap-5 lg:justify-between my-10 items-center duration-300 ease-in-out">
+    <div className="flex flex-col gap-5 lg:justify-between my-10 items-center duration-300 ease-in-out relative">
       <div className="border p-3 rounded-lg border-[#043377] lg:w-1/2 w-full">
         <p className="text-[#1ECBAF]">Note</p>
         <p className="text-sm">
           First month’s hosting fee must be prepaid with your miner purchase.
         </p>
+      </div>
+      <div className="flex gap-7 justify-between items-center py-5 border-b border-[#244A66] w-full lg:w-1/2">
+        <p className="text-lg font-semibold">Pay with</p>
+        <div
+          className={`bg-[#011532]  p-1 border border-[#76C6E04D] rounded-s-full rounded-e-full flex items-center gap-5`}
+        >
+          <motion.button
+            className={`text-white p-1 px-2 cursor-pointer disabled:cursor-not-allowed`}
+            animate={{
+              backgroundColor: pay === "fiat" ? "#0194FE" : "#011532",
+              borderRadius: pay === "fiat" ? "999px" : "0px",
+            }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            onClick={() => setPay("fiat")}
+          >
+            Fiat
+          </motion.button>
+          <motion.button
+            className={`text-white p-1 px-2 cursor-pointer disabled:cursor-not-allowed`}
+            animate={{
+              backgroundColor: pay === "crypto" ? "#0194FE" : "",
+              borderRadius: pay === "crypto" ? "999px" : "0px",
+            }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            onClick={() => setPay("crypto")}
+          >
+            Crypto
+          </motion.button>
+        </div>
       </div>
       <div className="mx-auto p-10 bg-[#011532] rounded-md lg:w-1/2 flex flex-col gap-5 w-full">
         <p className="text-[#76C6E0] text-xl">Purchase Summary</p>
@@ -69,24 +128,32 @@ export default function CheckoutSection() {
           </div>
         </div>
         <button
-          onClick={async () => {
-            if (user?.isTest) {
-              setAlertError("Test Users cannot buy new Machines");
-              return;
-            }
-            localStorage.setItem("cart_items", JSON.stringify(user.cartItems));
-            createPaymentIntent({
-              amount: total,
-              message: "miner purchase",
-            });
-            // setAlertError("Purchase option not available now");
-          }}
+          onClick={handlePurchase}
           className="w-full py-2 rounded-lg bg-[#07EAD3] text-black cursor-pointer"
         >
           CONFIRM PURCHASE
         </button>
         {loading && <Loading />}
+        {cryptoLoading && <Loading />}
       </div>
+      {pay === "crypto" && paymentData && (
+        <div className="mx-auto p-10 bg-[#011532] rounded-md lg:w-1/2 flex flex-col gap-5 w-full">
+          <p className="text-[#76C6E0] text-xl">Send Payment</p>
+          <p>
+            Payment Amount:{" "}
+            <span className="text-[#76C6E0]">{`${paymentData?.payment_amount} ${paymentData?.payment_currency}`}</span>
+          </p>
+          <p>
+            Address:{" "}
+            <span className="text-[#76C6E0]">{`${paymentData?.addresses?.BTC}`}</span>
+          </p>
+          <QRCodeSVG
+            value={`${paymentData?.payment_currency}:${paymentData?.addresses?.BTC}?amount=${paymentData?.payment_amount}`}
+            size={180}
+            className="mx-auto"
+          />
+        </div>
+      )}
     </div>
   );
 }
