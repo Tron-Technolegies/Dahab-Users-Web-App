@@ -1,6 +1,7 @@
 import BuyMinersPage from "./buyminers/BuyMinersPage";
 import CartPage from "./buyminers/CartPage";
 import ProductInnerPage from "./buyminers/ProductInnerPage";
+import CryptoTransactions from "./CryptoTransactions";
 import DashBoardPage from "./dashboard/DashBoardPage";
 import DetailedPage from "./dashboard/DetailedPage";
 import ErrorPage from "./error/ErrorPage";
@@ -62,4 +63,5 @@ export {
   PaymentCancel,
   PaymentFailure,
   PaymentSuccess,
+  CryptoTransactions,
 };

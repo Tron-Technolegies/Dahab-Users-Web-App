@@ -7,6 +7,8 @@ import useCreatePaymentIntent from "../../../hooks/payment/useCreatePaymentInten
 import { motion } from "framer-motion";
 import useCreateCryptoPaymentIntent from "../../../hooks/payment/useCreateCryptoPaymentIntent";
 import { QRCodeSVG } from "qrcode.react";
+import useEmptyCart from "../../../hooks/cart/useEmptyCart";
+import { useNavigate } from "react-router-dom";
 
 export default function CheckoutSection() {
   const { user, setAlertError } = useContext(UserContext);
@@ -15,6 +17,7 @@ export default function CheckoutSection() {
   const [fee, setFee] = useState(0);
   const [total, setTotal] = useState(0);
   const [pay, setPay] = useState("fiat");
+  const navigate = useNavigate();
 
   const { loading, createPaymentIntent } = useCreatePaymentIntent();
   const {
@@ -22,6 +25,7 @@ export default function CheckoutSection() {
     paymentData,
     createCrptoPayment,
   } = useCreateCryptoPaymentIntent();
+  const { loading: finishLoading, emptyCart } = useEmptyCart();
 
   async function handlePurchase() {
     if (user?.isTest) {
@@ -33,12 +37,14 @@ export default function CheckoutSection() {
       createPaymentIntent({
         amount: total,
         message: "miner purchase",
+        items: JSON.stringify(user.cartItems),
       });
     }
     if (pay === "crypto") {
       createCrptoPayment({
-        amount: total,
+        amount: 20,
         message: "miner purchase",
+        items: JSON.stringify(user.cartItems),
       });
     }
 
@@ -107,6 +113,9 @@ export default function CheckoutSection() {
       </div>
       <div className="mx-auto p-10 bg-[#011532] rounded-md lg:w-1/2 flex flex-col gap-5 w-full">
         <p className="text-[#76C6E0] text-xl">Purchase Summary</p>
+        <p className="text-xs text-red-700">
+          Note: The App is in Test mode. So Dont Use real money or crypto
+        </p>
         <div className="flex flex-col gap-3">
           <div className="flex justify-between items-center">
             <p>Quantity</p>
@@ -145,13 +154,32 @@ export default function CheckoutSection() {
           </p>
           <p>
             Address:{" "}
-            <span className="text-[#76C6E0]">{`${paymentData?.addresses?.BTC}`}</span>
+            <span className="text-[#76C6E0]">{`${
+              paymentData?.addresses?.BTC || paymentData?.addresses?.ETH
+            }`}</span>
           </p>
           <QRCodeSVG
             value={`${paymentData?.payment_currency}:${paymentData?.addresses?.BTC}?amount=${paymentData?.payment_amount}`}
             size={180}
             className="mx-auto"
           />
+
+          <p className="text-xs text-justify">
+            Once You transfer the exact amount to this address , click finish.
+            After payment completion your miners will be added to your list
+          </p>
+          <button
+            onClick={async () => {
+              await emptyCart();
+              await refetch();
+              localStorage.removeItem("cart_items");
+              navigate("/dashboard/crypto-transactions");
+            }}
+            className="w-full py-2 rounded-lg bg-[#07EAD3] text-black cursor-pointer"
+          >
+            Finish Transaction
+          </button>
+          {finishLoading && <Loading />}
         </div>
       )}
     </div>

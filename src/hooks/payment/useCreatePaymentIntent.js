@@ -7,7 +7,7 @@ const useCreatePaymentIntent = () => {
   const [loading, setLoading] = useState(false);
   const { setAlertError } = useContext(UserContext);
 
-  const createPaymentIntent = async ({ amount, message }) => {
+  const createPaymentIntent = async ({ amount, message, items }) => {
     setLoading(true);
     try {
       const response = await axios.post(
@@ -15,6 +15,7 @@ const useCreatePaymentIntent = () => {
         {
           amount,
           message,
+          items,
         },
         { withCredentials: true }
       );

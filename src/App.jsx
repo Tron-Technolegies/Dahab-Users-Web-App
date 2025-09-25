@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import {
   BuyMinersPage,
   CartPage,
+  CryptoTransactions,
   DashBoardPage,
   DetailedPage,
   EmailPrompt,
@@ -57,6 +58,7 @@ export default function App() {
         { path: "help", element: <FAQ /> },
         { path: "notifications", element: <Notifications /> },
         { path: "payout-switch", element: <PayoutSwitchPage /> },
+        { path: "crypto-transactions", element: <CryptoTransactions /> },
       ],
     },
     { path: "terms", element: <Terms /> },

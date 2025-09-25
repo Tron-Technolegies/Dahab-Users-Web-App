@@ -119,6 +119,11 @@ export default function AccountSettings({ user }) {
               handleClose={handleClose}
               link={"/dashboard/payout-switch"}
             />
+            <AccountSettingItem
+              name={"Crypto Transactions"}
+              handleClose={handleClose}
+              link={"/dashboard/crypto-transactions"}
+            />
           </div>
           <Divider
             sx={{
