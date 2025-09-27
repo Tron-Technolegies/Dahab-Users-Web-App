@@ -15,6 +15,8 @@ const UserContextProvider = ({ children }) => {
   const [estHostingFee, setEstHostingFee] = useState(0);
   const [estDaysRemaining, setEstDaysRemaining] = useState(0);
   const [termsOpen, setTermsOpen] = useState(false);
+  const [deleteAccountPopup, setDeleteAccountPopup] = useState(false);
+  const [deleteAccount2fa, setDeleteAccount2fa] = useState(false);
 
   useEffect(() => {
     const estTotalFee = user?.ownedMiners.reduce((acc, item) => {
@@ -57,6 +59,10 @@ const UserContextProvider = ({ children }) => {
         estDaysRemaining,
         termsOpen,
         setTermsOpen,
+        deleteAccountPopup,
+        setDeleteAccountPopup,
+        deleteAccount2fa,
+        setDeleteAccount2fa,
       }}
     >
       {children}

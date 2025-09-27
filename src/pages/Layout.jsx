@@ -11,6 +11,8 @@ import useGetBitCoinData from "../hooks/coins/useGetBitCoinData";
 import useGetSats from "../hooks/useGetSats";
 import TermsUpdatePopup from "../components/termsAndPrivacy/TermsUpdatePopup";
 import useGetCurrent from "../hooks/termsAndPrivacy/useGetCurrent";
+import DeleteAccountPopup from "../components/deleteAccount/DeleteAccountPopup";
+import DeleteAccount2FA from "../components/deleteAccount/DeleteAccount2FA";
 
 export default function Layout() {
   const navigate = useNavigate();
@@ -24,6 +26,10 @@ export default function Layout() {
     refetchTrigger,
     termsOpen,
     setTermsOpen,
+    deleteAccountPopup,
+    setDeleteAccountPopup,
+    deleteAccount2fa,
+    setDeleteAccount2fa,
     user,
   } = useContext(UserContext);
   const { loading, refetch } = useGetUserInfo();
@@ -43,6 +49,15 @@ export default function Layout() {
       <div className="text-white">
         <Header />
         <TermsUpdatePopup open={termsOpen} setOpen={setTermsOpen} />
+        <DeleteAccountPopup
+          open={deleteAccountPopup}
+          setOpen={setDeleteAccountPopup}
+        />
+
+        <DeleteAccount2FA
+          open={deleteAccount2fa}
+          setOpen={setDeleteAccount2fa}
+        />
 
         <div className="min-h-screen relative">
           {alertSuccess && (

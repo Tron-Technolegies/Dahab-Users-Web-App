@@ -8,7 +8,7 @@ import Divider from "@mui/material/Divider";
 import AccountSettingItem from "./AccountSettingItem";
 import { IoLogOutOutline } from "react-icons/io5";
 import NotificationSettings from "./NotificationSettings";
-import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import { MdOutlineKeyboardArrowRight, MdDelete } from "react-icons/md";
 import { useTour } from "@reactour/tour";
 import { UserContext } from "../../UserContext";
 import useLogout from "../../hooks/auth/useLogout";
@@ -16,7 +16,7 @@ import Loading from "../Loading";
 
 export default function AccountSettings({ user }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const { ownedMiners } = useContext(UserContext);
+  const { ownedMiners, setDeleteAccountPopup } = useContext(UserContext);
   const { setIsOpen, setCurrentStep } = useTour();
   const [openNotification, setOpenNotification] = useState(false);
   const { loading, logout } = useLogout();
@@ -91,7 +91,7 @@ export default function AccountSettings({ user }) {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <div className="flex flex-col gap-5 w-full">
+        <div className="flex flex-col gap-3 w-full">
           <p className=" text-[#76C6E0]">Account Settings</p>
           <div className="w-full">
             <AccountSettingItem
@@ -176,6 +176,12 @@ export default function AccountSettings({ user }) {
             <div className="flex gap-2 items-center text-[#07EAD3]">
               <IoLogOutOutline />
               <p>Logout</p>
+            </div>
+          </MenuItem>
+          <MenuItem onClick={() => setDeleteAccountPopup(true)}>
+            <div className="text-red-600 flex gap-2 items-center">
+              <MdDelete />
+              <p>Delete Account</p>
             </div>
           </MenuItem>
           {loading && <Loading />}
