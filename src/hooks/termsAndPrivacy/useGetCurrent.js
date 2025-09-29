@@ -43,10 +43,6 @@ const useGetCurrent = () => {
 
   useEffect(() => {
     getCurrent();
-  }, []);
-
-  useEffect(() => {
-    getCurrent();
   }, [user]);
 
   return { loading };

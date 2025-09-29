@@ -51,6 +51,11 @@ export default function CryptoTransactions() {
                 <TableCell
                   sx={{ color: "#0194FE", border: "0", textAlign: "center" }}
                 >
+                  Message
+                </TableCell>
+                <TableCell
+                  sx={{ color: "#0194FE", border: "0", textAlign: "center" }}
+                >
                   Status
                 </TableCell>
               </TableRow>
@@ -101,6 +106,16 @@ export default function CryptoTransactions() {
                     }}
                   >
                     {`${row.paymentAmount} ${row.paymentCurrency}`}
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      textAlign: "center",
+                      border: "0",
+                      borderBottom: "1px solid #76C6E036",
+                      color: "#FFFFFF",
+                    }}
+                  >
+                    {row.notes}
                   </TableCell>
                   <TableCell
                     sx={{

@@ -11,9 +11,10 @@ const useCreateCryptoPaymentIntent = () => {
   const createCrptoPayment = async ({ amount, message, items }) => {
     setLoading(true);
     try {
+      const finalAmount = amount.toFixed(2);
       const response = await axios.post(
         `${base_url}/payment/create-crypto-intent`,
-        { amount: Number(amount.toFixed(2)), message, items },
+        { amount: Number(finalAmount), message, items },
         { withCredentials: true }
       );
       const data = response.data;

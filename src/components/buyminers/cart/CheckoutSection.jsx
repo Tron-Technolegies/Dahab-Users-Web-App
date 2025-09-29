@@ -154,7 +154,7 @@ export default function CheckoutSection() {
           </p>
           <p>
             Address:{" "}
-            <span className="text-[#76C6E0]">{`${
+            <span className="text-[#76C6E0] text-xs md:text-base">{`${
               paymentData?.addresses?.BTC || paymentData?.addresses?.ETH
             }`}</span>
           </p>
