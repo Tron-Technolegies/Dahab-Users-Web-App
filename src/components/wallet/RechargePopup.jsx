@@ -38,6 +38,7 @@ export default function RechargePopup({ open, setOpen }) {
   const { user, setAlertError } = useContext(UserContext);
   const [pay, setPay] = useState("fiat");
   const [cryptoPopup, setCryptoPopup] = useState(false);
+  const [cryptoCurrency, setCryptoCurrency] = useState("BTC");
 
   useEffect(() => {
     if (user?.walletBalance < 0) {
@@ -116,6 +117,21 @@ export default function RechargePopup({ open, setOpen }) {
                   </motion.button>
                 </div>
               </div>
+              {pay === "crypto" && (
+                <div className="flex justify-between w-full lg:w-1/2 py-5 border-b border-[#244A66]">
+                  <p>Select Crypto</p>
+                  <select
+                    value={cryptoCurrency}
+                    onChange={(e) => setCryptoCurrency(e.target.value)}
+                    className="bg-blue-500 rounded-md p-2"
+                  >
+                    <option value={"BTC"}>BTC</option>
+                    <option value={"ETH"}>ETH</option>
+                    <option value={"USDC"}>USDC</option>
+                    <option value={"USDT"}>USDT</option>
+                  </select>
+                </div>
+              )}
               <div className="flex justify-center gap-5 items-center">
                 <button
                   className="px-3 py-1 rounded-md bg-gray-600 cursor-pointer min-w-20"
@@ -145,6 +161,7 @@ export default function RechargePopup({ open, setOpen }) {
                       await createCrptoPayment({
                         amount: Number(amount),
                         message: "wallet Topup",
+                        crypto: cryptoCurrency,
                       });
                     }
                   }}
@@ -153,6 +170,7 @@ export default function RechargePopup({ open, setOpen }) {
                 </button>
               </div>
               {loading && <Loading />}
+              {cryptoLoading && <Loading />}
             </div>
           </Box>
         </Fade>

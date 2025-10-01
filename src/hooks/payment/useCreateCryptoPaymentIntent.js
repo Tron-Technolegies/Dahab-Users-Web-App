@@ -8,13 +8,13 @@ const useCreateCryptoPaymentIntent = () => {
   const { setAlertError } = useContext(UserContext);
   const [paymentData, setPaymentData] = useState(null);
 
-  const createCrptoPayment = async ({ amount, message, items }) => {
+  const createCrptoPayment = async ({ amount, message, items, crypto }) => {
     setLoading(true);
     try {
       const finalAmount = amount.toFixed(2);
       const response = await axios.post(
         `${base_url}/payment/create-crypto-intent`,
-        { amount: Number(finalAmount), message, items },
+        { amount: Number(finalAmount), message, items, crypto },
         { withCredentials: true }
       );
       const data = response.data;

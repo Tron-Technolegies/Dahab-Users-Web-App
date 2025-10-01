@@ -17,6 +17,7 @@ export default function CheckoutSection() {
   const [fee, setFee] = useState(0);
   const [total, setTotal] = useState(0);
   const [pay, setPay] = useState("fiat");
+  const [cryptoCurrency, setCryptoCurrency] = useState("BTC");
   const navigate = useNavigate();
 
   const { loading, createPaymentIntent } = useCreatePaymentIntent();
@@ -45,6 +46,7 @@ export default function CheckoutSection() {
         amount: 20,
         message: "miner purchase",
         items: JSON.stringify(user.cartItems),
+        crypto: cryptoCurrency,
       });
     }
 
@@ -111,6 +113,21 @@ export default function CheckoutSection() {
           </motion.button>
         </div>
       </div>
+      {pay === "crypto" && (
+        <div className="flex justify-between w-full lg:w-1/2 py-5 border-b border-[#244A66]">
+          <p>Select Crypto</p>
+          <select
+            value={cryptoCurrency}
+            onChange={(e) => setCryptoCurrency(e.target.value)}
+            className="bg-blue-500 rounded-md p-2"
+          >
+            <option value={"BTC"}>BTC</option>
+            <option value={"ETH"}>ETH</option>
+            <option value={"USDC"}>USDC</option>
+            <option value={"USDT"}>USDT</option>
+          </select>
+        </div>
+      )}
       <div className="mx-auto p-10 bg-[#011532] rounded-md lg:w-1/2 flex flex-col gap-5 w-full">
         <p className="text-[#76C6E0] text-xl">Purchase Summary</p>
         <p className="text-xs text-red-700">
