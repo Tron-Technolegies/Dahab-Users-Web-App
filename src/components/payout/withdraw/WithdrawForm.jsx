@@ -34,12 +34,12 @@ export default function WithdrawForm() {
       setAlertError("Invalid Amount");
       return;
     }
-    if (amount < 0.005) {
-      setAlertError(
-        "Minimum withdrawal amount is 0.005 BTC. Please enter an amount equal to or greater than this threshold"
-      );
-      return;
-    }
+    // if (amount < 0.005) {
+    //   setAlertError(
+    //     "Minimum withdrawal amount is 0.005 BTC. Please enter an amount equal to or greater than this threshold"
+    //   );
+    //   return;
+    // }
     if (address === "") {
       setAlertError("Please Enter valid BTC Address");
       return;
@@ -107,6 +107,10 @@ export default function WithdrawForm() {
           }}
         />
       </Box>
+      <p className="text-xs text-yellow-600">
+        Note: Processing charge of 0.00033 BTC will be charged along with your
+        transaction
+      </p>
       <FormInput
         title={"Withdraw Amount"}
         type={"number"}

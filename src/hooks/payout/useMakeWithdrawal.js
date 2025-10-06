@@ -13,13 +13,13 @@ const useMakeWithdrawal = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${base_url}/payout`,
+        `${base_url}/payout/withdraw-intent`,
         { amount, address },
         { withCredentials: true }
       );
       const data = response.data;
       setAlertSuccess("Withdrawal Successfully Processed");
-      setUser(data.user);
+      // setUser(data.user);
       navigate("/dashboard/payouts");
     } catch (error) {
       setAlertError(
@@ -36,6 +36,7 @@ const useMakeWithdrawal = () => {
           error?.message ||
           "something went wrong"
       );
+      throw error;
     } finally {
       setLoading(false);
     }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -8,15 +8,27 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import useGetCryptoTransactions from "../hooks/payment/useGetCryptoTransactions";
 import Loading from "../components/Loading";
+import PaginationComponent from "../components/payout/Pagination";
 
 export default function CryptoTransactions() {
-  const { loading, transactions } = useGetCryptoTransactions();
+  const [page, setPage] = useState(1);
+  const { loading, transactions, totalPages, refetch } =
+    useGetCryptoTransactions({ currentPage: page });
+
+  function handlePageChange(event, value) {
+    setPage(value);
+  }
+
   const options = {
     hour: "2-digit",
     minute: "2-digit",
     hour12: false,
     timeZone: "Asia/Dubai", // UAE timezone
   };
+
+  useEffect(() => {
+    refetch();
+  }, [page]);
 
   return (
     <div className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 flex flex-col gap-5">
@@ -142,6 +154,13 @@ export default function CryptoTransactions() {
             </TableBody>
           </Table>
         </TableContainer>
+      )}
+      {totalPages > 1 && (
+        <PaginationComponent
+          page={page}
+          pageChange={handlePageChange}
+          totalPage={totalPages}
+        />
       )}
     </div>
   );
