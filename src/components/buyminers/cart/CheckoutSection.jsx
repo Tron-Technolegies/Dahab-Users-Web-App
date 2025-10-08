@@ -43,7 +43,7 @@ export default function CheckoutSection() {
     }
     if (pay === "crypto") {
       createCrptoPayment({
-        amount: 20,
+        amount: total,
         message: "miner purchase",
         items: JSON.stringify(user.cartItems),
         crypto: cryptoCurrency,
@@ -130,9 +130,9 @@ export default function CheckoutSection() {
       )}
       <div className="mx-auto p-10 bg-[#011532] rounded-md lg:w-1/2 flex flex-col gap-5 w-full">
         <p className="text-[#76C6E0] text-xl">Purchase Summary</p>
-        <p className="text-xs text-red-700">
+        {/* <p className="text-xs text-red-700">
           Note: The App is in Test mode. So Dont Use real money or crypto
-        </p>
+        </p> */}
         <div className="flex flex-col gap-3">
           <div className="flex justify-between items-center">
             <p>Quantity</p>
