@@ -29,10 +29,10 @@ export default function CheckoutSection() {
   const { loading: finishLoading, emptyCart } = useEmptyCart();
 
   async function handlePurchase() {
-    if (user?.isTest) {
-      setAlertError("Test Users cannot buy new Machines");
-      return;
-    }
+    // if (user?.isTest) {
+    //   setAlertError("Test Users cannot buy new Machines");
+    //   return;
+    // }
     localStorage.setItem("cart_items", JSON.stringify(user.cartItems));
     if (pay === "fiat") {
       createPaymentIntent({
