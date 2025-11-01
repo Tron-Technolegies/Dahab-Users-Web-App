@@ -15,6 +15,7 @@ export default function MyMinerCard({
   qty,
   batchId,
   hostingFee,
+  validity,
 }) {
   const handleScrollToStat = () => {
     const statSection = document.getElementById("stat");
@@ -27,17 +28,26 @@ export default function MyMinerCard({
   //   const newMiner = minersMock.find((item) => item.id === id);
   //   setSelectedMiner(newMiner);
   // };
+  const now = new Date();
+  const valid = new Date(validity);
+  const expired = now > valid;
   return (
     <div
-      className={`p-5 rounded-md flex flex-col justify-between items-center gap-1 w-[300px] min-h-[300px] hover:scale-105 hover:bg-[#0194FE] duration-300 ease-in-out ${
-        isSelected ? "bg-[#0194FE] scale-105" : "bg-[#011532]"
-      }`}
+      className={`relative p-5 rounded-md flex flex-col justify-between items-center gap-1 w-[300px] min-h-[300px] hover:scale-105 hover:bg-[#0194FE] duration-300 ease-in-out ${
+        expired && "bg-gray-700"
+      } ${isSelected ? "bg-[#0194FE] scale-105" : "bg-[#011532]"}`}
       onClick={() => {
         // handleSelection(id);
         setSelected((prevId) => (prevId === id ? null : id));
         handleScrollToStat();
       }}
     >
+      {expired && (
+        <div className="absolute border-2 border-red-500 p-2 rounded-lg text-2xl text-red-500 font-bold  text-center tracking-[10px] rotate-45 top-1/2 w-full">
+          Expired
+        </div>
+      )}
+
       <div className="flex justify-between w-full">
         <div
           className={`${
