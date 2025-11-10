@@ -60,17 +60,30 @@ export default function CheckoutSection() {
         0
       );
       setPrice(totalPrice);
-      const hostingFee = user?.cartItems?.reduce(
-        (sum, item) =>
-          sum +
-          item.qty *
-            item.itemId.power *
-            24 *
-            item.itemId.hostingFeePerKw *
-            3.67 *
-            30,
-        0
-      );
+      const hostingFee = user?.cartItems?.reduce((sum, item) => {
+        if (item.itemId.isBulkHosting) {
+          return (
+            sum +
+            item.qty *
+              item.itemId.power *
+              24 *
+              item.itemId.hostingFeePerKw *
+              3.67 *
+              365 *
+              3
+          );
+        } else {
+          return (
+            sum +
+            item.qty *
+              item.itemId.power *
+              24 *
+              item.itemId.hostingFeePerKw *
+              3.67 *
+              30
+          );
+        }
+      }, 0);
       setFee(hostingFee);
       setTotal(hostingFee + totalPrice);
     }
@@ -81,7 +94,8 @@ export default function CheckoutSection() {
       <div className="border p-3 rounded-lg border-[#043377] lg:w-1/2 w-full">
         <p className="text-[#1ECBAF]">Note</p>
         <p className="text-sm">
-          First month’s hosting fee must be prepaid with your miner purchase.
+          Hosting fee must be prepaid with your miner purchase.(1 Month for
+          certain miners & 3 Year for all other miners)
         </p>
       </div>
       <div className="flex gap-7 justify-between items-center py-5 border-b border-[#244A66] w-full lg:w-1/2">
@@ -145,7 +159,7 @@ export default function CheckoutSection() {
             <p className="">AED {price}</p>
           </div>
           <div className="flex justify-between items-center">
-            <p>Hosting Fee(1 Month)</p>
+            <p>Hosting Fee</p>
             <p>AED {fee.toFixed(2)}</p>
           </div>
           <div className="flex justify-between items-center text-lg font-semibold pt-2 border-t text-[#07EAD3]">
