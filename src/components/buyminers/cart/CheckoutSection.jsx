@@ -9,6 +9,7 @@ import useCreateCryptoPaymentIntent from "../../../hooks/payment/useCreateCrypto
 import { QRCodeSVG } from "qrcode.react";
 import useEmptyCart from "../../../hooks/cart/useEmptyCart";
 import { useNavigate } from "react-router-dom";
+import { sendMachineBuyingRequest } from "../../../utils/whatsapp";
 
 export default function CheckoutSection() {
   const { user, setAlertError } = useContext(UserContext);
@@ -35,11 +36,12 @@ export default function CheckoutSection() {
     // }
     localStorage.setItem("cart_items", JSON.stringify(user.cartItems));
     if (pay === "fiat") {
-      createPaymentIntent({
-        amount: total,
-        message: "miner purchase",
-        items: JSON.stringify(user.cartItems),
-      });
+      // createPaymentIntent({
+      //   amount: total,
+      //   message: "miner purchase",
+      //   items: JSON.stringify(user.cartItems),
+      // });
+      sendMachineBuyingRequest();
     }
     if (pay === "crypto") {
       createCrptoPayment({

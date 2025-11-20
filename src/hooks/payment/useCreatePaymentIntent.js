@@ -29,13 +29,7 @@ const useCreatePaymentIntent = () => {
           error?.message ||
           "something went wrong"
       );
-      console.error(
-        error?.response?.data?.error ||
-          error?.response?.data?.message ||
-          error?.response?.data?.msg ||
-          error?.message ||
-          "something went wrong"
-      );
+      console.log(error);
     } finally {
       setLoading(false);
     }

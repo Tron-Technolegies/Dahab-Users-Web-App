@@ -15,3 +15,12 @@ export const sendTopupRequest = () => {
 
   window.open(whatsappUrl, "_blank");
 };
+
+export const sendMachineBuyingRequest = () => {
+  const phoneNumber = "+971568145866";
+  const messageContent = `I Would like to buy a miner `;
+  const encodedMessage = encodeURIComponent(messageContent);
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+  window.open(whatsappUrl, "_blank");
+};
