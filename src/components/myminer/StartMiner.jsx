@@ -10,7 +10,7 @@ export default function StartMiner() {
         Create your first miner to start earning BTC.
       </p>
       <Link
-        to={"/buy"}
+        to={"/dashboard/buy"}
         className="bg-[#07EAD3] px-6 py-2 rounded-md text-black"
       >
         Buy Miner
