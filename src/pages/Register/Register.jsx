@@ -11,6 +11,7 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [referral, setReferral] = useState("");
   const [agree, setAgree] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
   const { alertError, setAlertError, alertSuccess, setAlertSuccess } =
@@ -23,7 +24,7 @@ export default function Register() {
       setAlertError("Please agree to the terms and conditions");
       return;
     }
-    register({ email, password, confirmPassword, username });
+    register({ email, password, confirmPassword, username, referral });
   }
   return (
     <div className="min-h-screen flex md:flex-row flex-col justify-center items-center gap-10 lg:gap-20 p-10 ">
@@ -71,6 +72,14 @@ export default function Register() {
             styles={"bg-white text-black"}
             onChange={(e) => setConfirmPassword(e.target.value)}
             placeholder={"Confirm Your Password"}
+          />
+          <FormInput
+            title={"Referral Code (if any)"}
+            type={"text"}
+            value={referral}
+            styles={"bg-white text-black"}
+            onChange={(e) => setReferral(e.target.value)}
+            placeholder={"Enter referral code"}
           />
           <Button
             name={"Sign Up"}

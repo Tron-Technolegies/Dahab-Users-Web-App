@@ -1,5 +1,7 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import {
   BuyMinersPage,
   CartPage,
@@ -34,6 +36,15 @@ import {
   WalletPage,
   WithdrawPage,
 } from "./pages";
+import RechargePage from "./components/wallet/RechargePage";
+
+const client = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 3,
+    },
+  },
+});
 
 export default function App() {
   const router = createBrowserRouter([
@@ -54,6 +65,7 @@ export default function App() {
         { path: "buy/:id", element: <ProductInnerPage /> },
         { path: "profile", element: <UpdateProfile /> },
         { path: "wallet", element: <WalletPage /> },
+        { path: "wallet/recharge", element: <RechargePage /> },
         { path: "2fA", element: <TwoFactor /> },
         { path: "help", element: <FAQ /> },
         { path: "notifications", element: <Notifications /> },
@@ -78,5 +90,10 @@ export default function App() {
     { path: "/ziina-failure", element: <PaymentFailure /> },
     { path: "/ziina-cancel", element: <PaymentCancel /> },
   ]);
-  return <RouterProvider router={router} />;
+  return (
+    <QueryClientProvider client={client}>
+      <ReactQueryDevtools initialIsOpen={true} />
+      <RouterProvider router={router} />
+    </QueryClientProvider>
+  );
 }

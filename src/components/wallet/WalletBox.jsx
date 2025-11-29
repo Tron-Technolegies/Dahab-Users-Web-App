@@ -1,11 +1,11 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "../../UserContext";
 import { sendTopupRequest } from "../../utils/whatsapp";
-import RechargePopup from "./RechargePopup";
+import { Link } from "react-router-dom";
 
 export default function WalletBox() {
   const { user, estHostingFee, estDaysRemaining } = useContext(UserContext);
-  const [open, setOpen] = useState(false);
+
   return (
     <div className="p-7 bg-[#0194FE] max-w-[700px] mx-auto w-full rounded-lg">
       <div className="flex justify-between items-center pb-5 border-b border-[#26DDFF5E]">
@@ -13,14 +13,14 @@ export default function WalletBox() {
           <img src="/wallet/icon-1.png" className="w-12" />
           <p>Available Balance</p>
         </div>
-        <button
-          onClick={() => setOpen(true)}
+        <Link
+          to={"/dashboard/wallet/recharge"}
           // onClick={() => sendTopupRequest()}
           className="flex gap-2 items-center px-3 py-1 border rounded-lg border-[#26DDFF5E] cursor-pointer"
         >
           <img src="/wallet/icon-2.png" className="w-5" />
           Top-up
-        </button>
+        </Link>
       </div>
       <div className="py-5 border-b border-[#26DDFF5E] flex justify-around items-center">
         <p className={`text-3xl ${user?.walletBalance <= 0 && "text-red-600"}`}>
@@ -35,7 +35,6 @@ export default function WalletBox() {
           Est. Days Remaining: {Math.floor(estDaysRemaining)} days
         </p>
       </div>
-      <RechargePopup open={open} setOpen={setOpen} />
     </div>
   );
 }

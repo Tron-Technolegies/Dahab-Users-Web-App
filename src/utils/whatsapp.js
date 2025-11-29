@@ -7,18 +7,25 @@ export const handleWhatsapp = ({ email, phone, message }) => {
   window.open(whatsappUrl, "_blank");
 };
 
-export const sendTopupRequest = () => {
+export const sendTopupRequest = ({ amount, coupon, discount }) => {
   const phoneNumber = "+971568145866";
-  const messageContent = `I Would like to do a top-up for my wallet`;
+  const messageContent = `I Would like to do a top-up for my wallet. \n Amount: ${amount} \n Coupon: ${coupon} \n Discount: ${discount.toFixed(
+    2
+  )}`;
   const encodedMessage = encodeURIComponent(messageContent);
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
   window.open(whatsappUrl, "_blank");
 };
 
-export const sendMachineBuyingRequest = () => {
+export const sendMachineBuyingRequest = ({
+  total,
+  coupon,
+  discount,
+  miners,
+}) => {
   const phoneNumber = "+971568145866";
-  const messageContent = `I Would like to buy a miner `;
+  const messageContent = `I Would like to do a purchase. \n Total: ${total} \n Coupon: ${coupon} \n Discount: ${discount} \n Items: ${miners}`;
   const encodedMessage = encodeURIComponent(messageContent);
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 

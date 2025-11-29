@@ -10,6 +10,8 @@ import { QRCodeSVG } from "qrcode.react";
 import useEmptyCart from "../../../hooks/cart/useEmptyCart";
 import { useNavigate } from "react-router-dom";
 import { sendMachineBuyingRequest } from "../../../utils/whatsapp";
+import { useGetAllVouchers } from "../../../hooks/vouchers/useVoucher";
+import VoucherCard from "./VoucherCard";
 
 export default function CheckoutSection() {
   const { user, setAlertError } = useContext(UserContext);
@@ -18,10 +20,13 @@ export default function CheckoutSection() {
   const [fee, setFee] = useState(0);
   const [total, setTotal] = useState(0);
   const [pay, setPay] = useState("fiat");
+  const [discount, setDiscount] = useState(0);
+  const [voucher, setVoucher] = useState(null);
   const [cryptoCurrency, setCryptoCurrency] = useState("BTC");
   const navigate = useNavigate();
 
   const { loading, createPaymentIntent } = useCreatePaymentIntent();
+  const { data, isLoading, refetch: voucherRefetch } = useGetAllVouchers();
   const {
     loading: cryptoLoading,
     paymentData,
@@ -30,18 +35,44 @@ export default function CheckoutSection() {
   const { loading: finishLoading, emptyCart } = useEmptyCart();
 
   async function handlePurchase() {
-    // if (user?.isTest) {
-    //   setAlertError("Test Users cannot buy new Machines");
-    //   return;
-    // }
+    if (voucher) {
+      if (
+        voucher.applicable !== "Both" &&
+        voucher.applicable !== "miner purchase"
+      ) {
+        setAlertError("This voucher is not applicable for miner purchase");
+        return;
+      }
+      const today = new Date();
+      if (new Date(voucher.validity) < today) {
+        setAlertError("This voucher has been expired");
+        return;
+      }
+      if (total < voucher.minimum) {
+        setAlertError(
+          `This voucher is only applicable on orders above ${voucher.minimum}`
+        );
+        return;
+      }
+    }
+
     localStorage.setItem("cart_items", JSON.stringify(user.cartItems));
     if (pay === "fiat") {
       // createPaymentIntent({
       //   amount: total,
       //   message: "miner purchase",
       //   items: JSON.stringify(user.cartItems),
+      //   voucherCode: voucher?.code || null,
       // });
-      sendMachineBuyingRequest();
+      const miners = user.cartItems
+        .map((item) => `${item.itemId.name} x ${item.qty}nos`)
+        .join(", ");
+      sendMachineBuyingRequest({
+        miners,
+        total: total.toFixed(2),
+        coupon: voucher?.code || "N/A",
+        discount: `${voucher?.discount} %` || "N/A",
+      });
     }
     if (pay === "crypto") {
       createCrptoPayment({
@@ -49,6 +80,7 @@ export default function CheckoutSection() {
         message: "miner purchase",
         items: JSON.stringify(user.cartItems),
         crypto: cryptoCurrency,
+        voucherCode: voucher?.code || null,
       });
     }
 
@@ -86,10 +118,20 @@ export default function CheckoutSection() {
           );
         }
       }, 0);
-      setFee(hostingFee);
-      setTotal(hostingFee + totalPrice);
+      setFee((prev) => {
+        return hostingFee;
+      });
+      setTotal((prev) => {
+        return hostingFee + totalPrice;
+      });
+      if (voucher) {
+        const discountedAmount = (total * voucher.discount) / 100;
+        setDiscount((prev) => {
+          return discountedAmount;
+        });
+      }
     }
-  }, [user]);
+  }, [user, voucher]);
 
   return (
     <div className="flex flex-col gap-5 lg:justify-between my-10 items-center duration-300 ease-in-out relative">
@@ -100,6 +142,34 @@ export default function CheckoutSection() {
           certain miners & 3 Year for all other miners)
         </p>
       </div>
+      <button
+        className="text-sm text-blue-500 w-fit underline cursor-pointer"
+        onClick={() => voucherRefetch()}
+      >
+        Get Available Vouchers
+      </button>
+      {isLoading && <Loading />}
+      {data && data.length < 1 ? (
+        <p>No Available Vouchers</p>
+      ) : (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 w-full justify-center">
+          {data?.map((item) => (
+            <VoucherCard
+              key={item._id}
+              name={item.name}
+              code={item.code}
+              discount={item.discount}
+              validity={item.validity}
+              applicable={item.applicableFor}
+              minimum={item.minimumSpent}
+              description={item.description}
+              id={item._id}
+              setVoucher={setVoucher}
+              voucher={voucher}
+            />
+          ))}
+        </div>
+      )}
       <div className="flex gap-7 justify-between items-center py-5 border-b border-[#244A66] w-full lg:w-1/2">
         <p className="text-lg font-semibold">Pay with</p>
         <div
@@ -164,9 +234,30 @@ export default function CheckoutSection() {
             <p>Hosting Fee</p>
             <p>AED {fee.toFixed(2)}</p>
           </div>
+          {voucher && (
+            <>
+              <div className="flex justify-between items-center">
+                <p>Coupon code:</p>
+                <p>{voucher?.code}</p>
+              </div>
+              <div className="flex justify-between items-center">
+                <p>Discount</p>
+                <p className="text-red-500">- {discount.toFixed(2)}</p>
+              </div>
+            </>
+          )}
           <div className="flex justify-between items-center text-lg font-semibold pt-2 border-t text-[#07EAD3]">
             <p>Grand Total</p>
-            <p>AED {total.toFixed(2)}</p>
+            {voucher ? (
+              <div className="flex flex-col">
+                <p className="line-through opacity-40">
+                  AED {total.toFixed(2)}
+                </p>
+                <p>AED {(total - discount).toFixed(2)}</p>
+              </div>
+            ) : (
+              <p>AED {total.toFixed(2)}</p>
+            )}
           </div>
         </div>
         <button

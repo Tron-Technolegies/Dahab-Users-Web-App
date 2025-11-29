@@ -9,7 +9,13 @@ const useRegister = () => {
   const { setAlertError, setAlertSuccess } = useContext(UserContext);
   const navigate = useNavigate();
 
-  const register = async ({ email, password, confirmPassword, username }) => {
+  const register = async ({
+    email,
+    password,
+    confirmPassword,
+    username,
+    referral,
+  }) => {
     setLoading(true);
     if (password !== confirmPassword) {
       setAlertError("Password doesnt match");
@@ -22,6 +28,7 @@ const useRegister = () => {
           email,
           password,
           username,
+          referral,
         },
         { withCredentials: true }
       );
