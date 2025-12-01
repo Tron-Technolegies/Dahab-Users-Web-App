@@ -1,20 +1,18 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+
 import { base_url } from "../../utils/constants";
+import { useQuery } from "@tanstack/react-query";
 
-const useGetAllProducts = () => {
-  const [loading, setLoading] = useState(false);
-  const [miners, setMiners] = useState([]);
-
-  const getMiners = async () => {
-    setLoading(true);
-    try {
-      const response = await axios.get(`${base_url}/product/miners`, {
+export const useGetMiners = () => {
+  const { data, isPending, error } = useQuery({
+    queryKey: ["miners"],
+    queryFn: async () => {
+      const { data } = await axios.get(`${base_url}/product/miners`, {
         withCredentials: true,
       });
-      const data = response.data;
-      setMiners(data);
-    } catch (error) {
+      return data;
+    },
+    onError: (error) => {
       console.error(
         error?.response?.data?.error ||
           error?.response?.data?.message ||
@@ -22,16 +20,7 @@ const useGetAllProducts = () => {
           error?.message ||
           "something went wrong"
       );
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    getMiners();
-  }, []);
-
-  return { loading, miners };
+    },
+  });
+  return { data, isPending };
 };
-
-export default useGetAllProducts;

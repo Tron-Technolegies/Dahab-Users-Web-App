@@ -14,9 +14,13 @@ export const useGetAllVouchers = () => {
     enabled: false,
     retry: false,
     refetchOnWindowFocus: false,
-    onError: (err) => {
-      console.log(
-        err?.response?.data?.msg || err?.error || "something went wrong"
+    onError: (error) => {
+      console.error(
+        error?.response?.data?.error ||
+          error?.response?.data?.message ||
+          error?.response?.data?.msg ||
+          error?.message ||
+          "something went wrong"
       );
     },
   });

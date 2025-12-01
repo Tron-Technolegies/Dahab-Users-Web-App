@@ -1,19 +1,17 @@
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { base_url } from "../../utils/constants";
 import { UserContext } from "../../UserContext";
+import { useQuery } from "@tanstack/react-query";
 
-const useGetCurrent = () => {
-  const [loading, setLoading] = useState(false);
+export const useGetLatestTerms = () => {
   const { user, termsOpen, setTermsOpen } = useContext(UserContext);
-
-  const getCurrent = async () => {
-    setLoading(true);
-    try {
-      const response = await axios.get(`${base_url}/terms/terms&privacy`, {
+  const { isPending, data } = useQuery({
+    queryKey: ["latestTerms"],
+    queryFn: async () => {
+      const { data } = await axios.get(`${base_url}/terms/terms&privacy`, {
         withCredentials: true,
       });
-      const data = response.data;
       if (user && !user.latestPrivacyVersion) {
         setTermsOpen(true);
       }
@@ -28,7 +26,9 @@ const useGetCurrent = () => {
       } else {
         setTermsOpen(true);
       }
-    } catch (error) {
+      return data;
+    },
+    onError: (error) => {
       console.error(
         error?.response?.data?.error ||
           error?.response?.data?.message ||
@@ -36,16 +36,7 @@ const useGetCurrent = () => {
           error?.message ||
           "something went wrong"
       );
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    getCurrent();
-  }, [user]);
-
-  return { loading };
+    },
+  });
+  return { data, isPending };
 };
-
-export default useGetCurrent;

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { CalculatorContext } from "../../CalculatorContext";
+import { useQuery } from "@tanstack/react-query";
 
 const useGetBitCoinData = () => {
   const [loading, setLoading] = useState(false);
@@ -30,3 +31,18 @@ const useGetBitCoinData = () => {
 };
 
 export default useGetBitCoinData;
+
+export const useGetBTCData = () => {
+  const { setBtcPrice } = useContext(CalculatorContext);
+  const { data, isPending } = useQuery({
+    queryKey: ["BTCData"],
+    queryFn: async () => {
+      const { data } = await axios.get(
+        "https://api.minerstat.com/v2/coins?list=BTC,"
+      );
+      setBtcPrice(data[0].price.toFixed(2));
+      return data;
+    },
+  });
+  return { data, isPending };
+};

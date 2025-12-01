@@ -1,11 +1,10 @@
 import React from "react";
-
 import BuyCard from "./BuyCard";
-import useGetAllProducts from "../../hooks/products/useGetAllProducts";
 import Loading from "../Loading";
+import { useGetMiners } from "../../hooks/products/useGetAllProducts";
 
 export default function BuyList() {
-  const { loading, miners } = useGetAllProducts();
+  const { data: miners, isPending: loading } = useGetMiners();
   return loading ? (
     <Loading />
   ) : (

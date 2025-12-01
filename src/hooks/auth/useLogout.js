@@ -1,27 +1,29 @@
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { base_url } from "../../utils/constants";
 import { UserContext } from "../../UserContext";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-const useLogout = () => {
-  const [loading, setLoading] = useState(false);
-
-  const { setAlertError, setAlertSuccess, setUser } = useContext(UserContext);
+export const useLogout = () => {
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
-  const logout = async () => {
-    setLoading(true);
-    try {
-      const response = await axios.post(
+  const { setAlertError, setAlertSuccess, setUser } = useContext(UserContext);
+  const { mutate: logout, isPending } = useMutation({
+    mutationFn: async () => {
+      await axios.post(
         `${base_url}/auth/logout`,
         {},
         { withCredentials: true }
       );
-      const data = response.data;
+    },
+    onSuccess: () => {
+      queryClient.clear();
       setAlertSuccess("successfully logged out");
       setUser(null);
       navigate("/login");
-    } catch (error) {
+    },
+    onError: (error) => {
       setAlertError(
         error?.response?.data?.error ||
           error?.response?.data?.message ||
@@ -34,11 +36,7 @@ const useLogout = () => {
           error?.message ||
           "something went wrong"
       );
-    } finally {
-      setLoading(false);
-    }
-  };
-  return { loading, logout };
+    },
+  });
+  return { isPending, logout };
 };
-
-export default useLogout;

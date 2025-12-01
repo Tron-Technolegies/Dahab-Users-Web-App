@@ -7,12 +7,14 @@ import AlertBox from "../components/Alert";
 import { UserContext } from "../UserContext";
 import useGetUserInfo from "../hooks/auth/useGetUserInfo";
 import Loading from "../components/Loading";
-import useGetBitCoinData from "../hooks/coins/useGetBitCoinData";
-import useGetSats from "../hooks/useGetSats";
+import useGetBitCoinData, {
+  useGetBTCData,
+} from "../hooks/coins/useGetBitCoinData";
 import TermsUpdatePopup from "../components/termsAndPrivacy/TermsUpdatePopup";
-import useGetCurrent from "../hooks/termsAndPrivacy/useGetCurrent";
 import DeleteAccountPopup from "../components/deleteAccount/DeleteAccountPopup";
 import DeleteAccount2FA from "../components/deleteAccount/DeleteAccount2FA";
+import { useGetSats } from "../hooks/useGetSats";
+import { useGetLatestTerms } from "../hooks/termsAndPrivacy/useGetCurrent";
 
 export default function Layout() {
   const navigate = useNavigate();
@@ -34,8 +36,8 @@ export default function Layout() {
   } = useContext(UserContext);
   const { loading, refetch } = useGetUserInfo();
   const {} = useGetSats();
-  const { loading: coinLoading } = useGetBitCoinData();
-  const { loading: termsLoading } = useGetCurrent();
+  const {} = useGetBTCData();
+  const {} = useGetLatestTerms();
 
   useEffect(() => {
     refetch();

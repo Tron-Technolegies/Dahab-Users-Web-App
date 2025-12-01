@@ -2,11 +2,11 @@ import React from "react";
 import ProductCard1 from "./ProductCard1";
 import { Link } from "react-router-dom";
 import { IoIosArrowRoundForward } from "react-icons/io";
-import useGetAllProducts from "../../../hooks/products/useGetAllProducts";
 import Loading from "../../Loading";
+import { useGetMiners } from "../../../hooks/products/useGetAllProducts";
 
 export default function ProductSuggestions() {
-  const { loading, miners } = useGetAllProducts();
+  const { isPending: loading, data: miners } = useGetMiners();
   return loading ? (
     <Loading />
   ) : (

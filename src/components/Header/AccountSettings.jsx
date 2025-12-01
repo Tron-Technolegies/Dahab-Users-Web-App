@@ -11,15 +11,15 @@ import NotificationSettings from "./NotificationSettings";
 import { MdOutlineKeyboardArrowRight, MdDelete } from "react-icons/md";
 import { useTour } from "@reactour/tour";
 import { UserContext } from "../../UserContext";
-import useLogout from "../../hooks/auth/useLogout";
 import Loading from "../Loading";
+import { useLogout } from "../../hooks/auth/useLogout";
 
 export default function AccountSettings({ user }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const { ownedMiners, setDeleteAccountPopup } = useContext(UserContext);
   const { setIsOpen, setCurrentStep } = useTour();
   const [openNotification, setOpenNotification] = useState(false);
-  const { loading, logout } = useLogout();
+  const { isPending, logout } = useLogout();
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -184,7 +184,7 @@ export default function AccountSettings({ user }) {
               <p>Delete Account</p>
             </div>
           </MenuItem>
-          {loading && <Loading />}
+          {isPending && <Loading />}
         </div>
       </Menu>
       <NotificationSettings
