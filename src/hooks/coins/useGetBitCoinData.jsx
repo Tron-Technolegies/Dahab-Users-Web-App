@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { CalculatorContext } from "../../CalculatorContext";
 import { useQuery } from "@tanstack/react-query";
+import { base_url } from "../../utils/constants";
 
 const useGetBitCoinData = () => {
   const [loading, setLoading] = useState(false);
@@ -38,9 +39,9 @@ export const useGetBTCData = () => {
     queryKey: ["BTCData"],
     queryFn: async () => {
       const { data } = await axios.get(
-        "https://api.minerstat.com/v2/coins?list=BTC,"
+        `https://api.dahabminers.com/api/extra/btc`
       );
-      setBtcPrice(data[0].price.toFixed(2));
+      setBtcPrice(data.price.toFixed(2));
       return data;
     },
   });
