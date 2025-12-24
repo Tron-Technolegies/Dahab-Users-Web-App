@@ -7,30 +7,36 @@ export default function Numbers() {
       <h3 className="text-3xl text-[#76C6E0] text-center">
         Dahab by the Numbers
       </h3>
-      {/* <p className="text-sm my-5 text-center">
-        Powering the future of Bitcoin mining — one machine at a time.
-      </p> */}
+      <p className="text-sm my-5 text-center">
+        Powering the future of green Bitcoin Mining
+      </p>
       <div className="grid md:grid-cols-4 grid-cols-2 md:gap-3 gap-7 my-14">
         <NumberBox
-          heading={"5,000+ Miners Under Management"}
-          content={"Running across our UAE and Ethiopia facilities"}
+          heading={"10,000+ Miners Under Management"}
+          content={"Thousands of machines running across our facilities"}
           styles={"md:border-e border-[#02285F]"}
         />
         <NumberBox
-          heading={"Lowest Hosting Rates - From $0.055/kWh"}
-          content={"No deposits, Repair or Setup Fees."}
+          heading={"Lowest Hosting Rates in the Industry"}
+          content={
+            "Hosting starts from just $0.054/KWh - no deposits, no surprises"
+          }
           styles={"md:border-e border-[#02285F]"}
         />
         <hr className="text-[#02285F] md:hidden" />
         <hr className="text-[#02285F] md:hidden" />
         <NumberBox
-          heading={"100% Operated by Our Own Team"}
-          content={"No middlemen. No outsourcing."}
+          heading={"100% Managed by Our In-house Team"}
+          content={
+            "From installation to maintenance - no outsourcing, no middleman"
+          }
           styles={"md:border-e border-[#02285F]"}
         />
         <NumberBox
-          heading={"Clients in 20+ Countries"}
-          content={"From everyday users to global investors"}
+          heading={"Trusted by Clients in 20+ Countries"}
+          content={
+            "From individuals to institutions - people choose Dahab for real mining"
+          }
         />
       </div>
     </div>

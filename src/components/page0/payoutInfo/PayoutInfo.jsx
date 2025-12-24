@@ -15,19 +15,18 @@ export default function PayoutInfo({ oneA }) {
         <PayoutBox
           heading={"BTC Hold Mode"}
           list={[
-            "You receive 100% of the Bitcoin mined",
-            "Electricity is paid separately - in crypto or fiat",
-            "Best for those who want to accumulate and grow Bitcoin",
-            "Like owning a personal BTC ATM - mine daily at a fixed cost",
-            "Recommended if you believe Bitcoin will rise over time",
+            "Your machine mines Bitcoin and all of it goes to you",
+            "You just pay the electricity bill separately in crypto or fiat",
+            "This is the best option if you want to save and grow your Bitcoin over time",
+            "We recommend this because it's like buying your Bitcoin on EMI, collecting Bitcoin daily at a fixed cost",
           ]}
           recommended
         />
         <PayoutBox
           heading={"BTC Profit Mode"}
           list={[
-            "Electricity cost is auto-deducted from your daily earnings",
-            "You receive the remaining profit - withdraw anytime",
+            "If you want something easier, this mode automatically pays for electricity from your mining rewards.",
+            "You get the profit that's left over, and you can withdraw anytime",
             "Easiest option with no wallets to manage",
             "Great for short-term profits or passive BTC flow",
             "You choose the style: saving or spending",

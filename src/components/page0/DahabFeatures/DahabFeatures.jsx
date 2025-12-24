@@ -46,39 +46,34 @@ export default function DahabFeatures({ oneA }) {
       >
         <div className="p-5 w-full flex flex-col justify-between gap-10 sm:items-center">
           <div>
-            <p className="text-[#76C6E0] my-5">
-              With Other Mining Companies, You Deal With:
+            <p className="my-5">
+              With <span className="text-[#76C6E0]">Other</span> Mining
+              Companies, You have to:
             </p>
             <div className="ms-5 flex flex-col gap-2">
               <p className="flex gap-2 items-center">
                 <span className="text-[8px]">
                   <FaCircle />
                 </span>
-                <span>Weeks of delay for shipping and customs</span>
+                <span>Wait weeks for your machine to arrive</span>
               </p>
               <p className="flex gap-2 items-center">
                 <span className="text-[8px]">
                   <FaCircle />
                 </span>
-                <span>Complicated setup, deposits, and paperwork</span>
+                <span>Deal with customs, shipping, and import taxes</span>
               </p>
               <p className="flex gap-2 items-center">
                 <span className="text-[8px]">
                   <FaCircle />
                 </span>
-                <span>High risk if your miner goes offline</span>
+                <span>Pay hidden fees and complicated paperwork</span>
               </p>
               <p className="flex gap-2 items-center">
                 <span className="text-[8px]">
                   <FaCircle />
                 </span>
-                <span>Surprise repair or hosting costs</span>
-              </p>
-              <p className="flex gap-2 items-center">
-                <span className="text-[8px]">
-                  <FaCircle />
-                </span>
-                <span>Confusing softwares and Multiple apps</span>
+                <span>Hope everything gets connected properly</span>
               </p>
             </div>
           </div>
@@ -89,38 +84,40 @@ export default function DahabFeatures({ oneA }) {
 
         <div className="sm:border-s border-[#76C6E0] p-5 w-full flex flex-col justify-between gap-10 sm:items-center">
           <div>
-            <p className="text-[#76C6E0] my-5">With Dahab, It’s Seamless:</p>
+            <p className=" my-5">
+              With <span className="text-[#76C6E0]">Dahab,</span> It’s Seamless:
+            </p>
             <div className="ms-5 flex flex-col gap-2">
               <p className="flex gap-2 items-center">
                 <span className="text-[8px]">
                   <FaCircle />
                 </span>
-                <span>Miners are already online in our mining farms</span>
+                <span>Machines are already online and running</span>
               </p>
               <p className="flex gap-2 items-center">
                 <span className="text-[8px]">
                   <FaCircle />
                 </span>
-                <span>You simply buy - your Dahab Miner starts instantly</span>
+                <span>You simply buy, and start mining instantly</span>
               </p>
               <p className="flex gap-2 items-center">
                 <span className="text-[8px]">
                   <FaCircle />
                 </span>
-                <span>No setup, no repair worries, no delays</span>
+                <span>No hidden fees, no deposits, no delays</span>
               </p>
               <p className="flex gap-2 items-center">
                 <span className="text-[8px]">
                   <FaCircle />
                 </span>
-                <span>Daily payouts based on your share of total power</span>
+                <span>Full transparency, full control</span>
               </p>
               <p className="flex gap-2 items-center">
                 <span className="text-[8px]">
                   <FaCircle />
                 </span>
                 <span>
-                  24/7 dashboard to track earnings and control payouts
+                  Track your earnings live through your personal dashboard
                 </span>
               </p>
             </div>

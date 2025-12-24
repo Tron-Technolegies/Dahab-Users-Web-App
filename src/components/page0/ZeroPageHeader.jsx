@@ -9,7 +9,7 @@ export default function ZeroPageHeader() {
   return (
     <header
       //   id="navbar"
-      className="md:h-20 h-16 px-5 md:px-10 lg:px-[120px] md:py-5 py-2 flex justify-between items-center bg-[#000518] "
+      className="md:h-20 h-16 px-5 md:px-10 lg:px-[120px] md:py-5 py-2 flex justify-between items-center bg-[#000415] "
     >
       <Link
         to={"/"}

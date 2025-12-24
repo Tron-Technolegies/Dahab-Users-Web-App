@@ -22,7 +22,7 @@ export default function Page0() {
       <DahabFeatures />
       <PayoutInfo />
       <JoinedUsSection />
-      <HardwareSection />
+      {/* <HardwareSection /> */}
       <Benefits />
       <Numbers />
       <Form />

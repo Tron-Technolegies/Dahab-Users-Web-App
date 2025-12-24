@@ -9,7 +9,7 @@ export default function BuyList() {
     <Loading />
   ) : (
     <div>
-      <p className="text-xl">Our Top Products</p>
+      <p className="text-xl">Our Bestselling Products</p>
       <div className="grid lg:grid-cols-3 sm:grid-cols-2 gap-5 my-5">
         {miners.map((item) => (
           <BuyCard
@@ -20,13 +20,10 @@ export default function BuyList() {
             stock={item.stock}
             image={item.image}
             price={item.price}
-            hosting={item.hostingFactor}
-            investment={item.investmentFactor}
-            risk={item.riskFactor}
-            revenue={item.revenueFactor}
-            efficiency={item.efficiencyFactor}
+            coin={item.coin}
             id={item._id}
             hostingFee={item.hostingFeePerKw}
+            hashPrice={item.breakEvenHash}
           />
         ))}
       </div>

@@ -19,29 +19,27 @@ export default function Benefits() {
         <BenefitCard
           icon={"/page0/icon-8.png"}
           content={"Data Center Infrastructure"}
-          sub={
-            "Real miners hosted in our facilities across Abu Dhabi and Ethiopia - with stable power, cooling, and Great uptime."
-          }
+          sub={"Top-tier hosting in Ethiopia with green reliable power"}
         />
         <BenefitCard
           icon={"/page0/icon-9.png"}
           content={"Built-in Mining Pool"}
           sub={
-            "No external pool setup required. Your Dahab Miners are connected internally - rewards go straight to your dashboard."
+            "No Pool setup needed. The app itself handles everything. Track rewards go straight to your account"
           }
         />
         <BenefitCard
           icon={"/page0/icon-10.png"}
           content={"24/7 Support"}
           sub={
-            "Have a question? Our team is always here - ready to assist you anytime, anywhere."
+            "Questions? Issues? Our team is available round the clock to assist you"
           }
         />
         <BenefitCard
           icon={"/page0/icon-11.png"}
           content={"Instant Miner Marketplace"}
           sub={
-            "Browse a live list of Dahab Miners - already online and earning. Start mining the moment you buy"
+            "Pick from a live list of machines, already online and ready to mine the moment you buy"
           }
         />
       </div>
