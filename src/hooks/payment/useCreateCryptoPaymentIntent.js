@@ -19,7 +19,7 @@ const useCreateCryptoPaymentIntent = () => {
     try {
       const finalAmount = amount.toFixed(2);
       const response = await axios.post(
-        `${base_url}/payment/create-crypto-intent`,
+        `${base_url}/mining/payment/create-crypto-intent`,
         { amount: Number(finalAmount), message, items, crypto, voucherCode },
         { withCredentials: true }
       );

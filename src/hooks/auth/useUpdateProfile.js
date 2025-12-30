@@ -12,7 +12,7 @@ const useUpdateProfile = () => {
     setLoading(true);
     try {
       const response = await axios.patch(
-        `${base_url}/auth/update-profile`,
+        `${base_url}/mining/auth/update-profile`,
         {
           email,
           username,

@@ -12,7 +12,7 @@ export const useLogout = () => {
   const { mutate: logout, isPending } = useMutation({
     mutationFn: async () => {
       await axios.post(
-        `${base_url}/auth/logout`,
+        `${base_url}/mining/auth/logout`,
         {},
         { withCredentials: true }
       );

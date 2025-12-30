@@ -11,7 +11,7 @@ const useVerify2FA = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${base_url}/auth/verify2FA`,
+        `${base_url}/mining/auth/verify2FA`,
         { code },
         { withCredentials: true }
       );

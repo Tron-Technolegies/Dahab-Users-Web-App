@@ -14,7 +14,7 @@ const useVerifyLogin = () => {
     const email = localStorage.getItem("login_email");
     try {
       const response = await axios.post(
-        `${base_url}/auth/login2FA`,
+        `${base_url}/mining/auth/login2FA`,
         {
           email,
           code,

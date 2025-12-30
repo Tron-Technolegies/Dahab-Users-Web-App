@@ -6,7 +6,7 @@ export const useGetAllVouchers = () => {
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ["vouchers"],
     queryFn: async () => {
-      const { data } = await axios.get(`${base_url}/voucher/user`, {
+      const { data } = await axios.get(`${base_url}/mining/voucher/user`, {
         withCredentials: true,
       });
       return data;

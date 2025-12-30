@@ -14,7 +14,7 @@ const useResetPassword = () => {
     const email = localStorage.getItem("forgot_email");
     try {
       const response = await axios.post(
-        `${base_url}/auth/reset-password`,
+        `${base_url}/mining/auth/reset-password`,
         {
           email,
           password,

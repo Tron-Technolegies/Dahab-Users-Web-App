@@ -13,7 +13,7 @@ const useVerifyAccount = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${base_url}/auth/verify-account`,
+        `${base_url}/mining/auth/verify-account`,
         {
           email,
         },

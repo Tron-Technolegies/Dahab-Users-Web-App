@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useContext, useState } from "react";
 import { base_url } from "../../utils/constants";
-import useGetUserInfo from "../auth/useGetUserInfo";
 import { UserContext } from "../../UserContext";
 
 const useClearNotifications = () => {
@@ -11,7 +10,7 @@ const useClearNotifications = () => {
   const clearNotification = async () => {
     setLoading(true);
     try {
-      const response = await axios.delete(`${base_url}/notifications`, {
+      const response = await axios.delete(`${base_url}/mining/notifications`, {
         withCredentials: true,
       });
       const data = response.data;

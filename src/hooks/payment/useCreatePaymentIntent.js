@@ -16,7 +16,7 @@ const useCreatePaymentIntent = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${base_url}/payment/create-intent`,
+        `${base_url}/mining/payment/create-intent`,
         {
           amount,
           message,

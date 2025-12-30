@@ -10,7 +10,7 @@ const useDisable2FA = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${base_url}/auth/disable2FA`,
+        `${base_url}/mining/auth/disable2FA`,
         {},
         { withCredentials: true }
       );

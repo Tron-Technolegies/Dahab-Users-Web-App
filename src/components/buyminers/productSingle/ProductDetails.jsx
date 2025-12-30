@@ -1,16 +1,14 @@
 import { BsCartPlus } from "react-icons/bs";
 import { IoWarningOutline } from "react-icons/io5";
 import Loading from "../../Loading";
-import { useContext, useState } from "react";
-import { UserContext } from "../../../UserContext";
-import useAddToCart from "../../../hooks/cart/useAddToCart";
+import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useAddToCart } from "../../../hooks/cart/useCart";
 
 export default function ProductDetails({ miner }) {
   const { id } = useParams();
   const [showInfo, setShowInfo] = useState(false);
-  const { refetchTrigger, setRefetchTrigger } = useContext(UserContext);
-  const { loading: cartLoading, addToCart } = useAddToCart();
+  const { isPending, addToCart } = useAddToCart();
   const navigate = useNavigate();
   return (
     <div className="flex flex-col gap-5">
@@ -92,8 +90,7 @@ export default function ProductDetails({ miner }) {
 
           <button
             onClick={async () => {
-              await addToCart({ itemId: id });
-              setRefetchTrigger(!refetchTrigger);
+              await addToCart({ productId: id });
               navigate("/dashboard/buy/cart");
             }}
             className="bg-[#0194FE] w-full py-2 rounded-md text-center cursor-pointer"
@@ -102,15 +99,14 @@ export default function ProductDetails({ miner }) {
           </button>
           <button
             onClick={async () => {
-              await addToCart({ itemId: id });
-              setRefetchTrigger(!refetchTrigger);
+              await addToCart({ productId: id });
             }}
             className="p-2 bg-[#42E8E0] rounded-md text-2xl text-black
             cursor-pointer"
           >
             <BsCartPlus />
           </button>
-          {cartLoading && <Loading />}
+          {isPending && <Loading />}
         </div>
       ) : (
         <button className="bg-[#198FA6] w-full py-2 rounded-md cursor-pointer">

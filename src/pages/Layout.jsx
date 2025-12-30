@@ -1,11 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import Header from "../components/Header/Header";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useLoaderData, useNavigate } from "react-router-dom";
 import Footer from "../components/footer/Footer";
 // import { TourProvider, useTour } from "@reactour/tour";
 import AlertBox from "../components/Alert";
 import { UserContext } from "../UserContext";
-import useGetUserInfo from "../hooks/auth/useGetUserInfo";
 import Loading from "../components/Loading";
 import useGetBitCoinData, {
   useGetBTCData,
@@ -15,6 +14,7 @@ import DeleteAccountPopup from "../components/deleteAccount/DeleteAccountPopup";
 import DeleteAccount2FA from "../components/deleteAccount/DeleteAccount2FA";
 import { useGetSats } from "../hooks/useGetSats";
 import { useGetLatestTerms } from "../hooks/termsAndPrivacy/useGetCurrent";
+import { useGetUserInfo } from "../hooks/auth/useGetUserInfo";
 
 export default function Layout() {
   const navigate = useNavigate();
@@ -32,20 +32,28 @@ export default function Layout() {
     setDeleteAccountPopup,
     deleteAccount2fa,
     setDeleteAccount2fa,
-    user,
+    setUser,
   } = useContext(UserContext);
-  const { loading, refetch } = useGetUserInfo();
+
   const {} = useGetSats();
   const {} = useGetBTCData();
   const {} = useGetLatestTerms();
+  const user = useLoaderData();
+  const { isLoading, data } = useGetUserInfo();
 
   useEffect(() => {
-    refetch();
-  }, [refetchTrigger]);
+    if (user) {
+      setUser(user);
+    }
+  }, [user]);
 
-  return loading ? (
-    <Loading />
-  ) : (
+  useEffect(() => {
+    if (data) {
+      setUser(data);
+    }
+  }, [data, isLoading]);
+
+  return (
     <div className="text-black">
       {/* <TourProvider steps={steps} scrollSmooth> */}
       <div className="text-white">

@@ -7,7 +7,7 @@ export const useGetMiners = () => {
   const { data, isPending, error } = useQuery({
     queryKey: ["miners"],
     queryFn: async () => {
-      const { data } = await axios.get(`${base_url}/product/miners`, {
+      const { data } = await axios.get(`${base_url}/mining/product/miners`, {
         withCredentials: true,
       });
       return data;

@@ -11,7 +11,7 @@ const useGetTwoFAQR = () => {
   const getQR = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`${base_url}/auth/send2FAQR`, {
+      const response = await axios.get(`${base_url}/mining/auth/send2FAQR`, {
         withCredentials: true,
       });
       const data = response.data;

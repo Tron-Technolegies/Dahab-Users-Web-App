@@ -1,4 +1,3 @@
-import React, { useContext, useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -7,15 +6,20 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import QuantitySwitcher from "./QuantitySwitcher";
-import { UserContext } from "../../../UserContext";
+import { useGetCartItems } from "../../../hooks/cart/useCart";
+import Loading from "../../Loading";
 
 export default function CartTable() {
-  const { user } = useContext(UserContext);
+  const { isLoading, isError, data } = useGetCartItems();
 
-  return (
+  return isLoading ? (
+    <Loading />
+  ) : isError ? (
+    <p>Something Went wrong</p>
+  ) : (
     <div className="flex flex-col gap-5 my-5">
-      <p>Total Items: {user?.cartItems?.length}</p>
-      {user?.cartItems?.length < 1 && <p>Your Cart is Empty</p>}
+      <p>Total Items: {data?.length}</p>
+      {data?.length < 1 && <p>Your Cart is Empty</p>}
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -48,8 +52,8 @@ export default function CartTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {user?.cartItems?.length > 0 &&
-              user?.cartItems.map((row) => (
+            {data?.length > 0 &&
+              data.map((row) => (
                 <TableRow
                   key={row._id}
                   sx={{

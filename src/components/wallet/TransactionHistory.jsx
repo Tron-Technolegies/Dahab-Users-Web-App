@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -8,17 +8,30 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { GoPlus } from "react-icons/go";
 import { FiMinus } from "react-icons/fi";
-import { UserContext } from "../../UserContext";
+import { useGetWalletTransactions } from "../../hooks/transactions/useTransactions";
+import Loading from "../Loading";
+import PaginationComponent from "../payout/Pagination";
 
 export default function TransactionHistory() {
-  const { user } = useContext(UserContext);
+  const [page, setPage] = useState(1);
+  const { isError, isLoading, data } = useGetWalletTransactions({
+    currentPage: page,
+  });
   const options = {
     hour: "2-digit",
     minute: "2-digit",
     hour12: false,
     timeZone: "Asia/Dubai", // UAE timezone
   };
-  return (
+  function handlePageChange(event, value) {
+    setPage(value);
+  }
+
+  return isLoading ? (
+    <Loading />
+  ) : isError ? (
+    <p>Something went wrong</p>
+  ) : (
     <div className="flex flex-col gap-3">
       <p
         className={`px-4 py-1 w-fit rounded-b-md border-b text-white border-[#0194FE]`}
@@ -52,71 +65,73 @@ export default function TransactionHistory() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {user?.walletTransactions
-              ?.slice()
-              .reverse()
-              .map((row) => (
-                <TableRow
-                  key={row.id}
-                  sx={{
-                    //
-                    cursor: "pointer",
+            {data.transactions.map((row) => (
+              <TableRow
+                key={row._id}
+                sx={{
+                  //
+                  cursor: "pointer",
 
-                    backgroundColor: "#000C26",
-                    "&:hover": {
-                      backgroundColor: "#011840",
-                    },
+                  backgroundColor: "#000C26",
+                  "&:hover": {
+                    backgroundColor: "#011840",
+                  },
+                }}
+              >
+                <TableCell
+                  sx={{
+                    textAlign: "center",
+                    border: "0",
+                    borderBottom: "1px solid #76C6E036",
+                    color: "#FFFFFF",
                   }}
                 >
-                  <TableCell
-                    sx={{
-                      textAlign: "center",
-                      border: "0",
-                      borderBottom: "1px solid #76C6E036",
-                      color: "#FFFFFF",
-                    }}
-                  >
-                    {new Date(row.date).toLocaleDateString("en-US", options)}
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      textAlign: "center",
-                      border: "0",
-                      borderBottom: "1px solid #76C6E036",
-                      color: "#FFFFFF",
-                    }}
-                  >
-                    <div className="flex justify-center items-center gap-5">
-                      {row.type === "debited" ? (
-                        <p className="text-red-500 text-xl font-semibold">
-                          <FiMinus />
-                        </p>
-                      ) : (
-                        <p className="text-green-600 text-xl font-semibold">
-                          <GoPlus />
-                        </p>
-                      )}
-                      <p>{row.amount.toFixed(2)}</p>
-                      {row.message && (
-                        <p className="text-xs">({row.message})</p>
-                      )}
-                    </div>
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      textAlign: "center",
-                      border: "0",
-                      borderBottom: "1px solid #76C6E036",
-                      color: "#FFFFFF",
-                    }}
-                  >
-                    {row.currentWalletBalance?.toFixed(2)}
-                  </TableCell>
-                </TableRow>
-              ))}
+                  {new Date(row.date).toLocaleDateString("en-US", options)}
+                </TableCell>
+                <TableCell
+                  sx={{
+                    textAlign: "center",
+                    border: "0",
+                    borderBottom: "1px solid #76C6E036",
+                    color: "#FFFFFF",
+                  }}
+                >
+                  <div className="flex justify-center items-center gap-5">
+                    {row.type === "debited" ? (
+                      <p className="text-red-500 text-xl font-semibold">
+                        <FiMinus />
+                      </p>
+                    ) : (
+                      <p className="text-green-600 text-xl font-semibold">
+                        <GoPlus />
+                      </p>
+                    )}
+                    <p>{row.amount.toFixed(2)}</p>
+                    {row.message && <p className="text-xs">({row.message})</p>}
+                  </div>
+                </TableCell>
+                <TableCell
+                  sx={{
+                    textAlign: "center",
+                    border: "0",
+                    borderBottom: "1px solid #76C6E036",
+                    color: "#FFFFFF",
+                  }}
+                >
+                  {row.currentWalletBalance?.toFixed(2)}
+                </TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>
+      {data.totalPages > 1 && (
+        <PaginationComponent
+          totalPage={data.totalPages}
+          page={page}
+          pageChange={handlePageChange}
+        />
+      )}
     </div>
   );
 }

@@ -7,9 +7,8 @@ import { HiOutlineCurrencyDollar } from "react-icons/hi2";
 import { useContext, useEffect, useState } from "react";
 import { CalculatorContext } from "../../CalculatorContext";
 import { BsCartPlus } from "react-icons/bs";
-import useAddToCart from "../../hooks/cart/useAddToCart";
-import { UserContext } from "../../UserContext";
 import Loading from "../Loading";
+import { useAddToCart } from "../../hooks/cart/useCart";
 
 export default function BuyCard({
   hashRate,
@@ -26,8 +25,7 @@ export default function BuyCard({
   const { thPerDay } = useContext(CalculatorContext);
   const [btcGen, setBtcGen] = useState(0);
   const [hosting, setHosting] = useState(0);
-  const { loading: cartLoading, addToCart } = useAddToCart();
-  const { refetchTrigger, setRefetchTrigger } = useContext(UserContext);
+  const { isPending, addToCart } = useAddToCart();
   const [showInfo1, setShowInfo1] = useState(false);
   const [showInfo2, setShowInfo2] = useState(false);
 
@@ -137,15 +135,14 @@ export default function BuyCard({
           </Link>
           <button
             onClick={async () => {
-              await addToCart({ itemId: id });
-              setRefetchTrigger(!refetchTrigger);
+              addToCart({ productId: id });
             }}
             className="p-2 bg-[#42E8E0] rounded-md text-2xl text-black
                   cursor-pointer"
           >
             <BsCartPlus />
           </button>
-          {cartLoading && <Loading />}
+          {isPending && <Loading />}
         </div>
       ) : (
         <button className="bg-[#198FA6] w-full py-2 rounded-md cursor-pointer">
