@@ -87,3 +87,24 @@ body {
 .inter {
   font-family: "Inter", sans-serif;
 }
+
+.custom-shape {
+  background: linear-gradient(
+    to bottom,
+    #050b1f 0%,
+    #0b1a3a 15%,
+    #050b1f 50%,
+    #020615 100%
+  );
+  clip-path: polygon(10% 0%, 90% 0%, 100% 12%, 100% 100%, 0% 100%, 0% 12%);
+  border-radius: 16px;
+}
+/* .custom-shape::after {
+  content: "";
+  position: absolute;
+  top: 40px;
+
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.15);
+} */
