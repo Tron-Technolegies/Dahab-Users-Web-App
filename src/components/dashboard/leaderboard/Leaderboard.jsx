@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import LeaderBoardTabs from "./LeaderBoardTabs";
 import TopThree from "./TopThree";
 import {
@@ -7,8 +7,12 @@ import {
   useGetMinerLeaderboard,
 } from "../../../hooks/leaderboard/useLeaderboard";
 import Loading from "../../Loading";
+import MachineTable from "./MachineTable";
+import BTCTable from "./BTCTable";
+import HashRateTable from "./HashRateTable";
 
 export default function Leaderboard() {
+  const [value, setValue] = useState("1");
   const { data: btc } = useGetBTCLeaderboard();
   const { data: hashrate } = useGetHashrateLeaderboard();
   const { isLoading, data: miners } = useGetMinerLeaderboard();
@@ -23,11 +27,15 @@ export default function Leaderboard() {
         See who's leading the mining race
       </p>
       <LeaderBoardTabs
+        value={value}
+        setValue={setValue}
         item1={
           <TopThree
             first={miners.top10?.[0]}
             second={miners.top10?.[1]}
             third={miners.top10?.[2]}
+            type={"Miners"}
+            myRank={miners.myRank}
           />
         }
         item2={
@@ -35,6 +43,8 @@ export default function Leaderboard() {
             first={btc.top10?.[0]}
             second={btc.top10?.[1]}
             third={btc.top10?.[2]}
+            type={"BTC"}
+            myRank={btc.myRank}
           />
         }
         item3={
@@ -42,9 +52,14 @@ export default function Leaderboard() {
             first={hashrate.top10?.[0]}
             second={hashrate.top10?.[1]}
             third={hashrate.top10?.[2]}
+            type={"Hashrate"}
+            myRank={hashrate.myRank}
           />
         }
       />
+      {value === "1" && <MachineTable data={miners.top10} />}
+      {value === "2" && <BTCTable data={btc.top10} />}
+      {value === "3" && <HashRateTable data={hashrate.top10} />}
     </div>
   );
 }

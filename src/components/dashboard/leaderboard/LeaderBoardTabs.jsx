@@ -5,9 +5,13 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import { useState } from "react";
 
-export default function LeaderBoardTabs({ item1, item2, item3 }) {
-  const [value, setValue] = useState("1");
-
+export default function LeaderBoardTabs({
+  item1,
+  item2,
+  item3,
+  value,
+  setValue,
+}) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };

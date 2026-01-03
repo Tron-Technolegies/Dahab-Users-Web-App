@@ -31,6 +31,10 @@ export default function StatsMainCard() {
     bg-center
     bg-cover"
     >
+      <img
+        src={user?.profilePic ? user.profilePic : "/home/bitcoin.png"}
+        className="w-16 absolute -top-2 object-cover rounded-xl"
+      />
       {on ? (
         <GraphStat />
       ) : (
