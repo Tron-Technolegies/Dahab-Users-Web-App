@@ -12,7 +12,7 @@ const useGetCryptoPaymentIntent = ({ paymentData }) => {
     setLoading(true);
     try {
       const response = await axios.get(
-        `${base_url}/payment/create-crypto-intent/${paymentData?.id}`,
+        `${base_url}/mining/payment/create-crypto-intent/${paymentData?.id}`,
         { withCredentials: true }
       );
       const data = response.data;

@@ -10,7 +10,7 @@ const useGetPayouts = ({ currentPage, status }) => {
   const getPayouts = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`${base_url}/payout/user`, {
+      const response = await axios.get(`${base_url}/mining/payout/user`, {
         withCredentials: true,
         params: {
           currentPage,

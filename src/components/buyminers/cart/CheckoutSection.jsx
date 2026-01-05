@@ -1,21 +1,22 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../../UserContext";
 // import { useTour } from "@reactour/tour";
-import useGetUserInfo from "../../../hooks/auth/useGetUserInfo";
+// import useGetUserInfo from "../../../hooks/auth/useGetUserInfo";
 import Loading from "../../Loading";
 import useCreatePaymentIntent from "../../../hooks/payment/useCreatePaymentIntent";
 import { motion } from "framer-motion";
 import useCreateCryptoPaymentIntent from "../../../hooks/payment/useCreateCryptoPaymentIntent";
 import { QRCodeSVG } from "qrcode.react";
-import useEmptyCart from "../../../hooks/cart/useEmptyCart";
+
 import { useNavigate } from "react-router-dom";
 import { sendMachineBuyingRequest } from "../../../utils/whatsapp";
 import { useGetAllVouchers } from "../../../hooks/vouchers/useVoucher";
 import VoucherCard from "./VoucherCard";
+import { useClearCart, useGetCartItems } from "../../../hooks/cart/useCart";
 
 export default function CheckoutSection() {
   const { user, setAlertError } = useContext(UserContext);
-  const { refetch } = useGetUserInfo();
+  // const { refetch } = useGetUserInfo();
   const [price, setPrice] = useState(0);
   const [fee, setFee] = useState(0);
   const [total, setTotal] = useState(0);
@@ -24,7 +25,7 @@ export default function CheckoutSection() {
   const [voucher, setVoucher] = useState(null);
   const [cryptoCurrency, setCryptoCurrency] = useState("BTC");
   const navigate = useNavigate();
-
+  const { isPending, clearCart } = useClearCart();
   const { loading, createPaymentIntent } = useCreatePaymentIntent();
   const { data, isLoading, refetch: voucherRefetch } = useGetAllVouchers();
   const {
@@ -32,7 +33,8 @@ export default function CheckoutSection() {
     paymentData,
     createCrptoPayment,
   } = useCreateCryptoPaymentIntent();
-  const { loading: finishLoading, emptyCart } = useEmptyCart();
+
+  const { data: cartItems, isLoading: cartLoading } = useGetCartItems();
 
   async function handlePurchase() {
     if (voucher) {
@@ -56,7 +58,7 @@ export default function CheckoutSection() {
       }
     }
 
-    localStorage.setItem("cart_items", JSON.stringify(user.cartItems));
+    localStorage.setItem("cart_items", JSON.stringify(cartItems));
     if (pay === "fiat") {
       // createPaymentIntent({
       //   amount: total,
@@ -64,7 +66,7 @@ export default function CheckoutSection() {
       //   items: JSON.stringify(user.cartItems),
       //   voucherCode: voucher?.code || null,
       // });
-      const miners = user.cartItems
+      const miners = cartItems
         .map((item) => `${item.itemId.name} x ${item.qty}nos`)
         .join(", ");
       sendMachineBuyingRequest({
@@ -78,7 +80,7 @@ export default function CheckoutSection() {
       createCrptoPayment({
         amount: total,
         message: "miner purchase",
-        items: JSON.stringify(user.cartItems),
+        items: JSON.stringify(cartItems),
         crypto: cryptoCurrency,
         voucherCode: voucher?.code || null,
       });
@@ -88,13 +90,13 @@ export default function CheckoutSection() {
   }
 
   useEffect(() => {
-    if (user && user?.cartItems) {
-      const totalPrice = user?.cartItems?.reduce(
+    if (cartItems) {
+      const totalPrice = cartItems?.reduce(
         (sum, item) => sum + item.qty * Number(item.itemId.price),
         0
       );
       setPrice(totalPrice);
-      const hostingFee = user?.cartItems?.reduce((sum, item) => {
+      const hostingFee = cartItems?.reduce((sum, item) => {
         if (item.itemId.isBulkHosting) {
           return (
             sum +
@@ -131,7 +133,7 @@ export default function CheckoutSection() {
         });
       }
     }
-  }, [user, voucher]);
+  }, [cartItems, cartLoading, voucher]);
 
   return (
     <div className="flex flex-col gap-5 lg:justify-between my-10 items-center duration-300 ease-in-out relative">
@@ -222,9 +224,7 @@ export default function CheckoutSection() {
         <div className="flex flex-col gap-3">
           <div className="flex justify-between items-center">
             <p>Quantity</p>
-            <p>
-              {user?.cartItems.reduce((sum, item) => sum + item.qty, 0)} items
-            </p>
+            <p>{cartItems.reduce((sum, item) => sum + item.qty, 0)} items</p>
           </div>
           <div className="flex justify-between items-center">
             <p>Total Price</p>
@@ -294,8 +294,7 @@ export default function CheckoutSection() {
           </p>
           <button
             onClick={async () => {
-              await emptyCart();
-              await refetch();
+              clearCart();
               localStorage.removeItem("cart_items");
               navigate("/dashboard/crypto-transactions");
             }}
@@ -303,7 +302,7 @@ export default function CheckoutSection() {
           >
             Finish Transaction
           </button>
-          {finishLoading && <Loading />}
+          {isPending && <Loading />}
         </div>
       )}
     </div>

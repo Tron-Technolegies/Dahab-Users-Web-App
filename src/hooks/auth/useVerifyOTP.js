@@ -14,7 +14,7 @@ const useVerifyOTP = () => {
     try {
       const email = localStorage.getItem("register_email");
       const response = await axios.post(
-        `${base_url}/auth/verify`,
+        `${base_url}/mining/auth/verify`,
         { code, email },
         { withCredentials: true }
       );

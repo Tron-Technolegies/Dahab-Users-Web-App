@@ -13,7 +13,7 @@ const useLogin = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${base_url}/auth/login`,
+        `${base_url}/mining/auth/login`,
         {
           email,
           password,

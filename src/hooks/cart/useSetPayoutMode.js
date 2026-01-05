@@ -13,7 +13,7 @@ const useSetPayoutMode = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${base_url}/product/payoutMode`,
+        `${base_url}/mining/product/payoutMode`,
         {
           mode,
         },

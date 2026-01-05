@@ -9,7 +9,7 @@ export const useGetSats = () => {
   const { isPending, data } = useQuery({
     queryKey: ["sats"],
     queryFn: async () => {
-      const { data } = await axios.get(`${base_url}/sats`, {
+      const { data } = await axios.get(`${base_url}/mining/sats`, {
         withCredentials: true,
       });
       if (data.length > 0) {

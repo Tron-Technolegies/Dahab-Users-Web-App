@@ -8,7 +8,7 @@ const useGetTerms = () => {
   const getTerms = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`${base_url}/terms/latest`, {
+      const response = await axios.get(`${base_url}/mining/terms/latest`, {
         withCredentials: true,
       });
       const data = response.data;

@@ -23,7 +23,7 @@ const useRegister = () => {
     }
     try {
       const response = await axios.post(
-        `${base_url}/auth/register`,
+        `${base_url}/mining/auth/register`,
         {
           email,
           password,

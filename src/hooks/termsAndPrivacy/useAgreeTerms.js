@@ -10,7 +10,7 @@ const useAgreeTerms = () => {
     setLoading(true);
     try {
       const response = await axios.patch(
-        `${base_url}/terms/agree`,
+        `${base_url}/mining/terms/agree`,
         {},
         { withCredentials: true }
       );

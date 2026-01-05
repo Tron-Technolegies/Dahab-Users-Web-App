@@ -9,9 +9,12 @@ const useGetSingleProduct = ({ id }) => {
   const getMiner = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`${base_url}/product/miners/${id}`, {
-        withCredentials: true,
-      });
+      const response = await axios.get(
+        `${base_url}/mining/product/miners/${id}`,
+        {
+          withCredentials: true,
+        }
+      );
       const data = response.data;
       setMiner(data);
     } catch (error) {

@@ -14,7 +14,7 @@ const useVerifyPasswordReset = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${base_url}/auth/verify-passwordReset`,
+        `${base_url}/mining/auth/verify-passwordReset`,
         { email, code },
         { withCredentials: true }
       );

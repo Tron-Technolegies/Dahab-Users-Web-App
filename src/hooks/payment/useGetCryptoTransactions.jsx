@@ -11,7 +11,7 @@ const useGetCryptoTransactions = ({ currentPage }) => {
     setLoading(true);
     try {
       const response = await axios.get(
-        `${base_url}/payment/crypto-transactions`,
+        `${base_url}/mining/payment/crypto-transactions`,
         { withCredentials: true, params: { currentPage } }
       );
       const data = response.data;

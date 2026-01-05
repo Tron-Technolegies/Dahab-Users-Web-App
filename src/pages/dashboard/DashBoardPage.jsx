@@ -4,6 +4,7 @@ import ProductSuggestions from "../../components/dashboard/products/ProductSugge
 import StatsSection from "../../components/dashboard/statsSection/StatsSection";
 import { UserContext } from "../../UserContext";
 import NewUserSection from "../../components/dashboard/NewUser/NewUserSection";
+import Leaderboard from "../../components/dashboard/leaderboard/Leaderboard";
 
 export default function DashBoardPage() {
   const { user } = useContext(UserContext);
@@ -14,7 +15,7 @@ export default function DashBoardPage() {
     <div className="px-5 md:px-10 lg:px-[120px] xl:px-[180px] py-10 ">
       {user?.ownedMiners?.length > 0 ? <StatsSection /> : <NewUserSection />}
       {/* <NewUserLanding /> */}
-
+      <Leaderboard />
       {/* <LivePrice /> */}
       <ProductSuggestions />
     </div>

@@ -1,4 +1,4 @@
-// import { motion } from "framer-motion";
+import { motion } from "framer-motion";
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import GraphStat from "./GraphStat";
@@ -19,19 +19,28 @@ export default function StatsMainCard() {
 
   return (
     <div
-      className={`md:p-10 py-5 px-2 ${
-        on
-          ? "bg-gray-200"
-          : "bg-gradient-to-r from-[#59b3e4] via-[#0692DC] to-[#59b3e4]"
-      } lg:w-3/4 sm:w-3/4 w-full rounded-4xl relative flex flex-col md:gap-3 gap-5 items-center mb-10`}
+      // className={`md:p-10 py-5 px-2 ${
+      //   on
+      //     ? "bg-gray-200"
+      //     : "bg-gradient-to-r from-[#59b3e4] via-[#0692DC] to-[#59b3e4]"
+      // } lg:w-3/4 sm:w-3/4 w-full rounded-4xl relative flex flex-col md:gap-3 gap-5 items-center mb-10`}
       id="main-stat-card"
+      className="md:p-10 py-5 px-2 lg:w-3/4 sm:w-3/4 w-full rounded-4xl relative flex flex-col md:gap-3 gap-5 items-center mb-10 md:bg-[url('/home/card.png')] bg-[url('/home/card-sm.png')]
+    bg-no-repeat
+    md:bg-bottom
+    bg-center
+    bg-cover"
     >
+      <img
+        src={user?.profilePic ? user.profilePic : "/home/bitcoin.png"}
+        className="w-16 absolute -top-2 object-cover rounded-xl"
+      />
       {on ? (
         <GraphStat />
       ) : (
         <div className="flex flex-col gap-2 items-center w-full ">
           <div className="flex flex-col gap-2 items-center w-full p-4 border-b border-[#57B9FF]">
-            <p>Current Balance</p>
+            <p className="mt-5">Current Balance</p>
             <div className="flex gap-5 justify-center items-center md:border-0 border-b border-[#57B9FF] md:pb-0 pb-2 w-full">
               <img src="/home/bitcoin.png" className="md:w-10 w-8" />
               <p className="md:text-2xl text-lg font-semibold">
@@ -114,7 +123,7 @@ export default function StatsMainCard() {
           ></motion.button>
         </div>
       </div> */}
-      <div className="flex lg:justify-center justify-between items-center w-full pt-3 lg:border-0 border-t border-[#57B9FF] px-5 ">
+      <div className="flex lg:justify-center justify-between items-center w-full pb-5 px-5 ">
         <Link
           to={"/dashboard/detailed"}
           className={`underline ${on && "text-black"}`}

@@ -1,49 +1,49 @@
-import React, { useContext, useState } from "react";
-import { UserContext } from "../../UserContext";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { base_url } from "../../utils/constants";
+import { useContext } from "react";
+import { UserContext } from "../../UserContext";
 
-const useUpdateProfile = () => {
-  const [loading, setLoading] = useState(false);
-  const { refetchTrigger, setRefetchTrigger, setAlertError, setAlertSuccess } =
-    useContext(UserContext);
-
-  const updateProfile = async ({ email, username }) => {
-    setLoading(true);
-    try {
-      const response = await axios.patch(
-        `${base_url}/auth/update-profile`,
-        {
-          email,
-          username,
-        },
-        { withCredentials: true }
-      );
-      const data = response.data;
+export const useUpdateProfile = () => {
+  const queryClient = useQueryClient();
+  const { setAlertError, setAlertSuccess } = useContext(UserContext);
+  const { isPending, mutate: updateProfile } = useMutation({
+    mutationFn: async ({ data }) => {
+      await axios.patch(`${base_url}/mining/auth/update-profile`, data, {
+        withCredentials: true,
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["user-info"] });
       setAlertSuccess("Profile updated successfully");
-      setTimeout(() => {
-        setRefetchTrigger(!refetchTrigger);
-      }, [1500]);
-    } catch (error) {
+    },
+    onError: (error) => {
       setAlertError(
-        error?.response?.data?.error ||
-          error?.response?.data?.message ||
-          error?.response?.data?.msg ||
-          error?.message ||
-          "something went wrong"
+        error.response.data.msg || error.response.data.error || error.message
       );
-      console.error(
-        error?.response?.data?.error ||
-          error?.response?.data?.message ||
-          error?.response?.data?.msg ||
-          error?.message ||
-          "something went wrong"
-      );
-    } finally {
-      setLoading(false);
-    }
-  };
-  return { loading, updateProfile };
+    },
+  });
+  return { isPending, updateProfile };
 };
 
-export default useUpdateProfile;
+export const useUpdateProfilePic = () => {
+  const queryClient = useQueryClient();
+  const { setAlertError, setAlertSuccess } = useContext(UserContext);
+  const { isPending, mutate: updateDp } = useMutation({
+    mutationFn: async ({ formData }) => {
+      await axios.patch(`${base_url}/v2/user/update-profile-pic`, formData, {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["user-info"] });
+    },
+    onError: (error) => {
+      setAlertError(error.response.data.error || "something went wrong");
+    },
+  });
+  return { isPending, updateDp };
+};

@@ -9,12 +9,12 @@ import { IoNotifications } from "react-icons/io5";
 import Notifications from "./Notifications";
 import useClearNotifications from "../../hooks/notifications/useClearNotifications";
 import Loading from "../Loading";
-import useGetUserInfo from "../../hooks/auth/useGetUserInfo";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function NotificationDrawer({ user }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const { loading, clearNotification } = useClearNotifications();
-  const { userLoading, refetch } = useGetUserInfo();
+  const queryClient = useQueryClient();
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -37,7 +37,7 @@ export default function NotificationDrawer({ user }) {
           <div className="text-[#07EAD3] relative cursor-pointer">
             <IoNotifications />
             <p className="md:text-sm md:w-6 w-4 md:h-6 h-4 rounded-full flex justify-center items-center bg-blue-500 absolute -top-3 -right-3">
-              {user?.notifications.length}
+              {user?.notifications?.length}
             </p>
           </div>
         </IconButton>
@@ -90,7 +90,7 @@ export default function NotificationDrawer({ user }) {
         <button
           onClick={async () => {
             await clearNotification();
-            refetch();
+            queryClient.invalidateQueries({ queryKey: ["user-info"] });
             handleClose();
           }}
           className="text-end block ms-auto text-xs underline cursor-pointer"

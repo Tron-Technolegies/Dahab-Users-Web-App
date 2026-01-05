@@ -13,7 +13,7 @@ const useMakeWithdrawal = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${base_url}/payout/withdraw-intent`,
+        `${base_url}/mining/payout/withdraw-intent`,
         { amount, address },
         { withCredentials: true }
       );

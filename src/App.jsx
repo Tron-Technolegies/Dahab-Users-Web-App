@@ -37,6 +37,7 @@ import {
   WithdrawPage,
 } from "./pages";
 import RechargePage from "./components/wallet/RechargePage";
+import { adminLoader } from "./loaders/adminLoader";
 
 const client = new QueryClient({
   defaultOptions: {
@@ -53,6 +54,7 @@ export default function App() {
       path: "/dashboard",
       element: <Layout />,
       errorElement: <ErrorPage />,
+      loader: adminLoader,
       children: [
         { index: true, element: <DashBoardPage /> },
         { path: "detailed", element: <DetailedPage /> },

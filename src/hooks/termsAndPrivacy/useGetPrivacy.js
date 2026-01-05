@@ -9,9 +9,12 @@ const useGetPrivacy = () => {
   const getPolicy = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`${base_url}/terms/privacy/latest`, {
-        withCredentials: true,
-      });
+      const response = await axios.get(
+        `${base_url}/mining/terms/privacy/latest`,
+        {
+          withCredentials: true,
+        }
+      );
       const data = response.data;
       setPolicy(data);
     } catch (error) {

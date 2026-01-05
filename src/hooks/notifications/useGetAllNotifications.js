@@ -9,9 +9,12 @@ const useGetAllNotifications = () => {
   const getNotifications = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`${base_url}/notifications/user`, {
-        withCredentials: true,
-      });
+      const response = await axios.get(
+        `${base_url}/mining/notifications/user`,
+        {
+          withCredentials: true,
+        }
+      );
       const data = response.data;
       setNotifications(data.notifications);
     } catch (error) {

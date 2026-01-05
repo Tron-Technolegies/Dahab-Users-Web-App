@@ -9,9 +9,12 @@ export const useGetLatestTerms = () => {
   const { isPending, data } = useQuery({
     queryKey: ["latestTerms"],
     queryFn: async () => {
-      const { data } = await axios.get(`${base_url}/terms/terms&privacy`, {
-        withCredentials: true,
-      });
+      const { data } = await axios.get(
+        `${base_url}/mining/terms/terms&privacy`,
+        {
+          withCredentials: true,
+        }
+      );
       if (user && !user.latestPrivacyVersion) {
         setTermsOpen(true);
       }

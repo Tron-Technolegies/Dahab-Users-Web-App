@@ -14,7 +14,7 @@ const usePurchase = () => {
     localStorage.setItem("cart_items", JSON.stringify(user.cartItems));
     try {
       const response = await axios.post(
-        `${base_url}/product/purchase`,
+        `${base_url}/mining/product/purchase`,
         {},
         { withCredentials: true }
       );

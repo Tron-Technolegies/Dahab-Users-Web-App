@@ -12,9 +12,12 @@ const useDeleteAccount = () => {
   const deleteAccount = async () => {
     setLoading(true);
     try {
-      const response = await axios.delete(`${base_url}/auth/delete-account`, {
-        withCredentials: true,
-      });
+      const response = await axios.delete(
+        `${base_url}/mining/auth/delete-account`,
+        {
+          withCredentials: true,
+        }
+      );
       const data = response.data;
       setAlertSuccess("successfully deleted Account");
       navigate("/login");

@@ -14,7 +14,7 @@ const useVerifyWithdrawal = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${base_url}/auth/withdrawVerify`,
+        `${base_url}/mining/auth/withdrawVerify`,
         {
           code,
         },

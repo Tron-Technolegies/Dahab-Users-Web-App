@@ -1,23 +1,17 @@
-import { useScroll } from "framer-motion";
-import React, { useContext, useState } from "react";
-import useUpdateCart from "../../../hooks/cart/useUpdateCart";
-import { UserContext } from "../../../UserContext";
 import Loading from "../../Loading";
 import { MdDelete } from "react-icons/md";
-import useRemoveItem from "../../../hooks/cart/useRemoveItem";
+
+import { useRemoveItem, useUpdateCart } from "../../../hooks/cart/useCart";
 
 export default function QuantitySwitcher({ qty, id }) {
-  const { loading, updateCart } = useUpdateCart();
-  const { loading: removeLoading, removeItem } = useRemoveItem();
-  const { refetchTrigger, setRefetchTrigger } = useContext(UserContext);
+  const { updateCart, isPending } = useUpdateCart();
+  const { isPending: removeLoading, removeItem } = useRemoveItem();
   async function handleDecrease() {
     if (qty === 1) return;
-    await updateCart({ itemId: id, qty: qty - 1 });
-    setRefetchTrigger(!refetchTrigger);
+    updateCart({ cartId: id, qty: qty - 1 });
   }
   async function handleIncrease() {
-    await updateCart({ itemId: id, qty: qty + 1 });
-    setRefetchTrigger(!refetchTrigger);
+    updateCart({ cartId: id, qty: qty + 1 });
   }
   return (
     <>
@@ -39,13 +33,13 @@ export default function QuantitySwitcher({ qty, id }) {
       <button
         className="text-red-500 text-2xl mx-2"
         onClick={async () => {
-          await removeItem({ itemId: id });
-          setRefetchTrigger(!refetchTrigger);
+          removeItem({ id });
         }}
       >
         <MdDelete />
       </button>
-      {loading && <Loading />}
+      {isPending && <Loading />}
+      {removeLoading && <Loading />}
     </>
   );
 }
