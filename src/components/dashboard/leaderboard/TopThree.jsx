@@ -146,7 +146,7 @@ export default function TopThree({ first, second, third, type, myRank }) {
           </div>
         </div>
       </div>
-      {type === "Miners" && (
+      {myRank && type === "Miners" && (
         <p className="text-[#FFFFFF99] bg-[#011532] rounded-full p-3 text-center">
           You own{" "}
           <span className="text-xl font-semibold text-[#3DB2E8AB]">
@@ -163,7 +163,7 @@ export default function TopThree({ first, second, third, type, myRank }) {
           users
         </p>
       )}
-      {type === "BTC" && (
+      {myRank && type === "BTC" && (
         <p className="text-[#FFFFFF99] bg-[#011532] rounded-full p-3 text-center">
           You earned{" "}
           <span className="text-xl font-semibold text-[#3DB2E8AB]">
@@ -180,7 +180,7 @@ export default function TopThree({ first, second, third, type, myRank }) {
           users
         </p>
       )}
-      {type === "Hashrate" && (
+      {myRank && type === "Hashrate" && (
         <p className="text-[#FFFFFF99] bg-[#011532] rounded-full p-3 text-center">
           You have{" "}
           <span className="text-xl font-semibold text-[#3DB2E8AB]">
