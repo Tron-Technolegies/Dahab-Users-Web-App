@@ -88,7 +88,7 @@ export default function BTCTable({ data }) {
                     <img
                       src={row.profilePic}
                       alt="profilePic"
-                      className="w-5 rounded-full object-cover"
+                      className="w-5 h-5 rounded-full object-cover"
                     />
                   )}
                   <p>{row.username}</p>
