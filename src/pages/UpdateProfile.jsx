@@ -27,7 +27,7 @@ export default function UpdateProfile() {
         <img
           src={user?.profilePic}
           alt="profile"
-          className="w-16 object-cover rounded-full"
+          className="w-16 h-16 object-cover rounded-full"
         />
       ) : (
         <div className="w-16 h-16 bg-white rounded-full text-black text-2xl font-bold flex justify-center items-center">
