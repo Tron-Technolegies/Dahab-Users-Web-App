@@ -12,7 +12,7 @@ export default function TopThree({ first, second, third, type, myRank }) {
                 <img
                   src={second?.profilePic}
                   alt="Profile pic"
-                  className="w-16 rounded-full object-cover"
+                  className="w-16 h-16 rounded-full object-cover"
                 />
               ) : (
                 <div className="w-16 h-16 rounded-full bg-white text-black text-2xl grid place-items-center">
@@ -59,7 +59,7 @@ export default function TopThree({ first, second, third, type, myRank }) {
                 <img
                   src={first?.profilePic}
                   alt="Profile pic"
-                  className="w-16 rounded-full object-cover"
+                  className="w-16 h-16 rounded-full object-cover"
                 />
               ) : (
                 <div className="w-16 h-16 rounded-full bg-white text-black text-2xl grid place-items-center">
@@ -106,7 +106,7 @@ export default function TopThree({ first, second, third, type, myRank }) {
                 <img
                   src={third?.profilePic}
                   alt="Profile pic"
-                  className="w-16 rounded-full object-cover"
+                  className="w-16 h-16 rounded-full object-cover"
                 />
               ) : (
                 <div className="w-16 h-16 rounded-full bg-white text-black text-2xl grid place-items-center">
